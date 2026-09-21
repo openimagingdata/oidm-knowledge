@@ -16,3 +16,5 @@ public/
 # tracked, despite the blanket `dist/` rule above.
 !site/okf-meta-plugin/dist/
 !site/okf-meta-plugin/dist/**
+viz.html
+.playwright-cli/

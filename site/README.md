@@ -76,3 +76,7 @@ visible properties panel is suppressed so it doesn't duplicate okf-meta-plugin's
 ## Link resolution
 
 The bundle uses two link styles the OKF spec allows: bundle-absolute links (`/dir/file.md`) in concept documents and `./file.md` links in directory indexes. Quartz's `markdownLinkResolution` handles one style at a time, so `build.sh` first runs `tools/prepare_site_content.py`, which copies `knowledge/` to a temporary directory outside the repository (Quartz skips gitignored paths) and rewrites every internal link to the bundle-absolute form. Quartz then builds from that copy with `markdownLinkResolution: absolute`. The bundle in git is never modified.
+
+## Publishing to the Tigris bucket
+
+`task publish` (or `bash site/publish-tigris.sh [bucket] [prefix]`) does everything in one step: validates the bundle, builds with a bucket-specific config (`baseUrl` under the bucket host, client-side navigation and popovers off), rewrites every internal link in the built HTML to an explicit `.html` or `index.html` path with `tools/flatten_site_links.py` (plain object storage serves keys literally, with no clean-URL rewriting), and uploads with the Tigris CLI. Result: `https://<bucket>.t3.storage.dev/<prefix>/index.html`. The GitHub Pages build does not use the flattening step.

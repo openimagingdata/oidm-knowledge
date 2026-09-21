@@ -1,0 +1,46 @@
+# Task runner for the OIDM knowledgebase. Install: https://taskfile.dev
+#
+#   task            list tasks
+#   task check      run both validators (OKF conformance + house rules)
+#   task build      build the Quartz site into public/
+#   task serve      local dev server with live reload
+#   task publish    build, flatten links for object storage, upload to Tigris
+#   task viz        render the bundle as a single-file interactive graph (viz.html)
+version: "3"
+
+vars:
+  BUCKET: '{{.BUCKET | default "oidm-public"}}'
+  PREFIX: '{{.PREFIX | default "oidm-knowledge"}}'
+
+tasks:
+  default:
+    silent: true
+    cmds:
+      - task --list
+
+  check:
+    desc: Validate the bundle (OKF 0.2 conformance, then house rules)
+    cmds:
+      - uv run .agents/skills/validate/scripts/okf_validate.py knowledge --strict
+      - uv run tools/check_bundle.py
+
+  build:
+    desc: Build the Quartz site into public/ (clean-URL links, for GitHub Pages)
+    cmds:
+      - bash site/build.sh
+
+  serve:
+    desc: Serve the site locally with live reload
+    cmds:
+      - bash site/build.sh serve
+
+  publish:
+    desc: Build, flatten links for object storage, and upload to Tigris (BUCKET, PREFIX overridable)
+    deps: [check]
+    cmds:
+      - bash site/publish-tigris.sh {{.BUCKET}} {{.PREFIX}}
+
+  viz:
+    desc: Render the bundle as one self-contained HTML graph at viz.html
+    cmds:
+      - uv run .agents/skills/visualize/scripts/okf_visualize.py knowledge -o viz.html --title "OIDM knowledge"

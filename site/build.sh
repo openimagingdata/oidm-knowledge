@@ -33,8 +33,9 @@ fi
 git -C "$QUARTZ_SRC" fetch --quiet origin "$QUARTZ_SHA" || true
 git -C "$QUARTZ_SRC" checkout --quiet "$QUARTZ_SHA"
 
-echo "==> Copying site/quartz.config.yaml into the checkout"
-cp "$SITE_DIR/quartz.config.yaml" "$QUARTZ_SRC/quartz.config.yaml"
+CONFIG_FILE="${QUARTZ_CONFIG:-$SITE_DIR/quartz.config.yaml}"   # override with QUARTZ_CONFIG=<path> (used by publish-tigris.sh)
+echo "==> Copying ${CONFIG_FILE#"$REPO_ROOT"/} into the checkout"
+cp "$CONFIG_FILE" "$QUARTZ_SRC/quartz.config.yaml"
 
 echo "==> npm ci"
 ( cd "$QUARTZ_SRC" && npm ci )
