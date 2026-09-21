@@ -1,0 +1,20 @@
+name: Validate bundle
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: OKF 0.2 conformance
+        run: uv run .agents/skills/validate/scripts/okf_validate.py knowledge --strict
+      - name: House rules
+        run: uv run tools/check_bundle.py

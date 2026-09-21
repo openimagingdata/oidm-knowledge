@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+node_modules/
+.DS_Store
+dist/
+.cache/
+tools/denylist.txt
+
+# Quartz site build (site/quartz.config.yaml, site/okf-meta-plugin/, and
+# site/build.sh are tracked; the cloned Quartz checkout and build output are not)
+site/.quartz-src/
+site/**/node_modules
+public/
+
+# okf-meta-plugin's dist/ is hand-written (no build step) and must be
+# tracked, despite the blanket `dist/` rule above.
+!site/okf-meta-plugin/dist/
+!site/okf-meta-plugin/dist/**
