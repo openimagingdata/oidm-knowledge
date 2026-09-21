@@ -1,16 +1,8 @@
 name: Deploy site
 
+# Deploy is disabled until the site generator is settled; run manually if needed.
 on:
-  push:
-    branches: [main]
-    paths:
-      - "knowledge/**"
-      - "site/**"
   workflow_dispatch:
-
-env:
-  # Kept in sync with QUARTZ_SHA in site/build.sh; only used here as a cache key.
-  QUARTZ_SHA: 97a2d05f80c4c50534959b1d0d41cc4b3895625e
 
 permissions:
   contents: read
