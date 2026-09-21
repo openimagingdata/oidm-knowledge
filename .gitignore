@@ -18,3 +18,6 @@ public/
 !site/okf-meta-plugin/dist/**
 viz.html
 .playwright-cli/
+
+# Raw source material reviewed for the bundle (may contain unpublished planning); never committed
+sources/
