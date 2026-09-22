@@ -71,7 +71,8 @@ def edge_point(b: dict, side: str, frac: float = 0.5) -> tuple[float, float]:
 
 
 def arrow(id_: str, src: str, s_side: str, dst: str, d_side: str, label: str | None = None, s_frac=0.5, d_frac=0.5,
-          color=LINE, dashed=False, label_dx=0.0, label_dy=-22.0, sw=2, both=False, elbow: str | None = None) -> None:
+          color=LINE, dashed=False, label_dx=0.0, label_dy=-22.0, sw=2, both=False, elbow: str | None = None,
+          label_size=14) -> None:
     a, b = find(src), find(dst)
     (x1, y1), (x2, y2) = edge_point(a, s_side, s_frac), edge_point(b, d_side, d_frac)
     ar = base("arrow", id_, x1, y1, x2 - x1, y2 - y1, color, "transparent", dashed=dashed, sw=sw)
@@ -89,8 +90,8 @@ def arrow(id_: str, src: str, s_side: str, dst: str, d_side: str, label: str | N
     els.append(ar)
     if label:
         mx, my = (x1 + x2) / 2 + label_dx, (y1 + y2) / 2 + label_dy
-        lw = len(label) * 12 * 0.58
-        els.append(text(id_ + "_l", mx - lw / 2, my, label, size=12, color=BODY, align="center", w=lw))
+        lw = max(len(ln) for ln in label.split("\n")) * label_size * 0.58
+        els.append(text(id_ + "_l", mx - lw / 2, my, label, size=label_size, color=BODY, align="center", w=lw))
 
 
 def hline(id_: str, x: float, y: float, w: float, dashed=True) -> None:

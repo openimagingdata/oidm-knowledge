@@ -36,6 +36,11 @@ git -C "$QUARTZ_SRC" checkout --quiet "$QUARTZ_SHA"
 CONFIG_FILE="${QUARTZ_CONFIG:-$SITE_DIR/quartz.config.yaml}"   # override with QUARTZ_CONFIG=<path> (used by publish-tigris.sh)
 echo "==> Copying ${CONFIG_FILE#"$REPO_ROOT"/} into the checkout"
 cp "$CONFIG_FILE" "$QUARTZ_SRC/quartz.config.yaml"
+if [ -n "${SITE_BASE_URL:-}" ]; then
+  # Per-target base URL (dev / staging / production) without editing the tracked config.
+  sed -i "s|^\(\s*\)baseUrl:.*$|\1baseUrl: ${SITE_BASE_URL}|" "$QUARTZ_SRC/quartz.config.yaml"
+  echo "==> baseUrl set to ${SITE_BASE_URL}"
+fi
 
 echo "==> npm ci"
 ( cd "$QUARTZ_SRC" && npm ci )

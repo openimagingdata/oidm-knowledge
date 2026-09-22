@@ -1,80 +1,79 @@
 #!/usr/bin/env python3
-"""Build the repository data-flow map: one row per theme so the main flows run
-left to right (terminology, content, library, application).
+"""Build the repository data-flow map: one row per theme, each a short
+left-to-right chain of at most three boxes, stacked top to bottom so every
+cross-row flow is a short arrow to an ADJACENT row only -- rows are ordered
+(CDE staging, finding models, applications, anatomy, terminology lookup) so
+that CDE staging and applications both sit directly next to finding models,
+and applications sits directly next to anatomy. Two edges that would have to
+skip a row (CDEStaging -> RadElement, med-ontology-lookup -> findingmodel)
+are dropped as captions instead -- both are already stated in the page prose.
 Output: knowledge/repositories/repository-map.excalidraw"""
 from excalib import PRIMARY, SECONDARY, TERTIARY, EXTERNAL, PLANNED, TITLE, SUBTITLE, BODY, LINE, els, base, text, box, find, arrow, save
 
-W, H = 250, 60
-C = [60, 420, 780, 1140]          # columns, 110px gutters
-R = [150, 240, 330, 420]          # rows
+W, H = 190, 80
+GAP = 115                                   # wide enough that the longest horizontal-arrow label ("CDE-derived") fits centered above its arrow with room on each side
+C1, C2, C3 = 0, W + GAP, 2 * (W + GAP)     # 0, 305, 610
+ROW_GAP = 90
+CONTENT_W = C3 + W                          # 800
 
-els.append(text("title", 60, 40, "How the repositories relate", size=26, color=TITLE))
-els.append(text("subtitle", 60, 78, "Read each row left to right: a terminology feeds content, a library packages it, an application uses it.", size=14, color=BODY))
-for lbl, x in (("TERMINOLOGIES", C[0]), ("CONTENT", C[1]), ("LIBRARIES", C[2]), ("APPLICATIONS", C[3])):
-    els.append(text("hdr_" + lbl.lower(), x, 100, lbl, size=13, color=SUBTITLE))
+row_names = ["cde_stage", "fm_pipeline", "apps", "anatomy", "terms"]
+row_labels = ["CDE STAGING", "FINDING MODELS", "APPLICATIONS", "ANATOMY", "TERMINOLOGY LOOKUP"]
+Y = {}
+y = 40
+for name, lbl in zip(row_names, row_labels):
+    Y[name] = y
+    els.append(text(f"hdr_{name}", C1, y - 24, lbl, size=14, color=SUBTITLE))
+    y += H + ROW_GAP
 
-# row 1: finding models
-box("radelement", C[0], R[0], W, H, "RadElement (ACR/RSNA)\nRDES and RDE codes", EXTERNAL, size=14)
-box("fms", C[1], R[0], W, H, "findingmodels\n2,382 finding models", TERTIARY, size=14)
-box("fm", C[2], R[0], W, H, "findingmodel\nOIFM format, index, CLIs, MCP", SECONDARY, size=14)
-box("forge", C[3], R[0], W, H, "Finding Model Forge\nfmf.oidm.org", PRIMARY, size=14)
-# row 2: CDE staging and the catalog site
-box("cdesnap", C[0], R[1], W, H, "common_data_elements\nRadElement snapshot", TERTIARY, size=14)
-box("cdes", C[1], R[1], W, H, "CDEStaging\n259 draft CDE definitions", TERTIARY, size=14)
-box("site", C[3], R[1], W, H, "finding-models-site\ncatalog of findingmodels", PRIMARY, size=14)
-# row 3: anatomy
-box("radlex", C[0], R[2], W, H, "RadLex (RSNA)\nRID codes", EXTERNAL, size=14)
-box("alorg", C[1], R[2], W, H, "anatomiclocations.org\n+ BodyPartIndex.py and .ts", TERTIARY, size=14)
-box("alpkg", C[2], R[2], W, H, "anatomic-locations package\ninside findingmodel", SECONDARY, size=14)
-box("ipl", C[3], R[2], W, H, "imaging-problem-list\nuses finding models and locations", PRIMARY, size=14)
-# row 4: terminology lookup
-box("others", C[0], R[3], W, H, "SNOMED CT, FMA, LOINC, UMLS\n(and RadLex)", EXTERNAL, size=14)
-box("molu", C[2], R[3], W, H, "med-ontology-lookup\nmolu", SECONDARY, size=14)
-box("mvp", C[3], R[3], W, H, "IPL-MVP-ExtractionAndLabeling\nsuperseded", PLANNED, dashed=True, size=14)
+# row 1: CDE staging (2 boxes; columns line up with row 2's RadElement/findingmodels)
+box("cdesnap", C1, Y["cde_stage"], W, H, "common_data_elements\nRadElement snapshot", TERTIARY)
+box("cdes", C2, Y["cde_stage"], W, H, "CDEStaging\n259 draft CDE\ndefinitions", TERTIARY)
 
-# horizontal flows
+# row 2: finding model pipeline
+box("radelement", C1, Y["fm_pipeline"], W, H, "RadElement (ACR/RSNA)\nRDES and RDE codes", EXTERNAL)
+box("fms", C2, Y["fm_pipeline"], W, H, "findingmodels\n2,382 finding models", TERTIARY)
+box("fm", C3, Y["fm_pipeline"], W, H, "findingmodel\nOIFM format, index,\nCLIs, MCP", SECONDARY)
 arrow("f1", "radelement", "right", "fms", "left", "CDE-derived")
 arrow("f2", "fms", "right", "fm", "left", "definitions")
-arrow("f3", "fm", "right", "forge", "left", "engine", s_frac=0.35, d_frac=0.35)
-arrow("f4", "radlex", "right", "alorg", "left", "curated subset")
-arrow("f5", "alorg", "right", "alpkg", "left", "lineage", dashed=True)
-arrow("f6", "alpkg", "right", "ipl", "left", None, s_frac=0.7, d_frac=0.7)
-arrow("f7", "others", "right", "molu", "left", "lookups")
-# vertical flows
-arrow("f8", "radelement", "bottom", "cdesnap", "top", "snapshot", s_frac=0.5, d_frac=0.5, label_dx=42, label_dy=-8)
-arrow("f9", "cdes", "top", "fms", "bottom", "content batches", s_frac=0.5, d_frac=0.5, label_dx=70, label_dy=-8)
-arrow("f10", "cdes", "left", "radelement", "bottom", None, s_frac=0.5, d_frac=0.75, dashed=True)
-els.append(text("f10_l", C[0] + W + 14, R[1] + H + 4, "informal path to submission", size=11, color=BODY))
-els.append(text("f5_note", C[1] + 30, R[2] + H + 4, "current data lives in findingmodel", size=11, color=BODY))
 
-# elbowed flows through empty gutters
-def elbow(id_, src, dst, pts_abs, label, lx, ly, dashed=False):
-    a, b = find(src), find(dst)
-    x0, y0 = pts_abs[0]
-    ar = base("arrow", id_, x0, y0, pts_abs[-1][0] - x0, pts_abs[-1][1] - y0, LINE, "transparent", dashed=dashed)
-    ar.update({"points": [[x - x0, y - y0] for x, y in pts_abs],
-               "startBinding": {"elementId": src, "focus": 0, "gap": 2}, "endBinding": {"elementId": dst, "focus": 0, "gap": 2},
-               "startArrowhead": None, "endArrowhead": "arrow", "boundElements": None})
-    a["boundElements"].append({"id": id_, "type": "arrow"}); b["boundElements"].append({"id": id_, "type": "arrow"})
-    els.append(ar)
-    if label:
-        els.append(text(id_ + "_l", lx, ly, label, size=11, color=BODY))
+# row1 <-> row2: both adjacent, straight verticals (same columns).
+# cdesnap/cdes sit ABOVE radelement/fms on the page, so the "ascending" arrow
+# (radelement -> cdesnap) binds radelement's top to cdesnap's bottom, and the
+# "descending" one (cdes -> fms) binds cdes's bottom to fms's top.
+arrow("f3", "radelement", "top", "cdesnap", "bottom", "snapshot")
+arrow("f4", "cdes", "bottom", "fms", "top", "content batches")
 
-# findingmodels -> finding-models-site: over the top of the libraries column
-elbow("e1", "fms", "site", [(C[1] + W * 0.75, R[0]), (C[1] + W * 0.75, 138), (C[3] + W / 2, 138), (C[3] + W / 2, R[1])],
-      "git submodule", C[1] + W + 14, 122)
-# fix: the last leg must come down past row 1 into the site box top; run it in the gutter right of column 4 instead
-find("e1")["points"] = [[0, 0], [0, 138 - R[0]], [C[3] + W + 30 - (C[1] + W * 0.75), 138 - R[0]],
-                        [C[3] + W + 30 - (C[1] + W * 0.75), R[1] + H / 2 - R[0]], [C[3] + W - (C[1] + W * 0.75), R[1] + H / 2 - R[0]]]
-# findingmodel -> imaging-problem-list: down the gutter between libraries and applications
-elbow("e2", "fm", "ipl", [(C[2] + W, R[0] + H * 0.85), (C[2] + W + 70, R[0] + H * 0.85), (C[2] + W + 70, R[2] + H * 0.3), (C[3], R[2] + H * 0.3)],
-      "", 0, 0)
-# med-ontology-lookup -> findingmodel: up the same gutter, left of e2
-elbow("e3", "molu", "fm", [(C[2] + W, R[3] + H * 0.5), (C[2] + W + 40, R[3] + H * 0.5), (C[2] + W + 40, R[0] + H + 15), (C[2] + W - 30, R[0] + H + 15), (C[2] + W - 30, R[0] + H)],
-      "ontology search for enrichment", 0, 0, dashed=True)
-lab = find("e3_l"); lw = len("ontology search for enrichment") * 11 * 0.58
-cx, cy = C[2] + W + 40 - 12, (R[3] + H * 0.5 + R[0] + H + 15) / 2
-lab.update({"x": cx - lw / 2, "y": cy - 7, "width": lw, "angle": -1.5708, "textAlign": "center"})
+# row 3: applications (fed from row 2 above and row 4 below -- both adjacent)
+box("ipl", C1, Y["apps"], W, H, "imaging-problem-list\nuses models +\nlocations", PRIMARY)
+box("site", C2, Y["apps"], W, H, "finding-models-site\ncorpus catalog", PRIMARY)
+box("forge", C3, Y["apps"], W, H, "Finding Model Forge\nfmf.oidm.org", PRIMARY)
+arrow("f5", "fms", "bottom", "site", "top", "git submodule")   # row2->row3, same column, straight vertical
+arrow("f6", "fm", "bottom", "forge", "top", "engine")          # row2->row3, same column, straight vertical
+# C1 has no arrow through this gap (imaging-problem-list is fed from row 4
+# below, not row 2 above), so it is clear for this caption
+els.append(text("cdes_note", C1, Y["fm_pipeline"] + H + 12, "(CDEStaging also has an\ninformal path to RadElement)", size=13, color=BODY, w=W))
 
-els.append(text("legend", 60, 520, "Orange: external terminology.  Light blue: content repository.  Mid blue: library.  Dark blue: application.  Dashed: lineage or superseded.", size=12, color=BODY))
+# row 4: anatomy
+box("radlex", C1, Y["anatomy"], W, H, "RadLex (RSNA)\nRID codes", EXTERNAL)
+box("alorg", C2, Y["anatomy"], W, H, "anatomiclocations.org\n+ BodyPartIndex", TERTIARY)
+box("alpkg", C3, Y["anatomy"], W, H, "anatomic-locations pkg\ninside findingmodel", SECONDARY)
+arrow("f7", "radlex", "right", "alorg", "left", "subset")
+arrow("f8", "alorg", "right", "alpkg", "left", "lineage", dashed=True)
+
+# row3 <-> row4: adjacent rows -- one clean line, no bends, even though it
+# spans the row's full width (alpkg is the rightmost box in row 4, ipl the
+# leftmost in row 3, to keep each row's own left-to-right reading intact)
+arrow("f9", "alpkg", "top", "ipl", "bottom", "used by", s_frac=0.5, d_frac=0.5)
+
+# row 5: terminology lookup
+box("others", C1, Y["terms"], W, H, "SNOMED CT, FMA,\nLOINC, UMLS", EXTERNAL)
+box("molu", C2, Y["terms"], W, H, "med-ontology-lookup\nmolu", SECONDARY)
+box("mvp", C3, Y["terms"], W, H, "IPL-MVP-\nExtractionAndLabeling\n(superseded)", PLANNED, dashed=True)
+arrow("f10", "others", "right", "molu", "left", "lookups")
+els.append(text("molu_note", C2, Y["terms"] + H + 14, "molu also enriches findingmodel\nmetadata by ontology search (see text)", size=13, color=BODY))
+
+# ---------------------------------------------------------------- legend / footnote
+Y_END = Y["terms"] + H + 60
+els.append(text("legend", 0, Y_END, "Orange: external terminology.  Light blue: content repository.\nMid blue: library.  Dark blue: application.  Dashed: lineage or superseded.", size=13, color=BODY))
+
 save("knowledge/repositories/repository-map.excalidraw")

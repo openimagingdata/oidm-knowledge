@@ -1,0 +1,29 @@
+// Cloudflare Worker serving the built Quartz site as static assets.
+//
+// Three targets, all assets-only Workers on the same account:
+//   task deploy            -> oidm-knowledge-dev      (default; day-to-day)
+//   task deploy:staging    -> oidm-knowledge-staging
+//   task deploy:prod       -> oidm-knowledge          (the public site)
+//
+// html_handling "auto-trailing-slash" is what Quartz expects: /glossary/oifm serves
+// glossary/oifm.html and /glossary/ serves glossary/index.html. Worker logic
+// (comments, endpoints) can be added later without changing the site build.
+{
+  "name": "oidm-knowledge",
+  "compatibility_date": "2026-09-21",
+  "assets": {
+    "directory": "../public",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "env": {
+    "dev": {
+      "name": "oidm-knowledge-dev",
+      "assets": { "directory": "../public", "html_handling": "auto-trailing-slash", "not_found_handling": "404-page" }
+    },
+    "staging": {
+      "name": "oidm-knowledge-staging",
+      "assets": { "directory": "../public", "html_handling": "auto-trailing-slash", "not_found_handling": "404-page" }
+    }
+  }
+}

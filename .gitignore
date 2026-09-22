@@ -21,3 +21,4 @@ viz.html
 
 # Raw source material reviewed for the bundle (may contain unpublished planning); never committed
 sources/
+.wrangler/
