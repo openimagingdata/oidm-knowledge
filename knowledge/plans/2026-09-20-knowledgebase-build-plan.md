@@ -74,6 +74,8 @@ Inventory reports for every source live in the session scratchpad and are summar
 | openimagingdata.org (Ghost site) | 15 posts (2023-06 to 2025-03) and an About page | live | "Findings, CDEs, and Observations", "Data Model: Structure and Function", "Benchmarking a Vision", "OIDM-Based Next-gen Reporting Assistance Framework", the SIIM 2024 posts |
 | CDETemplateDemo, SARTemplatesToCDEs, template_extraction, ReportFindingRefiner, get_ontology_findings, ontology_tools, common_data_elements | Lineage | `main` | `SARTemplatesToCDEs/RectalCAStaging/Changes_vs_RDES11.md`, `ReportFindingRefiner/README.md`, `common_data_elements/README.md` and schema versions; the rest as one-paragraph history entries |
 | Gamma deck, January 2026 | Vision and roadmap | live | Whole deck as a Presentation Extract |
+| SIIM 2026 deck, June 2026 ("Reports of the Future") | The framing: Patient Context and Foundation Context; the three axes (Observation Type, Anatomic Location, Exam Type) as OIDM layers over CDE/OIFM, RadLex, and the Playbook; relationships and external citations; SDKs that resolve codes; the ask | `sources/bucket/siim2026/` (public talk) | Whole deck; the slide 7 table and the foundation-context graph as figures, at the project lead's discretion |
+| oidm-knowledge-sources bucket folder | Manuscripts (JACR IPL; two JDIM under review), the AI-evolution essay, the reporting-schema deck, the July 2026 SIIM webinar deck | `sources/bucket/REPORT.md` | Paraphrase and cite per the manuscripts rule; reviewer correspondence never used |
 
 # The work edge
 
@@ -304,6 +306,18 @@ Answers can come at approval time or during Phase 1.
 | Data structures versus transport | Per the project lead's 2026-09-19 manuscript notes: OIDM defines a system of data structures for imaging exam result information used inside applications; FHIR and DICOM are transport expressions designed separately and guided by the structures. The data-structure documents are to be reframed accordingly. |
 | Page feedback (later) | Wanted: off-the-shelf page comments and suggested changes, possibly dictation; candidates Hypothesis or Giscus. Not this iteration. |
 | Site generator and host | Decided 2026-09-21 after a survey of wiki and knowledge-graph tools (sources/site-tools-comparison.md): Quartz stays, on Cloudflare Workers static assets, which serve its clean URLs natively. Three targets: oidm-knowledge-dev (default, `task deploy`), oidm-knowledge-staging (`task deploy:staging`, also the push-to-main workflow), oidm-knowledge (`task deploy:prod`). Typed-edge graph from OKF frontmatter is a Quartz plugin to write later. The object-storage pipeline was removed. |
+
+
+# Decisions added 2026-09-22
+
+| Topic | Decision |
+|---|---|
+| Structure | Five named pillars, always by name: Foundation Context (schema and meta-definitions plus the content build-out), Data Structures (especially the Observation layer and how the patient graph and the foundation graph work together), SDKs, Use Cases (the team's documented possible applications, tools, plugins, and outputs), Sample Applications (what was actually built). The earlier three-layer and four-pillar organizations are superseded. Ideas mined from repository documents, plans, prompts, skills, and ADRs are the team's own ideas and enter as content. |
+| CDEs and finding models | The same content in two collections: the inclusive OIDM-maintained finding models and the well-reviewed ACR/RSNA CDEs. Both are intended to use the schema and classes of the CDE schema rewrite (FindingClass, DataElement, Measurement, and the rest). Explained once as a common model, then the two collections and their relationship. Collection expectations are not per-item facts; migration is intended, not complete. |
+| OIFM reorganization | Reorganizing the finding models around the graph-based approach of the CDE next-generation schema effort is an immediate priority, stated as direction under Foundation Context with current implementation kept distinct. No storage, schema, or migration design beyond the source work. |
+| Source eligibility | Repository documents, prompts, plans, skills, ADRs, and code are team artifacts eligible for substantive content, not demoted for being agent-assisted. Each claim carries its source's status, date, and any provenance label the source supplies. Differences and later corrections are preserved, not reconciled. |
+| Terminology | Foundation Context and Patient Context from the SIIM 2026 deck. The CDE report graph and the Imaging Problem List representations are related representations of the Observation idea. Retained artifact names are used where a source's files are cited. |
+| Restructure record | The operating record is `docs/plans/restructure-joint-notes.md` (decisions, agreed outline, next steps) with `docs/plans/idea-placement.md` mapping every inventoried idea to its section. |
 
 # Risks
 

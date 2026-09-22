@@ -22,3 +22,4 @@ Start with [What is OIDM](./overview/what-is-oidm.md) and [Architecture](./overv
 * [references](./references/) - Verbatim and near-verbatim source material
 * [guides](./guides/) - Authoring conventions and the migration ledger
 * [plans](./plans/) - Plans for building and maintaining this knowledgebase
+* [drafts](./drafts/) - Staging area for the restructured pillar pages (in progress, 2026-09-22)
