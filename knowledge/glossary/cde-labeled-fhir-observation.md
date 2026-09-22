@@ -4,7 +4,7 @@ title: CDE-labeled FHIR Observation
 description: The project's founding representation of a finding, a FHIR Observation whose code and component codes are drawn from a published CDE set.
 tags: [glossary, data-structures, fhir, cde]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: site-findings
     resource: https://www.openimagingdata.org/findings-cdes-and-observations/
@@ -27,7 +27,7 @@ sources:
 
 The project's founding representation of a radiology finding: a FHIR `Observation` whose `code` identifies a [CDE set](/glossary/cde-set.md) and whose `component` codes identify the [CDE elements](/glossary/cde-element.md) inside it, each component's value giving the chosen value code. The phrase comes from the project's own About page and from the 2023 post that set the direction.[^site-about][^site-findings]
 
-The lung screening sample implements it exactly. A radiologist's finding Observation carries `code` as `RDES195 Pulmonary Nodule` with `system` `https://radelement.org`, references the imaging study through `derivedFrom`, and carries element codes such as `RDE1717` in components with `valueCodeableConcept` giving codes such as `RDE1717.1`.[^fhir-sample] The reference implementation models the same shape in Python, with a discriminated union of codeable-concept, string, integer, and boolean components.[^lineage-obs]
+In the lung screening sample, a radiologist's finding Observation carries `code` as `RDES195 Pulmonary Nodule` with `system` `https://radelement.org`, references the imaging study through `derivedFrom`, and carries element codes such as `RDE1717` in components with `valueCodeableConcept` giving codes such as `RDE1717.1`.[^fhir-sample] The reference implementation models the same shape in Python, with a discriminated union of codeable-concept, string, integer, and boolean components.[^lineage-obs]
 
 ## Synonyms and near-synonyms
 
@@ -45,7 +45,7 @@ None of its own. The identifiers are those of the coding systems used, most ofte
 
 ## Conflicts
 
-IHE IDR rejects the component pattern for this purpose. It states that `Observation.component` "is not used," because FHIR limits components to values "not useful on their own" and using it "has the potential to significantly complicate queries," preferring a root Observation with `hasMember` references to associated observations.[^idr] Every OIDM artifact that encodes attributes today, including the documented Exam Finding List mapping and these lineage samples, uses components. Reconciling the two is an open item; see [IHE IDR alignment](/data-structures/ihe-idr-alignment.md).
+IHE IDR rejects the component pattern for this purpose. It states that `Observation.component` "is not used," because FHIR limits components to values "not useful on their own" and using it "has the potential to significantly complicate queries," preferring a root Observation with `hasMember` references to associated observations.[^idr] Every OIDM artifact that encodes attributes today, including the documented Exam Finding List mapping and these lineage samples, uses components. Reconciliation remains open. See [IHE IDR alignment](/data-structures/ihe-idr-alignment.md).
 
 [^site-findings]: "Findings, CDEs, and Observations", 2023-06-24
 [^site-about]: openimagingdata.org About page

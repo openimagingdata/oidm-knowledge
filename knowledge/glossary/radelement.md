@@ -4,7 +4,7 @@ title: RadElement
 description: The ACR and RSNA registry that publishes common data element sets and elements, and the coding system their identifiers belong to.
 tags: [glossary, semantic-foundation, terminologies, cde]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: cde-repo
     resource: https://github.com/openimagingdata/common_data_elements/blob/35536d8c858bcd33e730a00c919edaef2e310a0b/README.md
@@ -42,7 +42,7 @@ RadElement is downstream of authoring. Informal definitions are drafted in `CDES
 
 ## Conflicts
 
-There is no settled coding-system URI for RadElement codes. IHE IDR asks the question directly, "What is the Coding System identifier for Radelement codes?", and the next-generation work records it as open.[^idr] In practice three forms are in use: `https://radelement.org` in FHIR samples, `RADELEMENT` as an index code system string, and a proposed `RDE2` base in the next-generation notes. Separately, RadElement coverage was found missing from ontology search during metadata enrichment, which made `index_codes` the weakest-scoring field in that pipeline.[^index-fixture]
+There is no settled coding-system URI for RadElement codes. IHE IDR asks, "What is the Coding System identifier for Radelement codes?", and the next-generation work records it as open.[^idr] Three forms appear in the sources: `https://radelement.org` in FHIR samples, `RADELEMENT` as an index code system string, and a proposed `RDE2` base in the next-generation notes. Separately, RadElement coverage was found missing from ontology search during metadata enrichment, which made `index_codes` the weakest-scoring field in that pipeline.[^index-fixture]
 
 [^cde-repo]: common_data_elements repository README
 [^radelement]: RadElement registry

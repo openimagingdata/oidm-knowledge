@@ -4,7 +4,7 @@ title: FindingClass
 description: The next-generation CDE vocabulary's node type for a finding definition, separated from diagnosis and carrying bindings to shared elements.
 tags: [glossary, semantic-foundation, cde, next-generation]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: cde-context
     resource: https://github.com/RSNA/ACR-RSNA-CDEs/blob/44836c19f4e025cf1684a015ed5cc63c29eaf7f3/CONTEXT.md
@@ -19,7 +19,7 @@ sources:
 
 # FindingClass
 
-The next-generation CDE vocabulary's node type for a finding definition: the counterpart of a [CDE set](/glossary/cde-set.md) or an OIDM [finding model](/glossary/finding-model.md) in a graph-shaped model. A FindingClass is described by ordinary [DataElements](/glossary/data-element.md) reached through [element bindings](/glossary/element-binding.md), sits in an is-a taxonomy of subtypes, and carries [standard clinical metadata](/glossary/tag.md): "the seven facts on a class: modality, body region, subspecialty, sex, age, time course, and etiology."[^cde-context]
+The next-generation CDE vocabulary's node type for a finding definition: the counterpart of a [CDE set](/glossary/cde-set.md) or an OIDM [finding model](/glossary/finding-model.md) in a graph model. A FindingClass is described by ordinary [DataElements](/glossary/data-element.md) reached through [element bindings](/glossary/element-binding.md), sits in an is-a taxonomy of subtypes, and carries [standard clinical metadata](/glossary/tag.md): "the seven facts on a class: modality, body region, subspecialty, sex, age, time course, and etiology."[^cde-context]
 
 Two scoping mechanisms are defined on classes. [Anatomic scope](/glossary/anatomic-scope.md) states the eligible anatomical places, tissue types, or structure types for the definition. Component-of scope states "the finding classes a component class belongs inside, stated on the component class"; a class with a component-of scope "is never reported on its own," and component classes are specific to a lesion family.[^cde-context]
 
@@ -43,7 +43,7 @@ Working identifiers in the alpha implementation take the form `FC-######`, for e
 
 ## Conflicts
 
-IHE IDR uses "finding" for the presence-or-absence determination rather than for the named entity, and routes positive clinical findings to [FHIR Condition](/glossary/fhir-condition.md) while negative ones become Observations. The next-generation notes record a different working default, that every assertion in a radiology report including diagnoses is encoded as an Observation, and list the divergence as an item to raise with IHE.[^idr]
+IHE IDR uses "finding" for the presence-or-absence determination rather than for the named entity, and routes positive clinical findings to [FHIR Condition](/glossary/fhir-condition.md) while negative ones become Observations. The next-generation working default encodes every radiology report assertion, including diagnoses, as an Observation. The notes list this difference for discussion with IHE.[^idr]
 
 [^cde-context]: CDE vocabulary, next-generation working glossary
 [^idr]: IHE IDR Phase II extract

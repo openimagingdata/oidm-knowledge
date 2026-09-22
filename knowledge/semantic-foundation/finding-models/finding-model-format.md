@@ -1,10 +1,10 @@
 ---
 type: Format Specification
 title: Finding model format
-description: The released Open Imaging Finding Model record format, class by class and field by field, with a real example and the unreleased metadata fields on the work edge.
+description: Released finding model fields, validation rules, examples, and unreleased metadata extensions.
 tags: [semantic-foundation, finding-models, oifm, schema, format]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: fm-model
     resource: https://github.com/openimagingdata/findingmodel/blob/75afd39a400419dcfaf7c8d4a34f065b4d804e0d/packages/findingmodel/src/findingmodel/finding_model.py
@@ -84,7 +84,7 @@ An [attribute](/glossary/attribute.md) is one characterization axis. Two variant
 | `unit` | no | yes | no | string or null |
 | `index_codes` | yes | yes | no, `Ided` variants only | non-empty if present |
 
-Three behaviors are enforced by validators rather than by field declarations. A choice attribute must carry at least two values. `max_selected` is repaired on input: it becomes 1 when missing or falsy, and is clamped to the number of values when larger or when the literal string `"all"` is supplied. And value codes are generated rather than supplied.
+Validators require at least two choice values and generate value codes. They also repair `max_selected`: missing or falsy values become 1. Values above the number of choices, or the literal string `"all"`, become the number of choices.
 
 A `ChoiceValueIded` has `value_code` matching `^OIFMA_[A-Z]{3,4}_[0-9]{6}\.\d+$`, a `name`, an optional `description`, and optional `index_codes`. A validator overwrites each `value_code` with `<oifma_id>.<index>` counting from zero, so the first value of an attribute ends in `.0`, the second in `.1`, and so on. The prose mirror's example numbers values from `.1`, which does not match what the code writes or what the stored corpus contains. Real presence attributes carry `.0` for absent and `.1` for present.
 
@@ -128,7 +128,7 @@ Contributors are `Person` or `Organization`.[^fm-contributor] An `Organization` 
 }
 ```
 
-The `Laterality` attribute is elided here for length. Serialization conventions follow from the repository's validator: files are rewritten with consistent formatting on every commit, null and absent optional fields are omitted rather than written as `null`, and the generated markdown render, the repository index, and the identifier registry are regenerated from `defs/` and must never be hand-edited.[^fm-claude]
+The example omits the `Laterality` attribute. On every commit, the validator reformats JSON, omits null and absent optional fields, and regenerates markdown, the corpus index, and the identifier registry from `defs/`. Generated files must not be edited manually.[^fm-claude]
 
 # On the work edge, not released
 
@@ -147,9 +147,11 @@ The branch splits `finding_model.py` into `types/models.py`, `types/attributes.p
 | `age_profile` | `AgeProfile` | `applicability` is `all_ages` or a list of nine MeSH-derived age stages; `more_common_in` is an optional list of the same |
 | `sex_specificity` | `SexSpecificity` | male-specific, female-specific, sex-neutral |
 
-Three changes ride along. Legacy values normalize on input, so title-cased body regions lowercase themselves, `Arm` and `Leg` become `upper_extremity` and `lower_extremity`, `ALL` becomes `whole_body`, modalities `CR` and `DX` become `XR`, and free-text age labels expand into an `AgeProfile`. Model-level entries in `index_codes` and `anatomic_locations` are rejected if `display` is empty. And canonical `index_codes` are narrowed to exact matches or clinically substitutable near-equivalents, with broader, narrower, and merely related candidates diverted to a separate review artifact.
+The branch also normalizes legacy input. Body regions become lowercase, `Arm` and `Leg` become `upper_extremity` and `lower_extremity`, and `ALL` becomes `whole_body`. Modalities `CR` and `DX` become `XR`, and free-text ages expand into `AgeProfile`.
 
-The branch's own readiness assessment does not pass. The prose reference for these fields, and the three places where it disagrees with the branch code, is in [the metadata fields extract](/references/oifm-metadata-fields-extract.md). The pipeline that populates them is described in [the enrichment pipeline](/semantic-foundation/finding-models/enrichment-pipeline.md), and the direction as a stated goal is in [format evolution](/roadmap/finding-model-format-evolution.md).
+Model-level `index_codes` and `anatomic_locations` require nonempty `display`. Canonical `index_codes` accept exact or clinically substitutable matches. Broader, narrower, and related candidates go to a separate review artifact.
+
+The branch fails its readiness assessment. [The metadata fields extract](/references/oifm-metadata-fields-extract.md) records three disagreements between its code and prose. See [the enrichment pipeline](/semantic-foundation/finding-models/enrichment-pipeline.md) for assignment and [format evolution](/roadmap/finding-model-format-evolution.md) for planned work.
 
 [^fm-model]: finding_model.py, findingmodel main branch
 [^fm-contributor]: contributor.py, findingmodel main branch

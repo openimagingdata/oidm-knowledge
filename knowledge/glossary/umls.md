@@ -4,7 +4,7 @@ title: UMLS
 description: The Unified Medical Language System, used in OIDM as the hub for translating identifiers between terminologies and as a cross-reference on anatomic locations.
 tags: [glossary, semantic-foundation, terminologies]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: umls
     resource: https://www.nlm.nih.gov/research/umls/index.html
@@ -22,11 +22,11 @@ sources:
 
 # UMLS
 
-The Unified Medical Language System, the US National Library of Medicine's integration of many source vocabularies under shared concept identifiers.[^umls] OIDM uses it for two jobs.
+The Unified Medical Language System, the US National Library of Medicine's integration of many source vocabularies under shared concept identifiers.[^umls]
 
-The first is crosswalking. The `molu` lookup tool resolves a concept to its UMLS concept unique identifiers and then translates to codes in other vocabularies; the stated design makes "UMLS as the CUI hub" part of the default radiology profile, alongside [RadLex](/glossary/radlex.md), [LOINC](/glossary/loinc.md), [SNOMED CT](/glossary/snomed-ct.md), and [FMA](/glossary/fma.md).[^roadmap][^molu] The roadmap is explicit that a crosswalk is not an equivalence: translation should preserve "mapping direction, scope, provenance, and strength instead of treating every cross-reference as equivalence."[^roadmap]
+The `molu` lookup tool resolves a concept to its UMLS concept unique identifiers and then translates to codes in other vocabularies. The design makes "UMLS as the CUI hub" part of the default radiology profile, alongside [RadLex](/glossary/radlex.md), [LOINC](/glossary/loinc.md), [SNOMED CT](/glossary/snomed-ct.md), and [FMA](/glossary/fma.md).[^roadmap][^molu] The roadmap is explicit that a crosswalk is not an equivalence: translation should preserve "mapping direction, scope, provenance, and strength instead of treating every cross-reference as equivalence."[^roadmap]
 
-The second is as a cross-reference code on [anatomic locations](/glossary/anatomic-location.md), present on 578 of the 2,890 records in the curated set.[^al-code]
+UMLS also supplies cross-reference codes on [anatomic locations](/glossary/anatomic-location.md), present on 578 of the 2,890 records in the curated set.[^al-code]
 
 ## Synonyms and near-synonyms
 
@@ -45,7 +45,7 @@ The second is as a cross-reference code on [anatomic locations](/glossary/anatom
 
 ## Conflicts
 
-UMLS requires a licence and an API key, so any OIDM tooling that depends on it fails differently for an unlicensed caller. The lookup tool's typed failure model exists partly for this reason, separating absence of a result from authentication, authorization, and licensing failures so the latter stay visible rather than silently falling back.[^molu] A tracked issue also records that co-occurring CUI ambiguity is currently lost rather than preserved.
+UMLS requires a licence and API key. The lookup tool's typed failure model exists partly for this reason, separating absence of a result from authentication, authorization, and licensing failures, so the latter stay visible rather than silently falling back.[^molu] A tracked issue also records that co-occurring CUI ambiguity is currently lost rather than preserved.
 
 [^umls]: Unified Medical Language System
 [^molu]: med-ontology-lookup README

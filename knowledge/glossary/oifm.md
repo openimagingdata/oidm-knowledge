@@ -4,7 +4,7 @@ title: OIFM
 description: Open Imaging Finding Model, the OIDM specification for a finding definition, and the prefix of the identifiers that specification mints.
 tags: [glossary, semantic-foundation, finding-models]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: fm-py
     resource: https://github.com/openimagingdata/findingmodel/blob/75afd39a400419dcfaf7c8d4a34f065b4d804e0d/packages/findingmodel/src/findingmodel/finding_model.py
@@ -19,7 +19,7 @@ sources:
 
 # OIFM
 
-**Open Imaging Finding Model (OIFM).** The OIDM specification that defines what a [finding model](/glossary/finding-model.md) is: a named radiology finding with a description, optional synonyms and tags, a list of characterizing [attributes](/glossary/attribute.md), optional [anatomic locations](/glossary/anatomic-location.md) and [index codes](/glossary/index-code.md), and optional [contributors](/glossary/contributor.md).[^fm-schema] The canonical statement of the format is the `FindingModelFull` Pydantic model in the `findingmodel` package.[^fm-py]
+**Open Imaging Finding Model (OIFM).** The OIDM specification that defines what a [finding model](/glossary/finding-model.md) is: a named radiology finding with a description, optional synonyms and tags, a list of characterizing [attributes](/glossary/attribute.md), optional [anatomic locations](/glossary/anatomic-location.md) and [index codes](/glossary/index-code.md), and optional [contributors](/glossary/contributor.md).[^fm-schema] The format is defined by the `FindingModelFull` Pydantic model in the `findingmodel` package.[^fm-py]
 
 "OIFM" is also the literal prefix of the identifier minted for each finding model, which is why the two senses are easy to confuse. The deck expands the acronym as "Open Imaging Finding Models" when counting content, reporting nearly 3,000 definitions.[^deck]
 

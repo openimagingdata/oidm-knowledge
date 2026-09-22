@@ -4,7 +4,7 @@ title: Observation
 description: The atomic unit of OIDM data, one finding seen or excluded on one exam, with its anatomic location and attribute values.
 tags: [glossary, data-structures]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: deck
     resource: https://gamma.app/docs/Open-Imaging-Data-Model-2026-Status-Update:-Realizing-Object-Oriented-Imaging-Results-yfxzx4q9zssafal
@@ -29,7 +29,7 @@ The atomic unit of OIDM data: one finding, seen or explicitly excluded, on one e
 
 In the current [Exam Finding List](/glossary/exam-finding-list.md) format an observation is one entry in the `findings` array, with an `observationId`, a `findingCode` and description, an `attributes` array, an optional `anatomicLocation`, and an optional verbatim `reportText`. Repeat instances are separate observations: "the same finding type may appear multiple times, for example multiple kidney stones, and each gets its own entry with a unique `observationId`."[^ipl-claude]
 
-The FHIR lineage is direct. The 2024 reference implementation's `Observation` class states "the Observation class is the model for FHIR Observation objects," with `code`, `status`, `subject`, `bodySite`, `derivedFrom`, and a discriminated union of components.[^lineage-obs]
+The 2024 reference implementation's `Observation` class states "the Observation class is the model for FHIR Observation objects," with `code`, `status`, `subject`, `bodySite`, `derivedFrom`, and a discriminated union of components.[^lineage-obs]
 
 ## Synonyms and near-synonyms
 

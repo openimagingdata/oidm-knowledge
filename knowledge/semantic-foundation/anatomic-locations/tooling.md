@@ -1,10 +1,10 @@
 ---
 type: Guide
 title: Anatomic location tooling
-description: How to look up, search, and traverse anatomic locations with the anatomic-locations package and CLI, the older wrapper libraries, and the raw JSON download.
+description: Lookup, search, and hierarchy traversal through current and older anatomic location tools.
 tags: [semantic-foundation, anatomic-locations, tooling, cli, guide]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 stale_after: 2027-09-21
 sources:
   - id: fm-docs
@@ -45,7 +45,7 @@ sources:
 | The raw data, no dependency | The JSON download from the project site |
 | To curate the set itself | The `manage-anatomic-locations` skill in `findingmodel`, and [laterality conventions](/semantic-foundation/anatomic-locations/laterality-conventions.md) |
 
-Installation and configuration detail belongs with the code and is not repeated here. The package README and the anatomic locations guide in `findingmodel` are the reference.[^fm-pkg-readme][^fm-docs]
+See the package README and guide for installation and configuration.[^fm-pkg-readme][^fm-docs]
 
 # The anatomic-locations package
 
@@ -62,9 +62,9 @@ print(location.description)       # "kidney"
 print(location.region.value)      # "Abdomen"
 ```
 
-Four capabilities matter in practice.
+The package provides four capabilities.
 
-**Direct lookup and code lookup.** `get()` for the three forms above, and `find_by_code(system, code)` to come in from [SNOMED CT](/glossary/snomed-ct.md), [FMA](/glossary/fma.md), or RadLex. The assignment rules for the extraction platform tell coders to prefer direct lookup over search for a named target organ, because search is less reliable and produces retrieval misses such as "prostate" returning salivary glands.[^ipl-rules]
+**Direct lookup and code lookup.** `get()` accepts identifiers, descriptions, or synonyms. `find_by_code(system, code)` accepts [SNOMED CT](/glossary/snomed-ct.md), [FMA](/glossary/fma.md), or RadLex codes. Assignment rules prefer direct lookup for a named organ to avoid search misses such as "prostate" returning salivary glands.[^ipl-rules]
 
 **Hierarchy traversal.** `get_containment_ancestors()` and `get_containment_descendants()` on a location, plus `get_children_of()` on the index. Both the containment and the part-of hierarchies are backed by materialized paths, so these are not recursive queries.
 
@@ -107,7 +107,7 @@ whole body - RID39569
 
 # Where the database comes from
 
-The DuckDB file is built separately from the JSON source, published to remote storage, and referenced from a central `manifest.json` that also carries the finding model index. On first use the package fetches it, checks the manifest for a newer version on later runs, and caches it locally.[^fm-normalized] The path can be overridden with the `ANATOMIC_DB_PATH` environment variable or a `db_path` constructor argument, which is how a pinned build or a locally rebuilt database is used.[^fm-pkg-readme]
+The JSON source is built into a DuckDB file published to remote storage. A central `manifest.json` references it alongside the finding model index. The package downloads and caches the database on first use, then checks the manifest for updates.[^fm-normalized] Use `ANATOMIC_DB_PATH` or the `db_path` constructor argument for a pinned or locally rebuilt database.[^fm-pkg-readme]
 
 # What is not exposed
 
@@ -129,13 +129,13 @@ bodyPart?.getPartOf();                          // RID270, female genital system
 const left = bodyPart?.getLeft();               // RID294_RID5824
 ```
 
-It carries the fullest hierarchy surface of any of the libraries: `isContained` and `isPartOf` tests, immediate and full children in both hierarchies, and full ancestors in both.[^bpi-ts]
+The TypeScript library provides `isContained`, `isPartOf`, immediate and full children, and full ancestors for both hierarchies.[^bpi-ts]
 
 `BodyPartIndex.py` is the Python counterpart. Its README states that installation from PyPI is pending, so it is used from source or with a local data file. It offers `get()` by identifier or code, `get_by_code()`, `search()` over names and synonyms, `is_contained()`, the laterality triad through `left`, `right`, and `unsided`, and a `snomed_code` property that falls back to the unsided version and then the immediate parent when the sided record carries no code of its own.[^bpi-py]
 
 # The raw data
 
-The project site publishes the curated set as a single JSON file with its JSON Schema and a changelog beside it, under the ISC license.[^al-code] That is the zero-dependency path, and the field meanings are in [the data model](/semantic-foundation/anatomic-locations/data-model.md) and, verbatim, in [the record format reference](/references/anatomic-location-json-schema.md).
+The project site publishes a JSON file, JSON Schema, and changelog under the ISC license.[^al-code] This requires no library dependency. See [the data model](/semantic-foundation/anatomic-locations/data-model.md) and [the verbatim record format reference](/references/anatomic-location-json-schema.md).
 
 [^fm-docs]: Anatomic locations guide, findingmodel main
 [^fm-pkg-readme]: anatomic-locations package README

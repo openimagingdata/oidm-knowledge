@@ -1,10 +1,10 @@
 ---
 type: Project Profile
 title: IPL MVP extraction and labeling
-description: The 2025 four-stage prototype that extracted findings from reports and matched them to finding models by embedding similarity, its measured results, and why it was superseded.
+description: The superseded 2025 report-extraction prototype, its embedding-based finding matches, and measured limits.
 tags: [applications, extraction, llm, embeddings, lineage]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:34:50Z }
 stale_after: 2027-09-21
 sources:
   - id: mvp-readme
@@ -27,9 +27,9 @@ sources:
 
 # Purpose
 
-This repository was the first end-to-end attempt at the [Imaging Problem List](/glossary/imaging-problem-list.md) goal: read radiology reports, pull findings out of them, and attach each finding to a standard [finding model](/glossary/finding-model.md) definition, so that a finding could be tracked across a patient's studies. Its own framing is longitudinal monitoring of radiologic findings using common data elements.[^mvp-readme]
+This was the first end-to-end prototype to extract radiology findings and match them to [finding model](/glossary/finding-model.md) definitions for longitudinal tracking. Its stated goal was an [Imaging Problem List](/glossary/imaging-problem-list.md) using common data elements.[^mvp-readme]
 
-It is superseded. [The report extraction platform](/applications/report-extraction-platform.md) on the `imaging-problem-list` development branch does everything this does and the things this could not. This profile records what it established and what it measured, because both shaped the design that replaced it. The wider sequence is in [extraction approaches](/history/extraction-approaches.md).
+[The report extraction platform](/applications/report-extraction-platform.md) on `imaging-problem-list`'s development branch supersedes it. See [extraction approaches](/history/extraction-approaches.md) for the wider history.
 
 # What a user does with it
 
@@ -46,7 +46,7 @@ A single configuration file holds the models, the file paths, the extraction pro
 
 # The data and the schema
 
-The schema is deliberately thin. A finding is a name and a boolean [presence](/glossary/presence.md); a mapping adds the matched finding model identifier and name, a confidence score, and a status.[^mvp-schemas]
+A finding has a name and boolean [presence](/glossary/presence.md). A mapping adds the matched model identifier and name, a confidence score, and a status.[^mvp-schemas]
 
 ```python
 class Finding(BaseModel):
@@ -62,22 +62,22 @@ class MappedFinding(BaseModel):
     status: str
 ```
 
-It produces neither an [Exam Finding List](/glossary/exam-finding-list.md) nor an Imaging Problem List, and no FHIR output at all; the README lists generating FHIR Observation resources as a future enhancement.[^mvp-readme] There is no location, no size, no severity, and no [change from prior](/glossary/change-from-prior.md).
+The output lacks location, size, severity, and [change from prior](/glossary/change-from-prior.md). It does not produce an [Exam Finding List](/glossary/exam-finding-list.md), Imaging Problem List, or FHIR resources. The README lists FHIR Observation generation as a future enhancement.[^mvp-readme]
 
-The reference set of finding models is a static local JSON file of 15 curated neurological finding models, not a live read from the content repository. That is the file the repository calls its reference, and swapping it for a real service is named as a future enhancement.
+The reference set is a local JSON file of 15 curated neurological finding models. Replacing it with a service is listed as a future enhancement.
 
 # Language model use
 
-Two calls, both to hosted services.[^mvp-readme]
+Extraction and matching call hosted services.[^mvp-readme]
 
-- **Extraction.** A general-purpose model reads each report under a system prompt and returns findings as name and presence pairs.
-- **Matching.** Each extracted finding name is embedded, and the embedding is compared by cosine similarity against the embedded names of the 15 reference models. The highest scoring match above a configurable threshold of 0.70 is accepted; everything below it is flagged for manual review.
+- A general-purpose model reads each report under a system prompt and returns finding names and presence values.
+- Matching compares embeddings of extracted names with embeddings of the 15 reference model names by cosine similarity. It accepts the highest match above the configurable 0.70 threshold and flags lower scores for manual review.
 
-Matching is therefore name-to-name similarity. No index lookup, no candidate generation, and no model judgment about whether the candidate actually fits.
+Matching uses name similarity without index lookup, candidate generation, or model judgment of candidate fit.
 
 # Architecture
 
-Four standalone Python scripts over JSON Lines files, with Pydantic for validation and cosine similarity over embedding vectors. No service, no database, no web interface. A mockups directory holds interface images for a review and labeling tool that was never built.
+Four standalone Python scripts read and write JSON Lines, using Pydantic validation and cosine similarity over embeddings. There is no service, database, or web interface. A mockups directory holds images for a review and labeling interface that was never built.
 
 # Results and limits, as measured
 
@@ -93,7 +93,7 @@ The README reports one informal run.[^mvp-readme]
 
 That is a match rate of roughly 6 percent. The three matches quoted as successes score 0.778, 0.806, and 0.761. There is no labeled evaluation set and no metrics harness.
 
-The README states its own limitations plainly: binary presence and absence only with no severity or size, manually curated reference models limited to neurological findings, no handling of negated findings, and a static threshold. The negation limitation matters most, because explicit negatives are exactly what an Exam Finding List is supposed to carry.
+The README lists binary presence, missing severity and size, a neurological reference set, unsupported negation, and a static threshold as limitations. Unsupported negation prevents the prototype from extracting the explicit negatives expected in an Exam Finding List.
 
 # Repository and branch of record
 
@@ -112,11 +112,11 @@ No open issues and no pull requests, open or closed. Status: lineage.
 
 All three were pushed within one week and none was merged.
 
-**A persistent FHIR design note.** One file, without a markdown extension, proposing that each finding be tracked as a persistent FHIR Observation with a stable identifier, so that repeat mentions of the same lesion across reports attach to one entity with its own timeline. It sketches a three-step pipeline, extract and map to codes, create or link a resource, then query the finding's timeline, and a patient to resource to dated-observation shape. It adds no code and names two modules that were never written.[^mvp-fhir] The idea is a genuine precursor to the grouping question the current Imaging Problem List answers structurally; see [FHIR mapping](/data-structures/fhir-mapping.md).
+**A persistent FHIR design note.** A file without a markdown extension proposes persistent FHIR Observations with stable identifiers, linking repeated mentions of a lesion into one timeline. It sketches extraction and code mapping, resource creation or linking, and timeline queries, organized by patient, resource, and dated observation. It names two unwritten modules and adds no code.[^mvp-fhir] See [FHIR mapping](/data-structures/fhir-mapping.md) for the related grouping question.
 
-**A typed-agent port.** The extraction step rewritten to use a typed agent with a declared result type and automatic retries, replacing a raw client call with manual JSON fence stripping. The schemas are unchanged. The commit was captured mid-draft, with explanatory prose left inside the Python file.[^mvp-pydantic]
+**A typed-agent port.** The extraction step uses a typed agent with a declared result type and automatic retries. It replaces a raw client call and manual JSON fence stripping without changing schemas. The commit is a draft, with explanatory prose left in the Python file.[^mvp-pydantic]
 
-**A longitudinal sample series.** The eight generic sample reports replaced with nine reports for one synthetic multiple sclerosis patient spanning 2019 to 2024, from an initial workup through follow-up studies.[^mvp-ms] It pairs with the FHIR design note's track-a-finding-over-time use case.
+**A longitudinal sample series.** Nine reports for one synthetic multiple sclerosis patient replace the eight generic reports. They span initial workup and follow-up from 2019 to 2024, matching the FHIR note's longitudinal use case.[^mvp-ms]
 
 # What it established
 

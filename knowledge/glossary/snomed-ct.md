@@ -4,7 +4,7 @@ title: SNOMED CT
 description: The clinical terminology used in OIDM as a secondary coding system on findings, attribute values, and anatomic locations.
 tags: [glossary, semantic-foundation, terminologies]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: snomed
     resource: https://www.snomed.org/
@@ -25,7 +25,7 @@ sources:
 
 # SNOMED CT
 
-The Systematized Nomenclature of Medicine Clinical Terms, the general clinical terminology.[^snomed] In OIDM it is a secondary coding system rather than a primary key. It appears in three places: as an [index code](/glossary/index-code.md) system on [finding models](/glossary/finding-model.md), [attributes](/glossary/attribute.md), and [attribute values](/glossary/attribute-value.md), listed alongside [RadLex](/glossary/radlex.md) and [Gamuts](/glossary/gamuts.md) as one of the common ontologies;[^claude-md] as a cross-reference on [anatomic locations](/glossary/anatomic-location.md), present on 1,732 of the 2,890 records in the curated set;[^al-code] and in the FHIR lineage samples as the code system for a report's category and its conclusion codes.[^fhir-sample]
+The Systematized Nomenclature of Medicine Clinical Terms, the general clinical terminology.[^snomed] OIDM uses it for secondary codes, not primary keys. Alongside [RadLex](/glossary/radlex.md) and [Gamuts](/glossary/gamuts.md), it supplies [index codes](/glossary/index-code.md) on [finding models](/glossary/finding-model.md), [attributes](/glossary/attribute.md), and [attribute values](/glossary/attribute-value.md).[^claude-md] SNOMED CT cross-references appear on 1,732 of 2,890 curated [anatomic locations](/glossary/anatomic-location.md).[^al-code] FHIR lineage samples use it for report category and conclusion codes.[^fhir-sample]
 
 Typical use on a value is the qualifier hierarchy, for example `52101004` for Present and `2667000` for Absent, paired with the equivalent RadLex codes on the same value.
 
@@ -45,7 +45,7 @@ A numeric concept identifier, for example `23043003` for uterine adnexa.
 
 ## Conflicts
 
-SNOMED CT is licensed, which is why the lookup tooling treats it as a credentialed backend and keeps licensed behavior opt-in and visible rather than implicit.[^molu] The curated anatomic set also records "complete SNOMED identification" as unfinished roadmap work, so SNOMED coverage of anatomic locations is partial by design.
+SNOMED CT requires a licence. The lookup tooling keeps licensed behavior opt-in and visible rather than implicit.[^molu] The curated anatomic set also records "complete SNOMED identification" as unfinished roadmap work, so SNOMED coverage of anatomic locations is partial by design.
 
 [^snomed]: SNOMED International
 [^molu]: med-ontology-lookup README

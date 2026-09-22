@@ -4,7 +4,7 @@ title: Site articles
 description: The fifteen posts published on openimagingdata.org between June 2023 and March 2025, plus the About page, each dated, linked, and summarized.
 tags: [history, site, articles, reference]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T02:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: rss
     resource: https://openimagingdata.org/rss/
@@ -16,7 +16,7 @@ sources:
 
 # What the site is
 
-`openimagingdata.org` is the project's public site, a hosted blog whose title is "Open Imaging Data Model" and whose tagline is "Defining unified data structures to integrate new functionality into imaging informatics platforms." It carries two static pages, Home and About, and fifteen posts running from 2023-06-24 to 2025-03-10.[^rss] Every date and summary below was verified against the live page on 2026-09-21. Individual authors are not named here, per the conventions in [the authoring guide](/guides/authoring-guide.md).
+`openimagingdata.org` is the project's public site, a hosted blog whose title is "Open Imaging Data Model" and whose tagline is "Defining unified data structures to integrate new functionality into imaging informatics platforms." It has Home and About pages and fifteen posts dated 2023-06-24 to 2025-03-10.[^rss] Every date and summary below was verified against the live page on 2026-09-21. Individual authors are not named here, per the conventions in [the authoring guide](/guides/authoring-guide.md).
 
 The site replaced the earlier repository-hosted site in June 2023; see [lineage repositories](/history/lineage-repositories.md).
 
@@ -24,7 +24,7 @@ The site replaced the earlier repository-hosted site in June 2023; see [lineage 
 
 ## 2025-03-10, [Leveraging Common Data Elements (CDEs) to Enhance Radiology Reporting](https://www.openimagingdata.org/leveraging-common-data-elements-cdes-to-enhance-radiology-reporting/)
 
-A guest post from a reporting software vendor arguing that standardized data points improve clinical decision-making and data quality in radiology reporting. It describes integrating CDEs with radiology information systems and PACS while adhering to HL7, FHIR, and FHIRcast. The stated payoff is efficiency, advanced analytics, and better outcomes from structured data. This is the most recent post on the site.
+A guest post from a reporting software vendor arguing that standardized data points improve clinical decision-making and data quality in radiology reporting. It describes integrating CDEs with radiology information systems and PACS while adhering to HL7, FHIR, and FHIRcast. The stated payoff is efficiency, advanced analytics, and better outcomes from structured data. This is the latest site post.
 
 ## 2024-07-02, [SIIM 2024 Update: Hackathon Edition](https://www.openimagingdata.org/siim-2024-update-hackathon-edition/)
 
@@ -32,7 +32,7 @@ Reports the completed hackathon tool, which automatically associates concepts fr
 
 ## 2024-07-01, [Benchmarking a Vision](https://www.openimagingdata.org/benchmarking-a-vision/)
 
-Announces a manuscript in the Journal of the American Medical Informatics Association titled "Standardizing imaging findings representation: harnessing Common Data Elements semantics and Fast Healthcare Interoperability Resources structures." The paper presents the framework for representing findings as CDE-labeled FHIR Observations, with a pulmonary nodule case study. Its claim, quoted in the post, is that CDE-labeled Observations should be the universal representation for exchanging and consuming radiology report content.
+Announces a manuscript in the Journal of the American Medical Informatics Association titled "Standardizing imaging findings representation: harnessing Common Data Elements semantics and Fast Healthcare Interoperability Resources structures." The paper presents the framework for representing findings as CDE-labeled FHIR Observations, with a pulmonary nodule case study. The post quotes its claim that CDE-labeled Observations should be the universal representation for exchanging and consuming radiology report content.
 
 ## 2024-06-20, [Attaching Ontology Links to Common Data Elements](https://www.openimagingdata.org/attaching-ontology-links-to-common-data-elements/)
 
@@ -40,7 +40,7 @@ Describes the problem the hackathon set out to solve: matching CDEs to ontology 
 
 ## 2024-06-18, [AI-Powered Chest CT Reporting: Transforming Radiologist Observations into Standardized Data](https://www.openimagingdata.org/creating-common-data-elements-for-chest-cts-how-ai-is-revolutionizing-radiology-reporting/)
 
-Reports using a large language model to generate common data element definitions from anonymized chest CT reports, by converting report text into semantic vectors, ranking relevant sections, and having radiologists review the generated definitions. More than 200 CDE definitions came out of the pilot. They were published to GitHub for community review, which is the origin of the chest CT content later carried in `CDEStaging`.
+Reports using a large language model to generate common data element definitions from anonymized chest CT reports, by converting report text into semantic vectors, ranking relevant sections, and having radiologists review the generated definitions. The pilot published more than 200 definitions to GitHub for community review, originating the chest CT content later held in `CDEStaging`.
 
 ## 2024-06-17, [Counting Down to SIIM](https://www.openimagingdata.org/counting-down-to-siim/)
 
@@ -60,7 +60,7 @@ A summary of the 2024-01-26 meeting, covering how imaging data standards connect
 
 ## 2024-01-25, [Data Model: Structure and Function](https://www.openimagingdata.org/data-model-structure-and-function/)
 
-The clearest statement of what OIDM is structurally. It describes the model as covering the whole reporting context, observations, patient data, imaging studies, and clinical history, and says the model makes extensive use of FHIR definitions while providing a superstructure on top for easier programmatic access, comparing that relationship to how a browser's document object model relates to HTML. It names two utility libraries: anatomic locations for standardized body part terminology, and an exam type library based on the LOINC and RSNA Playbook linked to anatomic locations. That exam type library has never been built; see [exam types](/semantic-foundation/exam-types/overview.md).
+Describes OIDM as covering report context, observations, patient data, imaging studies, and clinical history. It proposes structures over FHIR definitions for programmatic access, comparing the relationship to a browser's document object model and HTML. It names two utility libraries: anatomic locations for standardized body part terminology, and an exam type library based on the LOINC and RSNA Playbook linked to anatomic locations. That exam type library has never been built; see [exam types](/semantic-foundation/exam-types/overview.md).
 
 ## 2024-01-12, [2024 New Year Update](https://www.openimagingdata.org/2024-new-year-update/)
 
@@ -72,7 +72,7 @@ Lists six engagement channels: registering on the site for newsletters and comme
 
 ## 2023-07-16, [OIDM-Based Next-gen Reporting Assistance Framework](https://www.openimagingdata.org/oidm-based-next-gen-reporting-assistance/)
 
-Proposes a plugin architecture in which developers write assistance scripts that run inside a reporting tool's container. A script reads standardized data structures holding the report context, and can insert generated text into the report, ask the radiologist for more information, alert the radiologist to a problem, or send data to an external system. The container re-runs the scripts whenever the report context changes, which makes the assistance continuous rather than one-shot. This is the earliest statement of the direction later named the reporting SDK; see [the reporting SDK](/applications/reporting-sdk.md).
+Proposes a plugin architecture in which developers write assistance scripts that run inside a reporting tool's container. A script reads standardized data structures holding the report context, and can insert generated text into the report, ask the radiologist for more information, alert the radiologist to a problem, or send data to an external system. The container reruns scripts whenever report context changes. This is the earliest statement of the direction later named the reporting SDK; see [the reporting SDK](/applications/reporting-sdk.md).
 
 ## 2023-06-26, [SIIM Update](https://www.openimagingdata.org/siim-update/)
 
@@ -80,7 +80,7 @@ Announces the site itself and summarizes an in-person SIIM meeting on cooperatio
 
 ## 2023-06-24, [Findings, CDEs, and Observations](https://www.openimagingdata.org/findings-cdes-and-observations/)
 
-The founding post. It argues that a radiology finding can be standardized as a FHIR Observation labeled with ACR and RSNA common data element identifiers: the Observation's code carries the CDE set identifier naming the finding type, and each attribute becomes a component carrying a CDE element identifier and a value. Its worked example is a solid 6 mm nodule in the right lower lobe, labeled with the pulmonary nodule CDE set code and element codes for composition and size. Everything in [the data structures layer](/data-structures/hierarchy.md) descends from this claim.
+The founding post. It argues that a radiology finding can be standardized as a FHIR Observation labeled with ACR and RSNA common data element identifiers: the Observation's code carries the CDE set identifier naming the finding type, and each attribute becomes a component carrying a CDE element identifier and a value. Its worked example is a solid 6 mm nodule in the right lower lobe, labeled with the pulmonary nodule CDE set code and element codes for composition and size. This claim underlies [the data structures layer](/data-structures/hierarchy.md).
 
 # The About page
 
@@ -88,7 +88,7 @@ The About page states the mission: establish common data structures representing
 
 It also commits to programming interfaces in three languages, TypeScript and JavaScript, Python, and C#. Two of the three exist as lineage repositories and neither is current; no C# library was ever created. See [lineage repositories](/history/lineage-repositories.md).
 
-The page was last modified 2023-06-21 and has not been revised since, so it predates finding models, the Exam Finding List, and the Imaging Problem List. Where it differs from current documents, the current documents govern.
+The page was last modified 2023-06-21, before finding models, the Exam Finding List, and the Imaging Problem List. Where it differs from current documents, the current documents govern.
 
 [^rss]: openimagingdata.org RSS feed, 15 posts, fetched 2026-09-21
 [^about]: openimagingdata.org About page, fetched 2026-09-21

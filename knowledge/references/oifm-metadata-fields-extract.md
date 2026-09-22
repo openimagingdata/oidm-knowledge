@@ -4,7 +4,7 @@ title: Finding model structured metadata fields
 description: Near-verbatim extract of the reference for the structured metadata fields on FindingModelBase and FindingModelFull, with the points where it differs from the branch code it describes.
 tags: [references, oifm, finding-models, metadata, source-extract]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: note
     resource: https://github.com/RSNA/ACR-RSNA-CDEs/blob/44836c19f4e025cf1684a015ed5cc63c29eaf7f3/notes/oifm-metadata-fields.md
@@ -25,9 +25,9 @@ sources:
 
 # Provenance and status
 
-This is a near-verbatim extract of `notes/oifm-metadata-fields.md` from the `next-gen-2026` branch of the `ACR-RSNA-CDEs` repository, read at commit `44836c1`. That file is a copy: its own frontmatter records it as fetched on 2026-07-29 from a gist published by the project lead, and describes itself as intended for review with colleagues who are not reading the code. The only change made here is that dash punctuation was normalized to house style. No individual names appeared in the source.
+This near-verbatim extract comes from `ACR-RSNA-CDEs/notes/oifm-metadata-fields.md` on `next-gen-2026` at `44836c1`. The note records a 2026-07-29 copy of the project lead's gist for review by colleagues who are not reading the code. Only dash punctuation was normalized. The source contains no individual names.
 
-The fields it documents are **not released**. They exist on the `feature/metadata-cleanup` branch of the `findingmodel` repository and on `dev`, and none of them are on `main`. The released record format, and a field-by-field reconciliation against it, is in [the finding model schema](/references/finding-model-schema.md). Terms used below have glossary entries: [finding model](/glossary/finding-model.md), [attribute](/glossary/attribute.md), [index code](/glossary/index-code.md), [anatomic location](/glossary/anatomic-location.md), and [measurement](/glossary/measurement.md).
+The metadata fields are unreleased, present on `findingmodel`'s `feature/metadata-cleanup` and `dev` branches but absent from `main`. See the [finding model schema](/references/finding-model-schema.md) for the released format and comparison. Related terms are [finding model](/glossary/finding-model.md), [attribute](/glossary/attribute.md), [index code](/glossary/index-code.md), [anatomic location](/glossary/anatomic-location.md), and [measurement](/glossary/measurement.md).
 
 ## Where this differs from the branch code
 

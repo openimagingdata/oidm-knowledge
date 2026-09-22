@@ -1,10 +1,10 @@
 ---
 type: Roadmap
 title: Imaging Problem List data model system
-description: "The stated goals for the Observation, Exam Finding List, and Imaging Problem List layer: the formal model system asked for in issue 1, the eight active plans on the development branch, the anatomic-compatibility follow-on, and the FHIR and IHE alignments that are documented but unimplemented."
+description: Formal data model goals, eight active plans, anatomy reconciliation, and unimplemented FHIR and IHE mappings.
 tags: [roadmap, data-structures, ipl, observation, fhir, ihe]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T19:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 stale_after: 2027-09-21
 sources:
   - id: issue-1
@@ -46,7 +46,7 @@ sources:
 
 In the 2026-09-20 planning interview that produced [the knowledgebase build plan](/plans/2026-09-20-knowledgebase-build-plan.md), the project lead described the Imaging Problem List work in four parts: define data structures for [Observations](/glossary/observation.md) and their relationships; manage and collate those observations across a patient's history; design the applications that use them; and publish the result as standard formats.[^plan]
 
-The January 2026 deck states the same layer as the second strategic pillar, an ordered hierarchy from the atomic Observation through the [Exam Finding List](/glossary/exam-finding-list.md) and the [Imaging Problem List](/glossary/imaging-problem-list.md) to the [Imaging Persona](/glossary/imaging-persona.md), and names the Imaging Problem List as "a standard format for structured imaging results, automatically extractable from narrative report text."[^deck] The structures as they exist today are documented under [data structures](/data-structures/); what follows is what has been stated about where they go.
+The January 2026 deck makes this hierarchy its second strategic pillar: Observation, [Exam Finding List](/glossary/exam-finding-list.md), [Imaging Problem List](/glossary/imaging-problem-list.md), and [Imaging Persona](/glossary/imaging-persona.md). It calls the Imaging Problem List "a standard format for structured imaging results, automatically extractable from narrative report text."[^deck] The structures as they exist today are documented under [data structures](/data-structures/); what follows is what has been stated about where they go.
 
 # Issue 1: a formal system of data models
 
@@ -57,9 +57,9 @@ The one open issue in the `imaging-problem-list` repository, opened 2026-01-28, 
 - With **extensive annotation to generate JSON schemas**.
 - Using **camelCase aliases in export** against **snake_case object attributes** internally.
 
-Each element of that corresponds to a gap that exists today. There is no Observation model, no JSON Schema, and no standalone Observation record; the structure exists only inside the Exam Finding List JSON and, separately, inside the extraction pipeline's own models. Both the Exam Finding List and Imaging Problem List sample files carry a `$schema` URL that resolves to nothing. And the camelCase against snake_case split is the convention the existing sample data already follows without a model to enforce it.
+There is no formal Observation model, JSON Schema, or standalone record. Observations exist within Exam Finding List JSON and separate extraction models. Both list formats have sample `$schema` URLs that resolve to nothing. Sample data follows the camelCase and snake_case convention without a model enforcing it.
 
-The Extracted Observation subtype the issue floats maps onto a distinction the pipeline already makes in practice, between what a language model produced and what has been coded. See [Observation](/data-structures/observation.md).
+The proposed subtype reflects the pipeline's distinction between language model output and coded findings. See [Observation](/data-structures/observation.md).
 
 # The eight active plans as direction
 
@@ -87,11 +87,11 @@ This is a data model question, not a display question, because the grouping key 
 
 The mapping is stated in the specification on `main`: a report containing a list of [FHIR Condition](/glossary/fhir-condition.md) objects labeled with the finding identifier, each containing FHIR Observations documenting which exams the finding was recorded on, with exam date and LOINC-coded exam type.[^ipl-main]
 
-No code in any repository produces a Condition resource, and no current plan claims to. The full picture, including the lineage precedents that do implement a FHIR encoding, is in [FHIR mapping](/data-structures/fhir-mapping.md). One lineage experiment states an adjacent goal: a design note on an unmerged `IPL-MVP-ExtractionAndLabeling` branch proposes persistent FHIR Observations with stable identifiers, so repeated mentions of a finding across reports link to one entity rather than creating new ones.[^fhir-design-note] It carries no file extension and adds no code.
+No code in any repository produces a Condition resource, and no current plan claims to. See implemented lineage precedents in [FHIR mapping](/data-structures/fhir-mapping.md). One lineage experiment states an adjacent goal: a design note on an unmerged `IPL-MVP-ExtractionAndLabeling` branch proposes persistent FHIR Observations with stable identifiers, so repeated mentions of a finding across reports link to one entity rather than creating new ones.[^fhir-design-note] The extensionless note adds no code.
 
 # IHE Imaging Diagnostic Report alignment
 
-The deck states that the Exam Finding List "connects to the IHE Imaging Diagnostic Report (IDR) FHIR representation."[^deck] That connection is a goal. No OIDM repository implements or references the profile; what exists is a full extract of the Phase II public comment draft on the `next-gen-2026` branch of `ACR-RSNA-CDEs`.[^idr-extract]
+The deck states that the Exam Finding List "connects to the IHE Imaging Diagnostic Report (IDR) FHIR representation."[^deck] The connection remains a goal. No OIDM repository implements or references the profile. `ACR-RSNA-CDEs`'s `next-gen-2026` branch holds a full Phase II public comment draft extract.[^idr-extract]
 
 Four differences between the profile and current OIDM encodings are recorded in that extract, all listed as items to raise during public comment and none resolved: whether attributes ride in `Observation.component` or in `hasMember`; a vocabulary collision on the words "finding" and "observation"; whether a diagnosis is a FHIR Observation or a FHIR Condition; and whether [laterality](/glossary/laterality.md) lives in the location identifier or in a separate field. The profile also puts three questions back to the RadElement side, including what the coding system identifier for RadElement codes is. All are carried in [IHE IDR alignment](/data-structures/ihe-idr-alignment.md) and in [open questions](/roadmap/open-questions.md).
 

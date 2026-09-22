@@ -1,10 +1,10 @@
 ---
 type: Reference
 title: Finding model identifiers
-description: The OIFM and OIFMA identifier grammar, the organization-code segment and its registered values, value codes, how identifiers are minted and checked, and what stability is guaranteed.
+description: Finding, attribute, and value identifier formats, generation, validation, and stability limits.
 tags: [semantic-foundation, finding-models, oifm, identifiers, reference]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: fm-model
     resource: https://github.com/openimagingdata/findingmodel/blob/75afd39a400419dcfaf7c8d4a34f065b4d804e0d/packages/findingmodel/src/findingmodel/finding_model.py
@@ -28,7 +28,7 @@ sources:
 
 # The grammar
 
-Three identifier forms carry the whole referencing scheme. Each is enforced by a regular expression on the Pydantic field that holds it.[^fm-model]
+Pydantic fields enforce three identifier formats.[^fm-model]
 
 | Identifier | Regular expression | Example | Enforced on |
 |---|---|---|---|
@@ -38,7 +38,7 @@ Three identifier forms carry the whole referencing scheme. Each is enforced by a
 
 The digit count is a module constant, `ID_LENGTH`, set to 6 and interpolated into all three patterns, so the three move together if it ever changes.
 
-Reading one of these left to right gives you the whole address. `OIFMA_CDE_000632.1` is value 1 of attribute `000632`, contributed under organization code `CDE`. Because the attribute identifier is globally unique rather than scoped to its finding, an attribute code alone identifies the finding it belongs to, which is what makes the registry lookup in the next section possible.
+`OIFMA_CDE_000632.1` identifies value 1 of attribute `000632` under organization `CDE`. A globally unique attribute identifier also identifies its parent finding through the registry.
 
 # The organization segment
 
@@ -88,24 +88,24 @@ Identifiers are never written by hand. The authoring tools call the generators; 
 
 `oifm_ids` maps each finding identifier to the file that defines it. `attribute_ids` maps each attribute identifier to a pair of file name and attribute name. Value codes are not registered separately, because they are derived from the attribute identifier.
 
-The registry is rebuilt from `defs/` by `scripts/validator.py`, which walks every definition file, validates it, and fails if a finding identifier or an attribute identifier is seen twice.[^validator] That check is the only thing standing between random minting and a collision. A pre-commit hook runs the validator on every commit and stages the regenerated `ids.json`, the markdown renders, and the repository index, so a definition cannot land without the registry landing with it.
+`scripts/validator.py` rebuilds the registry from `defs/`, validates each file, and rejects repeated finding or attribute identifiers.[^validator] This is the sole collision check. Every commit's pre-commit hook runs it and stages the registry, markdown renders, and corpus index.
 
 # Round-trip regeneration, issue 42
 
-The one documented way to lose an identifier is to round-trip a registered model through `FindingModelBase`. That class has no `oifm_id` field, so validating a stored definition against it silently discards the finding identifier and every attribute identifier. The helper that adds identifiers then sees none present and mints new ones.[^issue42]
+Validating a registered model through `FindingModelBase`, which has no `oifm_id`, silently drops its finding and attribute identifiers. The helper then generates new ones.[^issue42]
 
 The issue, open since 2026-04-18, describes this as "a silent data-integrity hazard for any workflow that loads an existing `.fm.json` as a dict, needs to mutate it, and wants ID allocation for just the new part." It was hit in a review flow that added a change-from-prior attribute to a legacy model carrying only presence; the published finding identifier and the existing attribute identifier were both regenerated, and external references to them would have become dangling. The workaround shipped in the content work operates on the dictionary directly and allocates only the identifiers genuinely missing, building value codes from the attribute identifier by hand. Four candidate fixes are enumerated in the issue and none has been chosen.
 
 # Stability
 
-What is documented amounts to this.
+The documented stability rules are:
 
 - An identifier, once minted and committed, names one definition file, and the validator enforces that no second file claims it.
 - The registry admits that an identifier can legitimately appear on more than one row of an external list. The [MGB exam-oriented sub-taxonomies](/semantic-foundation/finding-models/finding-taxonomies.md) note that "an ID can appear on two rows where those earlier writebacks mapped two findings onto one model." That is a property of those files, not of the registry.
 - Nothing in the repository documents a deprecation, retirement, or supersession mechanism for an identifier. There is no version field on a finding model in the released format, and schema versioning is an open task rather than a shipped feature.
 - The round-trip defect above is the known exception to stability in practice, and it is unresolved.
 
-Downstream systems rely on this. Exam Finding Lists store nothing but the identifier and a display string, so a changed identifier breaks the link between a stored [Observation](/glossary/observation.md) and its definition. The content repository is the single source of finding model identity for the catalog site, which consumes `defs/` as a git submodule, and for the extraction platform, which resolves identifiers through the published registry. See [the repository map](/repositories/repository-map.md).
+Exam Finding Lists reference definitions by identifier and display string, so identifier changes break stored [Observation](/glossary/observation.md) links. The content repository supplies identity to the catalog site, which reads `defs/` through a git submodule, and to the extraction platform's registry lookups. See [the repository map](/repositories/repository-map.md).
 
 [^fm-model]: finding_model.py, findingmodel main branch
 [^base-orgs]: base_organizations.jsonl, findingmodel main branch

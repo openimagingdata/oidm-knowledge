@@ -1,10 +1,10 @@
 ---
 type: Project Profile
 title: Finding model catalog site
-description: The static Astro site that renders the finding model corpus as browsable pages, building it from the content repository pulled in as a git submodule.
+description: The static Astro catalog built from finding model definitions in a git submodule.
 tags: [applications, finding-models, catalog, astro]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:34:50Z }
 stale_after: 2027-09-21
 sources:
   - id: site-config
@@ -26,27 +26,29 @@ sources:
 
 # Purpose
 
-The catalog site is the public reading surface for the [finding model](/glossary/finding-model.md) corpus. It answers one question, "what definitions exist and what is in them," without requiring a reader to install anything, clone a repository, or read JSON. [Finding Model Forge](/applications/finding-model-forge.md) writes definitions; this site displays them.
+**Live:** [openimagingdata.github.io/finding-models-site](https://openimagingdata.github.io/finding-models-site/).
+
+The catalog site displays [finding model](/glossary/finding-model.md) definitions without requiring installation or reading JSON. [Finding Model Forge](/applications/finding-model-forge.md) authors the definitions.
 
 # What a user does with it
 
-Three things, from the home page.[^site-index]
+The home page links to three actions.[^site-index]
 
-- **Browse the catalog.** A "Browse Finding Models" link leads to a list page, and each entry leads to a detail page for one definition.
-- **Start authoring.** A "Launch Finding Model Forge" link goes to the sign-in page at `fmf.oidm.org`.
-- **Report a problem.** A "Submit Issue" link opens a new issue against the `findingmodels` content repository, so corrections go to the content rather than to the site.
+- "Browse Finding Models" opens the catalog, with a detail page for each definition.
+- "Launch Finding Model Forge" opens sign-in at `fmf.oidm.org`.
+- "Submit Issue" opens an issue against the `findingmodels` content repository.
 
-A search box is present on the home page but is not wired to anything; it is markup only.
+The home page search box has no implemented behavior.
 
 # Data it reads
 
-The site holds no content of its own. The `findingmodels` content repository is attached as a git submodule at `external/findingmodels`.[^site-submodule] At build time, a loader module reads every `.json` file in that submodule's `defs/` directory, parses each one, and derives the page slug from the file name.[^site-loader] There is no database, no API call, and no runtime fetch. A definition appears on the site only after the submodule pointer is advanced and the site is rebuilt.
+The `findingmodels` content repository is a git submodule at `external/findingmodels`.[^site-submodule] At build time, the loader parses every `.json` file in `defs/` and derives page slugs from file names.[^site-loader] The site has no database, API calls, or runtime fetches.
 
 ```typescript
 const modelDir = path.resolve('./external/findingmodels/defs');
 ```
 
-That single line is the whole coupling between the site and the corpus, and it is why the content repository stays the source of truth for finding model identity. The corpus itself is described in [the content catalog](/semantic-foundation/finding-models/content-catalog.md) and the format in [the finding model format](/semantic-foundation/finding-models/finding-model-format.md).
+That single line is the whole coupling between the site and the corpus, and it is why the content repository stays the source of truth for finding model identity. See [the content catalog](/semantic-foundation/finding-models/content-catalog.md) and [the finding model format](/semantic-foundation/finding-models/finding-model-format.md).
 
 # Language model use
 
@@ -54,11 +56,11 @@ None. The site is a deterministic renderer.
 
 # Architecture
 
-Astro 5 in static output mode, with Tailwind CSS 4 applied through the Astro Vite plugin and pnpm as the package manager.[^site-config] Four source files carry the whole application: a layout, a home page, a model list page, and a model detail page parameterized by slug. The configuration sets a base path of `/finding-models-site/`, which is what makes the published URLs resolve under the project's GitHub Pages subpath.
+The site uses Astro 5 static output, Tailwind CSS 4 through the Astro Vite plugin, and pnpm.[^site-config] Four source files define the layout, home page, model list, and model detail page. The `/finding-models-site/` base path resolves URLs under the GitHub Pages subpath.
 
 # Deployment
 
-Live at [openimagingdata.github.io/finding-models-site](https://openimagingdata.github.io/finding-models-site/), verified responding on 2026-09-21. A GitHub Actions workflow triggers on every push to `main`, checks the repository out with submodules, installs with pnpm, runs the Astro build, and publishes `dist/` to GitHub Pages.[^site-deploy] Because the workflow fires on pushes to this repository rather than on changes in the content repository, new definitions reach the site only when someone updates the submodule pointer here.
+Live at [openimagingdata.github.io/finding-models-site](https://openimagingdata.github.io/finding-models-site/), verified responding on 2026-09-21. On pushes to `main`, GitHub Actions checks out the repository with submodules, installs with pnpm, builds, and publishes `dist/`.[^site-deploy] New definitions appear only after the submodule pointer is updated and the site rebuilds.
 
 # Repository and branch of record
 
@@ -76,7 +78,7 @@ The repository's README is the unmodified Astro starter boilerplate and describe
 
 # What it realizes
 
-The catalog site is the simplest realization of the claim that a [finding model](/glossary/finding-model.md) definition is a portable file rather than a database row. It needs no service, no credentials, and no synchronization, and it proves that a consumer can read the corpus by reading files. The same property is what lets the extraction platform resolve [OIFM identifiers](/glossary/oifm.md) against a published registry file; see [the architecture overview](/overview/architecture.md).
+The site reads portable definition files without a service or credentials. The extraction platform similarly resolves [OIFM identifiers](/glossary/oifm.md) against a published registry file. See [the architecture overview](/overview/architecture.md).
 
 [^site-config]: finding-models-site Astro configuration, main branch
 [^site-loader]: finding-models-site build-time model loader, main branch

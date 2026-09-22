@@ -4,7 +4,7 @@ title: DataElement
 description: In the next-generation CDE vocabulary, a shared categorical descriptor whose permissible values may be ordered, reused across definitions through element bindings.
 tags: [glossary, semantic-foundation, cde, next-generation]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: cde-context
     resource: https://github.com/RSNA/ACR-RSNA-CDEs/blob/44836c19f4e025cf1684a015ed5cc63c29eaf7f3/CONTEXT.md
@@ -19,11 +19,11 @@ sources:
 
 # DataElement
 
-In the next-generation CDE vocabulary, "a categorical descriptor whose permissible values may be ordered or unordered. Semantic ordering is explicit and is distinct from display order."[^cde-context] A DataElement is a node in the definition graph, not a field inside a finding definition, and it is shared: a [FindingClass](/glossary/finding-class.md) reaches it through an [element binding](/glossary/element-binding.md), which may restrict the use to a subset of the element's permissible values without changing the element or its other bindings.[^cde-context]
+In the next-generation CDE vocabulary, "a categorical descriptor whose permissible values may be ordered or unordered. Semantic ordering is explicit and is distinct from display order."[^cde-context] A DataElement is a shared node in the definition graph. A [FindingClass](/glossary/finding-class.md) references it through an [element binding](/glossary/element-binding.md), which may restrict permissible values for that use without changing the element or its other bindings.[^cde-context]
 
-Three companion rules shape how a DataElement is used. Selection cardinality states "the permitted number of values selected for a DataElement in a use, such as single or multiple selection," explicitly distinct from value ordering and from whether a report mentions the element. Modality applicability separates a descriptor's intrinsic modality limit from its binding-specific applicability. Categorization requires that a distinction be expressed either by a categorizing DataElement or by a taxonomy of named classes, not both for the same distinction in the same model.[^cde-context]
+Selection cardinality states "the permitted number of values selected for a DataElement in a use, such as single or multiple selection," explicitly distinct from value ordering and from whether a report mentions the element. Modality applicability separates a descriptor's intrinsic modality limit from its binding-specific applicability. Categorization requires that a distinction be expressed either by a categorizing DataElement or by a taxonomy of named classes, not both for the same distinction in the same model.[^cde-context]
 
-This vocabulary is a working draft on the `next-gen-2026` branch. It is not a settled integration model, and its own preamble says so.[^cde-context]
+The `next-gen-2026` vocabulary is a working draft. Its preamble states that the integration model is unsettled.[^cde-context]
 
 ## Synonyms and near-synonyms
 

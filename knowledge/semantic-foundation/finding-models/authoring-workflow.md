@@ -1,10 +1,10 @@
 ---
 type: Guide
 title: Authoring workflow
-description: How finding models are created and reviewed today, through the Forge web application, the findingmodel-ai command line, the three agent skills, and the validator that gates every commit.
+description: Finding model authoring, review, and validation through Forge, the CLI, and repository skills.
 tags: [semantic-foundation, finding-models, authoring, workflow, guide]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: forge-workflow
     resource: https://github.com/openimagingdata/FindingModelForge/blob/15d9ebcf64734b889081feed4d645a0afca67e61/docs/finding-model-creation-workflow.md
@@ -40,7 +40,7 @@ sources:
 
 # Two front doors
 
-A [finding model](/glossary/finding-model.md) reaches the corpus through one of two routes. A web application handles one finding at a time with a person driving. A set of agent skills in the content repository handles conversational and bulk authoring with a person reviewing. Both produce the same JSON, and both end at the same validator.
+Authors create [finding models](/glossary/finding-model.md) through Forge or repository agent skills. Forge handles one finding with a person driving. Skills support conversational and bulk authoring with human review. Both produce JSON checked by the same validator.
 
 # Finding Model Forge
 
@@ -55,7 +55,7 @@ A draft carries the user, the name, the raw inputs, the server-generated JSON, a
 
 # The findingmodel-ai command line
 
-The `findingmodel-ai` package is the scriptable half of the same capability, installable from PyPI and configured with an API key for at least one model provider.[^ai-readme] Three commands cover the common path.
+Install `findingmodel-ai` from PyPI and configure an API key for at least one provider.[^ai-readme] Its main authoring commands are:
 
 ```bash
 findingmodel-ai make-info "pneumothorax"        # name to description and synonyms
@@ -67,7 +67,7 @@ The same functions are available as a Python API, and an optional web-search key
 
 # Agent skills in the content repository
 
-Three skills live under `.claude/skills/` in `findingmodels` and divide the work by shape of the job.
+Three skills in `findingmodels/.claude/skills/` handle authoring and review.
 
 | Skill | Use it when | Shape |
 |---|---|---|
@@ -75,7 +75,7 @@ Three skills live under `.claude/skills/` in `findingmodels` and divide the work
 | `finding-batch` | a list, CSV, or directory of source content | triage the whole batch, then draft each finding in an isolated sub-agent |
 | `finding-review` | existing definition files named by path, glob, or directory | lint, then review each file in an isolated sub-agent, then human sign-off |
 
-Each skill file is deliberately thin. All rules, command cheatsheets, and procedures live in `prompts/fragments/`, and the skill loads the fragment named at each step rather than carrying the rules itself.[^skill-author] Sixteen fragments cover naming, synonym rules, scope and specificity, presence and change, the associated-versus-component distinction, search and triage, mechanical lint, the quality checklist, review file generation, CSV writeback, and handoff to the review interface. `core_concept.md` is the orientation fragment every skill reads first; it states the two guiding principles as "a finding is a noun phrase; everything else is an attribute" and "findings exist in time."[^core-concept] A companion `defaults.yml` holds the contributor and organization defaults, the permitted source codes for identifier minting, and suggested tag sets per campaign, which the skill confirms with the user at session start.
+Skills load rules, command cheatsheets, and procedures from `prompts/fragments/` as needed.[^skill-author] Sixteen fragments cover naming, synonyms, scope, presence, change, associated versus component findings, search, triage, lint, quality review, review files, CSV writeback, and review-interface handoff. Every skill starts with `core_concept.md`, whose principles are "a finding is a noun phrase; everything else is an attribute" and "findings exist in time."[^core-concept] At session start, the skill confirms defaults from `defaults.yml` for contributor, organization, identifier source codes, and campaign tags.
 
 Three constraints run through all three skills.
 
@@ -87,9 +87,9 @@ Review runs mechanical lint first, with auto-fix for trivially fixable errors su
 
 # The gate every route passes
 
-Whatever produced the JSON, it lands in `defs/` and is committed. A pre-commit hook runs `uv run scripts/validator.py --with-git-adds` on every commit, serially, whether or not a definition was staged.[^precommit] The validator validates every definition against the format, fails on a duplicate finding or attribute identifier, reformats the JSON in place, regenerates the markdown render in `text/`, rewrites the corpus index, rewrites `ids.json`, and stages all of it. See [identifiers](/semantic-foundation/finding-models/identifiers.md) for what the duplicate check protects.
+A pre-commit hook runs `uv run scripts/validator.py --with-git-adds` serially on every commit, even without staged definitions.[^precommit] It validates all `defs/` files, rejects duplicate finding or attribute identifiers, reformats JSON, rebuilds `text/`, the corpus index, and `ids.json`, then stages the results. See [identifiers](/semantic-foundation/finding-models/identifiers.md).
 
-The practical consequence is that the generated artifacts cannot drift from the source. It is also why the repository's guidance forbids editing them by hand.
+Regeneration keeps derived files consistent with definitions. Repository guidance prohibits editing them by hand.
 
 # Requests and cleanup
 

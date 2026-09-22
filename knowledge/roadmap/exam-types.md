@@ -1,10 +1,10 @@
 ---
 type: Roadmap
 title: Exam types roadmap
-description: The goals stated for an OIDM exam type layer, by whom and when, the one written design that exists, the building blocks a future effort would start from, and the questions no source answers.
+description: Exam type goals, the unimplemented Playbook profile design, and unresolved ownership and data questions.
 tags: [roadmap, exam-types, loinc, playbook, anatomy]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T19:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 stale_after: 2027-09-21
 sources:
   - id: plan
@@ -35,9 +35,9 @@ sources:
 
 # The state of the area
 
-There is no [exam type](/glossary/exam-type.md) artifact. No registry, no curated code list, no exam-to-body-part mapping, and no code anywhere in the Open Imaging Data Model (OIDM) repositories that parses an exam name into modality and anatomy axes. What exists is a goal stated three times across four years, one written design that has not been implemented, and three places where a bare [LOINC](/glossary/loinc.md) code does real work today.
+Open Imaging Data Model (OIDM) has no [exam type](/glossary/exam-type.md) registry, curated code list, exam-to-body-part map, or code that parses exam names into modality and anatomy. The goal appears three times across four years. One design is unimplemented, and three existing uses rely on bare [LOINC](/glossary/loinc.md) codes.
 
-The area as it stands is described in [exam types](/semantic-foundation/exam-types/overview.md), and the inventory of what a future effort would start from is in [existing building blocks](/semantic-foundation/exam-types/existing-building-blocks.md). This document collects the goals and the open questions.
+See [exam types](/semantic-foundation/exam-types/overview.md) and [existing building blocks](/semantic-foundation/exam-types/existing-building-blocks.md) for current capabilities.
 
 # The goal as the project lead states it
 
@@ -47,7 +47,7 @@ In the 2026-09-20 planning interview recorded in [the knowledgebase build plan](
 2. **A set of preferred high-level entries**, at the granularity clinicians and systems actually use, the examples given being CT Chest, MRI Brain, and X-ray Knee, each marked as the preferred entry among the many Playbook codes describing variants of the same study.
 3. **Tight coupling to [anatomic locations](/glossary/anatomic-location.md)**, with typed edges from an exam type to the structures it covers, distinguishing anatomy that is **always included**, which may be expressed as a hierarchy rather than a flat list, anatomy that is **usually included**, and anatomy that is **possibly included and must be checked**.
 
-The third part is what would make the artifact more than a code list. It answers the question both a report reader and an extraction pipeline need answered: given this study, what could have been assessed?
+The anatomy links would tell readers and extraction tools what a study could have assessed.
 
 # The same goal, stated earlier
 
@@ -59,13 +59,13 @@ The site post "Data Model: Structure and Function" of 2024-01-25 names two utili
 
 # The one written design
 
-The most developed written design is in the terminology tool's product roadmap, which proposes replacing an ever-growing default search with named, inspectable domain profiles. Its `radiology` profile makes the Playbook first-class: RadLex, LOINC weighted toward the Playbook, [SNOMED CT](/glossary/snomed-ct.md), and [FMA](/glossary/fma.md), with [UMLS](/glossary/umls.md) as the crosswalk hub.[^molu-roadmap]
+The terminology tool's product roadmap proposes named, inspectable domain profiles in place of a growing default search. Its `radiology` profile makes the Playbook first-class: RadLex, LOINC weighted toward the Playbook, [SNOMED CT](/glossary/snomed-ct.md), and [FMA](/glossary/fma.md), with [UMLS](/glossary/umls.md) as the crosswalk hub.[^molu-roadmap]
 
 Four Playbook-specific implications are stated in it: rank procedure and orderable queries toward Playbook terms and finding queries toward the other vocabularies; teach the crosswalk the Playbook correspondences, linking a LOINC code to its historic `RPID` and to RadLex anatomy and modality attributes, recording that in the mapping provenance; detect `RPID` codes as well as LOINC-shaped codes; and do not treat every LOINC hit as radiology.[^molu-roadmap]
 
 None of it is built. The repository's issue backlog follows a six-phase design as one tracking issue plus eleven focused ones, of which only typed provider failures is closed; the profile mechanism is part of that backlog, not a released capability.[^molu-backlog] See [med-ontology-lookup](/semantic-foundation/terminologies/med-ontology-lookup.md).
 
-Two facts from the next-generation vocabulary analysis constrain any such effort and are worth stating with the goals. The Playbook is "actively governed, and freely licensed for commercial and non-commercial use," shipping twice yearly under joint Regenstrief Institute and RSNA governance, and it "is a separate artifact" from RadLex.[^current-understanding] Current Playbook content carries ordinary LOINC codes; `RPID` identifiers are legacy and appear only as historical codes a crosswalk would need to recognize.[^molu-roadmap]
+The next-generation vocabulary analysis records two constraints. The Playbook is "actively governed, and freely licensed for commercial and non-commercial use," shipping twice yearly under joint Regenstrief Institute and RSNA governance, and it "is a separate artifact" from RadLex.[^current-understanding] Current Playbook content carries ordinary LOINC codes; `RPID` identifiers are legacy and appear only as historical codes a crosswalk would need to recognize.[^molu-roadmap]
 
 # What is unanswered
 

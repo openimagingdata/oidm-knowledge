@@ -1,10 +1,10 @@
 ---
 type: Concept
 title: Lineage and current implementation
-description: The two anatomic location lineages, the original curated set with its wrapper libraries and the anatomic-locations package inside findingmodel, which one is current, and what remains unreconciled between them.
+description: The original and current anatomic location datasets, their consumers, and unresolved differences.
 tags: [semantic-foundation, anatomic-locations, lineage, status]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: al-site
     resource: https://github.com/talkasab/anatomiclocations.org/blob/1f39fa45f621cef947a3f3ef1f869334cfa5c841/docs/index.markdown
@@ -40,7 +40,7 @@ sources:
 
 # Two lineages
 
-[Anatomic locations](/glossary/anatomic-location.md) exist twice in OIDM. The first lineage is the original curated set published at anatomiclocations.org with two wrapper libraries. The second is the `anatomic-locations` package inside the `findingmodel` repository, with its own data file. They descend from the same curation effort and hold nearly the same concepts, but they are separate artifacts with different field names, different record counts, and no synchronization between them.
+OIDM has two [anatomic location](/glossary/anatomic-location.md) datasets from the same curation effort. The original, published at anatomiclocations.org, has two wrapper libraries. The current `anatomic-locations` package in `findingmodel` uses a separate file. They contain nearly the same concepts, with different field names and counts, and no synchronization.
 
 | | Original lineage | Current lineage |
 |---|---|---|
@@ -59,7 +59,7 @@ Three repositories under the project lead's personal account, all under the ISC 
 
 `BodyPartIndex.ts` is the TypeScript wrapper, published to npm as `@talkasab/body_part_index` with the data bundled in the package. It is the richer of the two wrappers, documenting local-code mapping and every hierarchy accessor.[^bpi-ts] Its last commit on `main` is 2022-12-18.
 
-`BodyPartIndex.py` is the Python wrapper. Its README says installation from PyPI is pending, and the site roadmap still lists "finish BodyPartIndex.py and publish to PyPI" as an open item.[^al-site] Its last commit on `main`, 2024-02-03, added a TODO list that remains the clearest statement of what that lineage intended next: move the repository to the `openimagingdata` organization, adopt ACR Common codes, acknowledge DICOM codes, track URLs, rewrite `BodyPart` as a Pydantic model, and on the website build a better tree browser and a way for people to submit suggestions about a specific node.[^bpi-todo] None of those items is done in that repository. Several were done independently in the other lineage.
+`BodyPartIndex.py` is the Python wrapper. Its README says installation from PyPI is pending, and the site lists "finish BodyPartIndex.py and publish to PyPI" as open.[^al-site] Its last `main` commit, 2024-02-03, added these TODOs: move to `openimagingdata`, adopt ACR Common codes, acknowledge DICOM codes, track URLs, and rewrite `BodyPart` in Pydantic. It also requested a better website tree browser and suggestions for specific nodes.[^bpi-todo] None is complete in that repository. The current lineage independently completed several.
 
 # The current lineage
 
@@ -74,7 +74,7 @@ The JSON source data is hosted outside the repository, with the migration tool r
 
 # Which is current
 
-The build plan states it plainly: the `anatomic-locations` package inside `findingmodel` and its 2,926-record dataset are the current anatomic data, and the original set with its wrapper libraries is lineage.[^build-plan] Everything built since uses the package. The extraction and coding platform resolves locations through it, the finding model tooling attaches its identifiers to definitions, and the next-generation vocabulary work points at its data file pinned to a commit rather than at the older one.[^cde-axis]
+The build plan identifies `anatomic-locations` and its 2,926-record dataset as current.[^build-plan] The extraction platform resolves locations through it, finding model tools attach its identifiers, and the next-generation vocabulary work cites its data at a pinned commit.[^cde-axis]
 
 The original lineage is not dead content. Its data file is still the download the public site offers, its npm package still installs, and both are still reachable at the addresses published in 2022. It is superseded as the working set, not withdrawn.
 

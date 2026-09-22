@@ -4,7 +4,7 @@ title: Attribute value
 description: One permissible option of a choice attribute, carrying its own dot-suffixed value code and optional ontology codes.
 tags: [glossary, semantic-foundation, finding-models]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: fm-py
     resource: https://github.com/openimagingdata/findingmodel/blob/75afd39a400419dcfaf7c8d4a34f065b4d804e0d/packages/findingmodel/src/findingmodel/finding_model.py

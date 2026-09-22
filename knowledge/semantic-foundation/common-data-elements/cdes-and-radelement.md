@@ -1,10 +1,10 @@
 ---
 type: Concept
 title: CDEs and RadElement
-description: What ACR and RSNA common data elements are, where they are published and schematized, where the two published schema descriptions disagree, and how the Open Imaging Data Model uses them today.
+description: Governed CDE definitions, RadElement publication, schema differences, and OIDM usage.
 tags: [semantic-foundation, cde, radelement, schema, fhir]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T18:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: radelement-site
     resource: https://radelement.org/
@@ -61,16 +61,16 @@ The public API at `api3.rsna.org/radelement/v1/sets` listed 281 sets on 2026-09-
 
 The `common_data_elements` repository is the Open Imaging Data Model (OIDM) local snapshot of that registry. Its README describes it as "a periodically updated version of the Common Data Element definitions as stored and maintained in the ACR/RSNA RadElement web site," formatted as JSON for easy consumption.[^cde-readme] At commit `35536d8` it holds 145 set definitions under `definitions/`, one file per set named `RDES###.cde.json`, and the README indexes all 145 alphabetically by clinical topic with their set identifiers.
 
-The snapshot is data, not code. It is used as a reference corpus rather than as a dependency, and it is not regenerated automatically. See [the repository map](/repositories/repository-map.md) for its status.
+The snapshot is a reference corpus, not a code dependency. It is not regenerated automatically. See [the repository map](/repositories/repository-map.md).
 
 # The schema, and the two places that claim it
 
-Stated plainly: the canonical CDE JSON Schema exists in two repositories, under three filenames, and all three declare the same identifier.
+Three CDE JSON Schema files in two repositories declare the same identifier.
 
 - `RSNA/ACR-RSNA-CDEs` carries `cde.schema.json` at its repository root. `CDEStaging` names this file as the canonical schema and points authors at it.[^staging-readme] The file is byte-identical on the `master` branch and on the `next-gen-2026` branch, so the next-generation work has not changed it.[^acr-schema][^acr-schema-ng]
 - `common_data_elements` carries `schema/cde.schema-1.0.json` and `schema/cde.schema-1.1.json`, and its README says the schemas are the ones "maintained at the development repo."[^cde-readme]
 
-The upstream `cde.schema.json` is byte-identical to `cde.schema-1.1.json`, the newer of the two local copies. The definitions in the snapshot conform to version 1.0, which the README states explicitly.[^cde-readme] So the schema published as canonical upstream is a version ahead of the data published beside it.
+The upstream `cde.schema.json` is byte-identical to local version 1.1. The snapshot definitions conform to 1.0, one version behind the upstream schema.[^cde-readme]
 
 All three files are JSON Schema draft-07 and all three declare the same `$id`:
 
@@ -96,11 +96,11 @@ The JSON Schema versions close part of the gap and leave part of it open. `image
 
 # CDE-labeled FHIR Observations
 
-The idea that ties CDEs to the rest of OIDM is the [CDE-labeled FHIR Observation](/glossary/cde-labeled-fhir-observation.md): one radiology finding expressed as a FHIR [Observation](/glossary/observation.md) whose codes come from a CDE set, its elements, and their values.
+A [CDE-labeled FHIR Observation](/glossary/cde-labeled-fhir-observation.md) expresses one finding as a FHIR [Observation](/glossary/observation.md), coded using a CDE set, its elements, and their values.
 
 `FHIRSamples` implements the pattern concretely in a lung cancer screening scenario.[^fhirsamples] An AI-produced finding Observation carries `code.coding` pointing at the `radelement.org` system with the set code `RDES195` for pulmonary nodule; each `component` entry carries an element code such as `RDE1717` with the chosen value code, for example `RDE1717.1`, as `valueCodeableConcept`. A second Observation repeats the same finding with `status` changed from `preliminary` to `final` to mark radiologist confirmation, and a third is `derivedFrom` both the imaging study and the radiologist's finding, carrying a Lung-RADS category (`RDES267`) as a component.
 
-That chain, set code to element code to value code, all through one coding system, is what "CDE-labeled" means in practice. See [FHIR mapping](/data-structures/fhir-mapping.md) for where the current data structures stand against it, and [lineage repositories](/history/lineage-repositories.md) for the full example.
+"CDE-labeled" refers to this chain of set, element, and value codes within one coding system. See [FHIR mapping](/data-structures/fhir-mapping.md) for current mappings and [lineage repositories](/history/lineage-repositories.md) for the full example.
 
 # How OIDM uses CDEs today
 
@@ -126,7 +126,7 @@ Across the corpus, `RADELEMENT` is the smallest of the index code systems in use
 
 **As the standards-track counterpart of finding models.** Finding models are authored quickly and are not balloted; CDEs are governed and are. [Finding models and CDEs](/semantic-foundation/finding-models/finding-models-and-cdes.md) covers the relationship.
 
-One thing worth recording because it is easy to assume otherwise: the current extraction prototypes do not label with RadElement codes. `IPL-MVP-ExtractionAndLabeling` maps extracted findings to a curated list of 15 finding models keyed by OIFM identifier, with no `RDES` or `RDE` code anywhere in the repository,[^ipl-mvp] and the `imaging-problem-list` repository contains no RadElement codes either. The CDE-labeled Observation pattern is implemented in the lineage samples and documented, not in the working extraction pipelines.
+Current extraction prototypes use OIFM identifiers. `IPL-MVP-ExtractionAndLabeling` maps findings to 15 curated models and contains no `RDES` or `RDE` codes.[^ipl-mvp] Neither does `imaging-problem-list`. The CDE-labeled pattern remains in documentation and lineage samples.
 
 # The next generation
 

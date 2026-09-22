@@ -4,7 +4,7 @@ title: "Finding models: overview"
 description: Near-verbatim extract of the OIFM overview note explaining why finding models exist, what counts as an imaging finding, and how a finding model is structured.
 tags: [references, oifm, finding-models, source-extract]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: note
     resource: https://github.com/RSNA/ACR-RSNA-CDEs/blob/44836c19f4e025cf1684a015ed5cc63c29eaf7f3/notes/oifm-overview.md
@@ -17,7 +17,9 @@ sources:
 
 # Provenance and status
 
-This is a near-verbatim extract of `notes/oifm-overview.md` from the `next-gen-2026` branch of the `ACR-RSNA-CDEs` repository, read at commit `44836c1`. That file is itself a copy: its own frontmatter records it as fetched from `prompts/overview.md` in the `findingmodels` repository on 2026-07-29, and the two are byte-identical to the version of that file at commit `2267d5d`, last changed on 2026-04-18. The upstream file is an authoring prompt, which is why it reads as guidance to whoever or whatever is writing a [finding model](/glossary/finding-model.md). It is current: the upstream file is live on the `main` branch of `findingmodels` and the note carries `status: stable`. The only change made here is that dash punctuation was normalized to house style. No names appeared in the source. Glossary links are not inserted into the extract body; the terms it uses are [finding model](/glossary/finding-model.md), [attribute](/glossary/attribute.md), [presence](/glossary/presence.md), [index code](/glossary/index-code.md), and [Observation](/glossary/observation.md).
+This near-verbatim extract comes from `notes/oifm-overview.md` on `ACR-RSNA-CDEs`'s `next-gen-2026` branch at `44836c1`. The note records a 2026-07-29 copy of `findingmodels/prompts/overview.md`, byte-identical to commit `2267d5d`, last changed 2026-04-18. At review, the authoring prompt was current on `findingmodels/main`, and the note had `status: stable`. The upstream file is an authoring prompt, which is why it reads as guidance to whoever or whatever is writing a [finding model](/glossary/finding-model.md).
+
+Only dash punctuation was normalized in the extract. It contains no individual names or added glossary links. Related terms are [finding model](/glossary/finding-model.md), [attribute](/glossary/attribute.md), [presence](/glossary/presence.md), [index code](/glossary/index-code.md), and [Observation](/glossary/observation.md).
 
 # Finding Models: Overview
 

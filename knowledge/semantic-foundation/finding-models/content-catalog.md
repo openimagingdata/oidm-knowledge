@@ -1,10 +1,10 @@
 ---
 type: Project Profile
 title: Finding model content catalog
-description: "The findingmodels repository: what is in the corpus, where its identifiers and generated renders live, the conventions that govern it, how to browse it, and the content batches in flight on unmerged branches."
+description: Published finding model content, repository conventions, browsing tools, and unmerged batches.
 tags: [semantic-foundation, finding-models, content, repository, project-profile]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 stale_after: 2027-09-21
 sources:
   - id: fm-claude
@@ -38,7 +38,7 @@ sources:
 
 # What the repository is
 
-`findingmodels` is the content repository of the Open Imaging Data Model (OIDM). It holds finding model definitions and nothing that executes them. The format those definitions obey lives in a different repository, `findingmodel`, and is described in [the format document](/semantic-foundation/finding-models/finding-model-format.md).
+`findingmodels` holds Open Imaging Data Model (OIDM) definitions. The separate `findingmodel` repository defines their format, described in [the format document](/semantic-foundation/finding-models/finding-model-format.md).
 
 Read at commit `4475ac1` on `main`, dated 2026-04-28, the repository contains 2,382 definitions.
 
@@ -65,13 +65,13 @@ Every identifier carries a three-or-four-letter organization segment recording w
 | `MGB` | MassGeneral Brigham | 47 |
 | `MSFT` | Microsoft | 31 |
 
-Four in five definitions are Gamuts-derived. That fact shapes everything about the corpus's current state: the [Radiology Gamuts Ontology](/glossary/gamuts.md) is a differential-diagnosis resource rather than a finding vocabulary, so its imported entries carry patterns that do not sit comfortably as findings. The [content direction roadmap](/roadmap/finding-model-content-direction.md) records the stated intent that the [MGB exam-oriented sub-taxonomies](/semantic-foundation/finding-models/finding-taxonomies.md) replace many of them.
+Four in five definitions derive from the [Radiology Gamuts Ontology](/glossary/gamuts.md); the Radiology Gamuts Ontology is a differential-diagnosis resource rather than a finding vocabulary, so its imported entries carry patterns that do not sit comfortably as findings. The [content direction roadmap](/roadmap/finding-model-content-direction.md) records the stated intent that the [MGB exam-oriented sub-taxonomies](/semantic-foundation/finding-models/finding-taxonomies.md) replace many of them.
 
 Two further organizations, `RSNA` and `ACR`, are registered in the package's seeded organization list but have contributed no definitions under their own codes.[^base-orgs] Individual contributors appear on definitions as `Person` records with a GitHub username, an email address, and an organization code; organizations appear as `Organization` records with a name, a code, and a URL.
 
 # Conventions
 
-The repository's own guidance file states the rules that govern changes.[^fm-claude]
+The repository guidance sets these rules.[^fm-claude]
 
 - Three artifacts are auto-generated and must never be hand-edited: `text/*.md`, `index.md`, and `ids.json`. They are rebuilt from `defs/` by `uv run scripts/validator.py`.
 - Every finding identifier must be unique, and every attribute identifier must be unique across all files, not merely within one. The validator fails the commit if either check fails.
@@ -85,7 +85,7 @@ A separate open plan, the definition cleanup plan, catalogs the conventions the 
 
 # How to browse
 
-Three routes exist, at different levels of convenience.
+Browse through the repository, catalog site, or search tools.
 
 - **The repository.** Read `index.md` for the whole corpus as one table, then follow its links into `text/` for a rendered definition or `defs/` for the JSON.
 - **The catalog site.** `finding-models-site` is a static Astro site that pulls the content repository in as a git submodule and renders `/models/` and `/models/[slug]` pages at build time. It is published at [openimagingdata.github.io/finding-models-site](https://openimagingdata.github.io/finding-models-site/) and profiled in [applications](/applications/finding-models-site.md).
@@ -93,7 +93,7 @@ Three routes exist, at different levels of convenience.
 
 # Content in flight
 
-Six branches carry unmerged content work. None has an open pull request, and none is on `main`. The figures below are branch-to-`main` differences as of the dates given.
+Six content branches remain unmerged with no open pull requests. Counts compare each branch with `main` at the stated dates.
 
 | Branch | Tip | New definitions | What it is |
 |---|---|---:|---|
@@ -104,9 +104,9 @@ Six branches carry unmerged content work. None has an open pull request, and non
 | `findingmodels-metadata` | 2026-06-01 | 0 | Applies an approved enrichment baseline to 78 existing definitions and adds no new ones. |
 | `taxonomy-export-2026-08-15` | 2026-08-15 | 0 | Replaces `lists/` with the six MGB exam-oriented sub-taxonomy files. |
 
-The chest CT branch is the largest by far and the least complete: its own progress document records 205 source items split into 21 chunks of ten, with chunk 1 done and chunks 2 through 21 pending.[^chestcts] The head CT branch's plan document is marked complete for the soft tissue category, which produced four new models and nine mappings onto existing ones, with identifiers written back to the source list and the validator run clean.[^headcts]
+The chest CT progress document lists 205 sources in 21 chunks of ten. Chunk 1 is done, with 2 through 21 pending.[^chestcts] The head CT soft-tissue plan is complete, with four new models and nine mappings to existing models. Identifiers were written back to the source list and validation passed.[^headcts]
 
-Two consequences follow. First, the published corpus of 2,382 understates by roughly 2,400 the number of definitions that have been drafted somewhere. Second, the JSON schema file in `schema/` is being extended independently on three of these branches, with nothing landed on `main`.
+Roughly 2,400 definitions have been drafted beyond the 2,382 published models. Three branches also extend `schema/` independently, with no changes merged into `main`.
 
 Ten issues are open on the repository. Five request further content batches, including RadElement-derived definitions, chest CT and chest radiograph device lists, abdomen CT findings, knee MRI findings, and CDEStaging markdown content. Four cover tooling, including running the validator as a GitHub action and locking `main`. One asks for a static site with a landing page.
 

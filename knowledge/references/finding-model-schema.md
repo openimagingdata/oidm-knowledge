@@ -1,10 +1,10 @@
 ---
 type: Reference
 title: Finding model schema
-description: The Open Imaging Finding Model record format as specified in the findingmodels repository, reconciled field by field against the Pydantic definitions that validate it.
+description: The finding model prose schema, compared with released and unreleased Pydantic models.
 tags: [references, oifm, finding-models, schema]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: fm-schema
     resource: https://github.com/openimagingdata/findingmodels/blob/4475ac1bcb591f1a0951b2082b59208def173a5d/schema/finding_model_schema.md
@@ -32,7 +32,7 @@ sources:
 
 # Provenance and status
 
-The specification below is migrated near-verbatim from `schema/finding_model_schema.md` in the `findingmodels` repository, last changed on 2025-06-17 and read here at commit `4475ac1` on `main`.[^fm-schema] Its structure and wording are the author's; only dash punctuation was normalized to house style and the term "user" was left as written. That file is a prose mirror, not an executable schema. The record format that software actually enforces is the set of Pydantic models in the `findingmodel` repository, and the two have drifted. The reconciliation section states every difference. A third section records fields that exist only on the `feature/metadata-cleanup` work-edge branch and are not in any released version.
+The extract preserves `findingmodels/schema/finding_model_schema.md` from `main` at `4475ac1`, last changed 2025-06-17.[^fm-schema] Its structure and wording are the author's; only dash punctuation was normalized to house style and the term "user" was left as written. That file is a prose mirror, not an executable schema; `findingmodel`'s Pydantic classes enforce it, and the two have drifted. The reconciliation section records differences, followed by unreleased fields on `feature/metadata-cleanup`.
 
 # Finding Model Schema
 
@@ -149,7 +149,7 @@ Contributor details.
 
 # Reconciliation with the Pydantic source of truth
 
-The released definitions live in `packages/findingmodel/src/findingmodel/finding_model.py`, read at commit `75afd39` on `main`.[^fm-pydantic] Two classes matter. `FindingModelBase` is a definition without registry identifiers, used while authoring. `FindingModelFull` is the registered form, and it is what the prose specification above describes. The tables record what the code enforces and mark each difference from the prose.
+`packages/findingmodel/src/findingmodel/finding_model.py` on `main` at `75afd39` defines both classes.[^fm-pydantic] Authors use `FindingModelBase` before identifier assignment. `FindingModelFull` is the registered form described above. The tables compare the code's constraints with the prose.
 
 ## FindingModelFull
 
@@ -240,7 +240,7 @@ The six digits are generated at random by `generate_oifm_id` and `generate_oifma
 
 # On the work edge, not released
 
-Everything in this section is on the `feature/metadata-cleanup` branch of `findingmodel`, read at commit `1942b06`. None of it is on `main`, and none of it appears in the prose specification. It is recorded here because it is the stated direction for the format, not because it is in effect.
+This section describes unreleased work on `findingmodel/feature/metadata-cleanup` at `1942b06`. These changes are absent from `main` and the prose above. It is recorded here because it is the stated direction for the format, not because it is in effect.
 
 The branch splits `finding_model.py` into `types/models.py`, `types/attributes.py`, and `types/metadata.py`. Attribute and `IndexCode` definitions are unchanged by the split. The design document that governs the work states the goal as making structured metadata "canonical `FindingModel` state rather than disposable enrichment output".[^edge-rewrite]
 
@@ -263,7 +263,7 @@ Three further changes ride along.[^edge-metadata]
 - **Model-level codes must carry a display value.** A validator on `FindingModelFull` rejects any entry in `index_codes` or `anatomic_locations` whose `display` is empty.
 - **Canonical `index_codes` are narrowed.** The branch restricts them to exact matches or clinically substitutable near-equivalents, and sends broader, narrower, and merely related candidates to a separate enrichment review artifact rather than to the model.
 
-The branch's own readiness assessment is not yet passing, so the field list above should be read as the current shape of unmerged work.
+The branch's own readiness assessment is not yet passing. These fields remain unmerged.
 
 [^fm-schema]: Finding Model Schema, prose specification, findingmodels repository
 [^fm-pydantic]: finding_model.py, released Pydantic definitions, findingmodel main branch

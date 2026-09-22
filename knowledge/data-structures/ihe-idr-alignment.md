@@ -4,7 +4,7 @@ title: IHE IDR alignment
 description: What the IHE Imaging Diagnostic Report profile specifies for encoding findings as FHIR Observations, the deck's claim that the Exam Finding List connects to it, and the fact that no OIDM repository mentions it.
 tags: [data-structures, ihe, idr, fhir, alignment, goal]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: idr-extract
     resource: https://github.com/RSNA/ACR-RSNA-CDEs/blob/44836c19f4e025cf1684a015ed5cc63c29eaf7f3/notes/ihe-idr-extract.md
@@ -22,9 +22,9 @@ sources:
 
 # Status first
 
-This is a stated goal, not existing work. The January 2026 deck's slide on the [Exam Finding List](/data-structures/exam-finding-list.md) ends with one line: it "connects to IHE Imaging Diagnostic Report (IDR) FHIR representation."[^deck] That is the entire claim from the OIDM side. Searching the `imaging-problem-list` repository for "IHE" or "IDR" returns nothing on any branch, and no OIDM repository references the profile.
+IDR alignment is a goal. The January 2026 deck says the [Exam Finding List](/data-structures/exam-finding-list.md) "connects to IHE Imaging Diagnostic Report (IDR) FHIR representation."[^deck] That is the entire claim from the OIDM side. No branch of `imaging-problem-list` mentions "IHE" or "IDR", and no OIDM repository references the profile.
 
-What does exist is a careful reading of the profile from the allied vocabulary work: a 72-page public-comment supplement, read directly and extracted on the `next-gen-2026` branch of `ACR-RSNA-CDEs`.[^idr-extract][^idr-supplement] That extract is the source for everything below, and it was written to test a different model, the next-generation CDE vocabulary, against the profile. It is the best available statement of what alignment would involve.
+The `next-gen-2026` branch of `ACR-RSNA-CDEs` contains an extract of the 72-page public-comment supplement.[^idr-extract][^idr-supplement] The extract tests the next-generation CDE vocabulary against the profile and is the source for the account below. It is the best available statement of what alignment would involve.
 
 # What the profile is
 
@@ -42,7 +42,7 @@ The profile's own illustration: "the presence of a tumor is a finding, a recorde
 
 # The observation grammar
 
-Every IDR observation has a target entity and content, split across five slots. This is the grammar an [Exam Finding List](/data-structures/exam-finding-list.md) would have to fit.
+Every IDR observation has a target entity and content in five slots. An [Exam Finding List](/data-structures/exam-finding-list.md) would need to map to them.
 
 | Slot | FHIR location | Rule stated in the supplement |
 |---|---|---|
@@ -58,9 +58,9 @@ For grouped findings, IDR says that "Observation.code of the root finding shall 
 
 # Where OIDM and IDR differ
 
-Four differences are recorded in the extract. None of them has been worked through on the OIDM side; all are listed there as items to raise during public comment.
+The extract records four unresolved differences as items to raise during public comment. OIDM has not worked through them.
 
-**Components against hasMember.** IDR states that `Observation.component` "is not used", because FHIR limits components to values "not useful on their own" and using it "has the potential to significantly complicate queries". Every OIDM encoding that carries attributes uses components: the documented Exam Finding List mapping says so explicitly, "a list of components with attribute codes and values", and both lineage FHIR samples implement it that way.[^ipl-main] This is the sharpest of the four, because it is the mechanism rather than a vocabulary choice. See [FHIR mapping](/data-structures/fhir-mapping.md).
+**Components against hasMember.** IDR states that `Observation.component` "is not used", because FHIR limits components to values "not useful on their own" and using it "has the potential to significantly complicate queries". All OIDM attribute encodings use components. The Exam Finding List mapping specifies "a list of components with attribute codes and values", as implemented by both lineage FHIR samples.[^ipl-main] This is the sharpest of the four, because it is the mechanism rather than a vocabulary choice. See [FHIR mapping](/data-structures/fhir-mapping.md).
 
 **The word "observation" means different things.** IDR's observation is "a feature or characteristic that is visible in an image", closer to a single attribute value than to an OIDM [Observation](/glossary/observation.md), which is a whole finding with its location and attributes. IDR's "finding" is narrower too: it is the presence or absence determination, not the named entity. The extract flags this as a vocabulary collision, and notes that the next-generation vocabulary work moved away from the word "observation" for exactly this reason.
 
@@ -70,7 +70,11 @@ Four differences are recorded in the extract. None of them has been worked throu
 
 # What IDR is asking
 
-The extract also records three questions IDR puts to the RadElement side, which are requirements on any alignment: what extensibility is permitted when encoding [CDE sets](/glossary/cde-set.md), and in particular whether additional sub-observations may be included; what the coding system identifier for RadElement codes is; and whether a presence value belongs in the parent of a grouped observation or as its first child.[^idr-extract]
+The extract also records three questions IDR puts to the RadElement side, which are requirements on any alignment:[^idr-extract]
+
+- What extensions are permitted when encoding [CDE sets](/glossary/cde-set.md), particularly additional sub-observations?
+- What is the coding system identifier for RadElement codes?
+- Does presence belong in the parent of a grouped observation or its first child?
 
 # Where this stands
 
@@ -81,7 +85,7 @@ The extract also records three questions IDR puts to the RadElement side, which 
 | The differences are identified | Four, listed above, all recorded as items to raise, none resolved |
 | Anything is built | No |
 
-The profile extract itself is not migrated into this bundle; it lives on the `next-gen-2026` branch of `ACR-RSNA-CDEs` and is linked above. The unresolved items are carried in [open questions](/roadmap/open-questions.md).
+The extract remains on `ACR-RSNA-CDEs`'s `next-gen-2026` branch. It has not been migrated into this bundle. See [open questions](/roadmap/open-questions.md) for the unresolved items.
 
 [^idr-extract]: IHE IDR Phase II extract, ACR-RSNA-CDEs next-gen-2026 branch
 [^idr-supplement]: IHE Imaging Diagnostic Report Phase II public comment draft, 4 March 2026

@@ -4,7 +4,7 @@ title: Body region
 description: A coarse anatomic grouping such as thorax or abdomen, used to scope findings, to fall back when no structure is named, and to filter views.
 tags: [glossary, semantic-foundation, anatomy]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: al-enums
     resource: https://github.com/openimagingdata/findingmodel/blob/75afd39a400419dcfaf7c8d4a34f065b4d804e0d/packages/anatomic-locations/src/anatomic_locations/models/enums.py
@@ -22,7 +22,7 @@ sources:
 
 # Body region
 
-A coarse anatomic grouping, one level above an organ and well above a named structure. Regions do three jobs in OIDM: they classify an [anatomic location](/glossary/anatomic-location.md), they carry broad anatomy on a [finding model](/glossary/finding-model.md) where precise anatomy belongs in `anatomic_locations`, and they provide the fallback when a finding names no anatomic structure at all.
+A coarse anatomic grouping, one level above an organ and well above a named structure. Regions classify [anatomic locations](/glossary/anatomic-location.md), describe broad anatomy on [finding models](/glossary/finding-model.md), and provide a fallback when a finding names no structure. Precise anatomy belongs in a finding model's `anatomic_locations`.
 
 The fallback rule is explicit. Only findings with no anatomic noun, such as "soft tissue mass" or "generalized osteoporosis," fall back to the exam-scoped coarse region, and the grain is "the coarse region, not a soft-tissue substructure." The rule also states that "organ always wins over exam-region" whenever the finding has a real target organ, including edge-of-exam cases: "no consolidation" on an abdominal CT codes to lung, never to abdomen.[^rules]
 

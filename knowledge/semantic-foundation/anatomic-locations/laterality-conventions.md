@@ -1,10 +1,10 @@
 ---
 type: Reference
 title: Laterality conventions
-description: How sided anatomic locations are identified, linked, contained, and named in the curated set, and how a side is assigned to a finding at coding time.
+description: Sided location identifiers and references, with rules for assigning laterality to findings.
 tags: [semantic-foundation, anatomic-locations, laterality, reference, migrated]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: fm-laterality
     resource: https://github.com/openimagingdata/findingmodel/blob/75afd39a400419dcfaf7c8d4a34f065b4d804e0d/.claude/skills/manage-anatomic-locations/reference/laterality-conventions.md
@@ -25,7 +25,7 @@ sources:
 
 # Two questions
 
-[Laterality](/glossary/laterality.md) is decided twice in OIDM, and the rules are different. Curation decides how a sided structure is represented in the [anatomic location](/glossary/anatomic-location.md) set. Coding decides which of those records a given finding in a given report gets. The first half of this document is the curation convention, migrated from the finding model repository's curation skill.[^fm-laterality] The second half is the assignment rule from the extraction platform.[^ipl-rules]
+[Laterality](/glossary/laterality.md) has two sets of rules. Curation defines sided records in the [anatomic location](/glossary/anatomic-location.md) set, as described in the migrated curation convention below.[^fm-laterality] Coding assigns those records to findings using the extraction platform's rules.[^ipl-rules]
 
 # Compound identifier pattern
 
@@ -90,9 +90,9 @@ Identifier `{base}_RID5825`. Has `leftRef`, its counterpart, and `unsidedRef`. `
 | `unsidedRef` only | `generic` | Maps to generic |
 | None | `nonlateral` | Not a lateralized structure |
 
-The key insight is that a reference points at the counterpart, not at itself. A left entry has `rightRef` and `unsidedRef`. It does not have `leftRef`, because it is the left variant.
+A reference points to the counterpart. A left entry has `rightRef` and `unsidedRef`, but no `leftRef`.
 
-This inversion is easy to get wrong, and it has been got wrong: open issue 39 in the finding model repository reports that the build's `determine_laterality()` assigns left and right backwards.[^fm-issues]
+Open issue 39 in the finding model repository reports that the build's `determine_laterality()` assigns left and right backwards.[^fm-issues]
 
 # Containment and synonyms for sided entries
 
@@ -102,7 +102,7 @@ Synonyms follow a consistent pattern. Generic `["hilum", "lung hilum", "hilum of
 
 # Assigning a side to a finding
 
-Curation says which records exist. Assignment says which one a given observation gets. The precedence is stated as explicit text side, then sided-exam side, then generic unsided.[^ipl-rules]
+The precedence is stated as explicit text side, then sided-exam side, then generic unsided.[^ipl-rules]
 
 - **A non-sided exam never introduces a side.** On a CT abdomen, "adrenal glands unremarkable" resolves to the generic adrenal gland, not to a left one. "No hydronephrosis" with no side stated resolves to the generic kidney.
 - **A sided exam sides the finding.** A left shoulder radiograph plus "humerus fracture" resolves to the left humerus.
@@ -120,7 +120,7 @@ Curation says which records exist. Assignment says which one a given observation
 
 The operational test for separable against inseparable: if you could meaningfully say "the left one is larger or newer," it is separable; if it is a named diffuse entity, it is inseparable.[^ipl-rules]
 
-The full ladder, including the specificity and exam-region rules that surround these laterality rules, is in [anatomic location assignment rules](/data-structures/anatomic-location-assignment-rules.md).
+See [anatomic location assignment rules](/data-structures/anatomic-location-assignment-rules.md) for the full precedence, specificity, and exam-region rules.
 
 # Known limitation
 

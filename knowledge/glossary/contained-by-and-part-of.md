@@ -4,7 +4,7 @@ title: Contained by and part of
 description: The two orthogonal hierarchies over anatomic locations, one physical containment and one structural or functional membership.
 tags: [glossary, semantic-foundation, anatomy]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: al-code
     resource: https://github.com/talkasab/anatomiclocations.org/blob/1f39fa45f621cef947a3f3ef1f869334cfa5c841/docs/code.markdown
@@ -27,9 +27,9 @@ The two hierarchies over [anatomic locations](/glossary/anatomic-location.md), k
 - **Contained by**: "physically contained in (e.g., kidney in the retroperitoneum)."[^al-code]
 - **Part of**: "a component of a larger structure/system (e.g., adnexa part of female genital system)."[^al-code]
 
-Containment is the primary axis. The curated set is "organized into a directed, rooted tree hierarchy, starting from the whole body and ramifying through body regions," and containment is required on every node while part-of is optional.[^al-site] Part-of carries organ-system membership, which is why a structure can be contained in one region and part of a system that spans several.
+Containment is the primary axis. The curated set is "organized into a directed, rooted tree hierarchy, starting from the whole body and ramifying through body regions," and containment is required on every node while part-of is optional.[^al-site] Part-of records organ-system membership. A structure can be contained in one region and belong to a system spanning several.
 
-The newer package materializes both. A location carries `containment_path`, `containment_parent`, `containment_depth`, and `containment_children`, and the same four fields again with a `partof_` prefix, so ancestors and descendants on either axis resolve without walking the graph at query time.[^al-package]
+The newer package precomputes both hierarchies. Each location has `containment_path`, `containment_parent`, `containment_depth`, and `containment_children`, and the same four fields again with a `partof_` prefix, so ancestors and descendants on either axis resolve without walking the graph at query time.[^al-package]
 
 ## Synonyms and near-synonyms
 

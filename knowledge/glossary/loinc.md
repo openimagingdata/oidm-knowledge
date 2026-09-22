@@ -27,7 +27,7 @@ sources:
 
 Logical Observation Identifiers Names and Codes, the Regenstrief Institute's system for identifying laboratory and clinical observations, including imaging procedures.[^loinc] In OIDM, LOINC's job is [exam type](/glossary/exam-type.md) identification, not finding identification.
 
-An [Exam Finding List](/glossary/exam-finding-list.md) carries the exam's LOINC code as `examInfo.studyLoincCode`, described as "LOINC codes: Used for exam type identification (e.g., '72133-2' = CT Abdomen and Pelvis Without Contrast)."[^ipl-claude] The specification says the structure "must also have basic information (keyed by a curated list of LOINC codes) about what exam this is."[^ipl-readme] The lineage FHIR sample codes its DiagnosticReport the same way, with `87279-6 CT Chest for Screening`.[^fhir-sample]
+An [Exam Finding List](/glossary/exam-finding-list.md) carries the exam's LOINC code as `examInfo.studyLoincCode`, described as "LOINC codes: Used for exam type identification (e.g., '72133-2' = CT Abdomen and Pelvis Without Contrast)."[^ipl-claude] The imaging-problem-list README says the structure "must also have basic information (keyed by a curated list of LOINC codes) about what exam this is."[^ipl-readme] The lineage FHIR sample codes its DiagnosticReport the same way, with `87279-6 CT Chest for Screening`.[^fhir-sample]
 
 The division of labour is stated in the terminology roadmap: radiology "orderables live in the LOINC/RSNA Radiology Playbook, while findings, anatomy, and report language live in RadLex."[^roadmap]
 
@@ -48,7 +48,7 @@ Digits, a hyphen, and a check digit, for example `72133-2`. The lookup tooling a
 
 ## Conflicts
 
-The "curated list of LOINC codes" the specification refers to does not exist as an artifact. Exam types are documented as goals and as building blocks, not as a published catalog; see [Exam types](/roadmap/exam-types.md).
+The "curated list of LOINC codes" that exam-type documents refer to does not exist as an artifact. Exam types are documented as goals and as building blocks, not as a published catalog; see [Exam types](/roadmap/exam-types.md).
 
 [^loinc]: LOINC, Regenstrief Institute
 [^ipl-claude]: imaging-problem-list domain model, dev branch

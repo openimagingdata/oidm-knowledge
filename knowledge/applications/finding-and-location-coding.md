@@ -1,10 +1,10 @@
 ---
 type: Concept
 title: Finding and location coding
-description: How extracted findings are assigned OIFM finding codes and RadLex anatomic location codes, as a deterministic index lookup followed by language model term generation and selection.
+description: How deterministic lookup and language models assign OIFM finding codes and RadLex location codes.
 tags: [applications, coding, anatomic-locations, llm, extraction]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:34:50Z }
 stale_after: 2027-09-21
 sources:
   - id: coding-design
@@ -29,15 +29,15 @@ sources:
 
 # Why coding is its own step
 
-[Extraction](/glossary/extraction.md) asks what the report says. Coding asks which existing definition that corresponds to. Keeping them apart is the central design decision of the current pipeline: extraction output persists without codes, and coding is triggered separately, can be re-run with different models, and never re-reads the report.[^coding-design] Two earlier designs did it inside extraction and were retired.
+[Extraction](/glossary/extraction.md) records what the report says. Coding matches findings to existing definitions. The current pipeline persists uncoded extractions and runs coding separately, without rereading the report. Coding can be rerun with different models.[^coding-design] Two earlier designs did it inside extraction and were retired.
 
-The two axes are coded independently. A finding gets an [OIFM identifier](/glossary/oifm.md) naming a [finding model](/glossary/finding-model.md) definition. Its location, when the report gives one, gets a [RadLex identifier](/glossary/radlex-id.md) from the [anatomic locations](/glossary/anatomic-location.md) data set. Either can succeed while the other fails.
+Finding and location codes are independent. A finding receives an [OIFM identifier](/glossary/oifm.md) for its [finding model](/glossary/finding-model.md). A stated location receives a [RadLex identifier](/glossary/radlex-id.md) from the [anatomic locations](/glossary/anatomic-location.md) dataset. Either can succeed while the other fails.
 
 # The pipeline
 
-Coding operates on the flat merged finding list of a completed extraction rather than on report chunks. Each finding already carries its name, [presence](/glossary/presence.md), location fields, verbatim quote, and source section, and the design states that this is sufficient context; chunk-level ambiguity was already resolved during extraction.[^coding-design]
+Coding uses the completed extraction's flat merged finding list. Each finding carries its name, [presence](/glossary/presence.md), location fields, verbatim quote, and source section. The design treats these as sufficient context because extraction has resolved chunk-level ambiguity.[^coding-design]
 
-Five phases, of which two involve language model calls.
+The pipeline has five phases. Two call language models.
 
 | Phase | What happens |
 |---|---|
@@ -47,19 +47,19 @@ Five phases, of which two involve language model calls.
 | 4. Code selection | Two agents, one for findings and one for locations, choose from the candidate set, running concurrently under a semaphore |
 | 5. Assembly | Fast-path and selected results merge into one coding bundle per finding |
 
-Four agents in total. Term generation and selection use different models on the stated ground that proposing search synonyms needs no reasoning while judging candidate fit does; traces showed reasoning tokens spent on term generation with no quality benefit.
+Four agents perform term generation and selection. Term generation uses a different model because traces showed reasoning tokens added no quality benefit when proposing synonyms. Candidate selection requires reasoning.
 
-Every phase catches its own failures and degrades rather than aborting. A term generation failure falls back to using the finding name as the search term. A search failure or a selection failure marks that finding unresolved. One finding's failure does not block the others.
+Each phase handles its failures. Failed term generation falls back to the finding name. Failed search or selection marks the finding unresolved without blocking other findings.
 
 The prompts carry the exam information, modality, body part, and study description, because it disambiguates both terms and candidates, and deliberately omit the full report text; testing found identical results with 22 percent fewer input tokens without it.[^coding-prompts]
 
 ## What the fast path is worth
 
-In prototype testing on chest radiograph extractions, exact and synonym lookup resolved 13 of 16 unique finding names and 12 of 15 unique locations with no model call at all.[^coding-design] The same testing found that a purely deterministic top-candidate choice was not adequate for locations: location assignment needs contextual reasoning even when the finding code resolves deterministically.
+In chest radiograph prototype tests, exact and synonym lookup resolved 13 of 16 unique finding names and 12 of 15 unique locations without model calls.[^coding-design] Deterministic top-candidate selection was insufficient for locations, which needed contextual reasoning even when finding codes resolved deterministically.
 
 # The coding record
 
-Each finding carries a coding bundle holding one finding code and a list of location codes. The list is plural because a finding can span sides or structures, so "lungs" resolves to both the left and the right lung.[^coding-design]
+A coding bundle holds one finding code and a list of location codes. Findings can span sides or structures, so "lungs" resolves to both lungs.[^coding-design]
 
 ```python
 class FindingCodingBundle(StrictBaseModel):
@@ -67,7 +67,7 @@ class FindingCodingBundle(StrictBaseModel):
     location_codes: list[LocationCode] = Field(default_factory=list)
 ```
 
-Both code objects record not only the answer but how it was reached and, when it failed, why.
+Both code objects record the result, method, and failure reason.
 
 | Field | Finding code | Location code |
 |---|---|---|
@@ -79,7 +79,7 @@ Both code objects record not only the answer but how it was reached and, when it
 | `candidates` | the alternates that were considered | the alternates that were considered |
 | `closest_candidate_id` | the nearest miss when unresolved | not carried |
 
-The unresolved reasons are the part worth reading closely, because they are designed to report gaps rather than to hide them.
+Unresolved reasons distinguish content gaps from processing failures.
 
 | Finding reason | Meaning |
 |---|---|
@@ -97,25 +97,25 @@ The unresolved reasons are the part worth reading closely, because they are desi
 | `no_candidates` | The search returned nothing |
 | `coding_error` | A model or infrastructure failure |
 
-Two of these, `definition_mismatch` and `no_candidate_match`, exist specifically so that an unresolved finding becomes evidence about content coverage rather than noise. They are the pipeline's channel back to [the content catalog](/semantic-foundation/finding-models/content-catalog.md) and [the anatomic location data model](/semantic-foundation/anatomic-locations/data-model.md).
+`definition_mismatch` and `no_candidate_match` identify gaps in [the content catalog](/semantic-foundation/finding-models/content-catalog.md) and [the anatomic location data model](/semantic-foundation/anatomic-locations/data-model.md).
 
-The model's own explanation is persisted with the extraction but never written to logs or trace attributes, because it can quote report content.
+Model explanations persist with the extraction but never enter logs or trace attributes because they can quote report content.
 
 # Where the location comes from
 
-Choosing a code is the second half of the problem. The first is deciding which anatomic structure the report actually asserts, and that is governed by a written precedence ladder, applied per observation and agreed during a correction pass over the sample data.[^anat-rules] In summary:
+The assignment rules determine the anatomic structure before code selection, governed by a written precedence ladder, applied per observation and agreed during a correction pass over the sample data.[^anat-rules]
 
-1. **Explicit anatomy in the report text or section context wins.** Use the most specific structure stated, sided only if a side is stated. A section heading counts as context.
-2. **Otherwise use the finding's own target organ**, at the finding's anatomic granularity and never finer.
-3. **Otherwise fall back to the exam-scoped coarse region**, sided only if the exam is sided.
+1. Use the most specific anatomy stated in the report text or section context. Add a side only when stated.
+2. Otherwise use the finding's own target organ, at the finding's anatomic granularity and never finer.
+3. Otherwise, use the coarse exam region, sided only if the exam is sided.
 
-An organ always beats the exam region when the finding has a real target organ, so "lung bases clear" on an abdominal study codes to lung rather than abdomen. Laterality is resolved against the whole report section rather than the isolated quote, because the side is often stated only in a heading; but a side is never inferred from a different exam or from clinical priors. Bilateral findings split into left and right when the lesions are separable and stay generic and unsided when the process is one diffuse entity. A structure absent from the ontology is left unassigned rather than forced to a wrong code. The full rules, including the worked examples and the exam-to-region map, are in [the assignment rules reference](/data-structures/anatomic-location-assignment-rules.md).
+An organ always beats the exam region when the finding has a real target organ. For example, "lung bases clear" on an abdominal study codes to lung. Resolve laterality from the whole report section, including its heading. Never infer a side from another exam or clinical priors. Split separable bilateral lesions into left and right, but keep a diffuse bilateral process generic and unsided. Leave structures absent from the ontology unassigned. See [the assignment rules reference](/data-structures/anatomic-location-assignment-rules.md) for examples and the exam-to-region map.
 
-The rules name one limitation they do not solve. A generic location and a specific one for the same finding code across exams, "kidney" and "left kidney", still produce separate [Imaging Problem List](/glossary/imaging-problem-list.md) groups. Deciding whether those are one problem or two is called anatomic-compatibility reconciliation and is an open follow-on.[^anat-plan]
+Generic and specific locations for the same finding code across exams, such as "kidney" and "left kidney", still produce separate [Imaging Problem List](/glossary/imaging-problem-list.md) groups. Deciding whether those are one problem or two is called anatomic-compatibility reconciliation and is an open follow-on.[^anat-plan]
 
 # The review artifact
 
-Coding decisions are reviewable as a spreadsheet, not only as JSON. The enrichment script that ran the sample Exam Finding Lists through the production pipeline writes a review CSV of every location decision alongside the enriched files. In the completed pass of 2026-06-10, 260 of 275 findings received a location, and the regenerated [Imaging Problem List](/data-structures/imaging-problem-list.md) was regrouped by finding code together with location identifier.[^anat-plan]
+The sample Exam Finding List enrichment script writes a review CSV of every location decision alongside the enriched files. In the 2026-06-10 pass, 260 of 275 findings received a location. The regenerated [Imaging Problem List](/data-structures/imaging-problem-list.md) groups by finding code and location identifier.[^anat-plan]
 
 # Earlier designs, now archived
 
@@ -127,11 +127,11 @@ Three generations exist in the repository, and only the third is current.
 | Version 3, batch per chunk | Fast path, then three model calls per report chunk: generate search terms for findings and locations together, select finding codes, select location codes | Marked completed 2026-02-19, then superseded |
 | Current, flat merged finding list | Fast path, then four agents across two phases, operating on the merged finding list rather than per chunk | Current, implementation complete on `dev` |
 
-The move from version 3 to the current design changed both the unit of work, from chunk to merged finding list, and the agent count, from three to four, by splitting term generation into separate finding and location agents so each could use a cheaper model.[^coding-archive][^coding-design]
+The current design split term generation into finding and location agents so each could use a cheaper model.[^coding-archive][^coding-design]
 
 # Where this sits
 
-Coding is a stage of [the report extraction platform](/applications/report-extraction-platform.md) and runs as its own asynchronous job. Its inputs are the finding model corpus and the anatomic location data set, and its output is what makes an [Observation](/glossary/observation.md) interoperable at all: without codes, an extracted finding is text. See [the architecture overview](/overview/architecture.md) for why the identifiers are the joints of the whole system.
+Coding runs as an asynchronous job in [the report extraction platform](/applications/report-extraction-platform.md). It uses the finding model corpus and anatomic location dataset to assign standard identifiers to an [Observation](/glossary/observation.md). See [the architecture overview](/overview/architecture.md).
 
 [^coding-design]: Coding agent design, imaging-problem-list dev branch
 [^coding-prompts]: Coding agent prompt catalog, imaging-problem-list dev branch

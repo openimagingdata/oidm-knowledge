@@ -1,10 +1,10 @@
 ---
 type: Roadmap
 title: Finding model content direction
-description: "Where the finding model corpus is going: the MGB exam-oriented sub-taxonomies as the content spine, the expected supersession of Gamuts-derived models, the triage of unmatched rows, the content batches in flight, the definition cleanup plan, and the open content issues."
+description: Exam-oriented content priorities, unmatched taxonomy rows, unmerged batches, and corpus cleanup plans.
 tags: [roadmap, finding-models, content, taxonomy, gamuts, cleanup]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T19:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 stale_after: 2027-09-21
 sources:
   - id: plan
@@ -69,7 +69,7 @@ The sub-taxonomy export minted no identifiers. Rows were matched by exact name a
 | Carrying an existing OIFM identifier | 1,028 |
 | Blank, awaiting triage | 2,761 |
 
-The README names the next task in one sentence: "Blank rows are the ones needing triage."[^lists-readme] Match rates are uneven, from 86 percent on head CT and 76 percent on chest radiography down to 10 percent on the combined chest, abdomen, and pelvis CT file and 3 percent on mammography. No plan document assigns the triage work, and no issue tracks it.
+The README states: "Blank rows are the ones needing triage."[^lists-readme] Match rates are uneven, from 86 percent on head CT and 76 percent on chest radiography down to 10 percent on the combined chest, abdomen, and pelvis CT file and 3 percent on mammography. No plan document assigns the triage work, and no issue tracks it.
 
 # Content batches in flight
 
@@ -83,7 +83,7 @@ Five `findingmodels` branches carry unmerged content work. None has an open pull
 | a clinician-request branch | 2025-12-12 | 59 | A requested batch for an intracranial problem list application |
 | `findingmodels-metadata` | 2026-06-01 | 0, modifies 78 | Applies an approved metadata enrichment baseline to existing definitions |
 
-The CT chest branch is the live front of that pipeline. Its plan records the refactor from one monolithic agent into three focused ones with Python-level orchestration, with phases 1 through 3 complete and two follow-ups open: the create agent extracts fewer attributes than the single-agent version did, and the sub-findings schema is unresolved.[^chest-plan] Its progress document is explicit about how far the batch has run: 205 total sources, chunked into 21 groups of 10, with chunk 1 complete and chunks 2 through 21 pending.[^chest-progress]
+Its plan records the refactor from one monolithic agent into three focused ones with Python-level orchestration, with phases 1 through 3 complete and two follow-ups open: the create agent extracts fewer attributes than the single-agent version did, and the sub-findings schema is unresolved.[^chest-plan] Its progress document is explicit about how far the batch has run: 205 total sources, chunked into 21 groups of 10, with chunk 1 complete and chunks 2 through 21 pending.[^chest-progress]
 
 The head CT branch's one plan document is marked complete for the soft tissue category: four new models created, nine mappings made to existing models, review done, identifiers written back, validator clean.[^headct-plan]
 
@@ -93,7 +93,7 @@ An earlier CT chest branch, `cde_to_finding`, holds 1,915 definitions from the s
 
 A draft plan on `main`, still marked "DRAFT - for review," covers cleaning the existing corpus against the authoring conventions. It scopes 2,379 models: 1,934 Gamuts, 264 OIDM already reviewed, 115 from the common data element work, 47 from MassGeneral Brigham, and 19 from Microsoft.[^cleanup]
 
-It gives an ordered execution sequence with counts.
+The plan orders the work as follows.
 
 | Order | Category | Models | Nature of the work |
 |---:|---|---:|---|
@@ -131,7 +131,7 @@ Five of the ten open `findingmodels` issues are content batches. None is closed 
 
 Two further open issues, 17 and 32, ask for a static marketing site and a static catalog site for the content; the catalog site exists and is profiled in [the finding models site](/applications/finding-models-site.md).
 
-How the corpus is organized and browsed today is in [the content catalog](/semantic-foundation/finding-models/content-catalog.md), and the identifier scheme that governs writebacks is in [identifiers](/semantic-foundation/finding-models/identifiers.md).[^ids-json] Where sources disagree about corpus counts and content classification, see [open questions](/roadmap/open-questions.md).
+See [the content catalog](/semantic-foundation/finding-models/content-catalog.md) for organization and browsing, and [identifiers](/semantic-foundation/finding-models/identifiers.md) for writeback rules.[^ids-json] Where sources disagree about corpus counts and content classification, see [open questions](/roadmap/open-questions.md).
 
 [^plan]: Knowledgebase build plan, recording the project lead's statement of 2026-09-21
 [^lists-readme]: MGB exam-oriented sub-taxonomies README, taxonomy-export-2026-08-15 branch

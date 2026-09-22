@@ -4,7 +4,7 @@ title: CDE element
 description: One property inside a published CDE set, carrying an RDE identifier and a value set, integer, or float definition.
 tags: [glossary, semantic-foundation, cde]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: schema-diff
     resource: https://github.com/openimagingdata/openimagingdata.org/blob/fb431dfc81801a5a8e621c0e8bf2acd20f74be7d/schemas/schema_differences.md
@@ -22,9 +22,9 @@ sources:
 
 # CDE element
 
-One property inside a published [CDE set](/glossary/cde-set.md): the unit that carries a question and its permissible answers. An element definition names the property, declares its value type, and lists the values where the type is categorical. The schema distinguishes a `value_set` from `integer_values` and `float_values`, the latter carrying bounds and a step.[^schema-diff]
+A property in a published [CDE set](/glossary/cde-set.md), with a question and permissible answers. Its definition names the property, declares its value type, and lists categorical values. The schema distinguishes a `value_set` from `integer_values` and `float_values`, the latter carrying bounds and a step.[^schema-diff]
 
-In a [CDE-labeled FHIR Observation](/glossary/cde-labeled-fhir-observation.md), elements are what the components carry: the parent Observation's `code` is the set, each component's `code` is an element, and the component value is the chosen value code, for example element `RDE1717` with value `RDE1717.1`.[^fhir-sample] The dot-suffixed value code convention is the same one OIFM uses for [attribute values](/glossary/attribute-value.md).
+In a [CDE-labeled FHIR Observation](/glossary/cde-labeled-fhir-observation.md), the parent's `code` identifies the set. Each component's `code` identifies an element, and its value identifies the chosen answer, such as `RDE1717.1` for element `RDE1717`.[^fhir-sample] The dot-suffixed value code convention is the same one OIFM uses for [attribute values](/glossary/attribute-value.md).
 
 ## Synonyms and near-synonyms
 

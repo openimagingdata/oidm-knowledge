@@ -1,10 +1,10 @@
 ---
 type: Reference
 title: Technical imaging findings
-description: A draft catalog of modality-specific technical finding language, CT attenuation, MR signal, enhancement, ultrasound echogenicity, and nuclear medicine, with the search-term guidance for coding each, migrated from the imaging-problem-list development branch.
+description: A migrated draft catalog of modality-specific findings and search terms for coding them.
 tags: [data-structures, technical-finding, coding, terminology, migrated, draft]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: tech
     resource: https://github.com/openimagingdata/imaging-problem-list/blob/36fa30c7383bf687d7bc17815282a93e123a56cb/docs/technical-imaging-findings.md
@@ -13,7 +13,7 @@ sources:
 
 # About this document
 
-This is a near-verbatim migration of `docs/technical-imaging-findings.md` from the `imaging-problem-list` repository's development branch.[^tech] The source marks itself **Draft, needs review against the finding ontology for coverage assessment**, and that status carries over: the catalog has not been audited against the finding model corpus, and its closing questions are open. Wording and structure follow the original.
+Migrated near-verbatim from `docs/technical-imaging-findings.md` on `imaging-problem-list`'s development branch.[^tech] Wording and structure follow the original. The source is marked **Draft, needs review against the finding ontology for coverage assessment**. The catalog remains unaudited against the finding model corpus, and its closing questions remain open.
 
 Radiology reports frequently describe findings using modality-specific technical language rather than clinical diagnoses. These [technical findings](/glossary/technical-finding.md) describe what the radiologist observes on the images, including signal characteristics, density, enhancement patterns, and echogenicity, without necessarily committing to an underlying pathological process.
 

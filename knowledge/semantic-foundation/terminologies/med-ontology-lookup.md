@@ -1,10 +1,10 @@
 ---
 type: Project Profile
 title: med-ontology-lookup
-description: The molu library and command line tool that resolves medical terms and codes across RadLex, SNOMED CT, FMA, LOINC, and UMLS, its current capabilities, its stated direction, and its status.
+description: Medical terminology lookup, crosswalks, provider failures, planned features, and integration status.
 tags: [semantic-foundation, terminologies, tooling, project-profile]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:30:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 stale_after: 2027-09-21
 sources:
   - id: readme
@@ -44,11 +44,11 @@ sources:
 
 # What it is
 
-`med-ontology-lookup` is a Python library and command line tool, `molu`, that looks up medical terms and codes in [RadLex](/glossary/radlex.md), [SNOMED CT](/glossary/snomed-ct.md), [FMA](/glossary/fma.md), [LOINC](/glossary/loinc.md), and [UMLS](/glossary/umls.md) through the BioPortal and UMLS Terminology Services REST APIs.[^readme] It is the infrastructure layer under every other piece of OIDM work that needs to turn a phrase into a code: [index code](/glossary/index-code.md) assignment on [finding models](/glossary/finding-model.md), anatomic coding, and the enrichment pipeline.
+`med-ontology-lookup` is a Python library and CLI, `molu`, for medical terms and codes in [RadLex](/glossary/radlex.md), [SNOMED CT](/glossary/snomed-ct.md), [FMA](/glossary/fma.md), [LOINC](/glossary/loinc.md), and [UMLS](/glossary/umls.md). It calls BioPortal and UMLS Terminology Services REST APIs.[^readme] Its role is phrase-to-code lookup for tasks such as [index code](/glossary/index-code.md) assignment to [finding models](/glossary/finding-model.md), anatomic coding, and enrichment. Package integration remains pending, as described below.
 
-Its stated purpose is broader than a search box. The roadmap describes it as "the small, dependable layer that lets people and agents resolve medical language to versioned concepts, inspect the clinically relevant part of an ontology graph, and translate identifiers without learning each terminology provider's API."[^roadmap]
+The roadmap calls it "the small, dependable layer that lets people and agents resolve medical language to versioned concepts, inspect the clinically relevant part of an ontology graph, and translate identifiers without learning each terminology provider's API."[^roadmap]
 
-The repository is `openimagingdata/med-ontology-lookup`. Install and API key instructions are in its README and are not repeated here.[^readme]
+See `openimagingdata/med-ontology-lookup`'s README for installation and API keys.[^readme]
 
 # Providers and credentials
 
@@ -80,11 +80,11 @@ Results are typed. A `Concept` carries `concept_id`, `code`, `ontology`, `pref_l
 
 The distinguishing design decision is that a failure is a result, not a silent fallback. A `ProviderFailure` carries a `FailureCategory`, including `not_found`, `authentication`, `authorization`, `licensing`, `rate_limited`, `timeout`, `unavailable`, and `invalid_response`, and a `ProviderOperation` naming which call failed.[^models] The policy is that only absence of a result or an unsupported operation may trigger a fallback to another provider; authentication, licensing, rate limit, timeout, and upstream unavailability stay visible instead of being disguised as an empty answer.[^failures]
 
-This matters to callers because SNOMED CT and UMLS are licensed. An unlicensed caller gets a licensing failure rather than a result that looks like the concept does not exist.
+An unlicensed SNOMED CT or UMLS caller gets a licensing failure rather than an apparent missing concept.
 
 # Agent skill
 
-The repository ships an agent skill under `skills/med-ontology-lookup/`, portable across agent runtimes, that tells an agent to classify the input, search first for free text, and use the CLI rather than scraping the BioPortal or UMLS web interfaces.[^skill] It is the reason this tool appears in coding workflows across the other repositories.
+The portable skill at `skills/med-ontology-lookup/` instructs agents to classify input, search free text first, and use the CLI instead of scraping BioPortal or UMLS.[^skill] Coding workflows in other repositories use it.
 
 # Stated direction
 
@@ -108,9 +108,9 @@ Read at `main`, commit `a1fd3ae`, dated 2026-09-20.
 
 # Relation to the rest of OIDM
 
-The relationship is real in practice and thin in the documentation. The enrichment pipeline in `findingmodel` runs ontology search concurrently with anatomic location lookup to propose index codes for a finding model, and that phase is recorded as complete.[^enrichment-plan] But that pipeline calls a BioOntology client of its own, and `findingmodel` issue 34 asks for that client and its ontology search protocol to move into the shared `oidm-common` package as infrastructure, described as a hard break requiring an environment-only API key.[^fm-issue-34]
+The `findingmodel` enrichment pipeline performs ontology and anatomic searches concurrently, a completed phase.[^enrichment-plan] It uses its own BioOntology client. Issue 34 requests moving that client and search protocol to `oidm-common`, with a hard break requiring an environment-only API key.[^fm-issue-34]
 
-No document in `findingmodel` or `findingmodels` links to this repository, and no OIDM package depends on it today. It is best read as the layer that the coding and enrichment work is converging toward rather than one it already runs on. See [the repository map](/repositories/repository-map.md) for where it sits among the other repositories.
+Neither `findingmodel` nor `findingmodels` links to this repository, and no OIDM package depends on it. Integration is a direction, not an implemented dependency. See [the repository map](/repositories/repository-map.md).
 
 [^readme]: med-ontology-lookup README
 [^models]: Concept and provider failure models, med-ontology-lookup

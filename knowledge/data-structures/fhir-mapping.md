@@ -4,7 +4,7 @@ title: FHIR mapping
 description: Everything OIDM has documented about representing its data structures in FHIR, from the CDE-labeled Observation pattern of the lineage repositories to the current Exam Finding List and Imaging Problem List mappings, and the plain fact that no current code emits FHIR.
 tags: [data-structures, fhir, observation, cde, mapping]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: ipl-main
     resource: https://github.com/openimagingdata/imaging-problem-list/blob/06f64a7893b444b761dc069ed86140a081195eac/README.md
@@ -40,15 +40,15 @@ sources:
 
 # The stance
 
-OIDM's position on FHIR is stated in the deck's call to action as two words: **structure first**, with FHIR and other standards following.[^deck] The project builds "functional data structures that can then be expressed in FHIR and other standards" rather than starting from the standard and working back. That ordering explains the state of everything below: the mappings are written down carefully, they have precedent in working examples, and no current code produces them.
+The deck calls for **structure first**, followed by FHIR and other standards.[^deck] OIDM builds "functional data structures that can then be expressed in FHIR and other standards". The mappings are written down carefully, they have precedent in working examples, and no current code produces them.
 
 # The founding pattern: the CDE-labeled FHIR Observation
 
-The project began from FHIR rather than beside it. Its About page defines the unit of radiology data as a "[CDE-labeled FHIR Observation](/glossary/cde-labeled-fhir-observation.md) object", and the 2023 post that set the direction works the idea through with a pulmonary nodule.[^site-about][^site-findings]
+OIDM began with FHIR. Its About page defines the unit of radiology data as a "[CDE-labeled FHIR Observation](/glossary/cde-labeled-fhir-observation.md) object". A 2023 post illustrates it with a pulmonary nodule.[^site-about][^site-findings]
 
 ## The worked example
 
-`FHIRSamples` holds four hand-built resources for a lung cancer screening scenario. They remain the clearest statement of the pattern.
+`FHIRSamples` holds four hand-built resources for a lung cancer screening scenario.
 
 **The report.** A [FHIR DiagnosticReport](/glossary/fhir-diagnostic-report.md) with `category` coded in SNOMED CT and HL7 v2 table 0074, `code` coded as [LOINC](/glossary/loinc.md) `87279-6` for a screening chest computed tomography, an inline `ImagingStudy`, `result` referencing three Observations, and a `conclusion` with a SNOMED `conclusionCode`.[^fhir-report]
 
@@ -67,15 +67,15 @@ The project began from FHIR rather than beside it. Its About page defines the un
 }
 ```
 
-Three patterns come out of it.
+The example demonstrates three patterns.
 
 **Set code, element code, value code.** The chain from `RDES195` to `RDE1717` to `RDE1717.1`, all through one coding system, is what "CDE-labeled" means concretely. The current [Exam Finding List](/data-structures/exam-finding-list.md) uses the identical chain with a different vocabulary: `OIFM` identifier, `OIFMA` identifier, dot-suffixed value code.
 
-**Status carries provenance.** The example has the same finding twice, once as an AI observation with `status` `preliminary` and once as the radiologist's with `status` `final`. The two resources are otherwise identical. Distinguishing a machine-produced finding from a confirmed one is a field value, not a separate resource type.[^fhir-ai] That is the closest precedent for the "provenance marker" the Exam Finding List specification asks for, and it is also exactly the ACR priority the deck names, correlating artificial intelligence observations against radiologist observations.[^deck]
+**Status carries provenance.** The same finding appears twice, as an AI observation with `status` `preliminary` and a radiologist's observation with `status` `final`. The resources are otherwise identical.[^fhir-ai] Distinguishing a machine-produced finding from a confirmed one is a field value, not a separate resource type. That is the closest precedent for the "provenance marker" the Exam Finding List specification asks for. It also supports the ACR priority named in the deck, correlating AI and radiologist observations.[^deck]
 
 **Assessments are second-order observations.** A fourth resource carries the Lung-RADS category as a component of `RDES267`, and its `derivedFrom` points at both the imaging study **and** the radiologist's finding Observation.[^fhir-lungrads] An assessment built on top of a finding is an Observation referring to an Observation. That is the precedent for any future modelling of the reporting-system categories the roadmap names.
 
-Two absences in the example are worth recording. No `bodySite` appears on the finding Observations, because anatomy was implicit in the CDE definition rather than explicit on the resource. No Patient resource is included; `subject.reference` is a bare reference.
+The finding Observations omit `bodySite` because anatomy was implicit in the CDE definition. No Patient resource is included. `subject.reference` is a bare reference.
 
 ## The Python model
 
@@ -96,9 +96,9 @@ Field by field, the Exam Finding List mapping is close to mechanical. `diagnosti
 
 # What is actually implemented
 
-Nothing. A search for `DiagnosticReport` or `fhir` across the extraction platform's entire source tree on the development branch returns no matches. No FHIR resource classes exist anywhere in the current Python code, and no OIDM tool emits a FHIR resource.
+Nothing. A search for `DiagnosticReport` or `fhir` across the extraction platform's entire source tree on the development branch returns no matches. The development branch's extraction source has no FHIR resource classes and no tool that emits FHIR resources.
 
-The only real FHIR documents in the current repositories are two **input** samples, `powerscribe-fhir.json` and `chest-ct-fhir.json`, which are pre-transformation DiagnosticReports carrying contained `Patient`, `ImagingStudy`, and `Observation` resources.[^powerscribe] They are worth reading because they differ from the prescribed output in two instructive ways. Their finding Observations code `bodySite` with [RadLex](/glossary/radlex.md), which the prescribed mapping does not mention. And their components carry DICOM codes for series, instance, and SOP identifiers rather than presence and change-from-prior attribute codes. That is not a contradiction: the component pattern the specification describes applies to the Exam Finding List output, not to the reporting system's input.
+The current repositories contain two FHIR input samples, `powerscribe-fhir.json` and `chest-ct-fhir.json`. These pre-transformation DiagnosticReports contain `Patient`, `ImagingStudy`, and `Observation` resources.[^powerscribe] Their finding Observations code `bodySite` with [RadLex](/glossary/radlex.md), which the prescribed mapping does not mention. Their components carry DICOM codes for series, instance, and SOP identifiers. That is not a contradiction: the documented component pattern applies to the Exam Finding List output, not to the reporting system's input.
 
 | Piece | Status |
 |---|---|
@@ -110,7 +110,7 @@ The only real FHIR documents in the current repositories are two **input** sampl
 
 # The open question underneath
 
-The component pattern that every OIDM encoding uses is the one IHE's Imaging Diagnostic Report profile declines to use. IDR states that `Observation.component` "is not used", because FHIR limits components to values "not useful on their own" and using it "has the potential to significantly complicate queries", preferring a root Observation whose `hasMember` references the associated observations. Since the deck names IDR as the Exam Finding List's target representation, that disagreement sits directly under the mapping. It is set out in [IHE IDR alignment](/data-structures/ihe-idr-alignment.md), along with the other points where the two models differ.
+The component pattern that every OIDM encoding uses is the one IHE's Imaging Diagnostic Report profile declines to use. IHE's Imaging Diagnostic Report profile states that `Observation.component` "is not used". FHIR limits components to values "not useful on their own", and using them "has the potential to significantly complicate queries". IDR instead uses a root Observation whose `hasMember` references associated observations. The deck names IDR as the Exam Finding List's target, so OIDM's component mappings need reconciliation. See [IHE IDR alignment](/data-structures/ihe-idr-alignment.md).
 
 [^ipl-main]: imaging-problem-list README, main branch
 [^ipl-claude-dev]: imaging-problem-list domain model notes, dev branch

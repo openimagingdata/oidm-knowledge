@@ -4,7 +4,7 @@ title: Exam type
 description: The kind of imaging study an exam is, coded with LOINC today and intended to become a first-class OIDM artifact linking modality, technique, and included body parts.
 tags: [glossary, semantic-foundation, exam-types]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: ipl-claude
     resource: https://github.com/openimagingdata/imaging-problem-list/blob/36fa30c7383bf687d7bc17815282a93e123a56cb/CLAUDE.md
@@ -25,11 +25,11 @@ sources:
 
 # Exam type
 
-The kind of imaging study an exam is: modality, body part, technique, and contrast, taken together. Today OIDM identifies an exam type by a [LOINC](/glossary/loinc.md) code carried on the exam header, for example `72133-2` for CT Abdomen and Pelvis Without Contrast.[^ipl-claude]
+An imaging study type defined by modality, body part, technique, and contrast. Today OIDM identifies an exam type by a [LOINC](/glossary/loinc.md) code carried on the exam header, for example `72133-2` for CT Abdomen and Pelvis Without Contrast.[^ipl-claude]
 
-Exam type does more work than labelling. It bounds what a finding model should cover: "the scope of a finding model should match what's assessable on a given exam type, not broader."[^overview] It supplies the fallback [body region](/glossary/body-region.md) when a finding names no anatomic structure, and it supplies laterality when the exam itself is sided.[^rules]
+Exam type bounds a finding model's scope: "the scope of a finding model should match what's assessable on a given exam type, not broader."[^overview] It supplies the fallback [body region](/glossary/body-region.md) when a finding names no anatomic structure, and it supplies laterality when the exam itself is sided.[^rules]
 
-The stated goal is a first-class exam-type artifact rather than a bare code. The earliest written form asks for "a companion for exam types based on LOINC/RadLex Playbook exam definitions that specify all included body parts for the exam."[^al-site] The most developed written design sits in the terminology tool's roadmap, which makes the [LOINC/RSNA Radiology Playbook](/glossary/loinc-rsna-radiology-playbook.md) first-class in a default radiology profile and plans Playbook-weighted ranking for orderable queries.[^roadmap]
+The stated goal is a first-class exam-type artifact rather than a bare code. The earliest proposal asks for "a companion for exam types based on LOINC/RadLex Playbook exam definitions that specify all included body parts for the exam."[^al-site] The terminology tool's roadmap contains the most developed design. It proposes making the [LOINC/RSNA Radiology Playbook](/glossary/loinc-rsna-radiology-playbook.md) first-class in a default radiology profile and plans Playbook-weighted ranking for orderable queries.[^roadmap]
 
 ## Synonyms and near-synonyms
 
@@ -48,7 +48,7 @@ A LOINC code today. Legacy `RPID` Playbook identifiers are recognized in the pla
 
 ## Conflicts
 
-No exam-type artifact exists. There is no published curated LOINC list, no exam-to-body-parts mapping, and no code that parses modality or body-part axes, even though three separate documents across three repositories describe the same goal. The area is documented as goals plus existing building blocks; see [Exam types](/roadmap/exam-types.md).
+Three documents in three repositories describe the goal, but no exam-type artifact exists: no published curated LOINC list, exam-to-body-parts mapping, or code to parse modality or body-part axes. See goals and existing building blocks under [Exam types](/roadmap/exam-types.md).
 
 [^ipl-claude]: imaging-problem-list domain model, dev branch
 [^al-site]: anatomiclocations.org roadmap

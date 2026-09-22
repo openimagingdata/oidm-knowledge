@@ -1,10 +1,10 @@
 ---
 type: Roadmap
 title: Finding model format evolution
-description: "The stated goals for where the Open Imaging Finding Model record format is going: the canonical structured-metadata rewrite, the source schema version 2 draft, relationship and graph ideas from the next-generation CDE work, versioning, and the discrepancies a revision would have to settle."
+description: Proposed metadata, schema, relationship, and versioning changes to the finding model format.
 tags: [roadmap, finding-models, schema, metadata, relationships, versioning]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T19:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 stale_after: 2027-09-21
 sources:
   - id: rewrite
@@ -59,9 +59,9 @@ sources:
 
 # What this document collects
 
-The released Open Imaging Finding Model (OIFM) record format is described in [the finding model format](/semantic-foundation/finding-models/finding-model-format.md). This document collects the goals that have been stated for changing it, with the source that states each one. Nothing here is implemented on `main` of any repository, and nothing here is a proposal by this knowledgebase.
+The released Open Imaging Finding Model (OIFM) format is described in [the finding model format](/semantic-foundation/finding-models/finding-model-format.md). This document collects the goals that have been stated for changing it, with the source that states each one. Nothing here is implemented on `main` of any repository, and nothing here is a proposal by this knowledgebase.
 
-Four separate threads are in play, and they are not coordinated with each other: a metadata rewrite on a `findingmodel` branch, a source schema version 2 draft circulating in the common data element work, relationship and graph ideas coming out of the next-generation CDE vocabulary, and a versioning plan for packages and database artifacts.
+Four efforts remain uncoordinated: a metadata rewrite on a `findingmodel` branch, a source schema version 2 draft circulating in the common data element work, relationship and graph ideas coming out of the next-generation CDE vocabulary, and a versioning plan for packages and database artifacts.
 
 # The canonical structured-metadata rewrite
 
@@ -69,13 +69,13 @@ The most advanced thread. The design document on `feature/metadata-cleanup` stat
 
 It adds eight optional fields to both finding model classes: `body_regions`, `subspecialties`, `etiologies`, `entity_type`, `applicable_modalities`, `expected_time_course`, `age_profile`, and `sex_specificity`. Their permitted values are listed in [the format document](/semantic-foundation/finding-models/finding-model-format.md); the pipeline that populates them is described in [the enrichment pipeline](/semantic-foundation/finding-models/enrichment-pipeline.md).
 
-Two constraints ride with it. Canonical `index_codes` are narrowed to exact or clinically substitutable matches, with broader, narrower, and merely related candidates diverted to a separate review artifact. And model-level entries in `index_codes` and `anatomic_locations` are rejected when `display` is empty.[^rewrite]
+Canonical `index_codes` allow only exact or clinically substitutable matches. Broader, narrower, and related candidates go to a review artifact. Model-level `index_codes` and `anatomic_locations` entries require a nonempty `display`.[^rewrite]
 
 **Status as the branch reports it.** The execution plan on `dev` records slices 1 through 8 and 9-A complete, with slice 9-B, migrating the MCP and command-line callers plus a bulk backfill, and slice 10, backfill, fixtures, and final documentation, remaining.[^impl-plan] The branch's own readiness assessment fails: the 2026-06-03 prompt-improvement document raises expected time course to between 0.76 and 0.78 and etiologies to between 0.91 and 0.93, then states that overall readiness remains a failure because age profile and index codes are below the quality floor.[^tempo]
 
 # The source schema version 2 draft
 
-A separate and broader draft, dated 2026-04-20 and marked "a proposed authoring schema, not an implementation-complete contract yet," is kept in the `next-gen-2026` branch of `ACR-RSNA-CDEs` as a copy of an upstream gist.[^v2-draft] It proposes a different decomposition of the format than the metadata rewrite does, and the two have not been reconciled.
+A broader draft, dated 2026-04-20 and marked "a proposed authoring schema, not an implementation-complete contract yet," is kept in the `next-gen-2026` branch of `ACR-RSNA-CDEs` as a copy of an upstream gist.[^v2-draft] Its format differs from the metadata rewrite and remains unreconciled with it.
 
 | Proposal | What the draft says |
 |---|---|
@@ -87,7 +87,7 @@ A separate and broader draft, dated 2026-04-20 and marked "a proposed authoring 
 | Registries | `relationship_types.json` and `quantity_kinds.json` alongside the corpus |
 | `schema_version` on the record | Required, `"2.0"` for version 2 source files |
 
-The draft also lists explicit removals and changes against the current shape: drop `required`; replace the numeric `unit` with `quantity_kind` plus optional `common_units`; add `synonyms` to attributes and choice values; add model-level `references`; add `lifecycle` and `related_models`; allow canonical attribute references; and keep hydrated output close to the current structure.[^v2-draft]
+The draft also proposes these changes: drop `required`; replace the numeric `unit` with `quantity_kind` plus optional `common_units`; add `synonyms` to attributes and choice values; add model-level `references`; add `lifecycle` and `related_models`; allow canonical attribute references; and keep hydrated output close to the current structure.[^v2-draft]
 
 Five decisions are left open in the draft itself, including whether runtime APIs expose both the authored and the effective relationship views, where registry files live, and whether canonical attributes may be numeric or carry index codes.[^v2-draft]
 
@@ -95,7 +95,7 @@ Five decisions are left open in the draft itself, including whether runtime APIs
 
 The project lead's stated goal for the format, recorded in [the knowledgebase build plan](/plans/2026-09-20-knowledgebase-build-plan.md), is increased metadata plus the relationship and graph work coming out of the common data element effort.[^plan]
 
-That effort is described in [the next-generation vocabulary](/semantic-foundation/common-data-elements/next-generation-vocabulary.md). Three of its ideas bear directly on the finding model format.
+[The next-generation vocabulary](/semantic-foundation/common-data-elements/next-generation-vocabulary.md) contributes three relevant ideas.
 
 - **Typed, identified relationships.** Eight relationship pairs plus a catch-all, each carrying its own identifier so a report-level assertion can cite the standing potential it expresses.[^doc07]
 - **The differential as a derived view.** Computed by traversing manifestation edges and filtering by context, with no `DIFFERENTIAL_OF` edge type.[^doc07]
@@ -115,7 +115,7 @@ Record-format versioning appears only in the version 2 draft's `schema_version` 
 
 # Superseded, and still open as an issue
 
-The original eight-facet classification specification is superseded. Two task documents on `main` carry it, the task status summary marks it "Blocked - needs 4 design decisions" covering scope, required against optional, markdown representation, and search indexing,[^status] and the canonical metadata implementation plan states that it supersedes the facets plan for this workstream.[^impl-plan] Issue 25 remains open against the old design.[^issue-25]
+Two `main` task documents describe the superseded eight-facet specification. The status summary marks it "Blocked - needs 4 design decisions" on scope, required versus optional fields, markdown representation, and search indexing.[^status] The canonical metadata implementation plan supersedes it for this workstream.[^impl-plan] Issue 25 remains open against the old design.[^issue-25]
 
 Four other open `findingmodel` issues shape the format rather than the tooling. Issue 5 asks for three model variants: a content-only form for language model extraction, a draft form carrying everything but identifiers and contributors, and the full saveable form.[^issue-5] Issue 3 asks for a human-editable markdown form without identifiers or codes, issue 4 for a tool that folds edits to that markdown back into the JSON while preserving identifiers, and issue 8 for a `FindingObservation` concept holding worked examples of a finding model in use.
 
@@ -136,7 +136,7 @@ Two are recorded in the format documentation and are carried in [open questions]
 - **Choice value code indexing.** The prose mirror on `main` numbers the first choice value `.1`; the validator in the released code writes `.0`, and the stored corpus follows the code.[^prose-schema]
 - **Omissions in the prose mirror.** It omits `anatomic_locations` from the full model entirely, and states none of the length and cardinality constraints the code enforces.[^prose-schema]
 
-The content-side direction, which is separate from the format, is in [the content direction roadmap](/roadmap/finding-model-content-direction.md).
+See [the content direction roadmap](/roadmap/finding-model-content-direction.md) for corpus work.
 
 [^rewrite]: Canonical Structured Metadata and Enrichment Rewrite, feature/metadata-cleanup branch
 [^impl-plan]: Canonical structured metadata implementation plan, findingmodel dev branch

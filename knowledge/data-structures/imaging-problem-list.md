@@ -1,10 +1,10 @@
 ---
 type: Data Structure
 title: Imaging Problem List
-description: The per-patient structure that reorganizes a patient's imaging findings by finding rather than by date, its fields, its grouping key, the temporal status computed over it, and what it is meant to become in FHIR.
+description: A patient's observations grouped by finding, with fields, grouping rules, computed status, and planned FHIR encoding.
 tags: [data-structures, imaging-problem-list, anatomic-location, fhir]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:34:50Z }
 sources:
   - id: ipl-main
     resource: https://github.com/openimagingdata/imaging-problem-list/blob/06f64a7893b444b761dc069ed86140a081195eac/README.md
@@ -37,9 +37,9 @@ sources:
 
 # Definition
 
-"In the context of a patient, the list of findings that have been described as present/absent in exams of the patient."[^ipl-main] An [Imaging Problem List](/glossary/imaging-problem-list.md) is the third level of [the hierarchy](/data-structures/hierarchy.md) and the project's signature structure. It takes every [Exam Finding List](/data-structures/exam-finding-list.md) for one patient and re-keys the [observations](/data-structures/observation.md) inside them by finding.
+"In the context of a patient, the list of findings that have been described as present/absent in exams of the patient."[^ipl-main] An [Imaging Problem List](/glossary/imaging-problem-list.md) groups [observations](/data-structures/observation.md) from a patient's [Exam Finding Lists](/data-structures/exam-finding-list.md) by finding. It is the third level of [the hierarchy](/data-structures/hierarchy.md).
 
-That single change of key is the whole point. The deck states the core query the structure exists to answer: "was finding X present on the most recent study?"[^deck] Against a stack of reports organized by date that question is a search. Against a problem list it is a lookup.
+Grouping by finding allows a lookup for the deck's core query: "was finding X present on the most recent study?"[^deck]
 
 # Fields
 
@@ -64,23 +64,23 @@ That single change of key is the whole point. The deck states the core query the
 | `observations[].anatomicLocation` | `{locationId, locationDisplay}` | **development branch only**; repeats the finding's location |
 | `observations[].reportText` | string | the verbatim span, carried through so the timeline reads without fetching the source exams |
 
-Note the field naming: the problem list uses snake_case for its own fields while carrying camelCase forward on the fields copied from the Exam Finding List, so `finding_type_code` and `anatomicLocation` sit in the same object. Two worked entries are in [the Imaging Problem List example](/references/imaging-problem-list-example.md).
+The problem list uses snake_case for its own fields and retains camelCase for fields copied from the Exam Finding List. Thus `finding_type_code` and `anatomicLocation` share an object. See two worked entries in [the Imaging Problem List example](/references/imaging-problem-list-example.md).
 
 # The grouping key
 
-On the stable branch, observations group by finding code alone. On the development branch the key is the pair of finding code and [anatomic location](/glossary/anatomic-location.md) identifier, with the rationale stated in the repository's own domain notes:
+The stable branch groups by finding code. The development branch pairs that code with the [anatomic location](/glossary/anatomic-location.md) identifier. Its domain notes explain:
 
 > Groups observations by finding type **and** anatomic location (`locationId`) across exams, preserving references to each source report, so one finding code at distinct sites (e.g. ascending vs. abdominal aortic aneurysm) yields separate entries; consumers key on the IPL finding `id`, not `finding_type_code`.[^ipl-claude-dev]
 
-The generator implements it directly, keying on the tuple of finding code and location identifier, with observations that have no location grouping under a null location.[^ipl-script]
+The generator uses this tuple, grouping observations without a location under a null location.[^ipl-script]
 
-The effect on real data is large. The same ten exams for one synthetic patient produce 98 problem list entries when grouped by finding code alone and 123 when grouped by finding code and location.[^ipl-sample] The observation count is unchanged; the grouping is finer.
+The same ten exams for one synthetic patient produce 98 entries grouped by code alone and 123 grouped by code and location.[^ipl-sample] The observation count is unchanged.
 
-This is why the documented rule is that consumers key on `id`. A finding code is no longer unique within a list.
+Consumers key on `id` because a finding code is no longer unique within a list.
 
 # Temporal status
 
-Status is **computed at display time, not stored**. No status field exists in the file. The viewer derives it per finding from the observation list.[^viewer-app]
+The viewer computes each finding's status from its observations at display time. The file has no status field.[^viewer-app]
 
 1. No observations gives **Unknown**.
 2. Sort the observations by exam date, most recent first.
@@ -89,46 +89,48 @@ Status is **computed at display time, not stored**. No status field exists in th
 5. If the most recent is not `present` but some earlier observation was, the status is **Resolved**.
 6. If no observation was ever `present`, the status is **Never**.
 
-The viewer sections a patient's list under those four headings and offers them as a filter.
+The viewer groups and filters findings by those four statuses.
 
-Two things follow. **Never is not the same as absent from the list.** A finding with only absent observations is a finding that was looked for on named exams and not found, and the list records that it was looked for. **The scheme has four states, not three.** The stable branch's prose still describes an older three-state model of Present, Resolved, and Not Present or Ruled Out.[^ipl-main-claude] That wording is stale relative to the code on both branches, which computes four. The discrepancy is recorded in [the Imaging Problem List glossary entry](/glossary/imaging-problem-list.md).
+A finding with only absent observations records that it was checked for on specific exams and not found. A finding missing from the list carries no such record.
+
+The stable branch's prose describes an older model with three states: Present, Resolved, and Not Present or Ruled Out.[^ipl-main-claude] That wording is stale relative to the code on both branches, which computes four. See [the Imaging Problem List glossary entry](/glossary/imaging-problem-list.md) for the discrepancy.
 
 # What the structure is for
 
-The deck lists four properties beyond the core query.[^deck]
+The deck lists these properties and a demonstration.[^deck]
 
-- **Organized by finding, meaning pathology, rather than by chronology.** The reorganization is the feature.
-- **Precision filtering by way of anatomy-embedded definitions.** This is what the grouping-key change on the development branch buys, and what the anatomy-aware viewer renders.
-- **Dynamic tracking of appearance, disappearance, and change.** The computed status is the first cut at this; measurement trends over time are not modelled.
+- Organized by finding, meaning pathology, rather than by chronology. The grouping key implements this.
+- Filtering through anatomy-embedded definitions. The development branch's grouping key and viewer support this.
+- Tracking appearance, disappearance, and change. Computed status provides an initial implementation. Measurement trends over time are not modelled.
 - A public demonstration at `imaging-problem-list.pages.dev`.
 
-The uses the deck names across the imaging life cycle, from protocoling to passive screening, are covered under [Imaging Persona](/data-structures/imaging-persona.md), because they draw on context beyond imaging results.
+See [Imaging Persona](/data-structures/imaging-persona.md) for uses such as protocoling and passive screening that need context beyond imaging results.
 
 # The pipeline diagram
 
-The README carries `imaging-problem-list-process.png`, a hand-drawn pipeline in three stages.[^ipl-diagram] On the left, Report 1 through Report n feed an **Extractor**, drawn as a neural network and fed from below by a database labelled "Findings (CDE 'stub' defs)". The Extractor emits one Findings List per report. Those feed an **Assembler**, also drawn as a neural network, which emits the Imaging Problem List on the right.
+The README's hand-drawn `imaging-problem-list-process.png` shows Report 1 through Report n feeding an Extractor, drawn as a neural network.[^ipl-diagram] A database labelled "Findings (CDE 'stub' defs)" also feeds the Extractor. Its Findings Lists feed an Assembler, also drawn as a neural network, which produces the Imaging Problem List.
 
-The output panel is the argument. Four finding cards, Pulmonary Nodule, Pulmonary Apical Scarring, Subsegmental Atelectasis, and Pleural Effusion, each list their observations by dated exam. Pulmonary Nodule shows "Chest CT 2020-11-23 (x8)", the multiplicity collapsed into one dated row. Pleural Effusion shows five rows of which four are marked "(absent)", which is the negative-as-data claim drawn out: a finding whose entire history is absence still earns a card.
+Four output cards list observations by dated exam: Pulmonary Nodule, Pulmonary Apical Scarring, Subsegmental Atelectasis, and Pleural Effusion. Pulmonary Nodule shows "Chest CT 2020-11-23 (x8)", combining repeated findings into one row. Pleural Effusion has five rows, four marked "(absent)". The list also retains findings whose entire history records absence.
 
-The Assembler as drawn is a learned component. The implementation is not: `generate_ipl_from_efls.py` is deterministic aggregation.[^ipl-script]
+The diagram depicts a learned Assembler, but `generate_ipl_from_efls.py` uses deterministic aggregation.[^ipl-script]
 
 # FHIR
 
 The documented encoding is "**Report** containing a list of **Condition** objects (labeled with the finding identifier), where each Condition object also contains a list of **Observation** objects which document which exams (**DiagnosticReports**) the finding type has been documented on, including the exam date and exam type (LOINC type)."[^ipl-main] One [FHIR Condition](/glossary/fhir-condition.md) per problem list entry, with the observation trail underneath it.
 
-The mapping is documented and implemented nowhere. No Condition resource is produced by any code in the repository. Its container is also called a "Report," which is not a FHIR resource name. See [FHIR mapping](/data-structures/fhir-mapping.md).
+The mapping is unimplemented. No code in the repository produces a Condition resource. Its container is called a "Report," which is not a FHIR resource name. See [FHIR mapping](/data-structures/fhir-mapping.md).
 
 # Known limitation
 
-Grouping by exact location identifier is too strict when the same problem is described at different granularity on different exams. The assignment rules state the gap:
+Exact location matching splits a problem described at different levels of detail across exams. The assignment rules state:
 
 > Parent/child or generic-vs-specific pairs for the *same finding code across exams* (e.g. "lung" vs "lower lobe of right lung"; "kidney" vs "left kidney") still produce separate IPL groups. Deciding whether such observations are the same problem or distinct is the **anatomic-compatibility reconciliation** step.[^anat-rules]
 
-That step is named in the anatomic location plan and has not been started. It is the most concrete open problem in the structure. The full precedence, laterality, and specificity rules that produce the locations are in [anatomic location assignment rules](/data-structures/anatomic-location-assignment-rules.md).
+The anatomic location plan names this step, but work has not started. See [anatomic location assignment rules](/data-structures/anatomic-location-assignment-rules.md) for precedence, laterality, and specificity rules.
 
 # How it is produced
 
-`generate_ipl_from_efls.py` reads a directory of `*_efl.json` files, sorted by filename so the chronology follows, takes the patient block from the first one, groups every finding by the key above, and writes one `ipl.json`.[^ipl-script] It is ordinary Python with no model calls. The rendering side is the [Imaging Problem List viewer](/applications/imaging-problem-list-viewer.md); the sample data it runs on is described in [sample data](/data-structures/sample-data.md).
+`generate_ipl_from_efls.py` reads `*_efl.json` files sorted by filename to follow chronology. It takes the first file's patient block, groups findings by the key above, and writes one `ipl.json` without model calls.[^ipl-script] See the [Imaging Problem List viewer](/applications/imaging-problem-list-viewer.md) and its [sample data](/data-structures/sample-data.md).
 
 [^ipl-main]: imaging-problem-list README, main branch
 [^ipl-main-claude]: imaging-problem-list domain model notes, main branch

@@ -4,7 +4,7 @@ title: RadLex
 description: The RSNA radiology lexicon, the ontology that supplies identifiers for anatomic locations and many finding and attribute codes.
 tags: [glossary, semantic-foundation, terminologies]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: radlex
     resource: https://radlex.org/

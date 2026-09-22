@@ -4,7 +4,7 @@ title: Tag
 description: A free-text clinical category attached to a finding model for organization and retrieval, distinct from the typed structured metadata that is replacing it.
 tags: [glossary, semantic-foundation, finding-models]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: fm-py
     resource: https://github.com/openimagingdata/findingmodel/blob/75afd39a400419dcfaf7c8d4a34f065b4d804e0d/packages/findingmodel/src/findingmodel/finding_model.py
@@ -21,7 +21,7 @@ sources:
 
 "Tags that might be used to categorize the finding among other findings."[^fm-py] Tags are an optional list of free-text strings on a [finding model](/glossary/finding-model.md). The authoring guidance describes them as "clinical categories (anatomy, modality, etiology) for organization and retrieval."[^overview]
 
-Tags are untyped and unvalidated. A real definition in the corpus carries `["ultrasound", "CT", "US", "XR", "urological", "obstructive", "diagnosis"]` on one finding, mixing modality abbreviations, two spellings of the same modality, a subspecialty, an etiology, and an entity type in one list. That looseness is the reason the metadata rewrite exists.
+Tags are untyped and unvalidated. A real definition in the corpus carries `["ultrasound", "CT", "US", "XR", "urological", "obstructive", "diagnosis"]`, mixing modality abbreviations, two spellings of the same modality, a subspecialty, an etiology, and an entity type in one list. The metadata rewrite addresses this inconsistency.
 
 ## Synonyms and near-synonyms
 
@@ -40,7 +40,7 @@ None. Tags are bare strings with no registry.
 
 ## Conflicts
 
-Tags and the new typed fields overlap: a tag reading `CT` and an `applicable_modalities` entry of `CT` say the same thing in two places. The rewrite states that structured metadata should be canonical model state rather than sidecar output, but it does not say what becomes of the existing tag lists, and nothing has landed on `main`.[^metadata-rewrite]
+Tags and the new typed fields overlap: a tag reading `CT` and an `applicable_modalities` entry of `CT` say the same thing in two places. The rewrite specifies that structured metadata should be the model's own state rather than sidecar output, but it does not say what becomes of the existing tag lists, and nothing has landed on `main`.[^metadata-rewrite]
 
 [^fm-py]: TagSequence field description in the findingmodel package
 [^overview]: "Finding Models: Overview"

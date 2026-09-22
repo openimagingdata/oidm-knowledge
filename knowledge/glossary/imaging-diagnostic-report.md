@@ -4,7 +4,7 @@ title: Imaging Diagnostic Report (IHE IDR)
 description: The IHE Radiology profile that specifies how a diagnostic imaging report and its findings are encoded as FHIR resources.
 tags: [glossary, data-structures, fhir, ihe]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: idr-supplement
     resource: https://www.ihe.net/uploadedFiles/Documents/Radiology/IHE_RAD_Suppl_IDR_PhII_Rev1-2_PC_2026-03-04.pdf
@@ -19,7 +19,7 @@ sources:
 
 # Imaging Diagnostic Report (IHE IDR)
 
-The Integrating the Healthcare Enterprise Radiology profile that specifies how a diagnostic imaging report and the findings inside it are encoded as FHIR resources. Phase II went out for public comment in March 2026.[^idr-supplement] The deck names the connection from the OIDM side: an [Exam Finding List](/glossary/exam-finding-list.md) "connects to IHE Imaging Diagnostic Report (IDR) FHIR representation."[^deck]
+The Integrating the Healthcare Enterprise Radiology profile that specifies how a diagnostic imaging report and the findings inside it are encoded as FHIR resources. Phase II went out for public comment in March 2026.[^idr-supplement] The deck states that an [Exam Finding List](/glossary/exam-finding-list.md) "connects to IHE Imaging Diagnostic Report (IDR) FHIR representation."[^deck]
 
 IDR's information model, "heavily influenced by modelling in SNOMED and DICOM," defines three terms OIDM must map onto. Body Structure "encompasses both anatomical structures and morphologic abnormalities (like a lesion, cyst, inflammation, aneurysm, fracture or abscess)." An imaging observation is "a feature or characteristic that is visible in an image," encoded as a FHIR `Observation`. A clinical finding is "the determination that a clinical entity is present or absent," with positive findings encoded as [FHIR Condition](/glossary/fhir-condition.md) and negative ones as Observations.[^idr-extract]
 
@@ -41,7 +41,7 @@ None. IDR constrains FHIR resources and reuses their identifiers.
 
 ## Conflicts
 
-IDR and OIDM disagree in three recorded places, all listed as items to raise during public comment. IDR's "finding" is the presence determination, not the named entity, and its "observation" is closer to what the next-generation vocabulary calls a data element value. IDR routes positive diagnoses to Condition while the OIDM working default is that every assertion in a report is an Observation. And IDR states that `Observation.component` "is not used," which is the mechanism every current OIDM encoding relies on.[^idr-extract] The IDR profile is not mentioned anywhere in the `imaging-problem-list` repository, so the alignment exists in the vocabulary work and the deck, not in code.
+Three differences are recorded for public comment. IDR's "finding" is the presence determination, not the named entity, and its "observation" is closer to what the next-generation vocabulary calls a data element value. IDR routes positive diagnoses to Condition while the OIDM working default is that every assertion in a report is an Observation. IDR states that `Observation.component` "is not used," which is the mechanism every current OIDM encoding relies on.[^idr-extract] The `imaging-problem-list` repository does not mention IDR. Alignment is documented only in the vocabulary work and the deck.
 
 [^idr-supplement]: IHE Imaging Diagnostic Report Phase II public comment draft
 [^idr-extract]: IHE IDR Phase II extract

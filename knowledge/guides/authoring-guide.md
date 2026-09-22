@@ -4,7 +4,7 @@ title: Authoring guide
 description: How humans and agents write, migrate, link, and verify documents in this knowledgebase.
 tags: [meta, conventions, okf]
 status: draft
-generated: { by: claude-fable-5-1/claude-code, at: 2026-09-21T01:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: okf-spec
     resource: https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/main/SPEC.md
@@ -16,9 +16,9 @@ sources:
 
 # Overview
 
-This repository is the canonical, public, high-level documentation for the Open Imaging Data Model (OIDM). It is an Open Knowledge Format (OKF) 0.2 bundle: a directory of markdown files with YAML frontmatter that both people and agents read.[^okf-spec] The bundle lives in `knowledge/`. Everything in this guide is enforced by two checkers described at the end.
+This repository holds the canonical public, high-level documentation for the Open Imaging Data Model (OIDM). The `knowledge/` directory is an Open Knowledge Format (OKF) 0.2 bundle of Markdown files with YAML frontmatter for people and agents.[^okf-spec] Everything in this guide is enforced by two checkers described at the end.
 
-Three rules summarize the house style:
+Follow these rules:
 
 1. One concept per file, typed, described, and sourced.
 2. Facts and stated goals only. Proposals belong to a separate workstream and are marked as such when they arrive.
@@ -40,13 +40,14 @@ Three rules summarize the house style:
 | `guides/` | This guide and the migration ledger |
 | `plans/` | Plans for building and maintaining the knowledgebase |
 
-Every directory has an `index.md` that lists each concept and subdirectory in it, one entry per line. Index entries use the `./` prefix so the site's absolute link resolution keeps them inside the directory:
+Each directory needs an `index.md` listing its concepts and subdirectories, one per line. Index entries use the `./` prefix so the site's absolute link resolution keeps them inside the directory:
 
 ```markdown
 * [Title](./file.md) - description
 * [Subdirectory](./subdir/) - description
 ```
- Index files carry no frontmatter, except the bundle root, which declares `okf_version`. `log.md` at the root records changes newest first under `## YYYY-MM-DD` headings.
+
+Only the bundle-root index has frontmatter, declaring `okf_version`. Record changes newest first in root `log.md`, under `## YYYY-MM-DD` headings.
 
 # Frontmatter
 
@@ -69,7 +70,7 @@ sources:
 ---
 ```
 
-**Types.** `type` must be one of the controlled vocabulary below. Inherited from the ACR-RSNA-CDEs next-gen bundle:[^cde-checker] Reference, Analysis, Decision Record, Proposal, Playbook, Worked Example, Presentation Extract, Meeting Notes, Draft Specification, Gap Log, Exploration. Added here: Overview, Concept, Glossary Term, Format Specification, Data Structure, Project Profile, Guide, Roadmap, History, Source Extract, Plan. Proposal and Decision Record are reserved for the proposals workstream.
+**Types.** `type` must be one of the controlled vocabulary below. It inherits Reference, Analysis, Decision Record, Proposal, Playbook, Worked Example, Presentation Extract, Meeting Notes, Draft Specification, Gap Log, and Exploration from the ACR-RSNA-CDEs next-gen bundle.[^cde-checker] This repository adds Overview, Concept, Glossary Term, Format Specification, Data Structure, Project Profile, Guide, Roadmap, History, Source Extract, and Plan. Reserve Proposal and Decision Record for the proposals workstream.
 
 | Type | Use it for |
 |---|---|
@@ -88,11 +89,11 @@ sources:
 | Worked Example | A concrete example with real data |
 | Plan | A plan for work on this knowledgebase |
 
-**Status and trust.** Every agent-written document starts as `status: draft`. When the project lead reviews it, they add `verified: [{ by: human:talkasab, at: <ISO 8601> }]` and set `status: stable`. Deprecated documents keep their content, get `status: deprecated`, and are noted in `log.md`. Project profiles and roadmap documents set `stale_after` one year out.
+**Status and trust.** Start agent-written documents as `status: draft`. After review, the project lead adds `verified: [{ by: human:talkasab, at: <ISO 8601> }]` and sets `status: stable`. Keep deprecated content, set `status: deprecated`, and note it in `log.md`. Set `stale_after` one year out for project profiles and roadmaps.
 
-**Actors.** `generated.by` and `verified[].by` follow the OKF actor convention: `<producer>/<version>` for an agent or tool, `human:<id>` for a person, `process:<id>` for automation. Use the `human:` prefix whenever a person authored or signed off; trust tiers key off it.
+**Actors.** Use `<producer>/<version>` for agents or tools, `human:<id>` for people, and `process:<id>` for automation in `generated.by` and `verified[].by`, following the OKF actor convention. Use the `human:` prefix whenever a person authored or signed off; trust tiers key off it. `generated` names the actor that last wrote the document's text; a copy-editing pass by another actor updates it, and the pass is recorded once in log.md.
 
-**Sources.** List what you actually read. Pin GitHub links to a commit, not a branch, so a reader can tell what version was read. Attribute a specific claim in the body with a footnote whose label matches a source `id`, as this guide does. A migrated document lists its origin as its first source.
+**Sources.** List what you actually read. Pin GitHub links to a commit, not a branch, so a reader can tell what version was read. Attribute claims with footnote labels matching source `id` values. Put a migrated document's origin first.
 
 # Writing
 
@@ -108,11 +109,11 @@ sources:
   ```
 
 - Link to code and content by commit-pinned GitHub URL, and to deployed tools by their live URL.
-- Prefer short sections, tables for field lists, and fenced code for examples. No empty headings. Balanced code fences.
+- Use short sections, tables for field lists, and fenced code for examples. Keep headings nonempty and code fences balanced.
 
 # Migrating a document from a working repository
 
-1. Confirm it is documentation, not code documentation. Install steps, API usage, and developer workflow stay with the code.
+1. Confirm it is documentation, not code documentation. Keep installation, API usage, and developer workflow with the code.
 2. Copy the substance. Rewrite only for consistency of terms and to remove individual names. Keep the author's structure.
 3. Add frontmatter: an appropriate type, `status: draft`, `generated` naming you, and `sources` whose first entry is the origin file at its commit.
 4. Add glossary links on first use of terms, and links to related concepts.
@@ -129,7 +130,7 @@ uv run .agents/skills/validate/scripts/okf_validate.py knowledge --strict
 uv run tools/check_bundle.py
 ```
 
-The first checks OKF 0.2 conformance and warns on legacy fields. The second enforces this guide: type vocabulary, required frontmatter, trust-signal shape, index coverage for every directory, link resolution, balanced fences, and a sweep for email addresses and denylisted names. The denylist lives at `tools/denylist.txt`, is ignored by git, and is maintained by the project lead. Continuous integration runs both on every push and pull request.
+The first checks OKF 0.2 conformance and warns on legacy fields. The second enforces this guide: type vocabulary, required frontmatter, trust-signal shape, index coverage for every directory, link resolution, balanced fences, and a sweep for email addresses and denylisted names. The project lead maintains the gitignored `tools/denylist.txt`. Continuous integration runs both on pushes to `main` and pull requests.
 
 [^okf-spec]: Open Knowledge Format specification, version 0.2
 [^cde-checker]: Bundle checker from the ACR-RSNA-CDEs next-gen-2026 branch
