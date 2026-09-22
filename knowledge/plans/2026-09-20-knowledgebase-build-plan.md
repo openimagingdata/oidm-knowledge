@@ -4,7 +4,7 @@ title: Knowledgebase build plan
 description: How the oidm-knowledge repository is scaffolded, populated from the source repositories, cross-linked, validated, and published.
 tags: [plan, meta]
 status: draft
-generated: { by: claude-fable-5-1/claude-code, at: 2026-09-20T22:30:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: charter
     resource: scope:grilling-session-2026-09-20
@@ -16,9 +16,9 @@ sources:
 
 # Purpose
 
-Build `oidm-knowledge` as the canonical, public, high-level documentation for the Open Imaging Data Model (OIDM). Non-code documentation migrates here from the working repositories; those repositories will later reference this one. The bundle follows the Open Knowledge Format (OKF) 0.2 so that people and agents can both read it.
+Build `oidm-knowledge` as canonical public, high-level documentation for the Open Imaging Data Model (OIDM) in Open Knowledge Format (OKF) 0.2. Migrate non-code documentation here and replace it with links in the source repositories.
 
-This plan is itself part of the bundle. It is updated as phases complete and marked complete at the end.
+This plan is itself part of the bundle. Update this plan as phases finish and mark it complete when all work is done.
 
 # Decisions already made
 
@@ -40,7 +40,7 @@ These were settled with the project lead on 2026-09-20 and are not re-opened her
 
 # The project lead's stated goals
 
-Recorded verbatim from the 2026-09-20 request that started this work, so that documents citing `scope:grilling-session-2026-09-20` have a written source. Wording lightly normalized for spelling only.
+Recorded verbatim from the 2026-09-20 request that started this work, so that documents citing `scope:grilling-session-2026-09-20` have a written source. Only spelling was normalized.
 
 - **Open Imaging Finding Models.** "Definition formats, needs overhaul for increased metadata and interesting relationship/graph work coming from CDEs." "Tooling for working with these, using them, probably needs corresponding overhaul." "Actual content efforts."
 - **ACR/RSNA Common Data Elements.** "Should dovetail with the OIFM work."
@@ -52,7 +52,7 @@ Recorded verbatim from the 2026-09-20 request that started this work, so that do
 
 # Source map
 
-Inventory reports for every source live in the session scratchpad and are summarized here. "Read from" names the branch that represents current state.
+Inventory reports for every source live in the session scratchpad and are summarized here. "Read from" names the branch used for current state.
 
 | Source | Role | Read from | Key migration candidates |
 |---|---|---|---|
@@ -74,10 +74,12 @@ Inventory reports for every source live in the session scratchpad and are summar
 | openimagingdata.org (Ghost site) | 15 posts (2023-06 to 2025-03) and an About page | live | "Findings, CDEs, and Observations", "Data Model: Structure and Function", "Benchmarking a Vision", "OIDM-Based Next-gen Reporting Assistance Framework", the SIIM 2024 posts |
 | CDETemplateDemo, SARTemplatesToCDEs, template_extraction, ReportFindingRefiner, get_ontology_findings, ontology_tools, common_data_elements | Lineage | `main` | `SARTemplatesToCDEs/RectalCAStaging/Changes_vs_RDES11.md`, `ReportFindingRefiner/README.md`, `common_data_elements/README.md` and schema versions; the rest as one-paragraph history entries |
 | Gamma deck, January 2026 | Vision and roadmap | live | Whole deck as a Presentation Extract |
+| SIIM 2026 deck, June 2026 ("Reports of the Future") | The framing: Patient Context and Foundation Context; the three axes (Observation Type, Anatomic Location, Exam Type) as OIDM layers over CDE/OIFM, RadLex, and the Playbook; relationships and external citations; SDKs that resolve codes; the ask | `sources/bucket/siim2026/` (public talk) | Whole deck; the slide 7 table and the foundation-context graph as figures, at the project lead's discretion |
+| oidm-knowledge-sources bucket folder | Manuscripts (JACR IPL; two JDIM under review), the AI-evolution essay, the reporting-schema deck, the July 2026 SIIM webinar deck | `sources/bucket/REPORT.md` | Paraphrase and cite per the manuscripts rule; reviewer correspondence never used |
 
 # The work edge
 
-The project lead asked that the knowledgebase reflect the entire work edge, not only default branches. Branch-level inventories on 2026-09-21 established the following. Documents that describe current state cite the branch and pin the commit they read.
+The project lead asked that the knowledgebase reflect the entire work edge, not only default branches. Cite the branch and pin the commit they read for each account of current state.
 
 - **findingmodels.** The MGB exam-oriented sub-taxonomies on `taxonomy-export-2026-08-15` are the immediate direction for all content and are expected to replace many of the Gamuts-derived models, which make up 1,933 of the 2,382 current definitions. Rows without a matched OIFM ID are the next triage task. Three content pipelines (`content/chestcts` as the live CT-chest front, `content/headcts`, `km`) and a metadata-enrichment branch touching 78 models are in flight, none merged. The finding model schema is being extended on three uncoordinated branches with nothing landed on `main`.
 - **findingmodel.** The live thread is the canonical structured-metadata rewrite on `feature/metadata-cleanup` and `dev`: eight new optional fields (body regions, subspecialties, etiologies, entity type, applicable modalities, expected time course, age profile, sex specificity), a multi-agent enrichment architecture, and a dual-database release plan. The older eight-facet specification is superseded. The branch's own readiness assessment is not yet passing. Twenty-four open issues map one-to-one onto task plans.
@@ -237,7 +239,7 @@ Remaining:
 
 ## Phase 1: Spine
 
-Overview, glossary, repository map, history, references. These are written first because every later document links into them.
+Write the overview, glossary, repository map, history, and references first so later documents can link to them.
 
 - Opus synthesis agents, one per directory, each given the relevant inventory reports, the source file paths, the authoring guide, and the deck extract.
 - The glossary harvests every definition-like statement the inventories quoted and flags conflicts for the project lead in `roadmap/open-questions.md`.
@@ -265,7 +267,7 @@ Goals and open questions per area, drawn from the deck, GitHub issues, and plan 
 2. Both validators pass under strict mode. Site builds and deploys. Link checker passes.
 3. The project lead reviews document by document. Each accepted document gains `verified` and `status: stable`. Rejections go back to the phase's agent with notes.
 4. Documentation review: this plan marked complete, `CHANGELOG.md` reflecting the first release, `DEV_LOG.md` current, migration ledger complete.
-5. Follow-ups filed as issues: source-repo pull requests replacing migrated docs with links; manuscripts to integrate; the proposals workstream (finding model format evolution, exam types, IPL data model system).
+5. Follow-ups filed as issues: source-repo pull requests replacing migrated docs with links; manuscripts to integrate; the proposals workstream (finding model format evolution, exam types, IPL data model system); production custom domain knowledge.openimagingdata.org for the oidm-knowledge Worker (not urgent); off-the-shelf page feedback and comments (Hypothesis or Giscus); a Quartz plugin rendering OKF `sources` and `verified` as typed graph edges.
 
 # Phase status
 
@@ -288,6 +290,34 @@ Answers can come at approval time or during Phase 1.
 3. Answered 2026-09-21: the per-modality taxonomies are called the "MGB exam-oriented sub-taxonomies"; no author name.
 4. Answered 2026-09-21: publish the next-generation vocabulary document as draft, sourced to the branch, no committee material.
 5. Answered 2026-09-21: publish the use case catalog with the committee credit.
+
+
+# Decisions added 2026-09-21
+
+| Topic | Decision |
+|---|---|
+| Manuscripts in the bucket | Paraphrase facts, structures, and numbers; cite as "manuscript under review at JDIM, 2026" or "prepared for submission"; never quote; reviewer correspondence never reproduced or paraphrased. |
+| Excalidraw boards | Publish the public-facing boards (object model, structured report sections, outcome tracking, exhibit figures, lineage, use-case notes). From internal boards, publish only schema and data-model ideas with organizations named; people, meeting histories, and vendor demo logistics omitted; the rest recorded as reviewed and held. |
+| Diagrams | No Mermaid. Excalidraw files rendered to SVG beside each document. Per diagram, a builder is the source until the file is hand-edited, after which the builder is retired (tools/diagrams/README.md). |
+| Vendor name in the deck extract | Generalized to "a reporting vendor". |
+| Remote | openimagingdata/oidm-knowledge created public; site deploy workflow disabled until the site generator is settled; the project lead pushes main (agent pushes are blocked by a local guard). |
+| Upstream defects | Drafted for the project lead's review before any issue is filed. |
+| No specification exists | The project is in a coalescing phase; nothing is formally defined. The knowledgebase presents each source's current version of a structure side by side (repo branch and commit, manuscript under review, deck or webinar, board), dated and attributed, and states disagreements (for example the three Imaging Problem List status vocabularies) without resolving them. Words like "specification" or "canonical model" are not used for any of them. |
+| Data structures versus transport | Per the project lead's 2026-09-19 manuscript notes: OIDM defines a system of data structures for imaging exam result information used inside applications; FHIR and DICOM are transport expressions designed separately and guided by the structures. The data-structure documents are to be reframed accordingly. |
+| Page feedback (later) | Wanted: off-the-shelf page comments and suggested changes, possibly dictation; candidates Hypothesis or Giscus. Not this iteration. |
+| Site generator and host | Decided 2026-09-21 after a survey of wiki and knowledge-graph tools (sources/site-tools-comparison.md): Quartz stays, on Cloudflare Workers static assets, which serve its clean URLs natively. Three targets: oidm-knowledge-dev (default, `task deploy`), oidm-knowledge-staging (`task deploy:staging`, also the push-to-main workflow), oidm-knowledge (`task deploy:prod`). Typed-edge graph from OKF frontmatter is a Quartz plugin to write later. The object-storage pipeline was removed. |
+
+
+# Decisions added 2026-09-22
+
+| Topic | Decision |
+|---|---|
+| Structure | Five named pillars, always by name: Foundation Context (schema and meta-definitions plus the content build-out), Data Structures (especially the Observation layer and how the patient graph and the foundation graph work together), SDKs, Use Cases (the team's documented possible applications, tools, plugins, and outputs), Sample Applications (what was actually built). The earlier three-layer and four-pillar organizations are superseded. Ideas mined from repository documents, plans, prompts, skills, and ADRs are the team's own ideas and enter as content. |
+| CDEs and finding models | The same content in two collections: the inclusive OIDM-maintained finding models and the well-reviewed ACR/RSNA CDEs. Both are intended to use the schema and classes of the CDE schema rewrite (FindingClass, DataElement, Measurement, and the rest). Explained once as a common model, then the two collections and their relationship. Collection expectations are not per-item facts; migration is intended, not complete. |
+| OIFM reorganization | Reorganizing the finding models around the graph-based approach of the CDE next-generation schema effort is an immediate priority, stated as direction under Foundation Context with current implementation kept distinct. No storage, schema, or migration design beyond the source work. |
+| Source eligibility | Repository documents, prompts, plans, skills, ADRs, and code are team artifacts eligible for substantive content, not demoted for being agent-assisted. Each claim carries its source's status, date, and any provenance label the source supplies. Differences and later corrections are preserved, not reconciled. |
+| Terminology | Foundation Context and Patient Context from the SIIM 2026 deck. The CDE report graph and the Imaging Problem List representations are related representations of the Observation idea. Retained artifact names are used where a source's files are cited. |
+| Restructure record | The operating record is `docs/plans/restructure-joint-notes.md` (decisions, agreed outline, next steps) with `docs/plans/idea-placement.md` mapping every inventoried idea to its section. |
 
 # Risks
 

@@ -1,10 +1,10 @@
 ---
 type: Reference
 title: MGB exam-oriented sub-taxonomies
-description: The six exam-oriented finding hierarchies contributed by MassGeneral Brigham, their columns and hierarchy semantics, their row and match counts, and the triage they call for.
+description: Six MGB exam-oriented finding hierarchies, their fields, counts, model matches, and pending triage.
 tags: [semantic-foundation, finding-models, taxonomy, content, reference]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: lists-readme
     resource: https://github.com/openimagingdata/findingmodels/blob/a30c3c95fa3943e7340ce87575f4b1b926987eb8/lists/README.md
@@ -25,7 +25,7 @@ sources:
 
 # What they are
 
-The MGB exam-oriented sub-taxonomies are six hierarchies of radiology finding names, contributed by MassGeneral Brigham and exported into the `findingmodels` repository on 2026-08-15. They live on the branch `taxonomy-export-2026-08-15`, read here at commit `a30c3c9`, which replaces the repository's earlier `lists/` directory wholesale and adds no finding model definitions of its own.[^lists-readme]
+MassGeneral Brigham contributed six finding hierarchies, exported to `findingmodels` on 2026-08-15. The `taxonomy-export-2026-08-15` branch, read at `a30c3c9`, replaces `lists/` and adds no model definitions.[^lists-readme]
 
 Each file is a comma-separated table. Together they hold 3,789 rows, of which 1,028 already carry the identifier of an existing [finding model](/glossary/finding-model.md).
 
@@ -69,7 +69,7 @@ Two columns sit deliberately outside that tree. `category` groups rows anatomica
 | `diagnosis` | 932 |
 | blank | 414 |
 
-That split mirrors the distinction the finding model work elsewhere calls entity type, where a finding is what you see and a diagnosis is what you conclude. Blank rows are mostly the generic parents, which exist to hold a subtree rather than to be reported.
+The values correspond to entity type elsewhere in the finding model work. The `finding_type` column's values are `observation` and `diagnosis`, where a finding is what you see and a diagnosis is what you conclude. Blank rows are mostly generic parents that group children without being reported.
 
 Two real rows show the shape:
 
@@ -79,23 +79,23 @@ airway_abnormality,airway,,,,,OIFM_OIDM_449436
 airspace_opacity,lung,lung_abnormality,"Air space opacity,Infiltrate,Airspace disease",observation,,OIFM_CDE_000225
 ```
 
-The first is a top-level parent with no `finding_type`. The second is a child of `lung_abnormality`, typed as an observation, carrying three synonyms and matched to a definition that entered the corpus from the common data element work.
+The first row is an untyped root. The second is an observation under `lung_abnormality`, with three synonyms and a CDE-derived model identifier.
 
 # Matching status and the triage task
 
 No identifiers were minted during the export. Filled rows were matched by exact name against `ids.json` across all branches, plus identifiers previously written back into the old lists.[^lists-readme] The README records a consequence of those earlier writebacks: "An ID can appear on two rows where those earlier writebacks mapped two findings onto one model."
 
-The match rate varies enormously by file. Head CT is 86 percent matched and chest radiography 76 percent, because both areas have had content batches run against them. Mammography is 3 percent matched and the combined chest, abdomen, and pelvis CT file 10 percent, against 2,064 rows.
+Head CT is 86 percent matched and chest radiography 76 percent after content batches in both areas. Mammography is 3 percent matched, and the 2,064-row combined CT file is 10 percent matched.
 
-The README names the next task in one sentence: "Blank rows are the ones needing triage." That is 2,761 rows. Triage means deciding, for each, whether an existing model covers it under a different name, whether it needs a new model, or whether it is not a finding at all. No plan document in the repository yet assigns that work.
+The README states: "Blank rows are the ones needing triage." Each of the 2,761 unmatched rows needs classification as an existing model under another name, a new model, or something other than a finding. No plan document in the repository yet assigns that work.
 
 # Why this matters
 
 The project lead stated on 2026-09-21 that the sub-taxonomies are the immediate direction for all finding model content, and that they are expected to replace many of the Gamuts-derived models that currently make up 1,933 of the corpus's 2,382 definitions. That statement is recorded in [the knowledgebase build plan](/plans/2026-09-20-knowledgebase-build-plan.md).[^build-plan]
 
-This is a change in how content gets chosen. The Gamuts import brought in whatever the source ontology contained. The sub-taxonomies instead enumerate what a radiologist reading a particular exam type actually reports, organized by the exam type. A finding model corpus built against them would be scoped to assessable anatomy per modality, which is the scoping rule the authoring guidance already states. The stated direction, and what depends on it, is in [the content direction roadmap](/roadmap/finding-model-content-direction.md).
+This is a change in how content gets chosen. The Gamuts import brought in whatever the source ontology contained. The sub-taxonomies instead enumerate what a radiologist reading a particular exam type actually reports, organized by the exam type. They would scope the corpus to anatomy assessable by modality, as authoring guidance requires. See [the content direction roadmap](/roadmap/finding-model-content-direction.md).
 
-The glossary entry for the artifact type is [finding taxonomy](/glossary/finding-taxonomy.md). The files themselves are on the branch and are not copied into this knowledgebase.
+See [finding taxonomy](/glossary/finding-taxonomy.md) for the artifact type. Source CSVs remain on the branch.
 
 [^lists-readme]: MGB exam-oriented sub-taxonomies README, taxonomy-export-2026-08-15 branch
 [^xr-chest]: xr_chest_findings.csv, taxonomy-export-2026-08-15 branch

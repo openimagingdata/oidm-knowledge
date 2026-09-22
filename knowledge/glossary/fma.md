@@ -4,7 +4,7 @@ title: FMA
 description: The Foundational Model of Anatomy, used in OIDM as a cross-reference on anatomic locations and as the basis of the location type classification.
 tags: [glossary, semantic-foundation, terminologies, anatomy]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: fma
     resource: https://bioportal.bioontology.org/ontologies/FMA
@@ -22,7 +22,7 @@ sources:
 
 # FMA
 
-The Foundational Model of Anatomy, a reference ontology of human anatomy.[^fma] OIDM uses it in two ways. It is a cross-reference code on [anatomic locations](/glossary/anatomic-location.md), present on 1,643 of the 2,890 records in the curated set, the second most common system after [SNOMED CT](/glossary/snomed-ct.md).[^al-code] And its top-level organization supplies the shape of the `location_type` classification in the newer package, which maps material anatomical entity to structure, immaterial anatomical entity to space and region, body part to body_part, organ system to system, and set or collection to group.[^al-enums]
+The Foundational Model of Anatomy, a reference ontology of human anatomy.[^fma] FMA cross-references appear on [anatomic locations](/glossary/anatomic-location.md), covering 1,643 of the 2,890 curated records. It is the second most common system after [SNOMED CT](/glossary/snomed-ct.md).[^al-code] Its top-level organization supplies the shape of the `location_type` classification in the newer package, which maps material anatomical entity to structure, immaterial anatomical entity to space and region, body part to body_part, organ system to system, and set or collection to group.[^al-enums]
 
 FMA is also one of the five terminologies the `molu` lookup tool spans, and the planned `anatomy` profile names FMA first, with the note that "RadLex imaging anatomy sits next to FMA."[^molu]
 

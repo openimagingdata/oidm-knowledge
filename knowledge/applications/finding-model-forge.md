@@ -1,10 +1,10 @@
 ---
 type: Project Profile
 title: Finding Model Forge
-description: The web application at fmf.oidm.org where contributors author finding model definitions through an AI-assisted wizard and move them through a draft review lifecycle.
+description: The application at fmf.oidm.org for authoring finding models with AI assistance and reviewing drafts.
 tags: [applications, finding-models, authoring, llm, mongodb]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:34:50Z }
 stale_after: 2027-09-21
 sources:
   - id: forge-readme
@@ -43,13 +43,15 @@ sources:
 
 # Purpose
 
-Finding Model Forge is the authoring front end of the Open Imaging Data Model (OIDM). It exists so that a radiologist who is not a programmer can create a [finding model](/glossary/finding-model.md) definition, have identifiers and standard codes assigned automatically, and put the result in front of reviewers. The January 2026 status deck names it as the tool behind the claim that finding models are a rapid-innovation workbench ahead of formal [common data element](/glossary/cde.md) adoption.[^deck]
+**Live:** [fmf.oidm.org](https://fmf.oidm.org) (sign-in with GitHub).
 
-The application is a FastAPI web wrapper around the `findingmodel` Python library, which supplies the actual generation, similarity search, and identifier assignment.[^forge-readme] The library is documented under [the finding models area](/semantic-foundation/finding-models/authoring-workflow.md); this profile covers the application.
+Finding Model Forge lets radiologists create [finding model](/glossary/finding-model.md) definitions without programming. It assigns identifiers and standard codes automatically and accepts drafts for review. The January 2026 Open Imaging Data Model (OIDM) deck presents it as a tool for developing finding models before formal [common data element](/glossary/cde.md) adoption.[^deck]
+
+The FastAPI application wraps the `findingmodel` Python library for generation, similarity search, and identifier assignment.[^forge-readme] See [the authoring workflow](/semantic-foundation/finding-models/authoring-workflow.md) for the library.
 
 # What a user does with it
 
-Sign-in is GitHub OAuth. After that the creation flow is two steps followed by draft editing, streamlined from an earlier five-step wizard.[^forge-workflow] The whole flow happens inside one page: the server returns HTTP 303 responses, HTMX intercepts them and swaps content into a single container, and the browser never navigates. The creation-workflow document is emphatic about this because it changes how the flow is tested.
+Users sign in with GitHub OAuth. Creation has two steps followed by draft editing, replacing an earlier five-step wizard.[^forge-workflow] HTMX intercepts HTTP 303 responses and swaps content within one page without browser navigation.
 
 | Stage | User action | What the server does |
 |---|---|---|
@@ -58,28 +60,28 @@ Sign-in is GitHub OAuth. After that the creation flow is two steps followed by d
 | 3. Draft editing | Edit description, manage synonyms, write the attributes in markdown; press "Update & Preview" | Autosaves as you type, then generates the full finding model JSON including identifiers and standard codes |
 | 4. Preview and submission | Review the generated model, press "Submit Draft" | Moves the draft to `submitted` and locks editing |
 
-The finding name is read-only once the draft exists. A creation session tracks progress through the first two steps and expires after an hour of inactivity. Drafts appear on the user's profile page, where editing can be resumed; resuming a name that was already submitted lands on the final display view instead of the editor.[^forge-draft]
+The finding name becomes read-only when a draft is created. Creation sessions track the first two steps and expire after an hour of inactivity. Users resume drafts from their profile page. Submitted drafts open in the final display view.[^forge-draft]
 
 # The draft object and its lifecycle
 
-A draft is the unit of work. It carries the owning user, the finding name, the human inputs (description, synonyms, attributes markdown), the server-generated finding model JSON, a status, and an action log of timestamped entries recording who did what.[^forge-draft]
+A draft stores its owner, finding name, description, synonyms, attributes markdown, generated model JSON, status, and a timestamped action log recording who performed each action.[^forge-draft]
 
 ```text
 draft ──submit──▶ submitted ──▶ under-review ──▶ added
                                              └──▶ declined
 ```
 
-Five statuses exist: `draft`, `submitted`, `under-review`, `added`, and `declined`. Submission locks further editing; everything after it is administrative review. A peer-review layer sits alongside this lifecycle on the development branch: a public draft state lets other contributors read and comment on a draft before it is submitted, and a comment feature is scoped to drafts in the submitted, under-review, added, and declined states. Both are stated as serving collaborative refinement rather than approval gating.[^forge-public-review][^forge-comments]
+Five statuses exist: `draft`, `submitted`, `under-review`, `added`, and `declined`. Submission locks further editing; everything after it is administrative review. On `dev`, public drafts allow contributors to read and comment before submission. A separate comment feature covers `submitted`, `under-review`, `added`, and `declined` drafts. Both are stated as serving collaborative refinement rather than approval gating.[^forge-public-review][^forge-comments]
 
 # Data it reads and writes
 
-MongoDB holds drafts, users, and organizations, accessed asynchronously through Motor.[^forge-db] Redis provides a caching layer for user and finding model data; the implementation always calls the cache, and the calls become safe no-ops when Redis is unavailable.[^forge-draft] Two DuckDB files supplied by the `findingmodel` library must be present in the platform data directory, one for finding models and one for [anatomic locations](/glossary/anatomic-location.md), which is how similarity search and code lookup work offline of any web service.[^forge-readme]
+MongoDB stores drafts, users, and organizations through asynchronous Motor access.[^forge-db] Redis caches user and finding model data. Cache calls become no-ops when Redis is unavailable.[^forge-draft] The `findingmodel` library requires two DuckDB files in the platform data directory, one for finding models and one for [anatomic locations](/glossary/anatomic-location.md), to support similarity search and code lookup without web services.[^forge-readme]
 
-The output format is the finding model JSON defined by [the finding model format](/semantic-foundation/finding-models/finding-model-format.md), carrying an [OIFM identifier](/glossary/oifm.md) and per-[attribute](/glossary/attribute.md) identifiers. Drafts store the generated JSON inline; the definitive corpus lives in the separate content repository described in [the content catalog](/semantic-foundation/finding-models/content-catalog.md).
+Drafts store generated JSON inline in [the finding model format](/semantic-foundation/finding-models/finding-model-format.md), with [OIFM identifiers](/glossary/oifm.md) and per-[attribute](/glossary/attribute.md) identifiers. The definitive corpus lives in [the content repository](/semantic-foundation/finding-models/content-catalog.md).
 
 # Language model use
 
-Three generation steps are documented, with the timeouts the application budgets for them.[^forge-workflow]
+The workflow documents three library calls and their time budgets.[^forge-workflow]
 
 | Step | Task | Budgeted time |
 |---|---|---|
@@ -87,15 +89,13 @@ Three generation steps are documented, with the timeouts the application budgets
 | Stage 2 | Semantic similarity search against existing models | 15 to 30 seconds |
 | Stage 3 | Generate the complete finding model JSON, including identifier assignment and standard codes | 30 to 90 seconds |
 
-All three are calls into the `findingmodel` library rather than code in this repository.
-
 # Architecture
 
-One FastAPI process serves both the pages and the API. Templates are Jinja2, with Flowbite components for layout, Alpine.js for client state, and HTMX driving every transition as a server-rendered fragment swap; the house rule is to keep interactivity in Alpine and HTMX rather than custom JavaScript. MongoDB through Motor is the store, Redis the cache, and the `findingmodel` library the engine. Static assets are built with Vite and resolved through its manifest.[^forge-readme][^forge-draft]
+One FastAPI process serves pages and the API. Jinja2 renders templates, Flowbite supplies components, Alpine.js manages client state, and HTMX swaps server-rendered fragments. Project conventions place interactivity in Alpine and HTMX instead of custom JavaScript. Vite builds static assets, which the application resolves through its manifest.[^forge-readme][^forge-draft]
 
 # Deployment
 
-Live at [fmf.oidm.org](https://fmf.oidm.org). The container needs MongoDB and Redis running alongside it, a GitHub OAuth application for sign-in, and the two DuckDB data files.[^forge-readme] Bringing the deployment compose file into the repository is open issue 9, and a development compose file is open issue 7. Install and run instructions stay with the code; this profile does not repeat them.
+Live at [fmf.oidm.org](https://fmf.oidm.org). The container requires MongoDB, Redis, a GitHub OAuth application, and two DuckDB data files.[^forge-readme]
 
 # Repository and branch of record
 
@@ -111,9 +111,9 @@ Neither long-lived branch has an open pull request as of 2026-09-21.
 
 # What is in flight
 
-**The `dev` refactor.** Ninety-six commits consolidate a service-layer extraction, a router cleanup, standardization of the HTMX and Alpine patterns, and a rebuilt test infrastructure. The branch's own complexity assessment names what remains in the service and router layers after that work. The peer-review workflow described above, public drafts plus comments, is finished on `dev` and absent from `main`.[^forge-public-review][^forge-comments]
+**The `dev` refactor.** Ninety-six commits consolidate a service-layer extraction, a router cleanup, standardized HTMX and Alpine patterns, and rebuilt test infrastructure. Its complexity assessment records remaining service and router work. Public drafts and comments are complete on `dev` and absent from `main`.[^forge-public-review][^forge-comments]
 
-**Model editing, issue 13.** Opened 2025-10-16 and still open. The implementation on `feature/model-editing` answers it with AI-assisted *iterations* rather than manual editing: a user submits a natural-language description of the change they want, and the library applies it.[^forge-iteration] The constraints are explicit. The model name cannot change, one iteration draft exists per user per published model, the existing action log carries the audit trail, and manual edits to an iteration draft are not permitted. It builds on the `model_editor` module added in `findingmodel` 0.6.0, whose guardrails preserve the [OIFM identifiers](/glossary/oifm.md) and reject unsafe changes. Sprint 1, natural-language iteration, is complete as of 2025-11-27. Sprint 2, markdown-edit iteration, and Sprint 3, enhanced history, are not started.
+**Model editing, issue 13.** The `feature/model-editing` branch lets users request changes in natural language.[^forge-iteration] Model names cannot change, and each user can have one iteration draft per published model. The action log records changes, and manual edits are prohibited. The `model_editor` module in `findingmodel` 0.6.0 preserves [OIFM identifiers](/glossary/oifm.md) and rejects unsafe changes. Sprint 1, natural-language iteration, was complete on 2025-11-27. Sprint 2, markdown-edit iteration, and Sprint 3, enhanced history, have not started.
 
 # Open issues
 
@@ -125,11 +125,11 @@ Neither long-lived branch has an open pull request as of 2026-09-21.
 
 # History
 
-A superseded version of the application survives in the repository under `zOld/`, together with its planning notes.[^forge-zold] Those notes record decisions the current application still reflects: a deliberate commitment to MongoDB with the Beanie object-document mapper after considering embedded vector stores, a front end on the same FastAPI instance as the API, and GitHub OAuth holding authorization in the session. The three mini-sprint task lists from November 2024 through April 2025 show the feature set arriving in order, beginning with generating a finding model from nothing but a finding name, then adding identifiers, a user table, and searchable [common data element](/glossary/cde.md) content. Most of their boxes are still unchecked, including batch creation from a CSV file and links from a finding model to its eventual CDE codes.
+The superseded application and its plans remain in `zOld/`.[^forge-zold] The plans chose MongoDB with Beanie after considering embedded vector stores, shared the FastAPI process between pages and API, and kept GitHub OAuth authorization in the session. Three mini-sprint lists from November 2024 through April 2025 start with generation from a finding name, then add identifiers, a user table, and searchable [common data element](/glossary/cde.md) content. Most checkboxes remain unchecked, including CSV batch creation and links to eventual CDE codes.
 
 # What it realizes
 
-Finding Model Forge is where the [contributor](/glossary/contributor.md) meets the [finding model](/glossary/finding-model.md) format. It assigns [OIFM identifiers](/glossary/oifm.md) with their [organization code](/glossary/oidm-organization-code.md), writes [attributes](/glossary/attribute.md) and their values, and attaches [index codes](/glossary/index-code.md) into external terminologies. Its place in the stack is drawn in [the architecture overview](/overview/architecture.md), and the authoring path it implements is described end to end in [the authoring workflow](/semantic-foundation/finding-models/authoring-workflow.md).
+Forge lets [contributors](/glossary/contributor.md) assign [organization code](/glossary/oidm-organization-code.md) identifiers, write attributes and values, and attach [index codes](/glossary/index-code.md) for external terminologies. See [the architecture overview](/overview/architecture.md) and [the authoring workflow](/semantic-foundation/finding-models/authoring-workflow.md).
 
 [^deck]: Open Imaging Data Model 2026 Status Update, January 2026
 [^forge-readme]: FindingModelForge README, dev branch

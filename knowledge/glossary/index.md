@@ -1,6 +1,6 @@
 # Glossary
 
-One term per file: a precise definition drawn from the sources, its synonyms and near-synonyms, its identifier form where it has one, where it is used, and any conflict between sources. Terms are listed alphabetically.
+Each term has a sourced definition, synonyms and near-synonyms, any identifier format, usage links, and source disagreements. Entries are alphabetical, one term per file.
 
 * [Anatomic location](./anatomic-location.md) - A curated anatomic concept identified by a RadLex identifier, placed in containment and part-of hierarchies with laterality variants and cross-ontology codes.
 * [Anatomic scope](./anatomic-scope.md) - The eligible anatomical places, tissue types, or structure types for a definition, stated as a constraint rather than as a location.

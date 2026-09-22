@@ -4,7 +4,7 @@ title: Getting involved
 description: Where the OIDM community gathers, which repositories to start with, how to file issues, how content is contributed, and how this knowledgebase is edited.
 tags: [overview, community, contributing]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T15:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:34:50Z }
 sources:
   - id: site-involved
     resource: https://www.openimagingdata.org/how-to-get-involved/
@@ -25,7 +25,7 @@ sources:
 
 # Where the project gathers
 
-Everything OIDM produces is public. The four durable entry points are the GitHub organization, the project site, the Slack channel, and the deployed tools.
+OIDM's work is public. These channels provide access to its code, content, tools, and discussions.
 
 | Channel | Where | What it is for |
 |---|---|---|
@@ -35,13 +35,13 @@ Everything OIDM produces is public. The four durable entry points are the GitHub
 | Finding Model Forge | <https://fmf.oidm.org> | Authoring finding models through a browser |
 | IPL viewer demo | <https://imaging-problem-list.pages.dev> | Seeing an Imaging Problem List rendered from real sample data |
 
-The site's participation post also invites registration for newsletter updates and article comments, describes working groups on use cases and standards work, and asks for help identifying related projects and venues where the work would have impact.[^site-involved] That post dates from August 2023 and parts of it have aged: it advertises a working group on the TypeScript reference implementation, which is now a lineage repository rather than active work, and its meeting section is a placeholder. Treat the GitHub organization and the Slack channel as the current live channels. The site also carries a contact link for general inquiries.
+Use GitHub and Slack for current discussions. The site's August 2023 participation post invites newsletter registration and article comments, describes use-case and standards working groups, and seeks related projects and venues.[^site-involved] Some details have aged. The advertised working group on the TypeScript reference implementation concerns a repository now kept for lineage. The meeting section remains a placeholder. The site also has a contact link for general inquiries.
 
-The largest stated organizational goal is not yet a channel you can join. The January 2026 deck proposes an "ACR-OIDM Structured Imaging Results Working Group" co-hosted with the ACR, bringing expert and vendor participants into one venue, with a use-case pipeline feeding the ACR and RSNA common data element group.[^deck] It is a proposal, not a convened body.
+The January 2026 deck proposes an "ACR-OIDM Structured Imaging Results Working Group" co-hosted with the ACR. It would bring together experts and vendors, with a use-case pipeline feeding the ACR and RSNA common data element group.[^deck] The group is not recorded as convened.
 
 # Repositories to start with
 
-Pick by what you want to do. Every repository, including the lineage ones, is listed with its status and branch of record in [the repository map](/repositories/repository-map.md).
+Choose a repository by task. [The repository map](/repositories/repository-map.md) lists all repositories, including lineage projects, with their status and branches of record.
 
 | If you want to | Start at |
 |---|---|
@@ -52,36 +52,36 @@ Pick by what you want to do. Every repository, including the lineage ones, is li
 | Look up codes across terminologies | `openimagingdata/med-ontology-lookup`, the `molu` library and CLI |
 | Work on the authoring application | `openimagingdata/FindingModelForge` |
 
-Several of these repositories have their current state on a branch other than `main`. Check the repository map before assuming the default branch is the live one.
+Check the repository map before starting. Several repositories keep current work on branches other than `main`.
 
 # Filing issues
 
-Each repository carries its own issue tracker, and issues are where the work edge is visible. File against the repository that owns the thing you are reporting.
+File issues in the repository that owns the affected content or code.
 
-- **A wrong, missing, or badly scoped finding model** goes to `openimagingdata/findingmodels`. The public catalog site routes its "Submit Issue" link there.[^catalog-site]
-- **A bug or gap in the library, CLI, or anatomic location data** goes to `openimagingdata/findingmodel`.
-- **A question about the data structures** goes to `openimagingdata/imaging-problem-list`. Its issue #1, asking for a formal model layer with JSON Schema export for Observation, Exam Finding List, and Imaging Problem List, is open and unclaimed.
-- **Terminology lookup behavior** goes to `openimagingdata/med-ontology-lookup`.
+- Report wrong, missing, or badly scoped finding models to `openimagingdata/findingmodels`. The public catalog's "Submit Issue" link goes there.[^catalog-site]
+- Report library, CLI, or anatomic location data problems to `openimagingdata/findingmodel`.
+- Ask data structure questions in `openimagingdata/imaging-problem-list`. Its open, unclaimed issue #1 requests a formal model layer with JSON Schema export for Observation, Exam Finding List, and Imaging Problem List.
+- Report terminology lookup problems to `openimagingdata/med-ontology-lookup`.
 
-Existing open issues are the best statement of what the project knows is missing. They are summarized by area under [roadmap](/roadmap/).
+See [roadmap](/roadmap/) for open issues by area.
 
 # Contributing content
 
-Content means [finding models](/glossary/finding-model.md) and the [anatomic locations](/glossary/anatomic-location.md) they reference. There are three routes, and they differ in how much of the work you do by hand.
+Content includes [finding models](/glossary/finding-model.md) and their [anatomic locations](/glossary/anatomic-location.md). Choose one of three contribution routes.
 
-**Through Finding Model Forge.** The browser application is the supported route for authoring a single finding model without cloning anything. You sign in with GitHub, name the finding, generate and edit a description and synonyms, generate the attributes, and the draft autosaves. Submitting locks the draft for review, and a reviewer moves it through under review to added or declined.[^forge] Editing a model after creation is an open issue on that repository, not yet available.
+**Finding Model Forge.** To author a single model in the browser, sign in with GitHub and name the finding. Generate and edit its description and synonyms, then generate attributes. The draft autosaves. Submission locks it for review, and a reviewer moves it through under review to added or declined.[^forge] Editing a model after creation is an open issue on that repository, not yet available.
 
-**Through the content repository.** Definitions live as one JSON file per finding, validated on commit, with identifiers issued from a registry that detects duplicates. Batch authoring and review run through agent skills held in that repository. Contributing this way means working with the schema directly; the prose mirror of the schema is the reference.[^fm-content]
+**The content repository.** Definitions are JSON files, one per finding, validated on commit. A registry issues identifiers and detects duplicates. Repository agent skills support batch authoring and review. Use the prose schema mirror when editing definitions directly.[^fm-content]
 
-**Through staged common data elements.** Candidate definitions authored informally, ahead of formal review, are staged in `openimagingdata/CDEStaging` before entering the ACR and RSNA review pipeline that publishes through RadElement. That path is a manual curation workflow rather than an automated one.
+**Staged common data elements.** Informal candidate definitions go into `openimagingdata/CDEStaging` before formal ACR and RSNA review and publication through RadElement. This is a manual curation workflow.
 
-Identifier discipline matters in all three routes. An [OIFM identifier](/glossary/oifm.md) encodes its contributing organization in its letter block, and identifiers are never reissued or regenerated on a round trip. The authoring conventions are covered in [the authoring workflow](/semantic-foundation/finding-models/authoring-workflow.md).
+Identifier discipline matters in all three routes. An [OIFM identifier](/glossary/oifm.md) encodes its contributing organization in its letter block, and identifiers are never reissued or regenerated on a round trip. See [the authoring workflow](/semantic-foundation/finding-models/authoring-workflow.md) for conventions.
 
 # Contributing to this knowledgebase
 
-This repository is the canonical high-level documentation, written as an Open Knowledge Format bundle so that both people and agents can read it. It describes and links to catalogs; it does not copy them. Code documentation, install steps, and developer workflow stay with the code.
+This repository provides canonical high-level documentation as an Open Knowledge Format bundle for people and agents. It describes and links to catalogs; it does not copy them. Keep installation instructions, API usage, and developer workflows with the code.
 
-Before editing anything here, read [the authoring guide](/guides/authoring-guide.md). It sets the document types, the required frontmatter, the trust workflow by which a draft becomes verified, the linking conventions, and the procedure for migrating a document out of a working repository. Two checkers run on every push and must pass: an Open Knowledge Format conformance validator and a house-rules checker that enforces the type vocabulary, index coverage, link resolution, and a sweep for names and email addresses.
+Read [the authoring guide](/guides/authoring-guide.md) before editing. It covers document types, frontmatter, draft verification, links, and document migration. Two checkers must pass on every push: the Open Knowledge Format validator and a house checker for types, index coverage, links, names, and email addresses.
 
 Two house rules catch newcomers. Facts and stated goals only, with every goal citing the deck, issue, or plan that states it, because design proposals belong to a separate workstream. And organizations, not individuals: the project lead is named as such and nobody else is named.
 

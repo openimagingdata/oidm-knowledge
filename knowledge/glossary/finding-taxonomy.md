@@ -4,7 +4,7 @@ title: Finding taxonomy
 description: One of the six MGB exam-oriented sub-taxonomies, per-modality hierarchies of finding names exported as CSV, that now set the content direction for the finding model corpus.
 tags: [glossary, semantic-foundation, finding-models, content]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: lists-readme
     resource: https://github.com/openimagingdata/findingmodels/blob/a30c3c95fa3943e7340ce87575f4b1b926987eb8/lists/README.md
@@ -15,7 +15,7 @@ sources:
 
 One of the six MGB exam-oriented sub-taxonomies: per-modality hierarchies of radiology finding names, contributed by Mass General Brigham and exported to the `findingmodels` repository on 2026-08-15 as comma-separated files.[^lists-readme] They replaced the repository's earlier `lists/` content wholesale.
 
-Each file is one hierarchy with the columns `name`, `category`, `parent`, `synonyms`, `finding_type`, `finding_cluster`, and `oifm_id`. Rows are keyed by `name`, unique within a file, so there is no separate identifier column. The `parent` column holds the parent row's `name`; blank means top level. "Parents are generic, children add specificity," the worked example being `lung_abnormality` then `airspace_opacity` then `air_bronchogram`. Two columns are deliberately outside the hierarchy: `category` is "an independent anatomic grouping, not part of the hierarchy," and `finding_type` "separates an observation from a diagnosis."[^lists-readme]
+Each file is one hierarchy with the columns `name`, `category`, `parent`, `synonyms`, `finding_type`, `finding_cluster`, and `oifm_id`. The unique `name` keys each row within a file. There is no separate row identifier. `parent` holds the parent row's `name`, or is blank for a top-level row. "Parents are generic, children add specificity," as in `lung_abnormality`, then `airspace_opacity`, then `air_bronchogram`. Two columns are outside the hierarchy: `category` is "an independent anatomic grouping, not part of the hierarchy," and `finding_type` "separates an observation from a diagnosis."[^lists-readme]
 
 | File | Rows | OIFM IDs filled |
 |---|---:|---:|
@@ -32,7 +32,7 @@ No identifiers were minted during the export. Filled rows were matched by exact 
 ## Synonyms and near-synonyms
 
 - **Finding list** is the older name for the files these replaced.
-- **[Finding taxonomy](/glossary/finding-taxonomy.md) is not a [finding model](/glossary/finding-model.md).** A taxonomy row is a name and a place in a hierarchy; a finding model is a full definition with attributes.
+- A [finding taxonomy](/glossary/finding-taxonomy.md) row gives a name and hierarchy position. A [finding model](/glossary/finding-model.md) defines the finding and its attributes.
 - The taxonomies are named after their author in the source repository. This knowledgebase calls them the MGB exam-oriented sub-taxonomies.
 
 ## Identifier form

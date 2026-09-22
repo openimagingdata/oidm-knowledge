@@ -4,7 +4,7 @@ title: Exam Finding List
 description: All findings declared present or absent on one imaging exam, in one queryable structure keyed to the exam and the report.
 tags: [glossary, data-structures, ipl]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: ipl-readme
     resource: https://github.com/openimagingdata/imaging-problem-list/blob/06f64a7893b444b761dc069ed86140a081195eac/README.md
@@ -26,7 +26,7 @@ sources:
 
 The structure carries a `diagnosticReportId`, `patientInfo`, an `examInfo` block holding the study identifier, date and time, [LOINC](/glossary/loinc.md) code and description, and a `findings` array. Each finding carries an `observationId`, a `findingCode` in `OIFM_XXXX_######` form with its description, an `attributes` array of [attribute](/glossary/attribute.md) code, value code, and display text, an optional `anatomicLocation` of `locationId` and `locationDisplay`, and an optional verbatim `reportText`.[^ipl-claude][^efl-sample]
 
-Two properties are stated as requirements rather than conveniences. The exam header must be keyed by a curated list of LOINC codes. And "the same finding type may be declared present multiple times; each time is a separate entry."[^ipl-readme] The deck adds that an Exam Finding List can be "sourced from dictation, AI tools, interpretation-time interfaces," which is why each observation should carry a [provenance](/glossary/provenance.md) marker.[^deck]
+Two properties are stated as requirements rather than conveniences. The exam header must be keyed by a curated list of LOINC codes, and "the same finding type may be declared present multiple times; each time is a separate entry."[^ipl-readme] The deck adds that an Exam Finding List can be "sourced from dictation, AI tools, interpretation-time interfaces," so each observation should carry a [provenance](/glossary/provenance.md) marker.[^deck]
 
 ## Synonyms and near-synonyms
 

@@ -1,10 +1,10 @@
 ---
 type: Reference
 title: Anatomic location assignment rules
-description: The precedence, laterality, bilateral, and specificity rules that decide which anatomic location is attached to a finding in an Exam Finding List, migrated from the imaging-problem-list development branch.
+description: Migrated rules for assigning anatomy, laterality, and specificity to Exam Finding List observations.
 tags: [data-structures, anatomic-location, laterality, coding, migrated]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: anat-rules
     resource: https://github.com/openimagingdata/imaging-problem-list/blob/36fa30c7383bf687d7bc17815282a93e123a56cb/docs/anatomic-location-assignment-rules.md
@@ -19,7 +19,7 @@ sources:
 
 # About this document
 
-This is a near-verbatim migration of `docs/anatomic-location-assignment-rules.md` from the `imaging-problem-list` repository's development branch.[^anat-rules] The rules were agreed for a correction pass over the `sample_data/example2` findings and are stated there as "the intended spec for tuning the automated location-coding step later." Wording and structure follow the original; only terminology and links have been adjusted for this knowledgebase.
+Migrated near-verbatim from `docs/anatomic-location-assignment-rules.md` on `imaging-problem-list`'s development branch.[^anat-rules] Wording and structure follow the original; only terminology and links have been adjusted for this knowledgebase. The rules were agreed for a correction pass over the `sample_data/example2` findings and are "the intended spec for tuning the automated location-coding step later."
 
 The subject is how an `anatomicLocation` of `{locationId, locationDisplay}`, a [RadLex identifier](/glossary/radlex-id.md) from the [`anatomic-locations`](https://pypi.org/project/anatomic-locations/) index, is assigned to each [observation](/data-structures/observation.md) in an [Exam Finding List](/data-structures/exam-finding-list.md).[^anat-pkg]
 

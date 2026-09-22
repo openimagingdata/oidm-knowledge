@@ -1,10 +1,10 @@
 ---
 type: Roadmap
 title: Roadmap 2026
-description: The project-level direction stated in the January 2026 status deck, the working group and use-case pipeline it proposes, and a per-repository summary of what is currently in flight.
+description: The January 2026 project goals, proposed working group, use-case pipeline, and current repository work.
 tags: [roadmap, deck, working-group, acr, work-edge]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T19:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 stale_after: 2027-09-21
 sources:
   - id: deck
@@ -32,9 +32,9 @@ sources:
 
 # What this document is
 
-This is the project-level direction for the Open Imaging Data Model (OIDM), as stated by its sources. The single most complete statement is the January 2026 status deck, extracted in full at [status update, January 2026](/references/status-update-2026-01.md).[^deck] Below the deck sit the working repositories, whose direction is visible in their unmerged branches, plan documents, and open issues.
+The January 2026 status deck states the Open Imaging Data Model (OIDM) direction. See [the full extract](/references/status-update-2026-01.md).[^deck] Repository branches, plans, and issues record work toward it.
 
-Nothing here is a proposal. Each goal is attributed to the deck, an issue, or a plan document that states it. Where a goal has no artifact behind it, that is said. Per-area goals live in the five area roadmaps linked from [the roadmap index](/roadmap/); unresolved conflicts between sources are collected in [open questions](/roadmap/open-questions.md).
+Nothing here is a proposal. Each goal is attributed to the deck, an issue, or a plan document that states it. Where a goal has no artifact behind it, that is said. Per-area goals live in the five [area roadmaps](/roadmap/); unresolved conflicts between sources are collected in [open questions](/roadmap/open-questions.md).
 
 # The three strategic pillars
 
@@ -65,11 +65,11 @@ No record of the working group being convened exists in any repository read for 
 
 Three, in the deck's own words: host and moderate an academic and vendor "big tent"; run a **use-case pipeline feeding the CDE group**; standardize the result.[^deck]
 
-The use-case pipeline is the one of the three with existing material behind it. The lineage `UseCases` repository holds roughly 25 use case ideas organized against the RSNA value categories, described in [use cases](/history/use-cases.md). The direction the deck states is that such use cases feed the ACR and RSNA common data element group, which is the same direction as the workbench relationship described in [finding models and CDEs](/semantic-foundation/finding-models/finding-models-and-cdes.md).
+The use-case pipeline is the one of the three with existing material behind it. The lineage `UseCases` repository provides roughly 25 ideas tagged with RSNA value categories. See [use cases](/history/use-cases.md). The deck would send such cases to the ACR and RSNA CDE group, consistent with the process described in [finding models and CDEs](/semantic-foundation/finding-models/finding-models-and-cdes.md).
 
 # The work edge, repository by repository
 
-Branch inventories taken on 2026-09-21 established what follows; the full detail is in [the repository map](/repositories/repository-map.md).[^repo-map] None of the unmerged branches named here has an open pull request.
+These inventories date to 2026-09-21. See [the repository map](/repositories/repository-map.md).[^repo-map] None of the unmerged branches named here has an open pull request.
 
 | Repository | Live thread | In flight | Area roadmap |
 |---|---|---|---|
@@ -92,7 +92,7 @@ Three items in the deck have no artifact in any repository. They are direction, 
 
 A fourth item, [exam types](/glossary/exam-type.md), is not in the deck at all but has been stated as a goal in three places since 2022 with no artifact produced; see [the exam types roadmap](/roadmap/exam-types.md).
 
-The implementation status of every piece of the system, built and unbuilt, is tabulated in [architecture](/overview/architecture.md).
+See implementation status in [architecture](/overview/architecture.md).
 
 [^deck]: "Open Imaging Data Model 2026 Status Update: Realizing Object-Oriented Imaging Results", January 2026
 [^plan]: Knowledgebase build plan

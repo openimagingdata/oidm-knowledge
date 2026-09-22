@@ -1,0 +1,134 @@
+path	pass	disposition	before_body_words	after_body_words	reason
+knowledge/applications/finding-and-location-coding.md	1	edited	1495	1150	Shortened and cross-reviewed in the first pass; examples, citations, and qualifications preserved.
+knowledge/applications/finding-model-forge.md	1	edited	1450	1044	Shortened and cross-reviewed in the first pass; examples, citations, and qualifications preserved.
+knowledge/applications/finding-models-site.md	1	edited	618	379	Shortened and cross-reviewed in the first pass; examples, citations, and qualifications preserved.
+knowledge/applications/imaging-problem-list-viewer.md	1	edited	1240	899	Shortened and cross-reviewed in the first pass; examples, citations, and qualifications preserved.
+knowledge/applications/index.md	1,2	edited			Descriptions shortened in the first pass; reviewed again and still match their concepts.
+knowledge/applications/ipl-mvp-extraction.md	1	edited	1048	840	Shortened and cross-reviewed in the first pass; examples, citations, and qualifications preserved.
+knowledge/applications/report-extraction-platform.md	1	edited	1948	1426	Shortened and cross-reviewed in the first pass; examples, citations, and qualifications preserved.
+knowledge/applications/reporting-sdk.md	1	edited	886	582	Shortened and cross-reviewed in the first pass; examples, citations, and qualifications preserved.
+knowledge/data-structures/anatomic-location-assignment-rules.md	2	edited	1128	1105	Tightened description and migration introduction only; source guidance and structure unchanged.
+knowledge/data-structures/exam-finding-list.md	1	edited	1275	991	Shortened and cross-reviewed in the first pass; examples, citations, and qualifications preserved.
+knowledge/data-structures/fhir-mapping.md	2	edited	1217	1033	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/data-structures/hierarchy.md	1	edited	999	880	Shortened and cross-reviewed in the first pass; examples, citations, and qualifications preserved.
+knowledge/data-structures/ihe-idr-alignment.md	2	edited	1105	988	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/data-structures/imaging-persona.md	1	edited	693	456	Shortened and cross-reviewed in the first pass; examples, citations, and qualifications preserved.
+knowledge/data-structures/imaging-problem-list.md	1	edited	1391	1122	Shortened and cross-reviewed in the first pass; examples, citations, and qualifications preserved.
+knowledge/data-structures/index.md	2	edited			Reviewed navigation, synchronized descriptions, and simplified introductory prose or directory labels.
+knowledge/data-structures/observation.md	1	edited	1308	1062	Shortened and cross-reviewed in the first pass; examples, citations, and qualifications preserved.
+knowledge/data-structures/sample-data.md	2	edited	992	885	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/data-structures/technical-imaging-findings.md	2	edited	1203	1185	Tightened description and migration introduction only; source guidance and structure unchanged.
+knowledge/glossary/anatomic-location.md	2	edited	340	337	Removed rhetorical setup around source quotations and shortened lineage comparison.
+knowledge/glossary/anatomic-scope.md	2	edited	324	307	Shortened scope-family relationship and missing-field limitation without changing open status.
+knowledge/glossary/assessment-scheme.md	2	edited	297	278	Removed repeated separation framing; retained assessment distinctions and source quotations.
+knowledge/glossary/attribute-value.md	2	edited	258	243	Shortened positional-code explanation and repetitive presence cross-reference.
+knowledge/glossary/attribute.md	2	edited	310	292	Tightened attribute-kind introduction and unresolved naming discussion. Tightened its description and matching index entry.
+knowledge/glossary/body-region.md	2	edited	371	355	Shortened three-use explanation and removed rhetorical fallback introduction. Tightened its description and matching index entry.
+knowledge/glossary/cde-element.md	2	edited	290	270	Condensed property definition and clarified component/set/value relationship.
+knowledge/glossary/cde-labeled-fhir-observation.md	2	edited	310	296	Removed emphatic sample framing and shortened source attribution and open conflict wording.
+knowledge/glossary/cde-set.md	2	edited	308	301	Replaced false range with named examples and shortened parent-code explanation.
+knowledge/glossary/cde.md	2	edited	298	269	Removed confusion framing and shortened staging and site-post introductions.
+knowledge/glossary/change-from-prior.md	2	edited	340	282	Removed repeated snapshot and attribute framing; shortened missing-attribute caveat while retaining all 124-model and value-set details.
+knowledge/glossary/coding.md	2	edited	367	337	Split dense pipeline prose into sequential operations and removed judgment framing around location rules.
+knowledge/glossary/contained-by-and-part-of.md	2	edited	314	304	Removed rhetorical introduction and shortened organ-system and precomputation explanations.
+knowledge/glossary/contributor.md	2	edited	295	283	Simplified registry validation and JSONL support explanation.
+knowledge/glossary/data-element.md	2	edited	349	318	Shortened sharing, draft-status, and terminology-conflict explanations.
+knowledge/glossary/element-binding.md	2	edited	284	260	Removed unsupported safe-reuse rhetoric and hanging-property metaphor; preserved technical statements for separate factual review. Corrected the modality quotation’s subject against pinned CONTEXT.md: it describes the descriptor’s intrinsic limit.
+knowledge/glossary/exam-finding-list.md	2	edited	335	323	Removed rhetorical requirements framing while preserving repeated-observation rule and provenance requirement.
+knowledge/glossary/exam-type.md	2	edited	346	317	Shortened definition, scope explanation, proposal status, and missing-artifact inventory. Tightened its description and matching index entry.
+knowledge/glossary/extraction.md	2	edited	383	308	Split schema and pipeline descriptions and shortened validator failure list while retaining each failure category.
+knowledge/glossary/fhir-condition.md	2	edited	306	279	Shortened mapping and unimplemented-status explanations; retained IDR disagreement and all quotations.
+knowledge/glossary/fhir-diagnostic-report.md	2	edited	303	280	Removed sample framing and shortened implementation-gap description.
+knowledge/glossary/finding-class.md	2	edited	357	336	Removed blurred-node metaphor and shortened working-group decision and unsettled IDR difference.
+knowledge/glossary/finding-model.md	2	edited	311	281	Removed extrapolation from the 2024 definition to the entire project lifetime and shortened definition-versus-instance explanation.
+knowledge/glossary/finding-taxonomy.md	2	edited	366	354	Clarified name-key and parent fields and shortened taxonomy/model distinction. Tightened its description and matching index entry.
+knowledge/glossary/fma.md	2	edited	231	213	Shortened cross-reference and classification introduction while retaining coverage counts and mappings.
+knowledge/glossary/gamuts.md	2	edited	287	273	Removed role framing and content-spine metaphor; shortened unresolved cleanup status.
+knowledge/glossary/imaging-diagnostic-report.md	2	edited	390	367	Shortened source framing and alignment-status explanation without changing IDR definitions or conflicts.
+knowledge/glossary/imaging-persona.md	2	edited	241	203	Removed repeated unimplemented-status and knowledgebase self-description.
+knowledge/glossary/imaging-problem-list.md	2	edited	390	332	Removed signature-structure rhetoric and shortened query, grouping, and reconciliation explanations.
+knowledge/glossary/index-code.md	2	edited	322	316	Simplified field and crosswalk explanations and removed in-flight framing around the identified rewrite.
+knowledge/glossary/index.md	2	edited			Read all 48 entries; shortened the introduction and synchronized seven tightened descriptions while preserving alphabetical links.
+knowledge/glossary/laterality.md	2	edited	395	373	Removed repeated test introduction and shortened reversible-mapping requirement. Tightened its description and matching index entry.
+knowledge/glossary/loinc-rsna-radiology-playbook.md	2	edited	307	292	Split roadmap proposal into concise sentences and removed historical throat-clearing.
+knowledge/glossary/loinc.md	2	unchanged	287	287	Already compact: quoted specification requirements, code examples, identifier detection, and missing-curated-list caveat each provide distinct information.
+knowledge/glossary/measurement.md	2	edited	290	234	Shortened node-type explanation, grouped-measurement example, and repeated model distinction.
+knowledge/glossary/observation.md	2	edited	343	330	Replaced atomic-unit metaphor and removed lineage and terminology-collision framing.
+knowledge/glossary/oidm-organization-code.md	2	unchanged	245	245	Already concise: generator behavior, registry mappings, all seven codes, five corpus counts, and namespace/provenance distinction are needed.
+knowledge/glossary/oidm.md	2	edited	269	236	Shortened project definition and organization-code explanation; replaced inaccurate self-description about old-name placement with history link.
+knowledge/glossary/oifm.md	2	edited	247	226	Shortened canonical-format and overloaded-acronym explanation without changing fields or identifier rules.
+knowledge/glossary/open-imaging-reporting-sdk.md	2	edited	261	220	Removed centerpiece rhetoric, historical introduction, and repeated knowledgebase status assurances.
+knowledge/glossary/presence.md	2	edited	405	375	Removed negative-data rhetoric and repeated conflict introduction while retaining quoted absence meaning and all positional-code exceptions. Tightened its description and matching index entry.
+knowledge/glossary/provenance.md	2	edited	323	291	Removed repeated provenance rationale and shortened quote-evidence mechanism while preserving source and evaluation distinctions. Tightened its description and matching index entry.
+knowledge/glossary/radelement.md	2	edited	273	264	Removed authoring-order framing and distinguished documented URI forms from the proposed successor.
+knowledge/glossary/radlex-id.md	2	unchanged	258	258	Already concise: RID field mappings, composite-ID exception, examples, and unrecorded ontology-version risk all add distinct information.
+knowledge/glossary/radlex.md	2	edited	277	265	Removed repetitive two-direction framing around curation and upstream integration.
+knowledge/glossary/snomed-ct.md	2	edited	271	232	Split long usage sentence into source-specific statements and shortened licence/credential requirement.
+knowledge/glossary/tag.md	2	edited	278	263	Shortened mixed-tag example framing and retained incomplete migration status.
+knowledge/glossary/technical-finding.md	2	edited	342	317	Removed emphasis around coding distinction and shortened draft/open-question language.
+knowledge/glossary/umls.md	2	edited	290	240	Removed two-job framing and shortened typed-failure explanation while retaining all error categories and mapping qualifications.
+knowledge/guides/authoring-guide.md	2	edited	1212	1084	Tightened instructions and metadata guidance; retained rules, examples, and type vocabulary.
+knowledge/guides/index.md	2	unchanged			Two concise directory entries; both descriptions match their pages.
+knowledge/guides/migration-ledger.md	2	edited	3048	3027	Shortened the introduction; preserved all migration rows as provenance records.
+knowledge/history/cde-template-rendering.md	2	edited	774	555	Removed filler and simplified authored explanation while preserving technical detail.
+knowledge/history/extraction-approaches.md	2	edited	1557	1312	Removed filler and simplified authored explanation while preserving technical detail.
+knowledge/history/index.md	2	edited			Simplified navigation introduction and synchronized concept descriptions.
+knowledge/history/lineage-repositories.md	2	edited	1601	1359	Removed filler and simplified authored explanation while preserving technical detail.
+knowledge/history/site-articles.md	2	edited	1399	1304	Tightened article summaries and authored framing; preserved all fifteen linked titles, dates, direct quotes, reported outcomes, and About-page scope.
+knowledge/history/timeline.md	2	edited	1619	1607	Tightened the prologue and description; preserved every dated event table and source.
+knowledge/history/use-cases.md	2	edited	1153	1062	Tightened authored framing; preserved every sourced use-case entry, attribution, category number, and table verbatim.
+knowledge/index.md	2	edited			Shortened draft-status and navigation instructions without losing entry points.
+knowledge/log.md	2	edited			Retained historical entries; added the full-review completion entry.
+knowledge/overview/architecture.md	1	edited	1480	1247	Shortened and cross-reviewed in the first pass; examples, citations, and qualifications preserved.
+knowledge/overview/getting-involved.md	1	edited	1027	776	Shortened and cross-reviewed in the first pass; examples, citations, and qualifications preserved.
+knowledge/overview/index.md	2	unchanged			Four descriptive navigation entries; no repeated framing or editorial commentary.
+knowledge/overview/vision.md	1	edited	1173	860	Shortened and cross-reviewed in the first pass; examples, citations, and qualifications preserved.
+knowledge/overview/what-is-oidm.md	1	edited	851	575	Shortened and cross-reviewed in the first pass; examples, citations, and qualifications preserved.
+knowledge/plans/2026-09-20-knowledgebase-build-plan.md	2	edited	3890	3851	Tightened plan framing; preserved decisions, quoted goals, source map, phases, and concurrent decisions.
+knowledge/plans/index.md	2	unchanged			A single navigation entry matching the build plan description.
+knowledge/references/anatomic-location-json-schema.md	2	edited	1695	1519	Shortened lineage and runtime explanations; preserved field tables, codes, counts, and example JSON.
+knowledge/references/cde-schema-differences.md	2	edited	848	742	Tightened provenance and later-schema commentary; retained the attributed 2023 extract byte-for-byte.
+knowledge/references/exam-finding-list-example.md	2	edited	1117	898	Shortened the walkthrough and synthetic-data introduction; preserved the JSON, fields, and absence distinction.
+knowledge/references/finding-model-schema.md	2	edited	2027	1896	Shortened authored provenance and reconciliation framing; retained the migrated schema and constraint tables.
+knowledge/references/imaging-problem-list-example.md	2	edited	1201	1024	Tightened grouping and status explanations; retained JSON, temporal rules, and synthetic-data qualifications.
+knowledge/references/index.md	2	edited			Shortened navigation descriptions and synchronized all eight entries.
+knowledge/references/oifm-metadata-fields-extract.md	2	edited	2429	2375	Shortened provenance and release-status framing; preserved the complete attributed field reference.
+knowledge/references/oifm-overview-extract.md	2	edited	2040	1967	Shortened provenance and glossary introduction; preserved the complete attributed authoring prompt.
+knowledge/references/status-update-2026-01.md	2	edited	835	778	Shortened introductory framing; preserved the complete slide extract.
+knowledge/repositories/index.md	2	edited			Simplified navigation introduction and synchronized concept descriptions.
+knowledge/repositories/repository-map.md	2	edited	1855	1768	Tightened map guidance and branch summaries; preserved the full repository table, diagram, caption, identifiers, dates, and status distinctions.
+knowledge/roadmap/anatomic-locations-and-radlex.md	2	edited	1240	982	Removed filler and simplified authored explanation while preserving technical detail.
+knowledge/roadmap/exam-types.md	2	edited	947	784	Removed filler and simplified authored explanation while preserving technical detail.
+knowledge/roadmap/finding-model-content-direction.md	2	edited	1439	1245	Removed filler and simplified authored explanation while preserving technical detail.
+knowledge/roadmap/finding-model-format-evolution.md	2	edited	1572	1390	Removed filler and simplified authored explanation while preserving technical detail.
+knowledge/roadmap/index.md	2	edited			Simplified navigation introduction and synchronized concept descriptions.
+knowledge/roadmap/ipl-data-model-system.md	2	edited	1183	952	Removed filler and simplified authored explanation while preserving technical detail.
+knowledge/roadmap/open-questions.md	2	edited	5585	5499	Tightened only introductions; retained all 90 numbered questions and all 21 defect rows verbatim, including their uncertainty, attribution, and ownership.
+knowledge/roadmap/roadmap-2026.md	2	edited	992	833	Removed filler and simplified authored explanation while preserving technical detail.
+knowledge/semantic-foundation/anatomic-locations/data-model.md	2	edited	1261	1159	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/semantic-foundation/anatomic-locations/index.md	2	edited			Reviewed navigation, synchronized descriptions, and simplified introductory prose or directory labels.
+knowledge/semantic-foundation/anatomic-locations/laterality-conventions.md	2	edited	968	878	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/semantic-foundation/anatomic-locations/lineage-and-current-implementation.md	2	edited	1024	874	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/semantic-foundation/anatomic-locations/radlex-integration.md	2	edited	1187	948	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/semantic-foundation/anatomic-locations/tooling.md	2	edited	953	868	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/semantic-foundation/anatomic-locations/why-anatomic-locations.md	2	edited	768	580	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/semantic-foundation/common-data-elements/cde-staging.md	2	edited	1536	1319	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/semantic-foundation/common-data-elements/cdes-and-radelement.md	2	edited	1368	1255	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/semantic-foundation/common-data-elements/index.md	2	edited			Reviewed navigation, synchronized descriptions, and simplified introductory prose or directory labels.
+knowledge/semantic-foundation/common-data-elements/next-generation-vocabulary.md	2	edited	2073	1706	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/semantic-foundation/exam-types/existing-building-blocks.md	2	edited	1619	1399	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/semantic-foundation/exam-types/index.md	2	edited			Reviewed navigation, synchronized descriptions, and simplified introductory prose or directory labels.
+knowledge/semantic-foundation/exam-types/overview.md	2	edited	1164	995	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/semantic-foundation/finding-models/authoring-workflow.md	2	edited	1130	993	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/semantic-foundation/finding-models/content-catalog.md	2	edited	1126	1022	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/semantic-foundation/finding-models/enrichment-pipeline.md	2	edited	1318	1137	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/semantic-foundation/finding-models/finding-model-format.md	2	edited	1439	1285	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/semantic-foundation/finding-models/finding-models-and-cdes.md	1	edited	1280	773	Shortened and cross-reviewed in the first pass; examples, citations, and qualifications preserved.
+knowledge/semantic-foundation/finding-models/finding-taxonomies.md	2	edited	875	726	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/semantic-foundation/finding-models/identifiers.md	2	edited	1024	817	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/semantic-foundation/finding-models/index.md	2	edited			Reviewed navigation, synchronized descriptions, and simplified introductory prose or directory labels.
+knowledge/semantic-foundation/finding-models/why-finding-models.md	1	edited	1024	670	Shortened and cross-reviewed in the first pass; examples, citations, and qualifications preserved.
+knowledge/semantic-foundation/index.md	2	edited			Reviewed navigation, synchronized descriptions, and simplified introductory prose or directory labels.
+knowledge/semantic-foundation/terminologies/index.md	2	edited			Reviewed navigation, synchronized descriptions, and simplified introductory prose or directory labels.
+knowledge/semantic-foundation/terminologies/med-ontology-lookup.md	2	edited	1160	978	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.
+knowledge/semantic-foundation/terminologies/ontologies-used.md	2	edited	1590	1402	Tightened authored prose and description; preserved facts, qualifications, citations, tables, examples, links, and headings.

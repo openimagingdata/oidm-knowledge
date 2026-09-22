@@ -1,10 +1,10 @@
 ---
 type: Project Profile
 title: Imaging Problem List viewer
-description: The deployed browser application that renders Imaging Problem Lists, its three-level drill-down and status sections, and the anatomy-first second-generation viewer being built on the development branch.
+description: The deployed Imaging Problem List browser and the undeployed anatomy-first viewer on dev.
 tags: [applications, ipl, viewer, anatomy, frontend]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:34:50Z }
 stale_after: 2027-09-21
 sources:
   - id: ipl-main-readme
@@ -32,7 +32,9 @@ sources:
 
 # Purpose
 
-The viewer is the demonstration that an [Imaging Problem List](/glossary/imaging-problem-list.md) is worth assembling. It takes the reorganization of a patient's findings by finding rather than by date and puts it on screen, so that "has this finding ever been described, and is it present now" is a glance instead of a chart review. The January 2026 status deck names an Imaging Problem List browser among the demonstration applications of the applications pillar.
+**Live:** the deployed viewer is at [imaging-problem-list.pages.dev](https://imaging-problem-list.pages.dev) (main-branch data, without anatomic locations). The anatomy-first `viewer_v2` on `dev` has no public deployment as of 2026-09-21; the plan's intended address, `ipl-anatomy.pages.dev`, does not respond.
+
+The viewer displays a patient's [Imaging Problem List](/glossary/imaging-problem-list.md) by finding, showing its history and current presence. The January 2026 status deck lists the browser as a demonstration application.
 
 Two viewers exist. The deployed one is on `main`. A second-generation, anatomy-first viewer called `viewer_v2` sits on `dev` and is not deployed.
 
@@ -40,13 +42,13 @@ Two viewers exist. The deployed one is on `main`. A second-generation, anatomy-f
 
 ## What a user does with it
 
-Navigation is three levels deep, held entirely in client-side state.[^ipl-main-readme]
+Navigation has three levels, managed in client-side state.[^ipl-main-readme]
 
-1. **Patient level.** The [Imaging Problem List](/data-structures/imaging-problem-list.md): every finding described across the patient's exams. A dropdown switches patients, and a `?patient=` query parameter selects one directly.
-2. **Exam level.** Clicking through a finding's exam entry opens that exam's [Exam Finding List](/data-structures/exam-finding-list.md).
-3. **Report level.** From there, the raw report text the findings came from.
+1. The patient's [Imaging Problem List](/data-structures/imaging-problem-list.md) shows findings across exams. A dropdown or `?patient=` query parameter selects the patient.
+2. A finding's exam entry opens the [Exam Finding List](/data-structures/exam-finding-list.md).
+3. The exam view opens the source report text.
 
-Findings are grouped into sections by temporal status rather than filtered by it. Status filtering existed and was removed in favor of status-labeled sections on 2025-11-18.[^ipl-status-commit] Four statuses are computed in the browser from each finding's observation list sorted by date, never stored in the data.
+Status sections replaced status filtering on 2025-11-18.[^ipl-status-commit] The browser computes four statuses from date-sorted observations without storing them in the data.
 
 | Status | Meaning |
 |---|---|
@@ -55,11 +57,11 @@ Findings are grouped into sections by temporal status rather than filtered by it
 | Resolved | Present in the past, absent now |
 | Never | Never described as present |
 
-A [body region](/glossary/body-region.md) filter offers chest, abdomen, pelvis and genitourinary, musculoskeletal, and head and neck. It is driven by a static lookup table of 98 finding-to-region entries, which replaced an earlier keyword-matching approach. Clicking a finding's exam group opens a popover listing every observation of that finding in that report, not just the first, grouped by report identifier. Exam type names are shortened for display through a second lookup table, so "MR Brain WO and W contrast IV" reads as "MR Brain w/wo". The design is dark-mode-first, with the preference kept in browser local storage.
+The [body region](/glossary/body-region.md) filter covers chest, abdomen, pelvis and genitourinary, musculoskeletal, and head and neck. A static table of 98 finding-to-region mappings replaced keyword matching. A finding's exam-group popover lists all its observations, grouped by report identifier. A second lookup table shortens exam names, such as "MR Brain WO and W contrast IV" to "MR Brain w/wo". The design prioritizes dark mode and stores the preference in browser local storage.
 
 ## Data it reads
 
-Static files only, laid out by patient and exam.
+The viewer reads static files organized by patient and exam.
 
 ```text
 data/patients.json
@@ -71,7 +73,7 @@ data/finding_region_mappings.json
 data/exam_type_mappings.json
 ```
 
-The deployed bundle carries two patients: one with 10 exams and 98 aggregated Imaging Problem List findings, and one with 2 exams.[^ipl-main-readme] Those files are generated from the sample data described in [sample data](/data-structures/sample-data.md) by scripts in the repository. No server, no API, no database.
+The deployed bundle contains two patients. One has 10 exams and 98 aggregated findings. The other has 2 exams.[^ipl-main-readme] Repository scripts generate the files from [sample data](/data-structures/sample-data.md). The viewer needs no application server, API, or database.
 
 ## Language model use
 
@@ -79,31 +81,31 @@ None in the viewer. Everything it renders was produced upstream.
 
 ## Architecture
 
-One page of Alpine.js state, with Tailwind and Flowbite loaded from a content delivery network and no build step at all. Status computation, region filtering, and popover assembly are plain JavaScript over the loaded JSON.
+One page manages Alpine.js state, with Tailwind and Flowbite loaded from a content delivery network and no build step. JavaScript computes statuses, filters regions, and assembles popovers from JSON.
 
 ## Deployment
 
-Live at [imaging-problem-list.pages.dev](https://imaging-problem-list.pages.dev), verified responding on 2026-09-21. Deployment is a Wrangler command that pushes the `viewer/` directory to a Cloudflare Pages project named `imaging-problem-list`; there is no continuous deployment.[^ipl-deploy]
+Live at [imaging-problem-list.pages.dev](https://imaging-problem-list.pages.dev), verified responding on 2026-09-21. A Wrangler command deploys `viewer/` to the `imaging-problem-list` Cloudflare Pages project. There is no continuous deployment.[^ipl-deploy]
 
 ## A documentation discrepancy
 
-The prose in the repository's domain notes and the viewer README still describes an older three-state scheme, present, resolved, and not present or ruled out, while the shipped code computes the four states listed above.[^ipl-main-claude] The code is current. This is recorded in [open questions](/roadmap/open-questions.md).
+The domain notes and viewer README describe an older three-state scheme: present, resolved, and not present or ruled out.[^ipl-main-claude] The shipped code computes the four states above. See [open questions](/roadmap/open-questions.md).
 
 # viewer_v2, the anatomy-first viewer
 
-A separate React, Vite, TypeScript, and Tailwind static application under `viewer_v2/` on the `dev` branch. Its plan is marked "Body-map redesign implemented; ready for review" and is not archived, so it is in flight.[^viewer-v2-plan]
+`viewer_v2/` is a React, Vite, TypeScript, and Tailwind static application on `dev`. Its plan is marked "Body-map redesign implemented; ready for review" and is not archived, so it is in flight.[^viewer-v2-plan]
 
-**The governing rule.** The viewer trusts the Imaging Problem List. Each finding identifier in the list is the canonical clinical problem row, and anatomy grouping is presentation only: it must never merge or split findings. Clinical reconciliation of compatible anatomic locations is explicitly out of scope and belongs to the follow-on step in the anatomic location plan.[^anat-plan]
+Each finding identifier in the Imaging Problem List defines one clinical problem row. Anatomy grouping must not merge or split findings. Clinical reconciliation of compatible locations belongs to the follow-on anatomic location work.[^anat-plan]
 
-**What it shows.** A single patient, the ten-exam example, presented anatomy first: an abstract body-map schematic rather than an anatomical illustration, with extremities lateralized so the right side renders on the viewer's left and the left on the viewer's right, and findings with no stated side kept separate from both. Diagram zones show the actual active finding names as clickable chips rather than a count badge. From there the detail pane opens progressively through region, cluster, finding, and observation, with finding timelines, finding-definition metadata, and drill-down to the exam, its Exam Finding List, and the report. The theme is a dark radiology-workstation palette, and the plan states that a light presentation is not acceptable for this version.
+The viewer presents the ten-exam patient on an abstract body schematic. Right extremities appear on the viewer's left, left extremities on the right, and unsided findings stay separate. Zones show active finding names as clickable chips. The detail pane opens through region, cluster, finding, and observation, with timelines, definition metadata, and links to exams, Exam Finding Lists, and reports. This version requires a dark radiology-workstation palette.
 
-**Evidence highlighting.** Quotes are highlighted in the source report by whitespace-normalized exact match only, after folding Unicode compatibility forms, dashes, and smart quotes. No fuzzy matching. A quote that cannot be located is recorded as a warning in the generated data rather than silently dropped.
+Quotes are highlighted by exact match after whitespace normalization and folding of Unicode compatibility forms, dashes, and smart quotes. There is no fuzzy matching. Unmatched quotes produce warnings in generated data.
 
-**Data contract.** The browser reads only generated files under `viewer_v2/public/data/`, never the sample data, the viewer's own data directory, or the anatomic location database. A build script assembles that bundle from the example Imaging Problem List, its Exam Finding Lists, the matching report files, finding display metadata, and the `anatomic-locations` package. Every generated top-level file carries a schema version, and the generator fails on duplicate or missing finding identifiers, observations whose report cannot be resolved, or anatomy that resolves to nothing without an explicit unlocalized fallback. A check task regenerates the bundle and fails if the committed output has drifted.
+The browser reads only generated files under `viewer_v2/public/data/`. A build script combines the example Imaging Problem List, Exam Finding Lists, report files, finding display metadata, and `anatomic-locations` package. Every top-level file has a schema version. Generation fails on duplicate or missing finding identifiers, unresolved report references, or unresolved anatomy without an explicit unlocalized fallback. A check task regenerates the bundle and fails if it differs from committed output.
 
-**Stated caveats in the current pass.** The bundle covers 123 Imaging Problem List findings across 10 exams for one patient. Two findings have no specific location and use the explicit unlocalized fallback. Seven warnings are embedded in the manifest for the interface to surface: four exact-evidence misses, two missing-anatomy fallbacks, and one missing finding definition.
+The bundle contains 123 findings across 10 exams for one patient. Two findings use the unlocalized fallback. The manifest contains seven warnings for display: four exact-evidence misses, two missing-anatomy fallbacks, and one missing finding definition.
 
-**Deployment.** The plan names a separate Cloudflare Pages project, `ipl-anatomy`, publishing the built output. No site responds at `ipl-anatomy.pages.dev` as of 2026-09-21, and deployment automation beyond the documented build and deploy commands is listed as out of scope for this slice.
+The plan names a separate Cloudflare Pages project, `ipl-anatomy`, for the built output. No site responds at `ipl-anatomy.pages.dev` as of 2026-09-21. Further deployment automation is outside the plan's scope.
 
 # Repository and branch of record
 
@@ -118,7 +120,7 @@ The same repository holds [the report extraction platform](/applications/report-
 
 # What it realizes
 
-The viewer is the reading end of the [Observation](/glossary/observation.md) to [Exam Finding List](/glossary/exam-finding-list.md) to [Imaging Problem List](/glossary/imaging-problem-list.md) hierarchy described in [the data structures area](/data-structures/hierarchy.md). `viewer_v2` additionally realizes [anatomic location](/glossary/anatomic-location.md) coding as a navigational axis, which is only possible because location codes were added to the findings themselves under [the assignment rules](/data-structures/anatomic-location-assignment-rules.md), and because the Imaging Problem List grouping key on `dev` became the finding code together with the location identifier.[^ipl-dev-claude]
+The viewer displays the [Observation](/glossary/observation.md), [Exam Finding List](/glossary/exam-finding-list.md), and [Imaging Problem List](/glossary/imaging-problem-list.md) [hierarchy](/data-structures/hierarchy.md). `viewer_v2` groups navigation by [anatomic location](/glossary/anatomic-location.md), using codes assigned under [the assignment rules](/data-structures/anatomic-location-assignment-rules.md). On `dev`, Imaging Problem List groups use both the finding code and location identifier.[^ipl-dev-claude]
 
 [^ipl-main-readme]: imaging-problem-list viewer README, main branch
 [^ipl-main-claude]: imaging-problem-list domain model notes, main branch

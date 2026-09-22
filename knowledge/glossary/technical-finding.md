@@ -4,7 +4,7 @@ title: Technical finding
 description: A finding stated in modality-specific imaging language, such as a density or signal characteristic, without committing to an underlying diagnosis.
 tags: [glossary, semantic-foundation, data-structures]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: tech
     resource: https://github.com/openimagingdata/imaging-problem-list/blob/36fa30c7383bf687d7bc17815282a93e123a56cb/docs/technical-imaging-findings.md
@@ -23,7 +23,7 @@ A finding stated in modality-specific imaging language. "'Technical findings' de
 
 The reference catalogs them by modality: CT attenuation terms such as hypodense lesion and ground-glass opacity; MR signal terms such as diffusion restriction and marrow signal abnormality; enhancement and opacification patterns such as washout and filling defect; ultrasound echogenicity terms such as anechoic structure and posterior acoustic shadowing; and nuclear medicine terms such as FDG-avid lesion and photopenic area.[^tech]
 
-The distinction that matters for coding is observation versus interpretation. "The same imaging appearance can be described at observation level ('T2 hyperintense marrow signal') or interpretation level ('marrow edema'). Reports often mix both. The ontology needs entries at the observation level to capture what's actually seen." The guidance is specific: "marrow signal abnormality should be searched as exactly that, it is the observation. Do NOT reinterpret as 'bone marrow edema' or 'marrow infiltration', which are specific diagnoses that may or may not be the cause."[^tech]
+The distinction that matters for coding is observation versus interpretation. "The same imaging appearance can be described at observation level ('T2 hyperintense marrow signal') or interpretation level ('marrow edema'). Reports often mix both. The ontology needs entries at the observation level to capture what's actually seen." The guidance states: "marrow signal abnormality should be searched as exactly that, it is the observation. Do NOT reinterpret as 'bone marrow edema' or 'marrow infiltration', which are specific diagnoses that may or may not be the cause."[^tech]
 
 ## Synonyms and near-synonyms
 

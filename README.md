@@ -7,12 +7,12 @@ The content is an [Open Knowledge Format](https://okf.md) 0.2 bundle in [`knowle
 ## Reading it
 
 - Browse on GitHub from [`knowledge/index.md`](knowledge/index.md).
-- Rendered site: coming in the first release.
+- Rendered site: `task build` renders it with Quartz into `public/`; `task deploy` publishes it to Cloudflare (Workers static assets, `site/wrangler.jsonc`); pushes to `main` deploy through `.github/workflows/deploy.yml`.
 - Agents: read `knowledge/index.md` first, follow links only into what the task needs, and weigh `status`, `verified`, and `stale_after` in each document's frontmatter.
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) and the [authoring guide](knowledge/guides/authoring-guide.md). Two checkers must pass:
+See [CONTRIBUTING.md](CONTRIBUTING.md) and the [authoring guide](knowledge/guides/authoring-guide.md). Two checkers must pass; `task check` runs both (or run them directly):
 
 ```bash
 uv run .agents/skills/validate/scripts/okf_validate.py knowledge --strict
@@ -24,7 +24,9 @@ uv run tools/check_bundle.py
 | Path | Purpose |
 |---|---|
 | `knowledge/` | The OKF bundle |
-| `tools/` | House-rules checker |
+| `Taskfile.yml` | `task check`, `task build`, `task serve`, `task deploy`, `task preview`, `task verify`, `task review-status`, `task viz` |
+| `site/` | Quartz configuration, badge plugin, build script, Cloudflare Worker config |
+| `tools/` | House-rules checker, verification tool, diagram builders, site staging script |
 | `.agents/skills/` | Installed OKF skills (author, validate, visualize, backfill) |
 | `CHANGELOG.md` | Reader-facing changes |
 | `DEV_LOG.md` | Engineering narrative |

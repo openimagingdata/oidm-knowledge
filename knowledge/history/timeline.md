@@ -1,10 +1,10 @@
 ---
 type: History
 title: Timeline
-description: A dated record of the Open Imaging Data Model from its anatomic-location prologue through the January 2026 status update and the 2026 work edge.
+description: Dated OIDM milestones from anatomic-location work in 2022 through current work in September 2026.
 tags: [history, timeline]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T02:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: gh-org
     resource: https://github.com/openimagingdata
@@ -37,7 +37,7 @@ sources:
 
 # Prologue: 2022
 
-The anatomic-location work predates the project's own name. The TypeScript wrapper repository was created on 2022-02-02, the Python wrapper on 2022-07-19, and the curated dataset and its site on 2022-12-14.[^gh-org] The dataset's own changelog records version `1.0.0-rc.1` in December 2022, adding a version field and SNOMED links. The curated set reached 2,890 records and its last substantive site commit, a hierarchy tree view, landed on 2023-01-10. See [the anatomic location lineage](/semantic-foundation/anatomic-locations/lineage-and-current-implementation.md).
+Anatomic-location work began before OIDM. The TypeScript wrapper was created on 2022-02-02, the Python wrapper on 2022-07-19, and the curated dataset and site on 2022-12-14.[^gh-org] Version `1.0.0-rc.1` added a version field and SNOMED links in December 2022. The set reached 2,890 records. The last substantive site commit added a hierarchy tree view on 2023-01-10. See [the anatomic location lineage](/semantic-foundation/anatomic-locations/lineage-and-current-implementation.md).
 
 # 2023: naming, schema, and the first demonstrations
 

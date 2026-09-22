@@ -4,7 +4,7 @@ title: Observation
 description: "The atomic unit of OIDM: one finding, seen or explicitly excluded, on one exam, with its location and attribute values, as it exists today inside an Exam Finding List and in the extraction pipeline."
 tags: [data-structures, observation, presence, extraction]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:34:50Z }
 sources:
   - id: deck
     resource: https://gamma.app/docs/Open-Imaging-Data-Model-2026-Status-Update:-Realizing-Object-Oriented-Imaging-Results-yfxzx4q9zssafal
@@ -37,9 +37,9 @@ sources:
 
 # What an observation is
 
-An [observation](/glossary/observation.md) is one finding, seen or explicitly excluded, on one exam. The deck frames it as "what + where + attributes": a finding tag, an [anatomic location](/glossary/anatomic-location.md), and lesion characteristics, carrying presence indicators, change from prior, and measurements, in "a universal structure across systems."[^deck]
+An [observation](/glossary/observation.md) is one finding, seen or explicitly excluded, on one exam. The deck describes "what + where + attributes" in "a universal structure across systems."[^deck] A finding tag, an [anatomic location](/glossary/anatomic-location.md), and lesion characteristics record presence, change from prior, and measurements.
 
-Two of those three parts point at the [semantic foundation](/semantic-foundation/). The "what" is a [finding model](/glossary/finding-model.md) identifier. The "where" is a RadLex identifier. Only the "how" is local to the observation, and even there each [attribute](/glossary/attribute.md) and each chosen value carry codes from the finding model's own definition.
+The [semantic foundation](/semantic-foundation/) supplies the "what" as a [finding model](/glossary/finding-model.md) identifier and the "where" as a RadLex identifier. The "how" records local characteristics, with each [attribute](/glossary/attribute.md) and chosen value coded from the finding model's definition.
 
 A negative observation is an observation. Absence is recorded the same way presence is, with a presence attribute whose value is `absent`, because a radiologist stating "no fracture" has actively looked and not found. That commitment is what makes the [Imaging Problem List](/data-structures/imaging-problem-list.md) able to distinguish a finding nobody checked for from one that was checked for and ruled out.
 
@@ -79,21 +79,21 @@ Each entry in `attributes[]` carries four fields: `attributeCode`, an `OIFMA_[A-
 }
 ```
 
-That record is the first finding of a left shoulder radiograph in the sample data.[^efl-sample] A full list in context is in [the Exam Finding List example](/references/exam-finding-list-example.md).
+This is the first finding from a sample left shoulder radiograph.[^efl-sample] See [the Exam Finding List example](/references/exam-finding-list-example.md) for a full list.
 
 ## Presence and the dot codes
 
 [Presence](/glossary/presence.md) is the attribute every observation carries. Its values in the sample data are `present`, `absent`, and `indeterminate`.
 
-Value codes are positional, not semantic: a value code is the attribute identifier plus a dot and the value's zero-based position in the finding model's value list. Consuming code in the extraction repository documents the standard ordering as "`.1` = present, `.0` = absent."[^ipl-claude-dev] That ordering holds for the large majority of published finding models but not all of them, so a consumer that hard-codes `.1` as present is wrong for the minority that order their values differently. The [presence glossary entry](/glossary/presence.md) records the counts and the conflict.
+Value codes are positional, not semantic: a value code is the attribute identifier plus a dot and the value's zero-based position in the finding model's value list. The extraction repository documents the standard ordering as "`.1` = present, `.0` = absent."[^ipl-claude-dev] Most published finding models follow that order, but hard-coding `.1` as present misreads those that do not. The [presence glossary entry](/glossary/presence.md) records the counts and the conflict.
 
 ## Repeat instances
 
-"The same finding type may appear multiple times in one exam (e.g., multiple kidney stones). Each instance gets a separate entry with its own `observationId`."[^ipl-main-claude] Count is therefore expressed by the number of observations, not by a count attribute, at the Exam Finding List level. The problem list re-collapses them: several observations of one finding from one exam display as a single dated row.
+"The same finding type may appear multiple times in one exam (e.g., multiple kidney stones). Each instance gets a separate entry with its own `observationId`."[^ipl-main-claude] The number of observations gives the count at the Exam Finding List level. The problem list displays repeated observations of one finding from one exam as a single dated row.
 
 # The extraction-time observation
 
-The extraction platform on the development branch has its own Pydantic model for a finding as language models produce it, before any code assignment. It is a different object from the Exam Finding List entry and is worth reading as the pre-coding form of the same thing.[^extract-models]
+The extraction platform on the development branch has its own Pydantic model for language model output before code assignment.[^extract-models] It is a different object from the Exam Finding List entry and is worth reading as the pre-coding form of the same thing.
 
 | Model | Fields |
 |---|---|
@@ -102,17 +102,17 @@ The extraction platform on the development branch has its own Pydantic model for
 | `FindingAttribute` | `key`, `value` |
 | `ExtractedReportFindings` | `exam_info`, `findings[]`, `non_finding_text[]` |
 
-Three differences from the coded form matter.
+It differs from the coded form in three ways.
 
-**The presence vocabulary is wider.** `presence` is a `Literal["present", "absent", "indeterminate", "possible"]`, and the design note explains the fourth value: "'possible' covers hedged language like 'raising the possibility of', 'suggestive of', 'cannot exclude'."[^extract-models][^extract-plan] There is no `possible` in the finding model presence value set, so the extra value has no coded counterpart and must be resolved before an Exam Finding List entry can be written.
+**Presence has a fourth value.** `presence` is a `Literal["present", "absent", "indeterminate", "possible"]`. The design note explains that "'possible' covers hedged language like 'raising the possibility of', 'suggestive of', 'cannot exclude'."[^extract-models][^extract-plan] Finding models have no presence code for `possible`, so it must be resolved before writing an Exam Finding List entry.
 
-**Location is free text, not a code.** `FindingLocation` carries a constrained `body_region`, a free-text `specific_anatomy`, and a laterality. Turning that into a `locationId` is the job of the separate post-extraction coding pass, governed by [the anatomic location assignment rules](/data-structures/anatomic-location-assignment-rules.md).
+**Location is free text, not a code.** `FindingLocation` carries a constrained `body_region`, a free-text `specific_anatomy`, and a laterality. A separate coding pass assigns a `locationId` using [the anatomic location assignment rules](/data-structures/anatomic-location-assignment-rules.md).
 
-**Attributes are loose key-value pairs.** `FindingAttribute` is a `key` and a `value` as strings, with standard keys named in the model docstring: size, acuity, change from prior, severity, count, and morphology.[^extract-models] Those are not OIFMA codes and carry no value codes.
+**Attributes have no codes.** `FindingAttribute` holds `key` and `value` strings. The model docstring names size, acuity, change from prior, severity, count, and morphology as standard keys.[^extract-models]
 
-The model is also where coding results land. A `FindingCodingBundle` on each finding records the chosen OIFM identifier, the method used (`fast-path`, `llm`, or `unresolved`), a reason when unresolved, and the candidate codes that were considered. The pipeline that produces it is described in [finding and location coding](/applications/finding-and-location-coding.md).
+A `FindingCodingBundle` on each finding records the chosen OIFM identifier, the method used (`fast-path`, `llm`, or `unresolved`), a reason when unresolved, and candidate codes considered. See [finding and location coding](/applications/finding-and-location-coding.md) for the pipeline.
 
-The mapping from the extraction model to the Exam Finding List entry is therefore not a rename. It is a coding step:
+Converting extraction output to an Exam Finding List entry requires these coding steps:
 
 | Extraction field | Exam Finding List field | How |
 |---|---|---|
@@ -124,13 +124,13 @@ The mapping from the extraction model to the Exam Finding List entry is therefor
 
 # The FHIR precedent
 
-The 2024 reference implementation modelled an observation as a FHIR `Observation` directly. Its docstring states "the Observation class is the model for FHIR Observation objects," and the class carries `resourceType`, `code`, `status`, `subject`, `bodySite` as a `CodeableConcept`, `derivedFrom` as references, and `component` as a discriminated union of codeable-concept, string, integer, and boolean variants keyed on the FHIR `value[x]` naming convention.[^lineage-obs]
+The 2024 reference implementation used FHIR `Observation` directly. Its docstring states "the Observation class is the model for FHIR Observation objects," with `resourceType`, `code`, `status`, and `subject` fields. It also carries `bodySite` as a `CodeableConcept` and `derivedFrom` as references. Its `component` is a discriminated union of codeable-concept, string, integer, and boolean variants keyed on FHIR `value[x]` names.[^lineage-obs]
 
-The lung cancer screening samples show the same shape with real codes. A finding observation's `code` is a [CDE set](/glossary/cde-set.md) identifier under `https://radelement.org`, each `component` code is a [CDE element](/glossary/cde-element.md) identifier, and each component's `valueCodeableConcept` gives the chosen value code.[^fhir-sample] In those samples `status` is what separates a machine-produced finding from a radiologist-confirmed one: `preliminary` for the AI observation, `final` for the radiologist's, with no change to the resource type. That distinction is the closest thing in the project's history to a [provenance](/glossary/provenance.md) marker on an observation, and it is what the Exam Finding List specification asks for when it says "each Observation should include some kind of provenance marker." See [FHIR mapping](/data-structures/fhir-mapping.md).
+The lung cancer screening samples use [CDE set](/glossary/cde-set.md) identifiers under `https://radelement.org` for each finding's `code`. Each `component` uses a [CDE element](/glossary/cde-element.md) code, with the chosen value in `valueCodeableConcept`.[^fhir-sample] Both machine-produced and radiologist-confirmed findings use the same resource type. Their `status` differs, with `preliminary` for the AI observation and `final` for the radiologist's. This provides a precedent for the [provenance](/glossary/provenance.md) marker requested by the Exam Finding List specification: "each Observation should include some kind of provenance marker." See [FHIR mapping](/data-structures/fhir-mapping.md).
 
 # What is missing
 
-There is no Observation model, no JSON Schema, and no standalone record. Issue 1 in the extraction repository states the gap and the intended shape: Pydantic models for Observation, with a possible "Extracted Observation" subtype, alongside the Exam Finding List and Imaging Problem List, with "extensive annotation to generate JSON schemas" and camelCase aliases on export against snake_case attributes internally.[^issue1] The issue is open and unclaimed by any current plan. The Extracted Observation subtype it floats is exactly the distinction described above, between what a language model produced and what has been coded.
+There is no standalone Observation model or JSON Schema. Issue 1 in the extraction repository states the gap and the intended shape: Pydantic models for Observation, Exam Finding List, and Imaging Problem List, with "extensive annotation to generate JSON schemas" and camelCase export aliases for snake_case attributes. It also proposes a possible "Extracted Observation" subtype to distinguish language model output from coded findings.[^issue1] The issue is open and unclaimed by any current plan.
 
 [^deck]: "Open Imaging Data Model 2026 Status Update", January 2026
 [^ipl-main-claude]: imaging-problem-list domain model notes, main branch

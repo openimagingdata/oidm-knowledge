@@ -4,7 +4,7 @@ title: Index code
 description: A reference from a finding model, attribute, or value to a concept in a standard ontology, carried as system, code, and optional display.
 tags: [glossary, semantic-foundation, terminologies]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: index-code
     resource: https://github.com/openimagingdata/findingmodel/blob/75afd39a400419dcfaf7c8d4a34f065b4d804e0d/packages/oidm-common/src/oidm_common/models/index_code.py
@@ -22,9 +22,9 @@ sources:
 
 # Index code
 
-A "code representing an entry in a standard ontology, e.g., SNOMED or RadLex, which can be applied to a finding or attribute. This is used to standardize the representation of findings and attributes across different systems and to facilitate interoperability between different systems."[^index-code] The shape is three fields: `system`, `code`, and an optional `display`.
+A "code representing an entry in a standard ontology, e.g., SNOMED or RadLex, which can be applied to a finding or attribute. This is used to standardize the representation of findings and attributes across different systems and to facilitate interoperability between different systems."[^index-code] The fields are `system`, `code`, and an optional `display`.
 
-Index codes may sit on a [finding model](/glossary/finding-model.md), on an [attribute](/glossary/attribute.md), or on an individual [attribute value](/glossary/attribute-value.md). The same type also carries a finding model's `anatomic_locations`, so an [anatomic location](/glossary/anatomic-location.md) reference on a finding model is structurally an index code, usually with `system: "RADLEX"`.[^index-code]
+Index codes may appear on a [finding model](/glossary/finding-model.md), on an [attribute](/glossary/attribute.md), or on an individual [attribute value](/glossary/attribute-value.md). The same type also carries a finding model's `anatomic_locations`, so an [anatomic location](/glossary/anatomic-location.md) reference on a finding model is structurally an index code, usually with `system: "RADLEX"`.[^index-code]
 
 The systems most used in the corpus are [SNOMED CT](/glossary/snomed-ct.md), [RadLex](/glossary/radlex.md), and [Gamuts](/glossary/gamuts.md), with [RadElement](/glossary/radelement.md) appearing on CDE-derived definitions.[^claude-md]
 
@@ -32,7 +32,7 @@ The systems most used in the corpus are [SNOMED CT](/glossary/snomed-ct.md), [Ra
 
 - **Coding** in FHIR is the analogous triple of `system`, `code`, and `display`. The [CDE-labeled FHIR Observation](/glossary/cde-labeled-fhir-observation.md) pattern uses it the same way.
 - **Standard code** and **ontology code** are informal names for the same thing.
-- **[Index code](/glossary/index-code.md) is not a crosswalk.** It asserts a reference, not an equivalence class across systems.
+- An [index code](/glossary/index-code.md) references a concept without defining a crosswalk or asserting equivalence across systems.
 
 ## Identifier form
 
@@ -44,7 +44,7 @@ None of its own. The code inside follows the referenced system, for example `RID
 
 ## Conflicts
 
-The in-flight metadata rewrite tightens the rule to say that a canonical `index_codes` entry "must be an exact match or a clinically substitutable near-equivalent for the full model concept," sending broader, narrower, and complication-specific codes to a separate review artifact instead.[^metadata-rewrite] The corpus on `main` predates that rule. Separately, the CDE Set schema constrains an index code `system` to `RADLEX`, `SNOMEDCT`, or `LOINC` while the RadElement API does not appear to constrain it, and OIFM does not constrain it either.[^cde-set-schema]
+The metadata rewrite in progress requires that an `index_codes` entry "must be an exact match or a clinically substitutable near-equivalent for the full model concept," sending broader, narrower, and complication-specific codes to a separate review artifact instead.[^metadata-rewrite] The corpus on `main` predates that rule. Separately, the CDE Set schema constrains an index code `system` to `RADLEX`, `SNOMEDCT`, or `LOINC` while the RadElement API does not appear to constrain it, and OIFM does not constrain it either.[^cde-set-schema]
 
 [^index-code]: IndexCode model in the oidm-common package
 [^claude-md]: findingmodels repository conventions

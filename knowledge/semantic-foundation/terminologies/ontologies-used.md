@@ -1,10 +1,10 @@
 ---
 type: Reference
 title: Ontologies used
-description: Every external terminology OIDM touches, who governs it, the shape of its identifiers, the field and structure that carries it, and which lookup tool resolves it.
+description: External terminology identifiers, OIDM fields, code counts, and lookup support.
 tags: [semantic-foundation, terminologies, reference, coding]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:30:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: radlex
     resource: https://radlex.org/
@@ -67,7 +67,7 @@ sources:
 
 # How to read this
 
-OIDM mints its own identifiers for two things only: [finding models](/glossary/finding-model.md) and their [attributes](/glossary/attribute.md), under the `OIFM` and `OIFMA` schemes. Everything else it points at. This page lists every external terminology that appears somewhere in the OIDM repositories, says who governs it, what its identifiers look like, which field carries it, and whether the [`molu`](/semantic-foundation/terminologies/med-ontology-lookup.md) lookup tool can resolve it.
+OIDM assigns `OIFM` identifiers to [finding models](/glossary/finding-model.md) and `OIFMA` identifiers to their [attributes](/glossary/attribute.md). Other codes come from external terminologies. This inventory records their governance, formats, uses, and [`molu`](/semantic-foundation/terminologies/med-ontology-lookup.md) support.
 
 Counts are from the corpus and datasets at the commits pinned in the sources. Finding model counts are occurrences of an [index code](/glossary/index-code.md) across all 2,382 definitions, not distinct concepts.
 
@@ -87,7 +87,7 @@ Counts are from the corpus and datasets at the commits pinned in the sources. Fi
 
 # RadLex
 
-The radiology lexicon published by the RSNA, and the terminology OIDM leans on hardest. It supplies the primary key for [anatomic locations](/glossary/anatomic-location.md) in the form of a [RadLex ID](/glossary/radlex-id.md), and it is the second most common index code system in the finding model corpus, with 25,765 occurrences.[^fm-corpus] Presence values across the corpus are coded with it, for example `RID28472` for present and `RID28473` for absent.
+RSNA's radiology lexicon supplies primary [anatomic location](/glossary/anatomic-location.md) keys as [RadLex IDs](/glossary/radlex-id.md). With 25,765 occurrences, it is the corpus's second most common index code system.[^fm-corpus] Presence values include `RID28472` for present and `RID28473` for absent.
 
 The ontology ships as an OWL file in the RSNA repository, which the next-generation vocabulary analysis identifies as the authoritative artifact going forward.[^radlex-owl][^current-understanding] That analysis also records the licence position: RadLex is "actively governed, and freely licensed for commercial and non-commercial use."[^current-understanding] In OIDM data the `system` string is `RADLEX`; in FHIR encodings the system URI is `http://www.radlex.org`.[^fhir-sample] Details of the relationship in both directions, including the open RSNA issue to fold the OIDM anatomic set into RadLex, are in [RadLex integration](/semantic-foundation/anatomic-locations/radlex-integration.md).
 
@@ -129,7 +129,7 @@ RadElement is the one terminology in this table that OIDM both consumes and feed
 
 # Radiology Gamuts Ontology
 
-An ontology of radiologic differential diagnosis lists, published at gamuts.net.[^gamuts] It plays two roles at once. As a coding system, `GAMUTS` appears 1,935 times in the corpus, essentially once per Gamuts-derived definition.[^fm-corpus] As a contributing organization it holds the [organization code](/glossary/oidm-organization-code.md) `GMTS`, which is the middle segment of 1,933 of the 2,382 finding model identifiers. See [content catalog](/semantic-foundation/finding-models/content-catalog.md) for what that content is and [finding model content direction](/roadmap/finding-model-content-direction.md) for where it is headed.
+Published at gamuts.net, the Radiology Gamuts Ontology contains differential diagnosis lists.[^gamuts] `GAMUTS` occurs 1,935 times as an index code system, about once per derived definition.[^fm-corpus] Its [organization code](/glossary/oidm-organization-code.md), `GMTS`, appears in 1,933 of 2,382 finding identifiers. See [content catalog](/semantic-foundation/finding-models/content-catalog.md) and [finding model content direction](/roadmap/finding-model-content-direction.md).
 
 # DICOM Controlled Terminology
 

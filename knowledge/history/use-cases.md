@@ -1,10 +1,10 @@
 ---
 type: Reference
 title: Use case catalog
-description: The roughly 25 use case ideas collected in the UseCases repository, organized by category, with the six value categories used to tag them.
+description: The roughly 25 ideas from UseCases, with source attribution and six value-category tags.
 tags: [history, use-cases, reference]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T02:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: usecases-index
     resource: https://github.com/openimagingdata/UseCases/blob/71a90d2ab2efeee4c4303dc0aef27ed3d70a6c99/Index.md
@@ -16,7 +16,7 @@ sources:
 
 # What this is
 
-The `UseCases` repository was created in September 2023 to collect ideas for what an Open Imaging Data Model (OIDM) would make possible. Its index was meant to be a holding pen: a name and a one-sentence description each, with mature entries promoted to their own files.[^usecases-index] None were promoted, and the last commit is 2024-02-26. The catalog below is the whole of it, reorganized but not extended.
+The `UseCases` repository began in September 2023 to collect Open Imaging Data Model (OIDM) application ideas. Each index entry had a name and one-sentence description, with mature ideas intended to become separate files.[^usecases-index] None did. The last commit was 2024-02-26. This catalog reorganizes all entries without additions.
 
 Entries marked as contributed by the RSNA Reporting Informatics Committee are so marked in the source. The numbers after each entry are the value categories defined in the next section, exactly as the source assigns them. Four of the repository's seven headings, Protocoling System, AI Pipeline, PACS Viewing, and Data Exploration, are placeholders with no entries.
 
@@ -39,7 +39,7 @@ Six categories, taken from the RSNA Reporting Informatics Committee's use case w
 
 # Assisted reporting
 
-Most entries in this section were contributed by the RSNA Reporting Informatics Committee, which is noted per entry below.
+Most entries came from the RSNA Reporting Informatics Committee, as marked below.
 
 - **Stroke notification** (RSNA Reporting Informatics Committee). Automated communication to the stroke team when findings of stroke are reported. (2, 3)
 - **Problem list update** (RSNA Reporting Informatics Committee). Findings in a radiology report automatically update the electronic medical record problem list. (3)
@@ -74,11 +74,11 @@ These entries carry no value category tags in the source.
 
 # How the catalog was meant to work
 
-The repository's README sets out an intended process that was never completed: collect ideas in the index, then define metadata for each mature case and move it to its own file organized hierarchically as Markdown or JSON.[^usecases-readme] It asks three questions that remain unanswered in the repository: what information a use case should capture, whether the format should be prose or data, and whether specialized coded inputs such as LOINC for laboratory data are needed.
+The unfinished process was to collect ideas, define metadata for mature cases, and store them in hierarchical Markdown or JSON files.[^usecases-readme] The README leaves three questions open: what information to capture, whether to use prose or data, and whether coded inputs such as laboratory LOINC codes are needed.
 
 The categories the README proposes for organizing cases are workflow and list oriented, AI pipeline oriented, reporting oriented, image-viewer oriented, data exploration and outcome oriented, multi-category, and miscellaneous. The index uses a slightly different set of headings, listed above.
 
-For where this line of thinking went next, see [the 2026 roadmap](/roadmap/roadmap-2026.md), whose applications pillar and use-case pipeline to the CDE group cover related ground without reusing this catalog.
+[The 2026 roadmap](/roadmap/roadmap-2026.md) describes related applications and use-case submissions to the CDE group without reusing this catalog.
 
 [^usecases-index]: UseCases Index.md, the living list of use case ideas
 [^usecases-readme]: UseCases README.md, the intended process and the six value categories

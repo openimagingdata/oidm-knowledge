@@ -1,10 +1,10 @@
 ---
 type: Reference
 title: Anatomic location record format
-description: The two JSON record formats for anatomic locations, the original anatomiclocations.org body part schema and the current anatomic-locations package format, with a real record from each.
+description: The original and current anatomic location formats, with field tables and sample records.
 tags: [references, anatomic-locations, schema, radlex]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: al-schema
     resource: https://github.com/talkasab/anatomiclocations.org/blob/1f39fa45f621cef947a3f3ef1f869334cfa5c841/data/body_parts_schema.json
@@ -31,7 +31,7 @@ sources:
 
 # Provenance and status
 
-Two record formats for [anatomic locations](/glossary/anatomic-location.md) coexist in OIDM, and this document holds both. The first is the original schema from the `anatomiclocations.org` repository, read at commit `1f39fa4`, which validates a curated set of 2,890 body parts keyed by [RadLex](/glossary/radlex.md) identifier. The second is the format used by the `anatomic-locations` package inside the `findingmodel` repository, read at commit `75afd39` on `main`, which covers 2,926 records and adds classification, dual hierarchies, and explicit [laterality](/glossary/laterality.md). The build plan names the newer package and its dataset as the current anatomic data, and the older set as lineage.[^build-plan] Field tables here are compiled from the schema file and the model source; the records shown are copied unchanged from the published data.
+OIDM has two [anatomic location](/glossary/anatomic-location.md) formats. The original `anatomiclocations.org` schema at `1f39fa4` validates 2,890 body parts keyed by [RadLex](/glossary/radlex.md) identifiers. The `anatomic-locations` package in `findingmodel/main` at `75afd39` covers 2,926 records with classification, dual hierarchies, and explicit [laterality](/glossary/laterality.md). The build plan identifies the newer package as current and the older set as lineage.[^build-plan] Tables derive from the schemas and model source. Example records are unchanged.
 
 # Lineage A: the anatomiclocations.org body part schema
 
@@ -90,7 +90,7 @@ The entry for uterine adnexa shows containment, part-of, a laterality pair, sex 
 
 # Lineage B: the anatomic-locations package format, current
 
-This lineage has two representations of the same information. The curation format is the JSON file that editors change, documented in the repository's own field reference.[^fm-json-schema] The runtime format is the `AnatomicLocation` Pydantic model that the package returns from its index.[^fm-location-model]
+Editors use the JSON curation format documented in the field reference.[^fm-json-schema] The package index returns the runtime `AnatomicLocation` Pydantic model.[^fm-location-model]
 
 ## Curation format fields
 
@@ -117,7 +117,7 @@ The source file `notebooks/data/anatomic_locations_noembed.json` is a flat JSON 
 
 Two fields appear in the data but not in the field reference: `sexSpecific`, on 110 records, and `anatomicLocationsId`, on a single record. The field reference also lists `"Spine"` among the common `region` values, but no record in the data uses it and the runtime enumeration has no spine member. The nine region values actually present are Head (869), Upper Extremity (582), Lower Extremity (579), Neck (235), Thorax (226), Abdomen (212), Pelvis (152), Breast (46), and Body (25).
 
-The two hierarchy relations are kept deliberately distinct, as documented in the field reference: `containedByRef` is spatial, meaning X is inside Y, while `partOfRef` is mereological, meaning X is a component of Y. See [contained-by and part-of](/glossary/contained-by-and-part-of.md). SNOMED coding follows one rule without exception: of the Structure, Entire, and Part concepts in a SNOMED anatomy triad, always use the "Structure of" concept, because that is what SNOMED intends for finding sites and procedure sites.
+The two hierarchy relations are kept deliberately distinct, as documented in the field reference: `containedByRef` is spatial, meaning X is inside Y, while `partOfRef` is mereological, meaning X is a component of Y. See [contained-by and part-of](/glossary/contained-by-and-part-of.md). SNOMED coding follows one rule without exception: from the Structure, Entire, and Part triad, always use the "Structure of" concept, because that is what SNOMED intends for finding sites and procedure sites.
 
 Laterality is expressed as a triad. The generic entry carries `leftRef` and `rightRef`; each sided entry carries `unsidedRef` back to the generic. 827 distinct left-sided and 827 distinct right-sided entries are referenced, and every reference resolves to a record in the file. 1,597 records carry an `unsidedRef`.
 
@@ -147,7 +147,7 @@ The hypopharynx entry, unchanged from the data file and used as the worked examp
 
 ## Runtime model fields
 
-`AnatomicLocation` is the object the package hands back. It renames the curation fields, resolves the reference objects into a lightweight `AnatomicRef` of `id` and `display`, and adds classification and materialized paths.
+`AnatomicLocation` renames curation fields, represents references as `AnatomicRef` objects with `id` and `display`, and adds classification and materialized paths.
 
 | Field | Type | Default | Notes |
 |---|---|---|---|
@@ -177,13 +177,13 @@ The hypopharynx entry, unchanged from the data file and used as the worked examp
 
 Two computed fields are serialized with the record: `is_bilateral`, true when `laterality` is generic, and `is_lateralized`, true when it is left or right. `LocationType` is a coarse split modeled on the top level of the Foundational Model of Anatomy, separating discrete structures from spaces, regions, macro body parts, organ systems, and named groups. `StructureType` is the finer classification, with members grouped as musculoskeletal, vascular, peripheral neural, brain-specific, organs, lymphatic, anatomical organization, and spatial.[^fm-enums]
 
-The materialized paths are what make hierarchy queries cheap. Containment ancestry, descendants, and the "is X inside Y" test all read `containment_path` rather than walking parent links, and the part-of hierarchy works the same way through `partof_path`.
+The materialized paths are what make hierarchy queries cheap. Containment ancestry, descendants, and the "is X inside Y" test all read `containment_path` rather than walking parent links. Part-of queries use `partof_path` the same way.
 
 A location converts to an `IndexCode` with `system` set to `anatomic_locations`, its RadLex identifier as the code, and its description as the display. That is the form an anatomic location takes when it is attached to a [finding model](/glossary/finding-model.md).
 
 # Which is current
 
-The `anatomic-locations` package format is current. It is the format the OIDM tooling reads, it carries the larger and more recently curated dataset, and it adds the classification axes and explicit laterality that the original schema left implicit. The `anatomiclocations.org` schema remains the published format of the original curated set and of the wrapper libraries built on it, and is documented here because that data and those libraries are still reachable.
+OIDM tooling uses the current `anatomic-locations` format, with its larger, more recently curated dataset, classification, and explicit laterality. The original `anatomiclocations.org` set and wrapper libraries remain available, and are documented here because that data and those libraries are still reachable.
 
 [^al-schema]: body_parts_schema.json, anatomiclocations.org repository
 [^al-data]: body_parts.json, anatomiclocations.org curated body part set

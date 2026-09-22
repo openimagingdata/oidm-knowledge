@@ -272,6 +272,17 @@ plugins:
     layout:
       position: beforeBody
       priority: 15
+  # Click-to-zoom pan/zoom overlay for article diagram images. Renders no
+  # markup itself - only injects CSS and a client script (afterBody is part
+  # of the shared layout, so it's present on every page type). Source path
+  # resolves to site/okf-lightbox-plugin — see site/build.sh.
+  - source: ../okf-lightbox-plugin
+    enabled: true
+    options: {}
+    order: 51
+    layout:
+      position: afterBody
+      priority: 50
 layout:
   groups:
     toolbar:

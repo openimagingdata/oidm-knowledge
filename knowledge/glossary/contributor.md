@@ -4,7 +4,7 @@ title: Contributor
 description: A person or organization credited on a finding model definition, recorded in a registry keyed by GitHub username or organization code.
 tags: [glossary, semantic-foundation, finding-models]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: contributor-py
     resource: https://github.com/openimagingdata/findingmodel/blob/75afd39a400419dcfaf7c8d4a34f065b4d804e0d/packages/findingmodel/src/findingmodel/contributor.py
@@ -26,7 +26,7 @@ A person or organization credited on a [finding model](/glossary/finding-model.m
 | Organization | `name` (at least 5 characters), `code` matching `^[A-Z]{3,4}$` | `url` |
 | Person | `github_username`, `email`, `name`, `organization_code` | `url` |
 
-Both types register themselves as they are validated, organizations by `code` and people by `github_username`, and both can be loaded from or saved to a JSONL file.[^contributor-py] Seven organizations ship in the base registry: Microsoft, MassGeneral Brigham, Radiology Gamuts Ontology, the Radiological Society of North America, the American College of Radiology, the ACR/RSNA Common Data Elements Project, and the Open Imaging Data Model itself.[^orgs]
+Validation registers organizations by `code` and people by `github_username`. Both types support JSONL import and export.[^contributor-py] Seven organizations ship in the base registry: Microsoft, MassGeneral Brigham, Radiology Gamuts Ontology, the Radiological Society of North America, the American College of Radiology, the ACR/RSNA Common Data Elements Project, and the Open Imaging Data Model.[^orgs]
 
 In the published corpus of 2,382 definitions, organization contributors appear on Gamuts-derived, OIDM-authored, and CDE-derived models, while MassGeneral Brigham and Microsoft contributions are credited to individual people carrying those organization codes.
 

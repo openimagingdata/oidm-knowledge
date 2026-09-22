@@ -4,7 +4,7 @@ title: AssessmentScheme
 description: A definition of a standardized assessment system whose dimensions are ordinary data elements, distinct from the findings it assesses.
 tags: [glossary, semantic-foundation, cde, next-generation]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: cde-context
     resource: https://github.com/RSNA/ACR-RSNA-CDEs/blob/44836c19f4e025cf1684a015ed5cc63c29eaf7f3/CONTEXT.md
@@ -24,9 +24,9 @@ sources:
 
 "A distinct definition of an assessment system whose descriptive dimensions are ordinary DataElements linked to the scheme, analogous to a FindingClass with its descriptors. The scheme is distinct from any one dimension or that dimension's permissible values."[^cde-context] Lung-RADS, TI-RADS, BI-RADS, and LI-RADS are the systems this node type covers.
 
-The key structural claim is separation. The scheme is not the category value it produces, and it is not the finding it assesses. OIDM's authoring guidance reaches the same conclusion from the finding model side: "scoring systems and structured assessments are valid findings, but should be modeled separately from the observations they assess," because "different radiologists might describe the same nodule but assign different risk categories, and systems need to reason about both independently."[^overview]
+The scheme is distinct from its category values and the findings it assesses. OIDM's authoring guidance states: "scoring systems and structured assessments are valid findings, but should be modeled separately from the observations they assess," because "different radiologists might describe the same nodule but assign different risk categories, and systems need to reason about both independently."[^overview]
 
-The lineage FHIR samples already implement that shape. A Lung-RADS Observation carries the category as a component and is `derivedFrom` both the imaging study and the radiologist's pulmonary nodule Observation.[^fhir-sample] IHE IDR calls the pattern a Summary or Derived Observation, with the value in the parent and the children referenced by `derivedFrom`.[^idr]
+The lineage FHIR samples implement this separation. A Lung-RADS Observation carries the category as a component and is `derivedFrom` both the imaging study and the radiologist's pulmonary nodule Observation.[^fhir-sample] IHE IDR calls the pattern a Summary or Derived Observation, with the value in the parent and the children referenced by `derivedFrom`.[^idr]
 
 ## Synonyms and near-synonyms
 

@@ -4,7 +4,7 @@ title: CDE set
 description: A published RadElement definition of one finding, grouping the elements that characterize it under an RDES identifier.
 tags: [glossary, semantic-foundation, cde]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: cde-repo
     resource: https://github.com/openimagingdata/common_data_elements/blob/35536d8c858bcd33e730a00c919edaef2e310a0b/README.md
@@ -22,11 +22,11 @@ sources:
 
 # CDE set
 
-A published definition of one radiology finding on [RadElement](/glossary/radelement.md), grouping the [CDE elements](/glossary/cde-element.md) that characterize it. Roughly 140 sets are listed in the OIDM mirror of the published definitions, from Acute Aortic Syndrome to TI-RADS, each named and carrying an `RDES` identifier.[^cde-repo]
+A published definition of one radiology finding on [RadElement](/glossary/radelement.md), grouping the [CDE elements](/glossary/cde-element.md) that characterize it. The OIDM mirror lists roughly 140 published sets, from Acute Aortic Syndrome to TI-RADS, each with a name and `RDES` identifier.[^cde-repo]
 
 A set carries identity and governance fields as well as its elements: `id`, `name`, `description`, `set_version`, `schema_version`, `current_status`, and `status_history`. The mirror notes that its definitions conform to version 1.0 of the CDE schema rather than the newer version 1.1.[^cde-repo]
 
-In FHIR encodings the set identifier is what labels the parent Observation. The lineage sample codes a radiologist's finding as `RDES195 Pulmonary Nodule` with `system` `https://radelement.org`, and IHE IDR states that "when encoding CDE Sets from radelement.org, it is preferred to use the CDE Set code here."[^fhir-sample][^idr]
+In FHIR encodings, the set identifier labels the parent Observation. The lineage sample codes a radiologist's finding as `RDES195 Pulmonary Nodule` with `system` `https://radelement.org`, and IHE IDR states that "when encoding CDE Sets from radelement.org, it is preferred to use the CDE Set code here."[^fhir-sample][^idr]
 
 ## Synonyms and near-synonyms
 

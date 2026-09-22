@@ -4,7 +4,7 @@ title: Change from prior
 description: The companion second attribute of a finding model, recording how the finding compares with the previous exam.
 tags: [glossary, semantic-foundation, data-structures]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: overview
     resource: https://github.com/RSNA/ACR-RSNA-CDEs/blob/44836c19f4e025cf1684a015ed5cc63c29eaf7f3/notes/oifm-overview.md
@@ -24,7 +24,7 @@ sources:
 
 How a finding compares with the previous exam. Authoring guidance makes it the required second [attribute](/glossary/attribute.md) of a [finding model](/glossary/finding-model.md), after [presence](/glossary/presence.md), with values "unchanged, stable, new, resolved, plus clinically appropriate direction-of-change pairs (larger/smaller for masses, worsened/improved for diseases, increased/decreased for quantities)."[^overview]
 
-The attribute exists because a finding is not a snapshot. "Findings exist in time. A radiology report is a snapshot, but the findings it describes persist across exams. A pleural effusion seen today may be the same one from last week, now larger."[^overview] Change from prior is what carries that comparison at the level of a single [observation](/glossary/observation.md), and the documented FHIR mapping singles it out along with presence as the components an Observation should carry.[^ipl-readme]
+The attribute exists because a finding is not a snapshot. "Findings exist in time. A radiology report is a snapshot, but the findings it describes persist across exams. A pleural effusion seen today may be the same one from last week, now larger."[^overview] Change from prior records this comparison on a single [observation](/glossary/observation.md). The documented FHIR mapping calls for both change-from-prior and presence components.[^ipl-readme]
 
 Change from prior is also what distinguishes an attribute value from a finding. "Stable cardiac silhouette" is not a finding, because "stable" is a change-from-prior value on a cardiac finding.[^overview]
 
@@ -45,7 +45,7 @@ An ordinary `OIFMA_[A-Z]{3,4}_[0-9]{6}` attribute identifier with dot-suffixed v
 
 ## Conflicts
 
-The attribute is required by guidance but missing from part of the corpus. The open definition cleanup plan lists adding missing standard attributes, presence and change from prior, to 124 existing models as an ordered step, so consuming code cannot assume the attribute is present.[^cleanup] Value sets also vary by design, since direction-of-change pairs are chosen per finding, so no single enumeration covers the corpus.
+Guidance requires this attribute, but some models lack it. The open cleanup plan schedules addition of missing presence and change-from-prior attributes to 124 models. Consumers cannot assume the attribute exists.[^cleanup] Direction-of-change pairs vary by finding, so no single enumeration covers the corpus.
 
 [^overview]: "Finding Models: Overview"
 [^ipl-readme]: imaging-problem-list README

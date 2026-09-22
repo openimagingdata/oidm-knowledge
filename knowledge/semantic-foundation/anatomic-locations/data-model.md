@@ -1,10 +1,10 @@
 ---
 type: Format Specification
 title: Anatomic location data model
-description: The record model for an anatomic location in both lineages, its identifier scheme, its two hierarchies, its laterality triads, its classification fields, and its external codes, with verified counts.
+description: Anatomic location identifiers, fields, hierarchies, classification, and code coverage in both datasets.
 tags: [semantic-foundation, anatomic-locations, schema, radlex, laterality]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: al-schema
     resource: https://github.com/talkasab/anatomiclocations.org/blob/1f39fa45f621cef947a3f3ef1f869334cfa5c841/data/body_parts_schema.json
@@ -37,7 +37,7 @@ sources:
 
 # Scope
 
-This document describes the record: what an [anatomic location](/glossary/anatomic-location.md) carries and what each field means. The verbatim JSON Schema and the full runtime field list live in [the anatomic location record format reference](/references/anatomic-location-json-schema.md). Two datasets exist and are not reconciled with each other, so both are described here; [lineage and current implementation](/semantic-foundation/anatomic-locations/lineage-and-current-implementation.md) says which is current and why.
+An [anatomic location](/glossary/anatomic-location.md) record has two unreconciled formats. This page describes both. See [the record format reference](/references/anatomic-location-json-schema.md) for the verbatim JSON Schema and runtime fields, and [lineage and current implementation](/semantic-foundation/anatomic-locations/lineage-and-current-implementation.md) for their status.
 
 | Dataset | Records | Version | Field naming |
 |---|---|---|---|
@@ -76,11 +76,11 @@ Every record carries a containment parent. The distinction between the two hiera
 
 The original set stores parent pointers only and lets a library derive children. The current set stores both directions as `{id, display}` reference objects, so a consumer can read a node's children without indexing the whole file. Containment is a rooted tree from `RID39569`, whole body. The part-of relation covers fewer than half the records and is not a tree.
 
-Two data defects are visible in the current file and are worth knowing before traversing it. 111 records carry a `partOfRef` pointing at themselves, and one carries a self-referential `leftRef`. The build process already expects self-referential containment at the root, which is legitimate, but self-referential part-of on 111 nodes is not.[^fm-normalized]
+The current file has 111 self-referential `partOfRef` values and one self-referential `leftRef`. The build already expects self-referential containment at the root, which is legitimate, but self-referential part-of is a defect.[^fm-normalized]
 
 # Laterality triads
 
-A sided structure is represented by three records, not by a flag on one. The generic record carries `leftRef` and `rightRef`; each sided record carries `unsidedRef` back to the generic one and a reference to its counterpart. The full convention, including the containment and synonym rules for sided entries, is in [laterality conventions](/semantic-foundation/anatomic-locations/laterality-conventions.md). See also [laterality](/glossary/laterality.md).
+A sided structure uses generic, left, and right records. The generic record has `leftRef` and `rightRef`. Each sided record has `unsidedRef` and a counterpart reference. See [laterality conventions](/semantic-foundation/anatomic-locations/laterality-conventions.md) for containment and synonym rules, and [laterality](/glossary/laterality.md) for the term.
 
 | Field | Original set | Current set |
 |---|---|---|
@@ -145,7 +145,7 @@ The current format, unchanged from the data file. It shows containment, part-of,
 
 # From record to usable object
 
-The curation format is what an editor changes. The package that consumes it normalizes each record into an `AnatomicLocation` object, resolves the reference objects, adds a laterality enum, and precomputes a materialized containment path and part-of path so that ancestry, descendants, and the "is X inside Y" test are string comparisons rather than recursive walks.[^fm-normalized] A location converts to an [index code](/glossary/index-code.md) with system `anatomic_locations`, its RadLex identifier as the code, and its description as the display, which is the form it takes when attached to a [finding model](/glossary/finding-model.md).[^fm-location-model]
+The curation format is what an editor changes. The package that consumes it normalizes each record into an `AnatomicLocation` object, resolves references, and adds a laterality enum. Precomputed containment and part-of paths make ancestry, descendants, and "is X inside Y" tests string comparisons.[^fm-normalized] A location becomes an [index code](/glossary/index-code.md) with system `anatomic_locations`, its RadLex identifier as code, and its description as display. [Finding models](/glossary/finding-model.md) use this form.[^fm-location-model]
 
 [^al-schema]: body_parts_schema.json, anatomiclocations.org
 [^al-data]: body_parts.json, release 1.0.0-rc.1

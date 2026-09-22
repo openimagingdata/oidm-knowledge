@@ -4,7 +4,7 @@ title: Anatomic location
 description: A curated anatomic concept identified by a RadLex identifier, placed in containment and part-of hierarchies with laterality variants and cross-ontology codes.
 tags: [glossary, semantic-foundation, anatomy]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: al-site
     resource: https://github.com/talkasab/anatomiclocations.org/blob/1f39fa45f621cef947a3f3ef1f869334cfa5c841/docs/index.markdown
@@ -22,7 +22,7 @@ sources:
 
 # Anatomic location
 
-A discrete anatomic concept, curated for imaging use and identified by a [RadLex identifier](/glossary/radlex-id.md). The rationale is stated plainly on the project site: "standard identifiers for discrete anatomic locations would enable numerous levels of interoperability if applied broadly," but existing ontologies are unsuited to that job because they lack needed terms, carry too many degenerate ones, and have limited anatomic organization. The response is curation: "we are curating a subset of anatomic concepts from existing ontologies and shaping them into a usable collection of anatomic identifiers for informatics interoperability."[^al-site]
+A discrete anatomic concept, curated for imaging use and identified by a [RadLex identifier](/glossary/radlex-id.md). The project site states that "standard identifiers for discrete anatomic locations would enable numerous levels of interoperability if applied broadly," but existing ontologies are unsuited to that job because they lack needed terms, carry too many degenerate ones, and have limited anatomic organization. The project describes its approach: "we are curating a subset of anatomic concepts from existing ontologies and shaping them into a usable collection of anatomic identifiers for informatics interoperability."[^al-site]
 
 Two implementations exist. The original curated set holds 2,890 nodes with `radlexId`, `description`, `containedById`, `partOfId`, a `leftId`/`rightId`/`unsidedId` triad, `sexSpecific`, `synonyms`, and `codes` into [SNOMED CT](/glossary/snomed-ct.md), [FMA](/glossary/fma.md), [UMLS](/glossary/umls.md), and MeSH.[^al-code] The newer `anatomic-locations` package normalizes the same material into a richer model with `region`, `location_type`, `body_system`, `structure_type`, a `laterality` enum, precomputed containment and part-of paths, and `left_variant`/`right_variant`/`generic_variant` references.[^al-package]
 
@@ -44,7 +44,7 @@ A [RadLex RID](/glossary/radlex-id.md). Sided variants in the original set use c
 
 ## Conflicts
 
-The two lineages are not synchronized and differ in count, field names, and laterality representation; see [Lineage and current implementation](/semantic-foundation/anatomic-locations/lineage-and-current-implementation.md). The next-generation CDE vocabulary defines AnatomicLocation as "an anatomical reference identified by its RadLex identity, with temporary sided-variant exceptions governed by the anatomy track," treating sided variants as provisional, whereas the OIDM sets make them first-class nodes.[^cde-context]
+The two lineages differ in count, field names, and laterality representation and are not synchronized. See [Lineage and current implementation](/semantic-foundation/anatomic-locations/lineage-and-current-implementation.md). The next-generation CDE vocabulary defines AnatomicLocation as "an anatomical reference identified by its RadLex identity, with temporary sided-variant exceptions governed by the anatomy track," treating sided variants as provisional, whereas the OIDM sets make them first-class nodes.[^cde-context]
 
 [^al-site]: anatomiclocations.org site homepage
 [^al-code]: anatomiclocations.org data file description

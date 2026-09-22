@@ -1,10 +1,10 @@
 ---
 type: Reference
 title: Sample data
-description: The synthetic patients, exams, and findings that make up the Exam Finding List and Imaging Problem List sample data, what changes between branches, where the viewer bundles live, and how to regenerate everything.
+description: Synthetic exam and problem list samples, branch differences, viewer bundles, and generation scripts.
 tags: [data-structures, sample-data, reference, synthetic]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: ipl-main-claude
     resource: https://github.com/openimagingdata/imaging-problem-list/blob/06f64a7893b444b761dc069ed86140a081195eac/CLAUDE.md
@@ -34,7 +34,7 @@ sources:
 
 # All of it is synthetic
 
-Every patient, identifier, date, and line of report text in this data set is written test data. The names, medical record numbers, and birth dates do not belong to real people, and the reports were authored for the project. Counts below were read at commit `06f64a7` on `main` and `36fa30c` on `dev`.
+Every patient, identifier, date, and line of report text in this data set is written test data. The names, medical record numbers, and birth dates do not belong to real people, and the reports were authored for the project. Counts were read at `06f64a7` on `main` and `36fa30c` on `dev`.
 
 # The three sample sets
 
@@ -65,7 +65,7 @@ Findings per exam range from 9 on the shoulder radiograph to 48 on the January 2
 
 # What the branches differ on
 
-The two branches hold the same exams and very nearly the same findings. What changed on `dev` is the anatomic enrichment and the regrouping that followed it.
+The branches contain the same exams and nearly the same findings. The development branch adds anatomic enrichment and regroups findings.
 
 | Measure | `main` | `dev` |
 |---|---|---|
@@ -75,7 +75,7 @@ The two branches hold the same exams and very nearly the same findings. What cha
 | Entries in the `example2` Imaging Problem List | 98 | 123 |
 | Observations in that problem list | 275 | 276 |
 
-The two observations without a location are in the brain magnetic resonance study, where the assignment rules require leaving a structure unassigned rather than forcing a wrong code when the ontology has no entry for it. The jump from 98 entries to 123 is the grouping key change, from finding code alone to finding code and location identifier; the observations did not multiply, the groups got finer. Both are explained in [Imaging Problem List](/data-structures/imaging-problem-list.md).
+Two observations in the brain magnetic resonance study lack locations because the ontology has no matching structures. Assignment rules leave them unassigned. Grouping by finding code and location instead of code alone increases the problem list from 98 to 123 entries. See [Imaging Problem List](/data-structures/imaging-problem-list.md).
 
 # File layout
 
@@ -98,7 +98,7 @@ sample_data/
   example3/                          31 .txt reports, dev branch only
 ```
 
-The viewer reads a different, nested layout, documented in the repository's own notes.[^ipl-main-claude]
+The repository notes document the viewer's nested layout.[^ipl-main-claude]
 
 ```
 viewer/data/
@@ -113,13 +113,13 @@ viewer/data/
   finding_region_mappings.json             98 finding-to-body-region entries
 ```
 
-Its bundle covers both synthetic patients: `patient-mrn0000001` with 10 exams and 98 problem list entries, and `patient-mrn0000002` with 2 exams and 10 entries. **This bundle was not re-enriched.** On both `main` and `dev` it holds the 98-entry, location-free problem list, so the deployed first-generation [viewer](/applications/imaging-problem-list-viewer.md) shows the pre-anatomy data.
+The bundle covers `patient-mrn0000001` with 10 exams and 98 problem list entries, and `patient-mrn0000002` with 2 exams and 10 entries. It was not re-enriched on either branch. The deployed first-generation [viewer](/applications/imaging-problem-list-viewer.md) therefore shows the 98-entry, location-free list.
 
 The second-generation viewer has its own bundle under `viewer_v2/public/data/`, built from `sample_data/example2`, carrying the 123-entry anatomy-grouped list for the one patient, with reports as markdown rather than text and extra files for the anatomy index, anatomy clusters, and finding display information. Its manifest is stamped `viewer-v2-data.1` and records its own source paths and warnings.
 
 ## The spreadsheet
 
-`findings_with_oifm_ids.xlsx` is the human working sheet the whole `example2` set was built from. It is one row per finding per exam, with columns Exam Date, Exam Type, Exam Code, Finding, OIDM Finding Model Name, OIDM FMID, Presence OIFMA_ID, Present/Absent, and Text.[^excel-script] It records where the [finding model](/glossary/finding-model.md) and [attribute](/glossary/attribute.md) identifiers were assigned by hand, which is why it is worth keeping alongside the generated JSON.
+`findings_with_oifm_ids.xlsx` is the working sheet for `example2`, with one row per finding per exam. Its columns are Exam Date, Exam Type, Exam Code, Finding, OIDM Finding Model Name, OIDM FMID, Presence OIFMA_ID, Present/Absent, and Text.[^excel-script] It records where the [finding model](/glossary/finding-model.md) and [attribute](/glossary/attribute.md) identifiers were assigned by hand, which is why it is worth keeping alongside the generated JSON.
 
 # Regenerating
 
@@ -132,7 +132,7 @@ Four scripts produce the data, in this order.
 | `generate_ipl_from_efls.py` | reads a directory of `*_efl.json` files sorted by filename, groups by finding code and location identifier, writes one `ipl.json`[^ipl-script] |
 | `build_viewer_v2_data.py` | builds the static JSON bundle the second-generation viewer serves[^viewer2-script] |
 
-Only the enrichment step calls a language model. The other three are deterministic. Exact invocation belongs with the code and is not repeated here; see the repository.
+Only enrichment calls a language model. The other three scripts are deterministic. See the repository for commands.
 
 [^ipl-main-claude]: imaging-problem-list domain model notes, main branch
 [^excel-script]: generate_efl_from_excel.py

@@ -4,7 +4,7 @@ title: What is OIDM
 description: The mission of the Open Imaging Data Model, the problem it addresses, its three layers, who it serves, and where its work lives.
 tags: [overview, orientation]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T15:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:34:50Z }
 sources:
   - id: deck
     resource: https://gamma.app/docs/Open-Imaging-Data-Model-2026-Status-Update:-Realizing-Object-Oriented-Imaging-Results-yfxzx4q9zssafal
@@ -25,46 +25,46 @@ sources:
 
 # What OIDM is
 
-The [Open Imaging Data Model (OIDM)](/glossary/oidm.md) is an open project that defines how the results of an imaging exam are represented as data rather than as prose. Its stated purpose, in the words of the project site, is "defining unified data structures to integrate new functionality into imaging informatics platforms."[^site-about] The January 2026 status deck puts the same ambition more bluntly: standardizing "the DNA of imaging IT."[^deck]
+The [Open Imaging Data Model (OIDM)](/glossary/oidm.md) is an open project that represents imaging exam results as structured data. The project site describes its purpose as "defining unified data structures to integrate new functionality into imaging informatics platforms."[^site-about] The January 2026 status deck calls this standardizing "the DNA of imaging IT."[^deck]
 
-Concretely, OIDM supplies three things. It supplies a controlled vocabulary of imaging findings and the attributes that characterize them, each carrying a stable identifier. It supplies a small hierarchy of data structures that carry those findings from a single [observation](/glossary/observation.md) up to a longitudinal view of one patient. And it supplies working tools that produce and consume those structures, so that the vocabulary and the structures are exercised against real reports rather than only specified.
+OIDM provides a controlled vocabulary, data structures, and tools that produce and consume them. Stable identifiers connect findings and their attributes across individual [observations](/glossary/observation.md) and longitudinal patient records. The tools apply the vocabulary and structures to real reports.
 
 # The problem: results locked in narrative
 
-An imaging report is the product of the exam, and it is almost always a block of narrative text. That text is readable by a clinician and opaque to everything else. A downstream system that wants to know whether a pulmonary nodule was present on the most recent chest CT, how large it was, and whether it grew, has to re-read the prose every time, and each system re-reads it differently.
+Imaging reports are usually narrative text. To determine whether a pulmonary nodule was present on the latest chest CT, how large it was, or whether it grew, downstream systems must interpret that text. Each system interprets it differently.
 
-The consequences compound across the imaging life cycle. Prior findings cannot be retrieved reliably at interpretation time, so radiologists reconstruct history by reading old reports. Recommendations made in a report cannot be tracked to completion. Quality metrics and registry submissions require manual abstraction. Findings produced by artificial intelligence tools and findings produced by radiologists cannot be compared, because they are not expressed in the same terms. Each vendor that solves part of this solves it privately, in its own schema, which means the solution does not travel.
+Radiologists reconstruct finding histories from old reports because prior findings cannot be retrieved reliably. Recommendations cannot be tracked to completion. Quality metrics and registry submissions require manual abstraction. Artificial intelligence tools and radiologists express findings differently, preventing comparison. Vendors address these problems with private schemas that other systems cannot reuse.
 
-OIDM's response is to make the finding, not the report, the unit of data. A finding gets a coded identity, a coded location, coded attributes, and a place in a structure that other systems can query. The 2023 site post that set the direction states it as: "Radiology findings can be represented in a standard format based on FHIR Observations semantically labeled with ACR/RSNA Common Data Element identifiers."[^site-findings]
+OIDM gives each finding a coded identity, location, and attributes in a queryable structure. The 2023 site post states the approach: "Radiology findings can be represented in a standard format based on FHIR Observations semantically labeled with ACR/RSNA Common Data Element identifiers."[^site-findings]
 
 # Three layers
 
-The project organizes its work into three layers, and this knowledgebase follows that organization.
+The project and this knowledgebase organize the work into three layers.
 
-**Semantic foundation.** The vocabulary layer. It holds [finding models](/glossary/finding-model.md), each a named finding with a description, synonyms, and a list of attributes, identified by an [Open Imaging Finding Model (OIFM)](/glossary/oifm.md) identifier.[^fm-schema] It holds [anatomic locations](/glossary/anatomic-location.md) keyed by RadLex identifiers, [common data elements](/glossary/cde.md) published through RadElement, [exam types](/glossary/exam-type.md), and the external terminologies all of these draw on. See [semantic-foundation](/semantic-foundation/).
+**Semantic foundation.** [Finding models](/glossary/finding-model.md) define findings with descriptions, synonyms, and attributes. Each has an [Open Imaging Finding Model (OIFM)](/glossary/oifm.md) identifier.[^fm-schema] The layer also includes [anatomic locations](/glossary/anatomic-location.md) keyed by RadLex identifiers, [common data elements](/glossary/cde.md) published through RadElement, [exam types](/glossary/exam-type.md), and external terminologies. See [semantic-foundation](/semantic-foundation/).
 
-**Data structures.** The container layer. An [Observation](/glossary/observation.md) is one finding in one exam, with its location and attribute values. An [Exam Finding List](/glossary/exam-finding-list.md) is every observation from one exam in one queryable structure.[^ipl-readme] An [Imaging Problem List](/glossary/imaging-problem-list.md) reorganizes observations across a patient's exams by finding rather than by date. An [Imaging Persona](/glossary/imaging-persona.md) is the stated goal of surrounding that with clinical context. See [data-structures](/data-structures/).
+**Data structures.** An [Observation](/glossary/observation.md) records one finding in one exam, with its location and attribute values. An [Exam Finding List](/glossary/exam-finding-list.md) collects an exam's observations in one queryable structure.[^ipl-readme] An [Imaging Problem List](/glossary/imaging-problem-list.md) groups observations across a patient's exams by finding. An [Imaging Persona](/glossary/imaging-persona.md) is the stated goal of adding clinical context. See [data-structures](/data-structures/).
 
-**Applications.** The tools that make the first two layers real: an authoring application for finding models, a catalog site, a viewer for Imaging Problem Lists, a report extraction and coding platform, and a terminology lookup library. See [applications](/applications/).
+**Applications.** Tools include a finding model authoring application, a catalog site, an Imaging Problem List viewer, a report extraction and coding platform, and a terminology lookup library. See [applications](/applications/).
 
-Each layer depends on the one below it, and the identifiers are what join them. How the layers and identifier systems connect is laid out in [Architecture](/overview/architecture.md), and the reasoning behind the whole design in [Vision](/overview/vision.md).
+Each layer depends on the one below it through shared identifiers. [Architecture](/overview/architecture.md) explains those connections. [Vision](/overview/vision.md) explains the design rationale.
 
 # Who this is for
 
-- **Developers** building imaging informatics software who need formats to read and write, and libraries that already speak them.
-- **Informaticists** who need to know what a finding model is, how it relates to a common data element, and what identifier to use for an anatomic structure.
-- **Standards bodies and committees** evaluating the vocabulary and data structures, and deciding what should graduate into formal standards.
-- **Agents** doing extraction, coding, or authoring work, which is why this knowledgebase is an Open Knowledge Format bundle with machine-readable frontmatter on every document.
+- Developers building imaging informatics software need formats and libraries to read and write them.
+- Informaticists need to understand finding models, their relationship to common data elements, and identifiers for anatomic structures.
+- Standards bodies and committees evaluate vocabulary and data structures for formal standardization.
+- Agents extract, code, or author content. This knowledgebase is an Open Knowledge Format bundle with machine-readable frontmatter to support that work.
 
 # Where things live
 
-The work is spread across repositories in the `openimagingdata` GitHub organization plus several allied external projects. Content, code, specifications, and in-flight work do not all live in the same place, and several repositories have their current state on a branch other than `main`. [The repository map](/repositories/repository-map.md) lists every source repository, its role, its status, and its branch of record.
+OIDM spans repositories in the `openimagingdata` GitHub organization and allied projects. Several repositories keep current work on branches other than `main`. [The repository map](/repositories/repository-map.md) lists their roles, status, and branches of record.
 
-This knowledgebase is the high-level documentation. It describes and links to catalogs; it does not copy them. Installation instructions, API usage, and developer workflow stay with the code.
+It describes and links to catalogs; it does not copy them. Installation instructions, API usage, and developer workflows stay with the code.
 
 # Getting involved
 
-Participation channels, the repositories to start with, how to file issues, and how content is contributed are covered in [Getting involved](/overview/getting-involved.md). Conventions for editing this knowledgebase itself are in [the authoring guide](/guides/authoring-guide.md).
+See [Getting involved](/overview/getting-involved.md) for participation channels, repositories, issues, and content contributions. See [the authoring guide](/guides/authoring-guide.md) for knowledgebase conventions.
 
 [^deck]: Open Imaging Data Model 2026 Status Update, January 2026
 [^site-about]: openimagingdata.org, project site and tagline

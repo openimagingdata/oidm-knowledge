@@ -4,7 +4,7 @@ title: LOINC/RSNA Radiology Playbook
 description: The jointly governed radiology part of LOINC that names imaging orderables along modality, anatomy, and technique axes.
 tags: [glossary, semantic-foundation, terminologies, exam-types]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: playbook
     resource: https://loinc.org/committee/radiology/
@@ -24,7 +24,7 @@ sources:
 
 The radiology portion of [LOINC](/glossary/loinc.md), developed jointly by the Regenstrief Institute and the RSNA, which names imaging orderables along axes such as modality, anatomy, and technique.[^playbook] It is "actively governed, and freely licensed for commercial and non-commercial use. The Playbook ships twice yearly under joint Regenstrief/RSNA governance, but it is a separate artifact" from [RadLex](/glossary/radlex.md).[^current-understanding]
 
-In OIDM the Playbook is the stated basis for [exam types](/glossary/exam-type.md), and it appears only in design documents. The terminology tool's roadmap makes it "first-class in `radiology`," planning to detect both LOINC codes and legacy `RPID` Playbook identifiers, to rank orderable queries toward Playbook terms while ranking finding and anatomy queries toward RadLex, and to carry Playbook, RPID, and RadLex anatomy correspondences in crosswalk provenance.[^roadmap] The earliest statement of the idea is older still: the curated anatomic location set's roadmap calls for "a companion for exam types based on LOINC/RadLex Playbook exam definitions that specify all included body parts for the exam."[^al-site]
+In OIDM the Playbook is the stated basis for [exam types](/glossary/exam-type.md), and it appears only in design documents. The terminology roadmap makes it "first-class in `radiology`," with planned detection of LOINC codes and legacy `RPID` Playbook identifiers. Orderable queries would favor Playbook terms, and finding and anatomy queries would favor RadLex. Crosswalk provenance would record Playbook, RPID, and RadLex anatomy correspondences.[^roadmap] The earliest statement of the idea is older still: the curated anatomic location set's roadmap calls for "a companion for exam types based on LOINC/RadLex Playbook exam definitions that specify all included body parts for the exam."[^al-site]
 
 ## Synonyms and near-synonyms
 

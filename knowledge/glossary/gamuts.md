@@ -4,7 +4,7 @@ title: Gamuts
 description: The Radiology Gamuts Ontology, source of the largest single block of finding model definitions and of the GMTS organization code.
 tags: [glossary, semantic-foundation, terminologies, content]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: gamuts
     resource: https://gamuts.net/
@@ -22,7 +22,7 @@ sources:
 
 # Gamuts
 
-The Radiology Gamuts Ontology, a published ontology of radiologic differential diagnosis lists, at `gamuts.net`.[^gamuts] In OIDM it plays two roles at once: it is an [index code](/glossary/index-code.md) system listed alongside SNOMED and RadLex as one of the common ontologies,[^claude-md] and it is a registered contributing organization whose [organization code](/glossary/oidm-organization-code.md) is `GMTS`.[^orgs]
+The Radiology Gamuts Ontology, a published ontology of radiologic differential diagnosis lists, at `gamuts.net`.[^gamuts] OIDM uses it as an [index code](/glossary/index-code.md) system listed alongside SNOMED and RadLex as one of the common ontologies,[^claude-md] and it is a registered contributing organization whose [organization code](/glossary/oidm-organization-code.md) is `GMTS`.[^orgs]
 
 Gamuts is the single largest source of finding model content. Of the 2,382 definitions published in the corpus, 1,933 carry an `OIFM_GMTS_` identifier, credited to the Radiology Gamuts Ontology as the contributing organization. They were produced by a script that scrapes gamut pages, structures the terms with a language model, and emits them for conversion into definitions.
 
@@ -31,7 +31,7 @@ Gamuts is the single largest source of finding model content. Of the 2,382 defin
 - **Radiology Gamuts Ontology** is the full name; **gamut** alone means one differential list.
 - **`GMTS`** is the organization code and the middle segment of the identifiers.
 - **`GAMUTS`** is the `system` string when a gamut concept is cited as an index code.
-- **[Finding taxonomy](/glossary/finding-taxonomy.md)** is the newer content spine that is expected to supersede much of this material.
+- **[Finding taxonomy](/glossary/finding-taxonomy.md)** is the newer content source expected to supersede much of this material.
 
 ## Identifier form
 
@@ -43,7 +43,7 @@ Finding models derived from this source carry `OIFM_GMTS_######`, for example `O
 
 ## Conflicts
 
-A gamut is a differential diagnosis list, so Gamuts-derived definitions carry diagnoses where OIDM's authoring guidance would sometimes want an observation. The open definition cleanup plan lists "gamuts reclassification" as a step that "needs design discussion," and it is the one step in that plan with no agreed approach.[^cleanup] The content roadmap expects the MGB exam-oriented sub-taxonomies to replace many of these definitions.
+A gamut is a differential diagnosis list, so Gamuts-derived definitions carry diagnoses where OIDM's authoring guidance would sometimes want an observation. The open definition cleanup plan lists "gamuts reclassification" as a step that "needs design discussion," the only step without an agreed approach.[^cleanup] The content roadmap expects the MGB exam-oriented sub-taxonomies to replace many of these definitions.
 
 [^gamuts]: Radiology Gamuts Ontology
 [^orgs]: Base organization registry

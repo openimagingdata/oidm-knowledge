@@ -4,7 +4,7 @@ title: Attribute
 description: A property a radiologist uses to characterize a finding, either a choice attribute with an enumerated value set or a numeric attribute with a range and unit.
 tags: [glossary, semantic-foundation, finding-models]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: fm-py
     resource: https://github.com/openimagingdata/findingmodel/blob/75afd39a400419dcfaf7c8d4a34f065b4d804e0d/packages/findingmodel/src/findingmodel/finding_model.py
@@ -22,7 +22,7 @@ sources:
 
 # Attribute
 
-"An attribute that a radiologist would use to characterize a particular finding in a radiology report."[^fm-py] Every [finding model](/glossary/finding-model.md) carries at least one. There are exactly two kinds.
+"An attribute that a radiologist would use to characterize a particular finding in a radiology report."[^fm-py] Every [finding model](/glossary/finding-model.md) has at least one attribute. There are exactly two kinds.
 
 | Kind | Discriminator | Distinctive fields |
 |---|---|---|
@@ -48,7 +48,7 @@ Both kinds carry `oifma_id`, `name`, an optional `description`, a `required` fla
 
 ## Conflicts
 
-The committee record shows an unresolved naming debate between "element," "attribute," and "data element" for this concept, and the next-generation working glossary settles on DataElement while OIFM keeps "attribute."[^siim][^cde-context] The two words denote nearly the same thing with different scoping rules, so a document must say which vocabulary it is using.
+Committee discussions left the choice between "element," "attribute," and "data element" unresolved. The next-generation glossary uses DataElement, while OIFM uses "attribute."[^siim][^cde-context] The two words denote nearly the same thing with different scoping rules, so a document must say which vocabulary it is using.
 
 [^fm-py]: ChoiceAttribute and NumericAttribute in the findingmodel package
 [^fm-schema]: Finding model schema, prose mirror

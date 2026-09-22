@@ -4,7 +4,7 @@ title: Anatomic scope
 description: The eligible anatomical places, tissue types, or structure types for a definition, stated as a constraint rather than as a location.
 tags: [glossary, semantic-foundation, anatomy, next-generation]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: cde-context
     resource: https://github.com/RSNA/ACR-RSNA-CDEs/blob/44836c19f4e025cf1684a015ed5cc63c29eaf7f3/CONTEXT.md
@@ -42,7 +42,7 @@ None. Scope is expressed as a list of concepts or scope specifiers.
 
 ## Conflicts
 
-There is no scope field in the OIFM format. Scope exists only as authoring guidance and as reviewer judgment, so it cannot be checked mechanically the way a typed scope specifier could.
+There is no scope field in the OIFM format. Scope exists only as authoring guidance and as reviewer judgment, without the automated checks a typed scope specifier could support.
 
 [^cde-context]: CDE vocabulary, next-generation working glossary
 [^overview]: "Finding Models: Overview"

@@ -1,10 +1,10 @@
 ---
 type: Reference
 title: Open questions
-description: Every conflict between sources and every unverified fact found while building this knowledgebase, grouped by area, with the sources on each side and the owner where one is indicated.
+description: Every conflict between sources and every unverified fact found while building this knowledgebase, grouped by area, with the sources on each side and the owner where one is indicated, plus the defects found in source documents.
 tags: [roadmap, open-questions, conflicts, gaps]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T19:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: deck
     resource: https://gamma.app/docs/Open-Imaging-Data-Model-2026-Status-Update:-Realizing-Object-Oriented-Imaging-Results-yfxzx4q9zssafal

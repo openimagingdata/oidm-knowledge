@@ -4,7 +4,7 @@ title: Status update, January 2026
 description: A faithful extract of the January 2026 OIDM status deck, "Realizing Object-Oriented Imaging Results", slide by slide.
 tags: [references, deck, vision, roadmap]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T15:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: deck
     resource: https://gamma.app/docs/Open-Imaging-Data-Model-2026-Status-Update:-Realizing-Object-Oriented-Imaging-Results-yfxzx4q9zssafal
@@ -13,9 +13,9 @@ sources:
 
 # About this extract
 
-This is an extract of the January 2026 Open Imaging Data Model (OIDM) status deck, presented by the project lead under the running subtitle "Standardizing the DNA of Imaging IT."[^deck] Sections below follow the deck's slides in order and keep its wording and emphasis. Two departures from the source are noted where they occur: the collaborators slide is reduced to organizations, per this knowledgebase's convention of naming organizations and not individuals, and screenshots are described rather than reproduced.
+This extract follows the January 2026 Open Imaging Data Model (OIDM) status deck, presented by the project lead under the subtitle "Standardizing the DNA of Imaging IT."[^deck] Sections below follow the deck's slides in order and keep its wording and emphasis. Two departures from the source are noted where they occur: the collaborators slide is reduced to organizations, per this knowledgebase's convention of naming organizations and not individuals, and screenshots are described rather than reproduced.
 
-The deck is the primary statement of OIDM's direction as of early 2026. Where it names something that does not yet exist, this extract keeps the claim as the deck makes it; [Architecture](/overview/architecture.md) states the implementation status of each piece, and [Vision](/overview/vision.md) works through the reasoning.
+The deck is the primary statement of OIDM's direction as of early 2026. Where it names something that does not yet exist, this extract keeps the claim as the deck makes it. See [Architecture](/overview/architecture.md) for implementation status and [Vision](/overview/vision.md) for the rationale.
 
 # Title
 

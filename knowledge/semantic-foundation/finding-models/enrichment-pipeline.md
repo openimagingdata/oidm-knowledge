@@ -4,7 +4,7 @@ title: Metadata enrichment pipeline
 description: How finding model definitions get structured metadata assigned by language models, what shipped, what the canonical rewrite on the work edge changes, and why it has not been released.
 tags: [semantic-foundation, finding-models, enrichment, metadata, concept]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: prd
     resource: https://github.com/openimagingdata/findingmodel/blob/75afd39a400419dcfaf7c8d4a34f065b4d804e0d/docs/finding-enrichment-prd.md
@@ -46,7 +46,7 @@ sources:
 
 # The problem
 
-A [finding model](/glossary/finding-model.md) definition written by a person carries a name, a description, synonyms, and [attributes](/glossary/attribute.md). It usually does not carry ontology codes, anatomic locations, or the classification facts that make a corpus of 2,382 definitions browsable: which body region, which subspecialty reads it, which modalities show it, whether it is a finding or a diagnosis. Assigning those by hand across the corpus is not practical, so the project built a language-model pipeline to propose them.
+Authors supply [finding model](/glossary/finding-model.md) names, descriptions, synonyms, and [attributes](/glossary/attribute.md). Ontology codes, locations, body regions, subspecialties, modalities, and finding-versus-diagnosis classification are often missing. A language-model pipeline proposes these metadata across the 2,382-definition corpus.
 
 Two generations of that pipeline exist. The first shipped and is on `main`. The second is a rewrite on the work edge that has not been released.
 
@@ -68,11 +68,11 @@ The goal is stated as making structured metadata "canonical `FindingModel` state
 
 ## Seven agents, not one
 
-Where the optimization proposal recommended one unified classifier, the rewrite went the other way. A decision record on the branch states that assignment is performed by seven focused agents, each with a lean external prompt and each emitting a typed decision: entity type, etiology and tempo, patient applicability, subspecialty domain, modality applicability, ontology decision, and anatomy decision. The reason given is that "focused agents allow concise/clean prompts, per-field evaluation, and targeted tuning of weak fields," accepting more model calls per finding as the cost.[^adr2]
+Where the optimization proposal recommended one unified classifier, the rewrite went the other way. The rewrite uses seven agents with external prompts and typed outputs: entity type, etiology and tempo, patient applicability, subspecialty domain, modality applicability, ontology decision, and anatomy decision. ADR 0002 states that "focused agents allow concise/clean prompts, per-field evaluation, and targeted tuning of weak fields," at the cost of more calls.[^adr2]
 
-An orchestrator, `assign_metadata()`, gathers candidates and assembles the decisions but "never decides a field value itself."[^agent-arch] It runs in stages: candidate gathering from ontology search and the anatomic index, bounded by a configurable limit defaulting to 15; then the ontology and anatomy agents, which select among those candidates rather than generating values; then entity type, patient applicability, subspecialty, and modality in parallel; then etiology and tempo, which runs last because it depends on entity type and is validated against it. Two search-agent pairs feed candidates and never set final metadata. An auditor is advisory only.
+`assign_metadata()` assembles decisions but "never decides a field value itself."[^agent-arch] It gathers ontology and anatomy candidates with a configurable limit defaulting to 15, then asks ontology and anatomy agents to select from them. Entity type, patient applicability, subspecialty, and modality run in parallel. Etiology and tempo run last, depending on and validated against entity type. Two search-agent pairs supply candidates without setting metadata. An auditor provides advice only.
 
-Each agent has its own component evaluation, which is what makes per-field tuning possible.
+Each agent has a component evaluation for tuning its fields.
 
 ## Releasing without breaking anyone
 
@@ -80,13 +80,13 @@ A third decision record covers distribution. Two DuckDB artifacts are published 
 
 # Why it has not shipped
 
-The branch measures itself and reports failure. A prompt-improvement document dated 2026-06-03 records raising the expected time course score from 0.69 to between 0.76 and 0.78, and the etiologies score from 0.74 to between 0.91 and 0.93 by scoring errors asymmetrically according to clinical consequence. It then states that overall readiness remains a failure because age profile and index codes are still below the quality floor.[^tempo]
+The 2026-06-03 prompt-improvement document reports expected time course scores rising from 0.69 to between 0.76 and 0.78 and etiology from 0.74 to between 0.91 and 0.93. Scoring weighted errors asymmetrically by clinical consequence. Age profile and index codes still failed the quality floor, so overall readiness failed.[^tempo]
 
-The index codes weakness was traced separately. At roughly 0.674 against a floor of 0.85 it was the weakest field, and the cause was missing RadElement coverage in the ontology search. Adding that coverage alone reached about 0.736, which the document calls insufficient; the approach that followed splits searchable source codes from codes carried forward.[^index-codes]
+Index codes scored about 0.674 against a 0.85 floor, the weakest field, and the cause was missing RadElement coverage in the ontology search. Adding it raised the score to about 0.736, still insufficient. Subsequent work separates searchable source codes from carried-forward codes.[^index-codes]
 
 The active plan on the branch is therefore not a corpus run. Its stated goal is to get the branch and the sibling data repository "to a coherent, reviewable, git-clean state so we can move toward supervised corpus enrichment," and it says so explicitly: "The immediate milestone is not a broad corpus run."[^current-plan] Five ordered commits cover documentation consolidation, review-evidence fixtures and gate validation tests, tool and prompt refactoring, data-repository apply tooling, and the approved baseline. The plan also records "No commits are made without explicit permission."
 
-The human review evidence it protects is specific: 150 unique reviewed records and 180 review events, with a latest effective status of 67 approved and 83 requiring feedback, up from an original 46 approved after a targeted follow-up pass updated 21 records.
+Review evidence covers 150 unique records and 180 events. Current effective statuses are 67 approved and 83 requiring feedback. A follow-up pass updated 21 records, increasing approvals from 46 to 67.
 
 # The data side
 

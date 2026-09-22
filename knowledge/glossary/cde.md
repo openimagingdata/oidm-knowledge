@@ -4,7 +4,7 @@ title: CDE
 description: Common data element, the ACR and RSNA programme of governed, balloted definitions for radiology findings and their elements.
 tags: [glossary, semantic-foundation, cde]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: cde-repo
     resource: https://github.com/openimagingdata/common_data_elements/blob/35536d8c858bcd33e730a00c919edaef2e310a0b/README.md
@@ -24,7 +24,7 @@ sources:
 
 **Common data element (CDE).** A governed definition of a radiology finding or of one property of a finding, authored and balloted through the ACR and RSNA Common Data Elements programme and published on [RadElement](/glossary/radelement.md).[^cde-repo] The word is used at two granularities, which is the main source of confusion: a [CDE set](/glossary/cde-set.md) is a whole finding, a [CDE element](/glossary/cde-element.md) is one property inside it.
 
-CDEs are the standards-track counterpart of OIDM's own [finding models](/glossary/finding-model.md). The 2026 status deck describes finding models as a "CDE workbench": a proving ground where LLM-assisted authoring produces content quickly, and the best of it graduates into the formal CDE process.[^deck] The 2023 site post that set the project's direction describes findings as FHIR Observations "semantically labeled with ACR/RSNA Common Data Element identifiers."[^site-findings]
+CDEs are the standards-track counterpart of OIDM's own [finding models](/glossary/finding-model.md). The 2026 status deck describes finding models as a "CDE workbench": a proving ground where LLM-assisted authoring produces content quickly, and the best of it graduates into the formal CDE process.[^deck] The 2023 site post describes findings as FHIR Observations "semantically labeled with ACR/RSNA Common Data Element identifiers."[^site-findings]
 
 Between informal authoring and publication sits a staging step: `CDEStaging` holds candidate definitions "prior to their entering the review pipeline."[^staging]
 

@@ -1,10 +1,10 @@
 ---
 type: Concept
 title: Why anatomic locations
-description: Why OIDM curates its own anatomic location set instead of pointing at an existing ontology, and every place those identifiers are used across the model.
+description: Why OIDM curates anatomic identifiers and where the model uses them.
 tags: [semantic-foundation, anatomic-locations, radlex, rationale]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T17:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: al-site
     resource: https://github.com/talkasab/anatomiclocations.org/blob/1f39fa45f621cef947a3f3ef1f869334cfa5c841/docs/index.markdown
@@ -28,9 +28,9 @@ sources:
 
 # The problem the set solves
 
-The premise is stated in one sentence on the project site: "Standard identifiers for discrete anatomic locations would enable numerous levels of interoperability if applied broadly."[^al-site] Two systems that agree a lesion sits at `RID2772` agree on the kidney without sharing a database, a vendor, or a schema.
+The project site states: "Standard identifiers for discrete anatomic locations would enable numerous levels of interoperability if applied broadly."[^al-site] Systems using `RID2772` agree on the kidney without sharing a database, vendor, or schema.
 
-The obvious way to get such identifiers is to adopt an existing anatomy ontology whole. The site says why that was rejected. Attempts to use [RadLex](/glossary/radlex.md) or [SNOMED CT](/glossary/snomed-ct.md) directly run into three problems:[^al-site]
+The site identifies three problems with adopting [RadLex](/glossary/radlex.md) or [SNOMED CT](/glossary/snomed-ct.md) directly:[^al-site]
 
 - **Lack of numerous desired terms.** Structures radiologists name every day are missing.
 - **Too many unnecessary or degenerate terms.** Several concepts denote the same structure, so a coder has no principled way to choose one and a consumer cannot tell two records mean the same place.
@@ -38,15 +38,15 @@ The obvious way to get such identifiers is to adopt an existing anatomy ontology
 
 # Curation as the answer
 
-The response is a curated subset rather than a new ontology: "We are curating a subset of anatomic concepts from existing ontologies and shaping them into a usable collection of anatomic identifiers for informatics interoperability."[^al-site] The method was to start from RadLex terms already recognized in radiology reports, keep the used and useful ones, place each in an anatomic hierarchy, attach cross-references to other ontologies, and record [laterality](/glossary/laterality.md) and sex phenotype.[^al-site]
+"We are curating a subset of anatomic concepts from existing ontologies and shaping them into a usable collection of anatomic identifiers for informatics interoperability."[^al-site] The project selected useful RadLex terms from radiology reports, organized them in an anatomic hierarchy, and added ontology cross-references, [laterality](/glossary/laterality.md), and sex phenotype.[^al-site]
 
-Two properties are claimed for the result and are the point of the exercise. It is complete enough, containing "almost all clinically used anatomic terms." It is non-degenerate, with "no uncertainty as to which node represents a structure."[^al-site] Non-degeneracy is what makes the identifier usable as a join key. See [anatomic location](/glossary/anatomic-location.md) for the term itself and [the data model](/semantic-foundation/anatomic-locations/data-model.md) for the record shape.
+The site claims coverage of "almost all clinically used anatomic terms." It also claims "no uncertainty as to which node represents a structure."[^al-site] Unambiguous identifiers can serve as join keys. See [anatomic location](/glossary/anatomic-location.md) and [the data model](/semantic-foundation/anatomic-locations/data-model.md).
 
 # Separable identity
 
-Anatomy is one of the two axes of an [Observation](/glossary/observation.md), and the model keeps it separate from the other. The January 2026 status update states the atomic unit as "what plus where plus attributes: finding tag plus anatomic location plus lesion characteristics," and says anatomy is "baked into OIFM definitions and Observation objects."[^deck] The set is "curated to identify where findings are visualized on imaging exams," which is a narrower target than anatomy in general and explains why structures with no imaging appearance are absent.[^deck]
+An [Observation](/glossary/observation.md) separates the finding from its location. The January 2026 update describes "what plus where plus attributes: finding tag plus anatomic location plus lesion characteristics," with anatomy "baked into OIFM definitions and Observation objects."[^deck] The set is "curated to identify where findings are visualized on imaging exams," excluding structures with no imaging appearance.[^deck]
 
-Separating what from where is what lets a single [finding model](/glossary/finding-model.md) for a cyst serve the kidney, the liver, and the breast, and what lets the [Imaging Problem List](/glossary/imaging-problem-list.md) offer "precision filtering via anatomy-embedded definitions."[^deck]
+A single [finding model](/glossary/finding-model.md) for a cyst can therefore apply to the kidney, liver, or breast. The [Imaging Problem List](/glossary/imaging-problem-list.md) uses this separation for "precision filtering via anatomy-embedded definitions."[^deck]
 
 # Where the identifiers are used
 
@@ -58,11 +58,11 @@ Separating what from where is what lets a single [finding model](/glossary/findi
 | Finding and location [coding](/glossary/coding.md) | The coding pass generates search terms, searches the location index, and has a selector choose from the returned candidates, with assignment governed by a stated precedence ladder[^ipl-rules] |
 | Imaging Problem List viewer | Region and organ-cluster filters, and a body schematic whose zones are driven by the location's region and laterality[^viewer-plan] |
 
-The rule that keeps this honest is stated with the assignment rules: every assigned identifier must exist in the set, and a structure absent from it is left unassigned rather than forced to a wrong code.[^ipl-rules] That discipline turns missing terms into a visible list of requests rather than silent mis-coding. See [RadLex integration](/semantic-foundation/anatomic-locations/radlex-integration.md) for where those requests go.
+Every assigned identifier must exist in the set. Missing structures stay unassigned to avoid incorrect codes.[^ipl-rules] See [RadLex integration](/semantic-foundation/anatomic-locations/radlex-integration.md) for term requests.
 
 # What curation costs
 
-A curated set is a maintained artifact, not a free one. The site's own roadmap names the standing content work: review the hierarchy, add, prune, and modify; edit and improve synonyms; complete SNOMED identification.[^al-site] It also names the companion effort that has not been built, "a companion for exam types based on LOINC/RadLex Playbook exam definitions that specify all included body parts for the exam," which remains the earliest written statement of the [exam type](/glossary/exam-type.md) goal.[^al-site] See [exam types](/semantic-foundation/exam-types/overview.md).
+The site's roadmap calls for reviewing, adding, pruning, and modifying hierarchy nodes, improving synonyms, and completing SNOMED identification.[^al-site] It also proposes "a companion for exam types based on LOINC/RadLex Playbook exam definitions that specify all included body parts for the exam," the earliest written [exam type](/glossary/exam-type.md) goal.[^al-site] It remains unbuilt. See [exam types](/semantic-foundation/exam-types/overview.md).
 
 [^al-site]: anatomiclocations.org site homepage, rationale, approach, and roadmap
 [^deck]: Open Imaging Data Model 2026 Status Update, January 2026

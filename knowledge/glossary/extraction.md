@@ -4,7 +4,7 @@ title: Extraction
 description: Deriving structured findings from narrative radiology report text with a language model, producing findings, presence, location, and attributes with verbatim quotes.
 tags: [glossary, applications, extraction]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: extraction-plan
     resource: https://github.com/openimagingdata/imaging-problem-list/blob/36fa30c7383bf687d7bc17815282a93e123a56cb/initial-extraction-plan.md
@@ -25,11 +25,11 @@ sources:
 
 # Extraction
 
-Deriving structured findings from narrative radiology report text using a language model. It is the first half of the pipeline that turns a report into OIDM data: "an agent reads a radiology report and identifies findings mentioned in the text," and each finding is then matched to a definition.[^overview] The deck states the goal that an [Imaging Problem List](/glossary/imaging-problem-list.md) be "automatically extractable from narrative report text via LLMs."[^deck]
+Deriving structured findings from narrative radiology report text using a language model. The authoring overview states: "an agent reads a radiology report and identifies findings mentioned in the text," and each finding is then matched to a definition.[^overview] The deck states the goal that an [Imaging Problem List](/glossary/imaging-problem-list.md) be "automatically extractable from narrative report text via LLMs."[^deck]
 
-Extraction output is uncoded. Its schema names a finding, asserts presence as one of `present`, `absent`, `indeterminate`, or `possible`, gives an optional location of body region, specific anatomy, and laterality, a list of key-value attributes with standard keys such as size, acuity, change from prior, severity, count, and morphology, and a verbatim `report_text` quote.[^extraction-plan] Assigning identifiers is a separate job; see [coding](/glossary/coding.md).
+The uncoded output contains a finding name, presence as `present`, `absent`, `indeterminate`, or `possible`, and a verbatim `report_text` quote. An optional location records body region, specific anatomy, and laterality. Key-value attributes use standard keys such as size, acuity, change from prior, severity, count, and morphology.[^extraction-plan] Assigning identifiers is a separate job; see [coding](/glossary/coding.md).
 
-Three design decisions shape the current implementation: long reports are semantically chunked and extracted concurrently then merged and deduplicated, output quotes are validated as verbatim both during and after generation, and a reviewer sub-agent can flag issues and trigger targeted re-extraction of specific chunks.[^ipl-claude]
+The implementation splits long reports into semantic chunks, extracts them concurrently, and merges and deduplicates the results. It validates verbatim quotes during and after generation. A reviewer sub-agent can flag issues and trigger re-extraction of specific chunks.[^ipl-claude]
 
 ## Synonyms and near-synonyms
 
@@ -48,7 +48,7 @@ None. Extracted findings carry names and quotes, not identifiers, until coding r
 
 ## Conflicts
 
-The failure modes extraction guards against are stated in the validator prompt and are worth naming as part of the definition: content unsupported by the chunk text, which is hallucination; report text describing a finding that no structure represents, which is a missed finding; a finding described as present when it is not, or absent when it is possible; a finding name more specific than the text supports; incorrect representation of a blanket negative; and wrong, too specific, or too general location information.[^validator] Separately, the extraction presence value set does not match the finding model one; see [presence](/glossary/presence.md).
+The failure modes extraction guards against are stated in the validator prompt: hallucinated content unsupported by the chunk, report text describing a finding that no structure represents, which is a missed finding, a finding described as present when it is not, or absent when it is possible, overly specific finding names, misrepresented blanket negatives, and incorrect or overly specific or general locations.[^validator] Separately, the extraction presence value set does not match the finding model one; see [presence](/glossary/presence.md).
 
 [^extraction-plan]: Initial extraction plan
 [^ipl-claude]: imaging-problem-list architecture notes

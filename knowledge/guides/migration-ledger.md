@@ -4,12 +4,12 @@ title: Migration ledger
 description: Every document migrated into this knowledgebase from a working repository, with its origin, commit, and destination.
 tags: [meta, migration]
 status: draft
-generated: { by: claude-fable-5-1/claude-code, at: 2026-09-21T01:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 ---
 
 # Overview
 
-This ledger records each document whose substance moved from a working repository into this bundle. It is the work list for the follow-up round in which working repositories replace migrated documents with links here. Add a row whenever you migrate, per the [authoring guide](/guides/authoring-guide.md).
+This ledger records each document whose substance moved from a working repository into this bundle. It is the work list for the follow-up round in which working repositories replace migrated documents with links here. Add a row whenever you migrate, following the [authoring guide](/guides/authoring-guide.md).
 
 # Ledger
 

@@ -4,7 +4,7 @@ title: FHIR Condition
 description: The HL7 FHIR resource for a clinical condition, used in the documented Imaging Problem List mapping as the container for one finding type.
 tags: [glossary, data-structures, fhir]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: fhir
     resource: https://www.hl7.org/fhir/condition.html
@@ -19,9 +19,9 @@ sources:
 
 # FHIR Condition
 
-The HL7 FHIR resource for a clinical condition, problem, or diagnosis.[^fhir] In OIDM it appears in one place: the documented FHIR mapping of an [Imaging Problem List](/glossary/imaging-problem-list.md), which is "a Report containing a list of Condition objects (labeled with the finding identifier), where each Condition object also contains a list of Observation objects which document which exams (DiagnosticReports) the finding type has been documented on, including the exam date and exam type."[^ipl-readme]
+The HL7 FHIR resource for a clinical condition, problem, or diagnosis.[^fhir] Its only OIDM use is the documented FHIR mapping of an [Imaging Problem List](/glossary/imaging-problem-list.md), which is "a Report containing a list of Condition objects (labeled with the finding identifier), where each Condition object also contains a list of Observation objects which document which exams (DiagnosticReports) the finding type has been documented on, including the exam date and exam type."[^ipl-readme]
 
-One Condition therefore stands for one finding type in one patient, and the [observations](/glossary/observation.md) under it are the evidence trail across exams.
+One Condition represents a finding type in one patient. Its [observations](/glossary/observation.md) record evidence across exams.
 
 ## Synonyms and near-synonyms
 
@@ -40,7 +40,7 @@ A FHIR resource identifier. The mapping labels each Condition with the finding i
 
 ## Conflicts
 
-Three points are unsettled. The mapping is documented and implemented nowhere; no Condition resource is produced by any OIDM code. Its container is called a "Report," which is not a FHIR resource name. And IHE IDR takes a different position on when Condition is appropriate, routing positive clinical findings to Condition and negative ones to Observation, against an OIDM working default that "every assertion in a radiology report, diagnoses included, is encoded as an Observation," partly because "'consistent with pneumonia' is a radiologist's assertion, not an established clinical condition."[^idr-extract] If that default holds, `Condition.evidence` as the finding-to-diagnosis link has nowhere to attach and an Observation-to-Observation equivalent is needed.
+Three points are unsettled. The mapping is documented but unimplemented. No OIDM code produces Condition resources. Its container is called a "Report," which is not a FHIR resource name. IHE IDR routes positive clinical findings to Condition and negative ones to Observation, against an OIDM working default that "every assertion in a radiology report, diagnoses included, is encoded as an Observation," partly because "'consistent with pneumonia' is a radiologist's assertion, not an established clinical condition."[^idr-extract] If that default holds, `Condition.evidence` as the finding-to-diagnosis link has nowhere to attach and an Observation-to-Observation equivalent is needed.
 
 [^fhir]: Condition resource, HL7 FHIR
 [^ipl-readme]: imaging-problem-list README

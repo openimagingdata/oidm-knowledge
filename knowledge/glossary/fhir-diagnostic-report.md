@@ -4,7 +4,7 @@ title: FHIR DiagnosticReport
 description: The HL7 FHIR resource for a diagnostic report, used in OIDM as the interchange encoding of an Exam Finding List.
 tags: [glossary, data-structures, fhir]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T16:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 sources:
   - id: fhir
     resource: https://www.hl7.org/fhir/diagnosticreport.html
@@ -22,9 +22,9 @@ sources:
 
 # FHIR DiagnosticReport
 
-The HL7 FHIR resource for a diagnostic report.[^fhir] In OIDM it is the documented interchange encoding of an [Exam Finding List](/glossary/exam-finding-list.md): "DiagnosticReport containing a list of Observation objects, with a finding code on each Observation and a list of components with attribute codes and values (especially present/absent and change from prior)."[^ipl-readme] In an [Imaging Problem List](/glossary/imaging-problem-list.md), DiagnosticReports are what each observation points back to, giving the exam date and [LOINC](/glossary/loinc.md) exam type.[^ipl-readme]
+The HL7 FHIR resource for a diagnostic report.[^fhir] In OIDM it is the documented interchange encoding of an [Exam Finding List](/glossary/exam-finding-list.md): "DiagnosticReport containing a list of Observation objects, with a finding code on each Observation and a list of components with attribute codes and values (especially present/absent and change from prior)."[^ipl-readme] In an [Imaging Problem List](/glossary/imaging-problem-list.md), each observation references a DiagnosticReport for its exam date and [LOINC](/glossary/loinc.md) exam type.[^ipl-readme]
 
-The lineage sample shows the shape with real data: a report with a SNOMED and HL7 category, a LOINC `code`, an inline `ImagingStudy`, `result` references to three [Observations](/glossary/observation.md), and `conclusion` with SNOMED `conclusionCode`.[^fhir-sample]
+The lineage sample contains a SNOMED and HL7 category, a LOINC `code`, an inline `ImagingStudy`, `result` references to three [Observations](/glossary/observation.md), and `conclusion` with SNOMED `conclusionCode`.[^fhir-sample]
 
 ## Synonyms and near-synonyms
 
@@ -43,7 +43,7 @@ A FHIR resource identifier. The Exam Finding List samples use UUID strings.
 
 ## Conflicts
 
-The mapping is documented and unimplemented. No FHIR resource classes exist in the extraction platform's source, and a search for DiagnosticReport across it returns nothing; the only real FHIR documents in the repository are two input samples. Those input samples also do not use the presence and change-from-prior component pattern the specification prescribes, because that pattern describes the output.[^ipl-readme] Separately, IHE IDR would encode the attribute layer with `hasMember` rather than components.[^idr-extract]
+The mapping is documented but unimplemented. No FHIR resource classes exist in the extraction platform's source, and a search for DiagnosticReport across it returns nothing; the only real FHIR documents in the repository are two input samples. Those input samples also do not use the presence and change-from-prior component pattern the imaging-problem-list README prescribes, because that pattern describes the output.[^ipl-readme] Separately, IHE IDR would encode the attribute layer with `hasMember` rather than components.[^idr-extract]
 
 [^fhir]: DiagnosticReport resource, HL7 FHIR
 [^ipl-readme]: imaging-problem-list README

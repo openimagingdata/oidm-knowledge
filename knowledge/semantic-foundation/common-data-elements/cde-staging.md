@@ -1,10 +1,10 @@
 ---
 type: Project Profile
 title: CDE staging
-description: The CDEStaging repository, where informally authored candidate common data element definitions collect before the formal review pipeline, and how its content feeds finding models.
+description: Candidate CDE definitions, report coverage gaps, and their conversion into finding models.
 tags: [semantic-foundation, cde, radelement, repositories, content]
 status: draft
-generated: { by: claude-opus-5/claude-code, at: 2026-09-21T18:00:00Z }
+generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 stale_after: 2027-09-21
 sources:
   - id: readme
@@ -50,7 +50,7 @@ sources:
 
 # What it is
 
-`CDEStaging` is where candidate [common data element](/glossary/cde.md) definitions collect before anyone tries to make them official. Its README states the purpose in one line: "a staging area for definitions of radiology common data elements (CDEs) in JSON format ... prior to their entering the review pipeline."[^readme] The banner above that line gives the concrete goal: "A multi-vendor project to generate a near-complete set of CDE Sets to represent the findings in chest CT reports."[^readme]
+`CDEStaging` collects candidate [common data element](/glossary/cde.md) definitions before formal review. Its README calls it "a staging area for definitions of radiology common data elements (CDEs) in JSON format ... prior to their entering the review pipeline."[^readme] The stated goal is "A multi-vendor project to generate a near-complete set of CDE Sets to represent the findings in chest CT reports."[^readme]
 
 Contributions are organized by contributor. The README says provisional definitions go in the `definitions` directory "with separate folders for participating vendors."[^readme] Three folders are named after participating vendors, five carry a contributor prefix combined with a modality and body region (CT chest, CT abdomen and pelvis, chest radiograph, knee MRI, and O-RADS), and one holds location value lists.
 
@@ -69,11 +69,11 @@ The `definitions/` tree holds 463 files at that commit.
 
 The largest single collection is the CT chest folder, with 206 markdown files and 103 JSON files.
 
-The JSON files are worth a note, because the README's framing suggests otherwise. They do not follow the ACR and RSNA `cde.schema.json`. They carry a finding name, a description, and a list of attributes typed as `choice` or `numeric` with named values, which is the shape a [finding model](/glossary/finding-model.md) uses rather than the shape a [CDE set](/glossary/cde-set.md) uses. Everything in this repository is a pre-submission draft in whatever form its author found convenient.
+The JSON files use a name, description, and `choice` or `numeric` attributes with named values. This resembles a [finding model](/glossary/finding-model.md), rather than a [CDE set](/glossary/cde-set.md) conforming to `cde.schema.json`. All content is a pre-submission draft in its author's chosen format.
 
 # Two authoring conventions
 
-The markdown definitions were written under two conventions that coexist and were never reconciled.
+The markdown definitions use two unreconciled conventions.
 
 **Coded `.cde.md` files.** Fourteen files in one vendor folder follow a structured convention: a `# Finding:` heading, a `source` and a `coding` bullet carrying a [RadLex identifier](/glossary/radlex-id.md), then one `##` section per [attribute](/glossary/attribute.md), with coded values, numeric attributes declared as `float` with a unit, and multi-select attributes marked in the heading.[^cardiomegaly]
 
@@ -114,15 +114,15 @@ The markdown definitions were written under two conventions that coexist and wer
 - **Course**: Retroesophageal / Pretracheal / Other
 ```
 
-Some of these folders hold only bare finding lists with no attributes at all, one line per finding name, which is how the chest radiograph and knee MRI folders are organized.
+The chest radiograph and knee MRI folders contain bare finding lists, one name per line, without attributes.
 
-`docs/Authoring.md` was meant to reconcile them. It is two sentences long, points at the upstream schema, and says "the authoring guide will be hosted here as well."[^authoring] It was never written.
+`docs/Authoring.md` is a two-sentence stub pointing to the upstream schema. It says "the authoring guide will be hosted here as well."[^authoring] The guide was never written.
 
 # The report representation work
 
-A second body of work in the repository asks a different question: given real report text, what does the existing definition set fail to capture? Four documents record the answers.
+Four documents record what the definitions fail to capture from report text.
 
-**The extraction process.** `docs/report_extraction_process.md` works one chest CT report end to end, turning its prose into "a list of mini-observations" of the form finding, attribute, value.[^extraction-process] It closes with two notes to self: finding, attribute, and value names need to match the project's own finding definitions, and blanket negative statements such as "Lungs are clear" need separate cataloguing. Both notes became the next two documents.
+**The extraction process.** `docs/report_extraction_process.md` converts a chest CT report into "a list of mini-observations" containing a finding, attribute, and value.[^extraction-process] Its closing notes call for matching names to the definitions and cataloguing blanket negatives such as "Lungs are clear". The next two documents address those tasks.
 
 **Composite negative statements.** A corpus of roughly 830 words of real negative and composite report sentences, grouped by organ system, collected to work out how absent findings should be modeled.[^negatives] Many are not simple negations. "Absence of intravenous contrast limits sensitivity for detecting solid organ findings" is a statement about the exam, not about a finding, and it recurs throughout the abdomen section.
 
@@ -136,19 +136,19 @@ Alongside them, `report_representation/structured_extractions/` holds 52 worked 
 
 One vendor folder holds a roadmap table covering chest CT findings across nine organ-system sections: pulmonary, pleura, cardiovascular, lymphatic and endocrine, musculoskeletal, abdominal, lines and tubes, devices, and post-operative or treatment changes.[^roadmap] It has 100 finding rows. Each row carries the finding name, a frequency judgment of common, uncommon, or rare, a priority column, a status column holding links to any RadElement sets that already cover the finding, an "in V1" flag, and a RadLex identifier.
 
-At the read commit, 22 rows are flagged for version 1, 18 distinct `RDES` sets are referenced, and 19 distinct RadLex identifiers appear. The table is the clearest single artifact tying informal staged content to the published [RadElement](/glossary/radelement.md) catalog and to [RadLex](/glossary/radlex.md), and it is where the project recorded which findings already had a governed definition and which did not.
+At the read commit, 22 rows are flagged for version 1, 18 distinct `RDES` sets are referenced, and 19 distinct RadLex identifiers appear. It records which staged findings have governed definitions in [RadElement](/glossary/radelement.md) and mappings to [RadLex](/glossary/radlex.md).
 
 # The path to RadElement
 
-There is no automated pipeline. The README and the authoring stub both point at `RSNA/ACR-RSNA-CDEs` for the canonical `cde.schema.json` and a sample set,[^readme][^authoring] and the roadmap links findings to the RadElement sets that cover them, but nothing in the repository describes a mechanical route from a staged definition to a submitted one. The process is manual curation: draft informally here, harmonize, then submit through the ACR and RSNA review pipeline. See [CDEs and RadElement](/semantic-foundation/common-data-elements/cdes-and-radelement.md).
+The README and authoring stub point to `RSNA/ACR-RSNA-CDEs` for `cde.schema.json` and a sample set.[^readme][^authoring] The roadmap links existing RadElement sets, but no automated submission pipeline exists. Authors draft, harmonize, and submit through ACR and RSNA review. See [CDEs and RadElement](/semantic-foundation/common-data-elements/cdes-and-radelement.md).
 
 # How it feeds finding models
 
-The staged content is an input to the finding model corpus, and this connection is more developed than the one to RadElement.
+Finding model conversion is more developed than RadElement submission.
 
 `findingmodels` issue 15, "Bring in CDE Staging MD content," opened 2025-05-28 and still open, asks for a script that takes a markdown file, checks whether a definition already exists for that finding, and either converts it or merges it into the existing definition, reusing element identifiers and synonyms where possible, and adding the appropriate contributor.[^fm-issue-15]
 
-That work exists on the `content/chestcts` branch of `findingmodels`, unmerged at commit `0472a46`. A triage script reads the CT chest folder of `CDEStaging` and compares each source against the finding model search index;[^chestcts-triage] a conversion script then runs the survivors through a multi-agent pipeline of merge, create, and review steps and writes validated finding model JSON.[^chestcts-convert] Both scripts default to the same `CDEStaging` CT chest directory as input. The content direction is covered in [finding model content direction](/roadmap/finding-model-content-direction.md).
+That work exists on the `content/chestcts` branch of `findingmodels`, unmerged at commit `0472a46`. A triage script compares CT chest sources with the finding model search index.[^chestcts-triage] A conversion script uses merge, create, and review agents to write validated JSON.[^chestcts-convert] Both default to the `CDEStaging` CT chest directory. See [finding model content direction](/roadmap/finding-model-content-direction.md).
 
 # Branch state and open issues
 

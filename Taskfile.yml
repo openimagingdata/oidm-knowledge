@@ -1,0 +1,85 @@
+# Task runner for the OIDM knowledgebase. Install: https://taskfile.dev
+#
+#   task            list tasks
+#   task check      run both validators (OKF conformance + house rules)
+#   task build      build the Quartz site into public/
+#   task serve      local dev server with live reload
+#   task deploy     build and deploy to oidm-knowledge-dev; deploy:staging and deploy:prod for the others
+#   task preview    build and serve locally through wrangler
+#   task viz        render the bundle as a single-file interactive graph (viz.html)
+version: "3"
+
+vars:
+  # Hostnames per target; workers.dev names until custom domains are attached
+  DEV_URL: '{{.DEV_URL | default "oidm-knowledge-dev.talkasab.workers.dev"}}'
+  STAGING_URL: '{{.STAGING_URL | default "oidm-knowledge-staging.talkasab.workers.dev"}}'
+  PROD_URL: '{{.PROD_URL | default "oidm-knowledge.talkasab.workers.dev"}}'
+
+tasks:
+  default:
+    silent: true
+    cmds:
+      - task --list
+
+  check:
+    desc: Validate the bundle (OKF 0.2 conformance, then house rules)
+    cmds:
+      - uv run .agents/skills/validate/scripts/okf_validate.py knowledge --strict
+      - uv run tools/check_bundle.py
+
+  build:
+    desc: Build the Quartz site into public/ (clean URLs, served by Cloudflare)
+    cmds:
+      - bash site/build.sh
+
+  serve:
+    desc: Serve the site locally with live reload
+    cmds:
+      - bash site/build.sh serve
+
+  deploy:
+    desc: Build and deploy to oidm-knowledge-dev (default target)
+    deps: [check]
+    cmds:
+      - SITE_BASE_URL={{.DEV_URL}} bash site/build.sh
+      - wrangler deploy --config site/wrangler.jsonc --env dev
+
+  deploy:staging:
+    desc: Build and deploy to oidm-knowledge-staging
+    deps: [check]
+    cmds:
+      - SITE_BASE_URL={{.STAGING_URL}} bash site/build.sh
+      - wrangler deploy --config site/wrangler.jsonc --env staging
+
+  deploy:prod:
+    desc: Build and deploy to oidm-knowledge, the public site
+    deps: [check]
+    cmds:
+      - SITE_BASE_URL={{.PROD_URL}} bash site/build.sh
+      - wrangler deploy --config site/wrangler.jsonc
+
+  preview:
+    desc: Build and serve the site locally through Wrangler, exactly as Cloudflare will serve it
+    cmds:
+      - bash site/build.sh
+      - wrangler dev --config site/wrangler.jsonc --env dev
+
+  verify:
+    desc: "Mark documents verified by the project lead: task verify -- knowledge/glossary/oifm.md [...]"
+    cmds:
+      - uv run tools/verify.py {{.CLI_ARGS}}
+
+  review-status:
+    desc: Show verified / total documents per directory
+    cmds:
+      - uv run tools/verify.py --status
+
+  review-list:
+    desc: "List unverified documents under a directory: task review-list -- knowledge/glossary"
+    cmds:
+      - uv run tools/verify.py --list {{.CLI_ARGS}}
+
+  viz:
+    desc: Render the bundle as one self-contained HTML graph at viz.html
+    cmds:
+      - uv run .agents/skills/visualize/scripts/okf_visualize.py knowledge -o viz.html --title "OIDM knowledge"
