@@ -77,11 +77,13 @@ Seams settled: an authoring application is a Sample Application; reusable author
 
 Staging: `knowledge/drafts/` (index there; final layout after cross-review is one directory per pillar with the anchor as `index.md`). Provenance `generated.by: claude-opus-5/2026-09-22-restructure/<agent>`, reviewed by the main session before handoff. Codex's drafts use `codex/2026-09-22-restructure`.
 
-- [ ] `foundation-context.md` anchor and `finding-models-and-cdes.md` (agent draft-foundation)
-- [ ] `anatomic-locations.md`, `exam-types.md`, `standards.md` (agent draft-axes)
-- [ ] `sdks.md` (agent draft-sdks)
-- [ ] main-session source review of each, then handoff to Codex for cross-review
-- [ ] `introduction.md`, whichever session gets there first
+- [x] `foundation-context.md` anchor and `finding-models-and-cdes.md` (agent draft-foundation)
+- [x] `anatomic-locations.md`, `exam-types.md`, `standards.md` (agent draft-axes)
+- [x] `sdks.md` (agent draft-sdks)
+- [x] main-session source review of each (done 2026-09-22; fixes applied by the drafting agents)
+- [ ] handoff to Codex for cross-review
+- [x] `introduction.md` (agent draft-intro)
+- [x] source-fidelity reviews of Codex's three drafts written to `sources/review/drafts-{data-structures,use-cases,sample-applications}.md` (16, 12, and 9 findings)
 
 ## Codex section
 
