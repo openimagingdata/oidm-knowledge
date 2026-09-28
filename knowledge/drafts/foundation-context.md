@@ -1,60 +1,51 @@
 ---
 type: Overview
 title: Foundation Context
-description: The shared, non-patient-specific layer of definitions, relationships, and citations that imaging results point into, and the work of building its content.
-tags: [foundation-context, semantic-foundation, siim-2026, overview]
+description: "The shared, curated clinical knowledge that every patient's imaging data is woven into: three axes over existing standards, the relationships among them, and the citations they rest on."
+tags: [foundation-context, finding-models, cdes, anatomic-locations, exam-types]
 status: draft
-generated: { by: claude-opus-5/2026-09-22-restructure/draft-foundation, at: 2026-09-22T00:00:00Z }
+generated: { by: claude-fable-5-1/2026-09-24-restructure, at: 2026-09-24T21:50:00Z }
 sources:
-  - id: siim2026
-    resource: sources/bucket/text/siim2026-reports-of-the-future.md
-    title: "Structured Results and Context for Next-Generation Imaging Resulting Tools: Creating the Reports of the Future. SIIM 2026 annual meeting talk, June 2026, Mass General Brigham"
-    last_modified: 2026-06-01
-  - id: joint-notes
-    resource: docs/plans/restructure-joint-notes.md
-    title: "Restructure joint working notes, carrying the project lead's decisions of 2026-09-22"
-    last_modified: 2026-09-22
-  - id: cde-context
-    resource: https://github.com/RSNA/ACR-RSNA-CDEs/blob/44836c19f4e025cf1684a015ed5cc63c29eaf7f3/CONTEXT.md
-    title: "CDE vocabulary, CONTEXT.md, ACR-RSNA-CDEs next-gen-2026 branch at 44836c1, 2026-09-15"
-    last_modified: 2026-09-15
+  - id: lead-2026-09-24
+    resource: docs/plans/2026-09-22-layout-plan.md
+    title: The project lead's statements of 2026-09-22 to 2026-09-24 on the pillars, the two collections, the next-generation schema, and the wording of this page (recorded verbatim in the layout plan)
+  - id: siim-2026
+    resource: https://oidm-public.t3.tigrisfiles.io/oidm-knowledge-sources/SIIM%202026%20Reports-of-the-Future.pptx
+    title: "Structured Results and Context for Next-Generation Imaging Resulting Tools, SIIM 2026 annual meeting talk, June 2026, Mass General Brigham"
+  - id: build-plan
+    resource: knowledge/plans/2026-09-20-knowledgebase-build-plan.md
+    title: Knowledgebase build plan, the project lead's stated goals (2026-09-20) and the decisions of 2026-09-21 and 2026-09-22
 ---
 
-# The two halves
+# Foundation Context
 
-The SIIM 2026 annual meeting talk opens on "the two halves that make next-gen tools work: the structured result, and the knowledge to interpret it," and names them **Patient Context**, one patient's imaging results and the clinical context around them, and **Foundation Context**, the one layer of definitions, relationships and citations that every patient's results point into, openly authored, versioned, and not patient-specific.[^siim2026] The [introduction](./introduction.md) sets the two side by side in full.
+Foundation Context is the shared, curated knowledge that every patient's imaging data is woven into. It is one layer for everyone: definitions of what can be found, where things are in the body, how exams see them, the relationships among all of these, and citations out to the standards and references the definitions rest on. It is open-source, general clinical knowledge, authored by the imaging informatics community in the open. It covers both the schema that definitions take and the work of building the content.[^siim-2026][^lead-2026-09-24]
 
-# What this pillar covers
+It has three axes. Each is a curated layer over a standard that already exists, adding imaging-specific knowledge rather than reinventing it.[^siim-2026]
 
-The project lead's decision of 2026-09-22 sets the boundary, and it is wider than a schema: Foundation Context "includes both the schema/meta-definitions as well as the efforts to build out content."[^joint-notes] Both halves are on this reading path — the shape a definition takes, and the work of writing definitions.
+[![The three axes of Foundation Context: finding/diagnosis definitions, anatomic locations, exam types, each layered over an existing standard](./three-axes.svg)](./three-axes.svg)
 
-# The stated motivation
+**Finding/diagnosis definitions: what was found.** One kind of content, held today in two collections: the Open Imaging Finding Models, inclusive and fast-moving, and the ACR/RSNA Common Data Elements, well-reviewed and closer to published. Both are moving onto a single graph-based schema being developed in the CDE project, which applications will use across both collections at once.[^lead-2026-09-24]
 
-The deck's pivot slide states the gap in the structured record. A structured [Observation](../glossary/observation.md) — pulmonary nodule, present — "says it exists, where, and on what exam." It does not say how it associates with other findings, how it is potentially precancerous, which prior exams could show it, what the implications are, or what else it could be. Answering those five questions "needs background knowledge of anatomy, pathology, and imaging technique — knowledge that isn't in the patient's record."[^siim2026]
+**Anatomic locations: where it is.** A curated index of anatomic entities anchored in RadLex, with containment, part-of, and laterality made explicit, now being incorporated into RadLex itself.[^build-plan][^siim-2026]
 
-# Three axes, each layered over a standard
+**Exam types: how it was seen.** Content to come: preferred exam families over the LOINC/RSNA Radiology Playbook, each connected to the anatomy it covers.[^build-plan][^siim-2026]
 
-The deck gives Foundation Context three axes, each "an OIDM layer over" something that already exists, "adding imaging-specific knowledge on top of existing standards rather than reinventing them."[^siim2026]
+The axes are not independent. A definition says which anatomy it applies to and which modalities can show it. An exam type says which anatomy it covers. Definitions relate to one another as subtype and supertype, cause and effect, diagnosis and the findings it manifests as, things confused with each other, things that occur together. These relationships, with the citations out to Radiopaedia, Wikipedia, SNOMED CT, RadLex, LOINC, FMA, ICD, and CPT, are what turn a flat dictionary into something an application can reason over.[^siim-2026]
 
-| Axis | The deck's question | Layered over |
-|---|---|---|
-| Finding definitions — the deck's own label for this axis is "Observation Type" | WHAT was found | CDE and OIFM definitions |
-| Anatomic Location | WHERE it is | a RadLex-anchored body map |
-| Exam Type | HOW it was seen | LOINC and RadLex Playbook study types |
+[![A mini-network of Foundation Context: finding/diagnosis definitions, anatomic locations, and exam types, with relationships within and between them](./foundation-network.svg)](./foundation-network.svg)
 
-The deck calls what runs between and out of the axes "the connective tissue": within-axis relationships (parent and child types; causes and caused_by; confused_with, occurs_with), cross-axis statements (anatomy limits on a finding definition, exam-type anatomy associations, modalities), and external citations to Radiopaedia and Wikipedia plus references to SNOMED, RadLex, LOINC, FMA, ICD, and CPT.[^siim2026] The next-generation CDE vocabulary states the same posture for its own terms, and adds that they "express our current ideas for the reviewer's foundation, not a jointly settled integration model."[^cde-context]
+(click the image for full size)
 
-# How data structures reach it
+# In this section
 
-The deck keeps the Observation "deliberately small — codes, not knowledge." It carries a semantic tag, "a CDE-style definition (today an OIFM Finding Model)," plus presence, change from prior, and characterization attributes. "A code on an Observation is a pointer into one of these axes — the axes also point to each other, and out to external references." The resolution step is where the knowledge arrives: "Resolve, don't reinvent," code to pointer to resolve, with "OIDM SDKs make resolution easy and standardized — every app pulls the same context the same way." The deck's worked figure resolves one Observation to the finding definition for radiodense urinary calculus (`OIFM_GMTS_020556`), which "may cause" hydronephrosis (`OIFM_OIDM_874812`), each occurring at kidney (`RID205`) and renal pelvis (`RID228`), the renal pelvis part of the kidney.[^siim2026]
+- Finding/diagnosis definitions: finding models and CDEs, with the OIFM content, the definition formats, and the identifiers
+- The next-generation schema, with the relationship family and standard clinical metadata
+- Authoring and review
+- [Anatomic locations](./anatomic-locations.md)
+- [Exam types](./exam-types.md)
+- [Standards the foundation layers over and cites](./standards.md)
 
-# Child sections
-
-* [Finding models and CDEs](./finding-models-and-cdes.md) - the common graph, the two collections that hold it today, what the inclusive collection contains, and the authoring and review principles behind it.
-* [Anatomic locations](./anatomic-locations.md) - the WHERE axis: containment, part-of, laterality, and the overlay on RadLex.
-* [Exam types](./exam-types.md) - the HOW SEEN axis: exam families over the LOINC and RadLex Playbook, and their anatomy edges.
-* [Standards the foundation layers over and cites](./standards.md) - RadLex, SNOMED CT, FMA, LOINC and the Playbook, and the role each plays.
-
-[^siim2026]: SIIM 2026 annual meeting talk, June 2026, Mass General Brigham
-[^joint-notes]: Restructure joint working notes, the project lead's decisions of 2026-09-22
-[^cde-context]: CDE vocabulary, CONTEXT.md, ACR-RSNA-CDEs next-gen-2026 branch at 44836c1
+[^lead-2026-09-24]: The project lead, 2026-09-22 to 2026-09-24: the two collections ruling, the shared next-generation schema for both, the RadLex migration, and the wording of the opening paragraph; recorded verbatim in the layout plan.
+[^siim-2026]: SIIM 2026 annual meeting talk, June 2026, Mass General Brigham; slides 6, 7, 8, 10, 11, and 12.
+[^build-plan]: Knowledgebase build plan: the project lead's stated goals on anatomic locations and exam types (2026-09-20).
