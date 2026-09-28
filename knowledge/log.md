@@ -1,5 +1,10 @@
 # Update Log
 
+## 2026-09-22
+
+* Completed Codex's source-fidelity review of seven companion drafts and corrected Data Structures, Use Cases, and Sample Applications against the incoming reviews. Added the deck's graph example and live application links; clarified proposal status and demonstrated capabilities. Draft replacement remains pending.
+* Added staged drafts for Data Structures, Use Cases, and Sample Applications, with source citations, dated representations, and session authorship. Source cross-review and replacement of the current pages remain pending.
+
 ## 2026-09-21
 * 2026-09-21 - Prose tightened across 112 concept documents by codex/gpt-6 (two passes); reviewed by five claude-opus-5 reviewers; reverts and substantive fixes applied. Sources, links, and footnotes unchanged.
 * 2026-09-21 - Added `roadmap/open-questions.md`, 90 numbered entries deduplicated from all ten collecting agents and grouped into finding models, common data elements, anatomic locations, exam types and terminologies, data structures, applications, and the project narrative, each with the sources on each side and an owner where a source names one, plus a separate table of 21 source-document defects with repository and path so they can become issues. Rewritten after the five Phase 2 and 3 agents appended their sections.

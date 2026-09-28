@@ -9,15 +9,18 @@ sources:
   - id: brief
     resource: /plans/2026-09-20-knowledgebase-build-plan.md
     title: The project lead's stated goals, recorded verbatim from the request of 2026-09-20
+  - id: build-plan
+    resource: /plans/2026-09-20-knowledgebase-build-plan.md
+    title: Knowledgebase build plan, 2026-09-20, the source map and the facts-worth-stating section
   - id: siim2026
-    resource: t3://oidm-public/oidm-knowledge-sources/SIIM%202026%20Reports-of-the-Future.pptx
+    resource: https://oidm-public.t3.tigrisfiles.io/oidm-knowledge-sources/SIIM%202026%20Reports-of-the-Future.pptx
     title: Structured Results and Context for Next-Generation Imaging Resulting Tools, SIIM 2026 annual meeting talk, June 2026, Mass General Brigham, slides 8 and 11
   - id: al-site
     resource: https://github.com/talkasab/anatomiclocations.org/blob/1f39fa45f621cef947a3f3ef1f869334cfa5c841/docs/index.markdown
     title: Anatomic Locations project site roadmap, content tasks, unchanged since January 2023
   - id: board-anatomy
-    resource: https://link.excalidraw.com/l/AxEw4sqe6bu/4jmRPObEdLq
-    title: Common Anatomic Locations working board, Exam Types box, with a discussion checklist dated 2024-05-28
+    resource: Common Anatomic Locations working board, Exam Types box under Active Issues, undated
+    title: Undated working-board proposal; the board carries a separate discussion checklist dated 2024-05-28, which is not used here
   - id: molu-roadmap
     resource: https://github.com/openimagingdata/med-ontology-lookup/blob/9cc3eec2c7af32e366e3f05e027b223b4a870077/docs/product-roadmap.md
     title: "Product direction: an agent-ready medical terminology graph gateway, med-ontology-lookup, research date 2026-08-16, status recommended direction"
@@ -34,7 +37,7 @@ sources:
 
 # Nothing is built
 
-No exam type artifact exists in any OIDM repository. Everything on this page is either a stated goal or a written proposal, each dated. The nearest running behavior is that an [exam type](/glossary/exam-type.md) appears as a bare LOINC code in an Exam Finding List header,[^ipl-efl] and as the last rung of the anatomy precedence ladder: when a report gives no explicit anatomy and the finding has no target organ, the location falls back to the exam-scoped coarse region, sided only if the exam is sided.[^ipl-rules] Both belong to [Data Structures](./data-structures.md).
+The knowledgebase build plan of 2026-09-20 states it plainly: no exam-type artifact exists, and the area is documented as goals plus existing building blocks.[^build-plan] Everything on this page is either a stated goal or a written proposal, each dated. Two smaller things do exist. An [exam type](/glossary/exam-type.md) appears as a bare LOINC code in an Exam Finding List header in the sample data.[^ipl-efl] And a written rule places a finding with no explicit anatomy and no target organ in the exam-scoped coarse region, sided only if the exam is sided; that rule was agreed for one sample-data correction pass and is stated as the intended spec for tuning automated location coding later.[^ipl-rules] Both belong to [Data Structures](./data-structures.md).
 
 # Preferred high-level entries over the Playbook
 
@@ -43,15 +46,15 @@ The goal has been stated in nearly the same words across four years, and it is a
 | Date | Statement |
 |---|---|
 | January 2023 | The project site roadmap lists, under content tasks, a companion for exam types based on LOINC and RadLex Playbook exam definitions that specify all included body parts.[^al-site] |
-| 2024 | A working board's Exam Types box lists exam type definitions of the most common exams based on LOINC, with common identifiers.[^board-anatomy] |
+| undated | A working board's Exam Types box lists exam type definitions of the most common exams based on LOINC, with common identifiers.[^board-anatomy] |
 | 2026-09-20 | The project lead's brief: exam types need "wrapper tooling around the knowledge graph represented by RadLex LOINC playbook", and the project needs "to define the PREFERRED high-level entries like 'CT Chest', 'MRI Brain', 'X-ray Knee'."[^brief] |
 | June 2026 | The SIIM talk shows Exam Type as one of three axes, each an OIDM layer over an existing standard; the exam type axis layers over [LOINC Playbook](/glossary/loinc-rsna-radiology-playbook.md) study types.[^siim2026] |
 
-The brief's word is "PREFERRED": the goal is to mark, among the Playbook's many entries, the high-level ones such as "CT Chest" that the project wants systems to use.[^brief]
+The brief's own word is "PREFERRED", and the entries it names as examples are "CT Chest", "MRI Brain", and "X-ray Knee".[^brief]
 
 # What the layer would expose
 
-The June 2026 talk describes Exam Type as a thin layer on top of the RadLex/LOINC Playbook whose value is access to information the Playbook already holds: timing, contrast, and sidedness among them. It also states that broad families of exams are being grouped together, giving "CT Chest" and "MR Knee" as the examples.[^siim2026] That is the same grouping idea the brief states as preferred high-level entries.[^brief]
+The June 2026 talk describes Exam Type as a thin layer on top of the RadLex/LOINC Playbook whose value is access to information the Playbook already holds: timing, contrast, and sidedness among them. It also states that broad families of exams are being grouped together, giving "CT Chest" and "MR Knee" as the examples.[^siim2026]
 
 # Anatomy coverage edges, in two dated phrasings
 
@@ -67,15 +70,16 @@ The manuscript under review names the same capability from the other side, as so
 
 # The imaging region
 
-The 2024 board states the same requirement as defining an imaging region: a "CT chest region" contains the chest, but also what a radiology exam of the chest would include, such as the lower neck, the upper abdomen, and the shoulders.[^board-anatomy] The January 2023 site roadmap puts it as exam definitions specifying all included body parts.[^al-site]
+The working board states the same requirement as defining an imaging region: a "CT chest region" contains the chest, but also what a radiology exam of the chest would include, such as the lower neck, the upper abdomen, and the shoulders.[^board-anatomy] The January 2023 site roadmap puts it as exam definitions specifying all included body parts.[^al-site]
 
 # The one written design
 
-The only written design touching exam types is the terminology gateway's product roadmap, dated 2026-08-16 and labeled a recommended direction rather than a built capability. It proposes named domain profiles in place of an ever-growing default search, with `radiology` as the default profile, and places the Playbook in that default on the stated ground that radiology orderables live in the LOINC/RSNA Radiology Playbook while findings, anatomy, and report language live in RadLex.[^molu-roadmap]
+The build plan names the terminology gateway's product roadmap as the only written exam-type design.[^build-plan] That document is dated 2026-08-16 and labeled a recommended direction rather than a built capability. It proposes named domain profiles in place of an ever-growing default search, with `radiology` as the default profile, and places the Playbook in that default on the stated ground that radiology orderables live in the LOINC/RSNA Radiology Playbook while findings, anatomy, and report language live in RadLex.[^molu-roadmap]
 
 Four Playbook implications are stated: rank procedure and orderable queries toward Playbook terms while ranking finding and anatomy queries toward RadLex, SNOMED CT, and FMA; teach the crosswalk the Playbook correspondences linking a LOINC code to its historic RadLex Playbook identifier and to RadLex anatomy and modality attributes, recording that in the mapping provenance; detect Playbook identifiers as well as LOINC-shaped codes; and prefer Playbook or radiology-class hits rather than treating every LOINC hit as radiology.[^molu-roadmap] The tool itself belongs to the SDKs pillar; see [SDKs](./sdks.md). The standards each axis layers over are covered in [standards](./standards.md).
 
 [^brief]: The project lead's stated goals, 2026-09-20
+[^build-plan]: Knowledgebase build plan, 2026-09-20
 [^siim2026]: SIIM 2026 annual meeting talk, June 2026, Mass General Brigham
 [^al-site]: Anatomic Locations project site roadmap, January 2023
 [^board-anatomy]: Common Anatomic Locations working board, Exam Types box

@@ -7,7 +7,7 @@ status: draft
 generated: { by: claude-opus-5/2026-09-22-restructure/draft-axes, at: 2026-09-22T12:53:11Z }
 sources:
   - id: siim2026
-    resource: t3://oidm-public/oidm-knowledge-sources/SIIM%202026%20Reports-of-the-Future.pptx
+    resource: https://oidm-public.t3.tigrisfiles.io/oidm-knowledge-sources/SIIM%202026%20Reports-of-the-Future.pptx
     title: Structured Results and Context for Next-Generation Imaging Resulting Tools, SIIM 2026 annual meeting talk, June 2026, Mass General Brigham, slides 8 and 12
   - id: jdim-al
     resource: "Anatomic Locations Index: A Spatial Containment Hierarchy for Localizing Imaging Findings, manuscript under review at the Journal of Digital Imaging and Informatics in Medicine, 2026"
@@ -37,9 +37,9 @@ The talk's own label for the first axis is Observation Type; this bundle explain
 
 # What each terminology is for
 
-The manuscript under review states why RadLex was chosen as the foundation: coverage of anatomy at the level of detail radiologists report, governance by the RSNA providing a defined pathway for contributing terms back, and stable identifiers. It recommends [SNOMED CT](/glossary/snomed-ct.md) as the cross-reference for enterprise coding, citing a 2024 HIMSS-SIIM assessment, and argues that adoption can proceed through existing bindings, since DICOM's anatomic region sequence and FHIR's body site value sets already bind to SNOMED CT. On that argument the index sits above the coding scheme rather than competing with it. [FMA](/glossary/fma.md), MeSH, and [UMLS](/glossary/umls.md) are additional cross-reference targets.[^jdim-al] The terminology gateway's roadmap assigns LOINC and the Playbook the orderables, while findings, anatomy, and report language stay with RadLex.[^molu-roadmap]
+The manuscript under review states why RadLex was chosen as the foundation: coverage of anatomy at the level of detail radiologists report, governance by the RSNA providing a defined pathway for contributing terms back, and stable identifiers. It recommends [SNOMED CT](/glossary/snomed-ct.md) as the cross-reference for enterprise coding, citing a 2024 HIMSS-SIIM assessment, and argues that adoption can proceed through existing bindings, since DICOM's anatomic region sequence and FHIR's body site value sets already bind to SNOMED CT. On that argument the index sits above the coding scheme rather than competing. [FMA](/glossary/fma.md), MeSH, and [UMLS](/glossary/umls.md) are further cross-reference targets.[^jdim-al] The terminology gateway's roadmap gives LOINC and the Playbook the orderables; findings, anatomy, and report language stay with RadLex.[^molu-roadmap]
 
-Two sources differ on SNOMED CT's place. The manuscript treats it as the enterprise coding target to cross-reference.[^jdim-al] The next-generation vocabulary work, checking the published RadLex release directly, found effectively no SNOMED CT mapping in it: six codes from the retired pre-CT SNOMED against 33,404 FMA references. It records that this contradicts a committee assumption, and treats the gap as something the vocabulary must carry itself or resolve upstream.[^cde-radlex-baseline]
+Where those cross-references live is a separate question from which system is the target. The next-generation vocabulary work checked the published RadLex release directly and found effectively no SNOMED CT mapping in it: six codes from the retired pre-CT SNOMED against 33,404 FMA references, against an assumption on record that SNOMED mappings would be maintained at the RadLex level. For anatomy it records the gap as already closed upstream, because the anatomic locations data carries modern SNOMED CT codes on about 60% of its nodes and those mappings travel with it as it becomes a RadLex collection. For findings no such source exists, so the vocabulary carries its own mappings.[^cde-radlex-baseline]
 
 # External citations
 
@@ -47,7 +47,7 @@ The talk's "connective tissue" slide names two kinds of outward link: citations 
 
 # Search recall is the gate
 
-A lookup that fails silently is worse than one that fails loudly, because an agent then concludes the concept is missing and proposes a duplicate. The RadLex search plan names that false-gap outcome as the worst failure mode the project has, and sets the target as recall good enough that a miss is real evidence of an ontology gap rather than evidence of unlucky phrasing. Its design keeps exact label and synonym tiers as the confidence signal and adds full-text relevance as the recall layer, emitting a categorical match type rather than a score, because scores are not comparable across queries.[^radlex-search] The gateway roadmap states a related boundary: a shared concept identifier is evidence of connection, not proof of exact equivalence.[^molu-roadmap] The tool itself belongs to the SDKs pillar; see [SDKs](./sdks.md).
+A lookup that fails silently is worse than one that fails loudly: an agent then concludes the concept is missing and proposes a duplicate. The RadLex search plan names that false-gap outcome as the worst failure mode the project has, and sets the target as recall good enough that a miss is real evidence of an ontology gap rather than evidence of unlucky phrasing. Its design keeps exact label and synonym tiers as the confidence signal and adds full-text relevance as the recall layer. A categorical match type carries the confidence contract, because full-text scores are not comparable across queries; the numeric scores stay alongside it as tiebreakers.[^radlex-search] The gateway roadmap states a related boundary: a shared concept identifier is evidence of connection, not proof of exact equivalence.[^molu-roadmap] The tool itself belongs to the SDKs pillar; see [SDKs](./sdks.md).
 
 [^siim2026]: SIIM 2026 annual meeting talk, June 2026, Mass General Brigham
 [^jdim-al]: Anatomic Locations Index manuscript, under review at the Journal of Digital Imaging and Informatics in Medicine, 2026

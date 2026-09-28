@@ -55,6 +55,9 @@ sources:
   - id: molu-review
     resource: https://github.com/openimagingdata/med-ontology-lookup/blob/9cc3eec2c7af32e366e3f05e027b223b4a870077/docs/project-review-and-proposal.md
     title: med-ontology-lookup project review and proposal, 2026-09-03
+  - id: site-2024
+    resource: https://www.openimagingdata.org/2024-new-year-update/
+    title: 2024 New Year Update, openimagingdata.org, 2024-01-12
   - id: ipl-issue
     resource: https://github.com/openimagingdata/imaging-problem-list/issues/1
     title: "imaging-problem-list issue #1, Create System of Data Models, open and unassigned as of 2026-09-22"
@@ -81,7 +84,7 @@ Over that corpus the team separated three retrieval modes rather than overloadin
 
 ## Helping author the Foundation Context
 
-The same workspace carries the authoring half of the project lead's definition. A developer can generate a finding's basic information from its name, add detail with citations, turn a Markdown outline into a model, and create a stub model to start from. Implemented example, released snapshot 2026-03-04.[^fm-ai] The metadata rewrite adds one entrypoint for metadata assignment that returns the updated model together with a separate review artifact holding raw candidates, normalization notes and review-oriented reasoning; its design rules keep query generation, candidate gathering, normalization and fallback behaviour in code, leaving the model-facing step to classify typed input into typed output. The document records that entrypoint as implemented in the working tree it describes; working proposal, metadata-cleanup snapshot 2026-06-29.[^fm-rewrite]
+The same workspace carries the authoring half of the project lead's definition. A developer can generate a finding's basic information from its name, add detail with citations, turn a Markdown outline into a model, and create a stub model to start from. Implemented example, released snapshot 2026-03-04.[^fm-ai] The metadata rewrite adds one entrypoint for metadata assignment that returns the updated model together with a separate review artifact holding raw candidates, normalization notes and review-oriented reasoning; its design rules keep query generation, candidate gathering, normalization and fallback behaviour in code, leaving the model-facing step to classify typed input into typed output. Implemented example on the metadata branch, metadata-cleanup snapshot 2026-06-29; absent from the released snapshot.[^fm-rewrite]
 
 Reusable authoring capability belongs here. The content itself, and the rules for reviewing it, are in [Finding models and CDEs](./finding-models-and-cdes.md); the authoring applications built on top are in [Sample Applications](./sample-applications.md).[^notes]
 
@@ -95,7 +98,7 @@ The second publishes two database artifacts built from the same enriched source 
 
 ## Resolving anatomic locations
 
-The `anatomic-locations` package gives a developer lookup by identifier, description or synonym, all case-insensitive; traversal of the parent and child hierarchy; laterality variants; and hybrid full-text and semantic search, including a batch path that takes several queries in one embedding call. Implemented example, released snapshot 2026-03-04.[^al-readme] The location set itself is in [Anatomic locations](./anatomic-locations.md).
+The `anatomic-locations` package gives a developer lookup by an identifier, or by a description or synonym matched without regard to case; traversal of the parent and child hierarchy; laterality variants; and hybrid full-text and semantic search, including a batch path that takes several queries in one embedding call. Implemented example, released snapshot 2026-03-04.[^al-readme] The location set itself is in [Anatomic locations](./anatomic-locations.md).
 
 Its dated predecessors are two wrapper libraries over the 2022 anatomic location set. Both give a developer retrieval by a RadLex, SNOMED or FMA code, the containing and part-of parents of a location, a test of whether one location is contained by another, and the three-way sided arrangement in which the index holds an unsided, a left and a right version of a sided part, each aware of the others. The TypeScript library documents walks in both directions, immediate and full, for both relations; the corresponding section of the Python library's README is an empty stub. Implemented examples, last changed 2022-12-18 for the TypeScript library and 2024-02-03 for the Python one.[^bpi-ts][^bpi-py] The Python library's open work list, updated 2024-02-03, records intent never carried out there: move the repository to the openimagingdata organization, adopt the ACR Common codes, acknowledge the DICOM codes, and rework the body part as a Pydantic model.[^bpi-todo]
 
@@ -111,11 +114,11 @@ Two team documents state where it should go, and they agree on the destination w
 
 Working proposal. Issue #1 on `imaging-problem-list`, "Create System of Data Models", asks for models for Observation with an Extracted Observation sub-type raised as an open question, for the Exam Finding List, and for the Imaging Problem List; written in Pydantic; with "extensive annotation to generate JSON schemas"; and with camelCase aliases in export over snake_case object attributes. The issue was open, uncommented and unassigned as of 2026-09-22, and no plan in the repositories read for this knowledgebase claims it.[^ipl-issue] The structures it would formalize are described in [Data Structures](./data-structures.md).
 
-Its precursor is a Sample Application rather than an SDK. The report extraction, coding, persistence and review platform on the `imaging-problem-list` development branch already separates the job an SDK would expose: its coding design document, last updated 2026-03-16, states that coding "is an **independent job** — fully decoupled from extraction", that extraction output persists without codes, and that coding is triggered separately and can be re-run with different models or settings.[^ipl-coding] The platform itself is covered in [Sample Applications](./sample-applications.md).
+The issue names no existing work as a starting point.[^ipl-issue] Separately, on the same repository's development branch, the report extraction, coding, persistence and review platform already treats coding as a job of its own: its coding design document, last updated 2026-03-16, states that coding "is an **independent job** — fully decoupled from extraction", that extraction output persists without codes, and that coding is triggered separately and can be re-run with different models or settings.[^ipl-coding] That platform is covered in [Sample Applications](./sample-applications.md).
 
 ## An Open Imaging Reporting SDK
 
-Working proposal, named and no more. The January 2026 status update lists under its applications pillar an "Open Imaging Reporting SDK (vendor-driven innovation)", and its call to action asks for vendor-driven work, naming a reporting vendor's SDKs as the example.[^gamma] No repository, package, issue or branch for it was found in the repositories read for this knowledgebase. What such an SDK would serve is described in [Use Cases](./use-cases.md).
+Working proposal, and the longest-standing one. A project update of 2024-01-12 reports that a reporting vendor "showcased advanced capabilities of the OIDM-based assisted reporting framework, incorporating large language models", and states the intent to "collaborate with vendors and the OIDM community to develop an open-standard toolkit for assisted reporting systems".[^site-2024] The January 2026 status update carries that intent forward under a name, listing an "Open Imaging Reporting SDK (vendor-driven innovation)" in its applications pillar, with a call to action for vendor-driven work that names a reporting vendor's SDKs as its example.[^gamma] Demonstrations of the framework were built and shown; what none of the repositories read for this knowledgebase contains is an implementation of the toolkit itself. What such an SDK would serve is described in [Use Cases](./use-cases.md).
 
 # Where the neighbouring pillars begin
 
@@ -137,5 +140,6 @@ The command-line front ends over these libraries, Finding Model Forge, the findi
 [^molu-readme]: med-ontology-lookup README, snapshot 2026-09-18
 [^molu-roadmap]: Product direction for med-ontology-lookup, 2026-08-16
 [^molu-review]: med-ontology-lookup project review and proposal, 2026-09-03
+[^site-2024]: 2024 New Year Update, openimagingdata.org, 2024-01-12
 [^ipl-issue]: imaging-problem-list issue #1, Create System of Data Models
 [^ipl-coding]: Coding Agent Design, imaging-problem-list development branch, updated 2026-03-16

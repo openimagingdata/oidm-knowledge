@@ -1,6 +1,6 @@
 # Restructure around the team's ideas
 
-Status: Proposed. Planning only; restructuring has not started.
+Status: Proposed. Updated 2026-09-22 after reading the SIIM 2026 presentation. Restructuring has not started.
 
 ## Purpose
 
@@ -25,18 +25,35 @@ This plan replaces the sentence-shortening approach for the next revision. The p
 
 The recorded [owner statements](../../knowledge/plans/2026-09-20-knowledgebase-build-plan.md#the-project-leads-stated-goals) orient the investigation. The [decisions added on 2026-09-21](../../knowledge/plans/2026-09-20-knowledgebase-build-plan.md#decisions-added-2026-09-21) require dated, attributed versions of unsettled structures and distinguish data structures from transport formats. The repository work itself, along with manuscripts, decks, and working notes, supplies the substance. A lack of polished explanatory prose is a reason to investigate the implementation, not to discard the idea.
 
+## Direction from the SIIM 2026 presentation
+
+The owner supplied [Structured Results and Context for Next-Generation Imaging Resulting Tools](https://oidm-public.t3.tigrisfiles.io/oidm-knowledge-sources/SIIM%202026%20Reports-of-the-Future.pptx) to guide this restructuring. Read all 15 slides, speaker notes, and embedded diagrams. Slide references below use file order because printed slide numbers repeat.
+
+The deck's central distinction is Patient Context and Foundation Context. Patient Context records observations and imaging history for a particular patient. Foundation Context supplies shared definitions, relationships, and references. Clinical history changes with the patient; shared knowledge develops through authoring and versioning. Codes connect the patient's observations to that knowledge. The opening purpose is reuse by clinicians and by the next radiologist, with support for subsequent reporting. These points appear in slides 3–8 and 12–15.
+
+The editorial implication is to lead with that purpose and connection, then explain the ideas that make it possible. The three axes of Foundation Context are Observation Type, Anatomic Location, and Exam Type. Their relationships deserve an explicit explanation alongside the axes. Repository work supplies the evidence and further development of these ideas. This deck guides the reading path without excluding ideas documented elsewhere.
+
+Preserve the deck's qualifications. Slide 9's notes treat "Observation Type" as a possible name and some attributes as illustrative. Slide 10 distinguishes existing anatomy content from unpopulated enrichment. Slide 14 describes SDK-mediated access and intended uses; it does not establish which capabilities have shipped or prove the stated benefits. The conceptual figures are not formal schemas. Preserve source-specific formulations, including the deck's focused/included/edge anatomy and other sources' always/usually/possibly wording, until the team reconciles them.
+
+## Connection to the CDE two-plane model
+
+The CDE work gives this distinction a concrete graph expression. Its [two-plane account](https://github.com/RSNA/ACR-RSNA-CDEs/blob/44836c19f4e025cf1684a015ed5cc63c29eaf7f3/docs/next-gen-schema/03-draft-structures.md#5-two-planes-reports-point-into-the-vocabulary) describes shared definitions and their relationships, plus report-specific observations and their relationships. The definition plane supplies part of Foundation Context; the observation plane represents the imaging assertions within Patient Context. These correspondences guide the explanation without declaring the two projects' models identical.
+
+Observations point to definitions for their subjects, locations, and data elements. Their relationships express assertions about the particular case. A definition-space potential and a radiologist's case-specific interpretation have different meanings. The [owner's report-plane decisions](https://github.com/RSNA/ACR-RSNA-CDEs/blob/44836c19f4e025cf1684a015ed5cc63c29eaf7f3/docs/plans/2026-09-03-report-plane-example.md#owner-decisions-taken-in-this-session-copy-these-into-10-verbatim) explicitly say that report edges do not point to the vocabulary relationships they parallel. Keep provisional edge names separate from those owner decisions.
+
+Use this connection to organize recovered ideas and their relationships. For example, anatomic scope and a particular observation's location belong in one connected explanation. Shared presence definitions and explicit negative observations belong in another. A few existing report examples can show these connections without repeating their definitions or creating an exhaustive example catalog.
+
 ## Proposed reading structure
 
-Use these six areas as an initial reading structure. Determine the actual idea pages after investigating the source work. An idea developed across several repositories gets one home. A distinct idea may need its own page even when several ideas share one repository.
+Use the following sequence as a provisional reading path. Determine the actual idea pages after investigating the source work. An idea developed across several repositories gets one home. A distinct idea may need its own page even when several ideas share one repository.
 
 | Area | Material to recover and explain |
 |---|---|
-| OIDM | The team's stated purpose and the relationship among semantic foundation, imaging data structures, and applications. A short reading path. |
-| Finding models and CDEs | What the team means by findings and definitions; the relationship to CDEs; stated directions for metadata, relationships, and finding content. Attribute allied working proposals. |
-| Anatomic locations | Why the team uses an anatomic vocabulary; hierarchy and laterality; the stated RadLex relationship; meaningful unresolved differences. |
-| Exam types | Preferred exam names, the relationship to LOINC and the Playbook, and the proposed always/usually/possibly included anatomy relationships. |
-| Observations and imaging history | The team's proposed representations and relationships across exams and a patient's history. Include Imaging Persona only to the extent its source defines it. Distinguish transport expressions from the underlying structures. |
-| Applications | The uses the team wants to demonstrate and the role of relevant tools. Link to implementations. Keep proposed uses visibly attributed. |
+| Purpose and reuse | Why the team wants imaging findings to remain useful after the report, for subsequent care and the next interpretation. Introduce Patient Context and Foundation Context together. |
+| Patient Context | Observations carrying codes and patient-specific attributes, connected by case-specific relationships; their organization by exam and across imaging history; their place alongside other clinical context. Recover the actual source alternatives for EFL, IPL, and Imaging Persona. Distinguish transport expressions from the structures. |
+| Foundation Context | The three connected axes: observation types, anatomy, and exam types. Recover finding-model and CDE work, metadata, anatomic hierarchies and laterality, preferred exam families, and anatomy coverage. Explain each axis once, with a separate page only where its distinct idea work warrants one. |
+| Relationships and code resolution | How observation codes refer to shared definitions; relationships within and between axes; external references; the proposed shared access through SDKs. Preserve the distinction between a general relationship and what is asserted about a patient. |
+| Tools using the combined context | The team's intended uses in reporting, follow-up, longitudinal review, rule-based tools, and generative assistance. Link implementation examples to the ideas they demonstrate. Attribute proposed benefits and distinguish available capabilities from goals. |
 
 Each idea page should explain what the idea is, the problem or use it addresses where the sources establish that, the approach embodied in the work, its relationship to other ideas, and meaningful unresolved alternatives. Include a small example only when it helps explain the idea. Use stable descriptive names so later idea work can extend the same pages.
 
@@ -62,19 +79,22 @@ Delete superseded generated pages after checking their unique content and links.
 ### 1. Recover the idea work
 
 - [x] Write this plan before changing content.
+- [x] Read the owner-supplied SIIM 2026 deck, notes, and diagrams; revise the proposed reading path around Patient Context and Foundation Context.
+- [x] Read the CDE two-plane explanation and recorded owner decisions; incorporate their connection to the deck without merging distinct relationship meanings.
 - [ ] Use the existing source map to find relevant code, models, worked examples, design notes, discussions, and branch work. Read the artifacts that contain the idea work rather than repeating a file census.
 - [ ] Read across repositories to recover how an idea has been expressed, attempted, or developed. Include manuscripts and decks. Inspect implementation behavior when prose leaves the idea implicit.
-- [ ] Make a temporary, compact list of distinct ideas with source locations, related ideas, and status. Separate explicit intent from demonstrated behavior. Record disagreements and uncertain interpretation.
+- [ ] Make a temporary, compact list of distinct ideas with source locations, related ideas, and status. Where relevant, identify their role in the definition plane, observation plane, connections between them, or tools using them. Separate explicit intent from demonstrated behavior. Record disagreements and uncertain interpretation.
 - [ ] Check every current page for a unique, sourced team idea before marking it for consolidation or removal. Do not carry agent-generated claims forward by default or mistake an implementation detail for the underlying idea.
 - [ ] Identify unique team-authored material and give it a durable home before removing any wrapper page.
-- [ ] Derive the proposed idea pages from this investigation. Check the six-area reading structure and content budget against them.
+- [ ] Trace the deck's ideas and connections into the repository work. Preserve what that work adds, including disagreements with the presentation, without treating every depicted capability as implemented.
+- [ ] Derive the proposed idea pages from this investigation. Check the reading structure and content budget against them.
 
 Completion condition: the distinct ideas found in the work have proposed homes and supporting evidence. Uncertain interpretation is explicit. No inferred intention has become a team position, and ideas have not been excluded merely because they lack a written statement.
 
 ### 2. Draft the smaller account
 
 - [ ] Write the idea pages from the source investigation. Use the old pages to locate evidence, not as outlines to shorten.
-- [ ] Add only necessary definitions, examples, and source references. Keep unsettled alternatives side by side where needed.
+- [ ] Add only necessary definitions, examples, and source references. Use a few existing report examples to explain relationships within and between the planes. Keep unsettled alternatives side by side where needed.
 - [ ] Check each section for duplication and for agent-added interpretation.
 - [ ] Record progress and unresolved attribution questions in this plan.
 
@@ -103,6 +123,7 @@ No commits, publishing, or restructuring are authorized by the request to create
 ## Acceptance criteria
 
 - A reader can follow the team's ideas through concise pages organized around concepts and their relationships.
+- The introduction explains the deck's Patient Context/Foundation Context distinction, how they connect, and the team's intended uses. The three Foundation Context axes and their relationships have clear homes.
 - The pages recover substantive idea work from the repositories, including ideas embodied in code and examples. They provide stable homes for further development.
 - Every substantive claim is attributable to source evidence. Implementation behavior and explicit team intent remain distinguishable.
 - Each idea has one explanatory home. Unsettled alternatives remain attributed and unresolved.

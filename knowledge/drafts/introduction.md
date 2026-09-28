@@ -12,6 +12,9 @@ sources:
   - id: siim-deck
     resource: https://oidm-public.t3.tigrisfiles.io/oidm-knowledge-sources/SIIM%202026%20Reports-of-the-Future.pptx
     title: "Structured Results and Context for Next-Generation Imaging Resulting Tools, SIIM 2026 annual meeting talk, June 2026, Mass General Brigham"
+  - id: cde-two-planes
+    resource: https://github.com/RSNA/ACR-RSNA-CDEs/blob/44836c19f4e025cf1684a015ed5cc63c29eaf7f3/docs/next-gen-schema/03-draft-structures.md
+    title: "Next-generation Common Data Element draft structures, section 5, two planes, snapshot 2026-09-15"
   - id: jan-deck
     resource: https://gamma.app/docs/Open-Imaging-Data-Model-2026-Status-Update:-Realizing-Object-Oriented-Imaging-Results-yfxzx4q9zssafal
     title: Open Imaging Data Model 2026 Status Update, January 2026
@@ -55,7 +58,7 @@ The June 2026 talk names the two halves that next-generation tools need: "the st
 | Privacy | Protected health information | Open, not patient-specific |
 | Example | "8 mm nodule, RUL, new" | "what a pulmonary nodule is" |
 
-The two are joined by their codes. The talk presents Foundation Context as three curated axes — what was found, where it is, how it was seen — and states the join: "A code on an Observation is a pointer into one of these axes — the axes also point to each other, and out to external references."[^siim-deck] (The deck's tentative name for the first axis is "Observation Type"; its notes say the ACR/RSNA elements "may carry" that name later.) The relationships on each side are different in kind. Between definitions, a relationship is a standing possibility, as in the talk's worked figure where a radiodense urinary calculus "may cause" hydronephrosis. Between observations, a relationship is what this radiologist asserted about these particular observations on this exam. [Data Structures](./data-structures.md) explains the two graphs and how they work together; this page only previews them.
+The two are joined by their codes. The talk presents Foundation Context as three curated axes — what was found, where it is, how it was seen — and states the join: "A code on an Observation is a pointer into one of these axes — the axes also point to each other, and out to external references."[^siim-deck] (The deck's tentative name for the first axis is "Observation Type"; its notes say the ACR/RSNA elements "may carry" that name later.) The relationships on each side are different in kind. Between definitions, a relationship is a standing possibility, as in the talk's worked figure where a radiodense urinary calculus "may cause" hydronephrosis.[^siim-deck] Between observations, a relationship is what this radiologist asserted about these particular observations on this exam. The next-generation Common Data Element draft states that separation, and the project lead recorded it as a decision on 2026-09-02: "consistent with" is "radiologist-talk for 'I'm putting THESE findings together as THIS diagnosis'", and "it's NOT the same relationship" the abstract ideas hold in definition space.[^cde-two-planes] [Data Structures](./data-structures.md) explains the two graphs and how they work together; this page only previews them.
 
 # What a structured Observation cannot answer
 
@@ -83,7 +86,7 @@ The project lead named five parts of the work on 2026-09-22, to be used by name.
 
 The structures are defined for use inside applications, and are not a transport definition. The project lead's 2026-09-19 notes state that they are "NOT a transport definition (not FHIR, not DICOM)", that they may eventually need FHIR expressions to travel, and that designing for that possibility is "completely separate from the definition of the structures applications manipulate". The stated reason to agree on the structures is that agreed structures make it easier to agree on what must be conveyed between systems, and that they guide the design of the FHIR profiles and related artifacts that inter-process communication will need.[^owner-notes] The January 2026 call to action puts the same ordering as "structure-first (then FHIR etc.)".[^jan-deck]
 
-Earlier project statements put the structures and their FHIR expression together rather than apart. The founding site post of 2023-06-24 represents a finding as a FHIR Observation labeled with Common Data Element identifiers.[^site-findings] The 2024-01-25 post proposes structures over FHIR definitions for programmatic access and offers an analogy: "the relationship between OIDM and FHIR might be that between the browser's DOM and HTML."[^site-data-model] The 2024-07-01 post announces a manuscript presenting CDE-labeled FHIR Observations as the universal representation for exchanging and consuming report content.[^site-benchmarking] [Data Structures](./data-structures.md) carries the current mapping status.
+Earlier project statements describe the relationship to FHIR in their own terms, set out here by date rather than reconciled. The founding site post of 2023-06-24 represents a finding as a FHIR Observation labeled with Common Data Element identifiers.[^site-findings] The 2024-01-25 post proposes structures over FHIR definitions for programmatic access and distinguishes the two by analogy: "the relationship between OIDM and FHIR might be that between the browser's DOM and HTML."[^site-data-model] The 2024-07-01 post announces a manuscript describing a CDE-encoded FHIR Observation framework, and states its claim that "CDE-labeled Observations should be the universal representation for exchanging and consuming content in radiology reports".[^site-benchmarking] [Data Structures](./data-structures.md) carries the current mapping status.
 
 # Nothing is formally defined yet
 
@@ -97,6 +100,7 @@ The June 2026 talk closes with three requests: contribute or propose finding def
 
 [^owner-notes]: The project lead, 2026-09-19, points 3, 4, and 5 of the notes on the revised Imaging Problem List manuscript. Held in the local source collection.
 [^siim-deck]: SIIM 2026 annual meeting talk, June 2026, Mass General Brigham; slides 1, 3, 6, 7, 8, 12, 14, and 15 with their speaker notes.
+[^cde-two-planes]: [Draft structures, section 5](https://github.com/RSNA/ACR-RSNA-CDEs/blob/44836c19f4e025cf1684a015ed5cc63c29eaf7f3/docs/next-gen-schema/03-draft-structures.md#5-two-planes-reports-point-into-the-vocabulary), snapshot 2026-09-15, with row S21 of the [decision record of 2026-09-02](https://github.com/RSNA/ACR-RSNA-CDEs/blob/44836c19f4e025cf1684a015ed5cc63c29eaf7f3/docs/next-gen-schema/10-decision-record-2026-09-02.md), which records the quoted wording as the project lead's.
 [^jan-deck]: Open Imaging Data Model 2026 Status Update, January 2026: executive summary, strategic pillars, the CDE workbench section, and the call to action.
 [^site-about]: openimagingdata.org, project site tagline, read 2026-09-21.
 [^site-findings]: "Findings, CDEs, and Observations", openimagingdata.org, 2023-06-24.
