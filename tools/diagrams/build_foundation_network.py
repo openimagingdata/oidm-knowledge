@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the Foundation Context "mini-network" diagram (v6 layout).
+"""Build the Foundation Context "mini-network" diagram (v8).
 
 A small illustrative graph -- not exhaustive -- showing the three sectors of
 Foundation Context (finding/diagnosis definitions, anatomic locations, exam
@@ -35,6 +35,18 @@ pulmonary nodule -> CT Thoracic spine ("possibly seen on", dashed), which
 run down the left and right margins respectively, outside all three bands,
 each in its own lane, jogging in only at the very end.
 
+v8 change: the assessment-scheme node (Lung-RADS) is an oval, not a diamond --
+a diamond reads as a flowchart decision. Same fill, stroke and size envelope;
+the legend swatch follows. Its incoming "assessed by" edge now aims at the
+oval's leftmost point (d_frac 0.5), which is the one place on that side where
+the bounding box and the ellipse's boundary coincide.
+
+v7 change: every arrowhead is a solid filled triangle drawn by
+excalib.tri_head() at a fixed size, matching the two-planes figure -- grey
+within-sector, red cross-sector, dashed edges included. Excalidraw's built-in
+heads scale with strokeWidth, which made the thick cross-sector edges carry
+heads half again too big.
+
 v6 changes: canvas narrowed from 1200px to 955px. Every x-coordinate below
 was recomputed from measured text widths rather than estimated -- the
 rendering font is `Helvetica, Segoe UI Emoji` as resolved by headless
@@ -60,17 +72,25 @@ render_excalidraw.py (see tools/diagrams/README.md).
 """
 from __future__ import annotations
 
-from excalib import TITLE, SUBTITLE, BODY, LINE, els, base, text, box, find, edge_point, arrow, save
+from excalib import (TITLE, SUBTITLE, BODY, LINE, els, base, text, box, find, edge_point,
+                     arrow, tri_head, save)
 
 # ---------------------------------------------------------------- palette
 FINDING = ("#d1fae5", "#059669", "#064e3b")     # light green: finding
 DIAGNOSIS = ("#6ee7b7", "#059669", "#064e3b")   # darker green: diagnosis (subtly different fill)
-ASSESS = ("#e9d5ff", "#7e22ce", "#4c1d95")      # purple diamond: assessment scheme
+ASSESS = ("#e9d5ff", "#7e22ce", "#4c1d95")      # purple oval: assessment scheme
 ANATOMY = ("#bfdbfe", "#1d4ed8", "#1e3a8a")     # light blue: anatomic location
 EXAM = ("#fde68a", "#b45309", "#78350f")        # light amber: exam type
 GREY = ("#e5e7eb", "#9ca3af", "#4b5563")        # unlabeled / de-emphasized nodes
 CROSS = "#be123c"                               # thick colored line: cross-sector relationship
 BAND_BG = "#f8fafc"                             # sector band fill; label backings inside a band use it
+
+# Arrowheads are solid filled triangles drawn by excalib.tri_head(), matching
+# the two-planes figure, not Excalidraw's built-in open heads: those are sized
+# from the line's strokeWidth, so the thick cross-sector edges were forced to
+# carry outsized heads. These are about 60% of that size and set independently
+# of line weight. HEAD_X: cross-sector (red); HEAD_W: within-sector (grey).
+HEAD_X, HEAD_W = 13.0, 10.0
 
 # ---------------------------------------------------------------- helpers (local to this builder)
 def region(id_: str, x: float, y: float, w: float, h: float, title: str) -> None:
@@ -81,15 +101,28 @@ def region(id_: str, x: float, y: float, w: float, h: float, title: str) -> None
     els.append(text(id_ + "_title", x + 14, y + 10, title, size=15, color=TITLE))
 
 
+def edge(id_: str, *args, head: float = HEAD_W, **kwargs) -> None:
+    """excalib.arrow() with its open head replaced by a solid tri_head()."""
+    arrow(id_, *args, **kwargs)
+    a = find(id_)
+    a["endArrowhead"] = None
+    tip = (a["x"] + a["points"][-1][0], a["y"] + a["points"][-1][1])
+    frm = (a["x"] + a["points"][-2][0], a["y"] + a["points"][-2][1])
+    tri_head(id_ + "_h", tip, frm, a["strokeColor"], size=head)
+
+
 def dot(id_: str, cx: float, cy: float, r: float, fill=GREY[0], stroke=GREY[1]) -> dict:
     e = base("ellipse", id_, cx - r, cy - r, 2 * r, 2 * r, stroke, fill, sw=1)
     els.append(e)
     return e
 
 
-def diamond(id_: str, x: float, y: float, w: float, h: float, label: str, colors, size=13) -> dict:
+def oval(id_: str, x: float, y: float, w: float, h: float, label: str, colors, size=13) -> dict:
+    """An ellipse node, inscribed in the given box. The bound text keeps clear
+    of the curve by sitting in the middle 60% of the width and 36% of the
+    height, where the ellipse is at or near its full extent."""
     fill, stroke, tcolor = colors
-    d = base("diamond", id_, x, y, w, h, stroke, fill)
+    d = base("ellipse", id_, x, y, w, h, stroke, fill)
     t = text(id_ + "_t", x + w * 0.2, y + h * 0.32, label, size=size, color=tcolor, align="center", w=w * 0.6, container=id_)
     t["height"] = h * 0.36
     d["boundElements"] = [{"id": t["id"], "type": "text"}]
@@ -106,7 +139,7 @@ def faint(id_: str, x1: float, y1: float, x2: float, y2: float) -> None:
 
 def mpath(id_: str, pts: list[tuple[float, float]], color: str, dashed=False, sw=3,
           label: str | None = None, label_pos: tuple[float, float] | None = None, label_color=BODY,
-          label_w: float | None = None, label_bg_color: str = "#ffffff") -> None:
+          label_w: float | None = None, label_bg_color: str = "#ffffff", head: float = HEAD_X) -> None:
     """Multi-point routed arrow (elbow arrow() only supports 3 points).
 
     label_w: MEASURED text width in px. The backing box is sized from it, so
@@ -119,8 +152,9 @@ def mpath(id_: str, pts: list[tuple[float, float]], color: str, dashed=False, sw
     rel = [[px - x0, py - y0] for px, py in pts]
     ar = base("arrow", id_, x0, y0, pts[-1][0] - x0, pts[-1][1] - y0, color, "transparent", dashed=dashed, sw=sw)
     ar.update({"points": rel, "startBinding": None, "endBinding": None,
-               "startArrowhead": None, "endArrowhead": "arrow", "boundElements": None})
+               "startArrowhead": None, "endArrowhead": None, "boundElements": None})
     els.append(ar)
+    tri_head(id_ + "_h", pts[-1], pts[-2], color, size=head)
     if label:
         lw = label_w if label_w is not None else max(len(ln_) for ln_ in label.split("\n")) * 13 * 0.62
         lx, ly = label_pos
@@ -177,7 +211,7 @@ COL_PE = 708     # pleural effusion / pleural space share this one
 
 lung_cancer = box("lung_cancer", 20, 110, 140, 42, "lung cancer", DIAGNOSIS, size=14)
 pulm_nodule = box("pulm_nodule", 272, 100, 146, 54, "pulmonary\nnodule", FINDING, size=14)   # center 345
-lungrads = diamond("lungrads", 492, 95, 125, 75, "Lung-RADS", ASSESS, size=13)
+lungrads = oval("lungrads", 492, 95, 125, 75, "Lung-RADS", ASSESS, size=13)
 pleural_effusion = box("pleural_effusion", 637, 110, 142, 42, "pleural effusion", FINDING, size=13)  # center 708
 
 solid_nodule = box("solid_nodule", 120, 210, 105, 70, "solid\npulmonary\nnodule", FINDING, size=13)
@@ -196,24 +230,24 @@ faint("fA_into", 75, 270, 120, 245)  # gA2 -> solid pulmonary nodule (nearest la
 # horizontal (y=166) and to the LEFT of the red column at x=345; the right-hand
 # one sits ABOVE the "possibly seen on" lane's top horizontal (y=190). That is
 # what keeps the red pulmonary-nodule -> lung vertical off all three of them.
-arrow("e_solid_sub", "solid_nodule", "top", "pulm_nodule", "bottom", None, s_frac=0.5, d_frac=0.15)
-arrow("e_partsolid_sub", "partsolid_nodule", "top", "pulm_nodule", "bottom", None, s_frac=0.4, d_frac=0.5)
-arrow("e_nonsolid_sub", "nonsolid_nodule", "top", "pulm_nodule", "bottom", None, s_frac=0.2, d_frac=0.9)
+edge("e_solid_sub", "solid_nodule", "top", "pulm_nodule", "bottom", None, s_frac=0.5, d_frac=0.15)
+edge("e_partsolid_sub", "partsolid_nodule", "top", "pulm_nodule", "bottom", None, s_frac=0.4, d_frac=0.5)
+edge("e_nonsolid_sub", "nonsolid_nodule", "top", "pulm_nodule", "bottom", None, s_frac=0.2, d_frac=0.9)
 # All three "subtype of" labels are white-backed and placed by hand: their own
 # edges are diagonals that would otherwise run through the text, and the left
 # two have to stay clear of the "seen on" lane above (y=166) and the red
 # pulmonary-nodule column at x=345.
 label_bg("l_solid_sub", 205, 189, "subtype of", 60.0)
 label_bg("l_partsolid_sub", 290, 189, "subtype of", 60.0)
-label_bg("l_nonsolid_sub", 487, 169, "subtype of", 60.0)
-arrow("e_partsolid_comp", "partsolid_nodule", "bottom", "solid_component", "top", "has component", s_frac=0.6, d_frac=0.3,
+label_bg("l_nonsolid_sub", 464, 169, "subtype of", 60.0)  # clear of the oval's lower-left curve
+edge("e_partsolid_comp", "partsolid_nodule", "bottom", "solid_component", "top", "has component", s_frac=0.6, d_frac=0.3,
       label_size=13, label_dx=60)
-arrow("e_manifest", "lung_cancer", "right", "pulm_nodule", "left", "may manifest as", s_frac=0.4, d_frac=0.35,
+edge("e_manifest", "lung_cancer", "right", "pulm_nodule", "left", "may manifest as", s_frac=0.4, d_frac=0.35,
       label_size=13, label_dy=-26)
-arrow("e_progress", "nonsolid_nodule", "left", "partsolid_nodule", "right", "may progress to", s_frac=0.5, d_frac=0.5,
+edge("e_progress", "nonsolid_nodule", "left", "partsolid_nodule", "right", "may progress to", s_frac=0.5, d_frac=0.5,
       dashed=True, label_size=13, label_dy=-24)
-arrow("e_assessed", "pulm_nodule", "right", "lungrads", "left", "assessed by", s_frac=0.25, d_frac=0.4,
-      label_size=13, label_dx=6, label_dy=-24)
+edge("e_assessed", "pulm_nodule", "right", "lungrads", "left", "assessed by", s_frac=0.25, d_frac=0.5,
+      label_size=13, label_dx=6, label_dy=-30)  # -30: rides above the oval's upper-left curve
 # pleural_effusion intentionally has no edge to pulm_nodule -- just a neighbor
 # solid_component intentionally has no cross-sector "scoped to" edge -- only
 # pulmonary nodule, lung cancer, and pleural effusion are scoped to anatomy
@@ -246,14 +280,14 @@ faint("fB_12", 50, BY + 250, 75, BY + 285)
 faint("fB_13", 50, BY + 250, 55, BY + 310)
 faint("fB_into", 75, BY + 285, 140, BY + 245)  # gB2 -> upper lobe of right lung (nearest labeled node)
 
-arrow("e_rlung_lung", "right_lung", "right", "lung", "left", None, s_frac=0.5, d_frac=0.3)
-arrow("e_llung_lung", "left_lung", "left", "lung", "right", None, s_frac=0.5, d_frac=0.7)
-arrow("e_ulobe_rlung", "upper_lobe", "top", "right_lung", "bottom", None, s_frac=0.4, d_frac=0.4)
+edge("e_rlung_lung", "right_lung", "right", "lung", "left", None, s_frac=0.5, d_frac=0.3)
+edge("e_llung_lung", "left_lung", "left", "lung", "right", None, s_frac=0.5, d_frac=0.7)
+edge("e_ulobe_rlung", "upper_lobe", "top", "right_lung", "bottom", None, s_frac=0.4, d_frac=0.4)
 # lung parenchyma's edge runs into lung's BOTTOM-RIGHT (x=394), leaving the
 # space under lung's center free for "laterality", which now sits between the
 # red "included" arrowhead (x=294) and that edge -- on neither of them.
-arrow("e_parenchyma_lung", "lung_parenchyma", "top", "lung", "bottom", None, s_frac=0.7, d_frac=0.88)
-arrow("e_pspace_thorax", "pleural_space", "left", "thorax", "right", None, s_frac=0.5, d_frac=0.5)
+edge("e_parenchyma_lung", "lung_parenchyma", "top", "lung", "bottom", None, s_frac=0.7, d_frac=0.88)
+edge("e_pspace_thorax", "pleural_space", "left", "thorax", "right", None, s_frac=0.5, d_frac=0.5)
 
 label_bg("l_ulobe_rlung", 197, BY + 172, "contained by", 73.7)
 label_bg("l_laterality", 345, BY + 172, "laterality", 48.4)
@@ -282,12 +316,12 @@ dot("gC2", 64, CY + 198, 12)
 faint("fC_12", 42, CY + 165, 64, CY + 198)
 faint("fC_into", 42, CY + 165, 90, CY + 165)  # gC1 -> CT Chest WO contrast (nearest labeled node)
 
-arrow("e_wo_family", "ct_wo", "top", "ct_chest", "bottom", "member of family", s_frac=0.5, d_frac=0.1,
+edge("e_wo_family", "ct_wo", "top", "ct_chest", "bottom", "member of family", s_frac=0.5, d_frac=0.1,
       label_size=13, label_dx=-15, label_dy=-20)
-arrow("e_w_family", "ct_w", "top", "ct_chest", "bottom", None, s_frac=0.5, d_frac=0.35)
-arrow("e_wo_w_family", "ct_wo_w", "top", "ct_chest", "bottom", None, s_frac=0.5, d_frac=0.65)
-arrow("e_cta_family", "ct_cta", "top", "ct_chest", "bottom", None, s_frac=0.3, d_frac=0.9)
-arrow("e_w_regionimaged", "ct_w", "bottom", "region_imaged", "top", "Playbook part", s_frac=0.5, d_frac=0.5,
+edge("e_w_family", "ct_w", "top", "ct_chest", "bottom", None, s_frac=0.5, d_frac=0.35)
+edge("e_wo_w_family", "ct_wo_w", "top", "ct_chest", "bottom", None, s_frac=0.5, d_frac=0.65)
+edge("e_cta_family", "ct_cta", "top", "ct_chest", "bottom", None, s_frac=0.3, d_frac=0.9)
+edge("e_w_regionimaged", "ct_w", "bottom", "region_imaged", "top", "Playbook part", s_frac=0.5, d_frac=0.5,
       label_size=13, label_dx=107, label_dy=0)
 
 # ================================================================== cross-sector edges (thick, colored)
@@ -351,7 +385,7 @@ mpath("cx_pn_ctspine",
 node_rows = [
     ("rect", FINDING, "finding"),
     ("rect", DIAGNOSIS, "diagnosis"),
-    ("diamond", ASSESS, "assessment scheme"),
+    ("oval", ASSESS, "assessment scheme"),
     ("rect", ANATOMY, "anatomic location"),
     ("rect", EXAM, "exam type"),
 ]
@@ -372,8 +406,8 @@ for i, (kind, colors, label) in enumerate(node_rows):
         sw_el = base("rectangle", f"legA{i}", LX1, y, 22, 16, stroke, fill, sw=1)
         sw_el["roundness"] = {"type": 3}
         els.append(sw_el)
-    elif kind == "diamond":
-        els.append(base("diamond", f"legA{i}", LX1, y - 3, 24, 22, stroke, fill))
+    elif kind == "oval":
+        els.append(base("ellipse", f"legA{i}", LX1, y - 1, 24, 18, stroke, fill))
     els.append(text(f"legA{i}_l", LX1 + 32, y - 1, label, size=13, color=BODY, w=340))
     y += 28
 

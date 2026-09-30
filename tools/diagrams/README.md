@@ -11,6 +11,13 @@ Per diagram, one of two things is the source:
 
 Hand-edited diagrams (builders retired): none yet.
 
+`build_pillars.py` takes a required `--seam a|b|c` choosing how the Data
+Structures and Foundation Context bands meet (named attachments, dovetail,
+shared membrane) and writes `knowledge/drafts/pillars-<seam>.excalidraw`. The
+v3 seam it replaced -- an overlap crossed by twelve alternating threads -- was
+rejected, so `knowledge/drafts/pillars.excalidraw` is stale until one of the
+three is chosen and made the default.
+
 ## Rendering
 
 From the excalidraw-diagram skill's references directory (it holds the Playwright environment):
@@ -52,6 +59,15 @@ Viewing the whole PNG hides label-on-edge collisions. `render_template.html` can
 
 ## Icons
 
+Project logos and square marks are available in `knowledge/assets/brand/`.
+Use the original SVGs with `excalib.image()` and omit its `color` argument.
+The [brand notes](../../docs/brand/README.md) give paths, proportions, and
+embedding examples. Use these marks to identify the projects in a diagram.
+
 `excalib.image(id_, x, y, w, h, svg_path, color=None)` embeds an SVG file as an Excalidraw `image` element: it reads the file, optionally replaces every `currentColor` in the SVG source with a hex string (so one licensed icon file can be recolored per diagram without editing the file on disk), base64-encodes it into the document's top-level `files` map, and adds an element referencing that `fileId`. `render_template.html` already passed `files` through to `exportToSvg` before this was added, so no renderer change was needed to make icons show up in the rendered PNG/SVG -- this was checked, not assumed.
 
 Icon source files live in `tools/diagrams/icons/`, kept as unmodified originals (recoloring happens at build time, not by editing the files). `icons/LICENSES.md` records where each one came from and its license. When a diagram needs an icon that isn't already there, prefer an existing open set already used in the bundle (Health Icons, Lucide) over adding a new one, to keep icon style consistent across diagrams; add the new file, credit it in `LICENSES.md`, and note in the relevant `build_<name>.py` docstring which set was used for which slot.
+
+## Node shape and color conventions (2026-09-30)
+
+Node kinds share one palette across figures (see excalib): FindingClass and Diagnosis green (Diagnosis darker), Grouping pale green with dashed stroke, AssessmentScheme purple OVAL (never a diamond, which reads as a flowchart decision), AnatomicLocation blue, exam types yellow, Modality grey, DataElement light rose, Measurement light violet, Subspecialty and other metadata Concept nodes grey-violet. Arrowheads are small solid triangles (excalib.tri_head). Edge labels use the schema's committed relationship names in 13px on boxed labels.

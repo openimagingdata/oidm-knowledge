@@ -118,7 +118,7 @@ def edge_point(b: dict, side: str, frac: float = 0.5) -> tuple[float, float]:
 
 def arrow(id_: str, src: str, s_side: str, dst: str, d_side: str, label: str | None = None, s_frac=0.5, d_frac=0.5,
           color=LINE, dashed=False, label_dx=0.0, label_dy=-22.0, sw=2, both=False, elbow: str | None = None,
-          label_size=14, inset=0.0) -> None:
+          label_size=14, inset=0.0, head="arrow") -> None:
     a, b = find(src), find(dst)
     (x1, y1), (x2, y2) = edge_point(a, s_side, s_frac), edge_point(b, d_side, d_frac)
     if inset:
@@ -137,7 +137,7 @@ def arrow(id_: str, src: str, s_side: str, dst: str, d_side: str, label: str | N
     ar.update({"points": pts,
                "startBinding": {"elementId": src, "focus": 0, "gap": 2},
                "endBinding": {"elementId": dst, "focus": 0, "gap": 2},
-               "startArrowhead": "arrow" if both else None, "endArrowhead": "arrow", "boundElements": None})
+               "startArrowhead": head if both else None, "endArrowhead": head, "boundElements": None})
     a["boundElements"].append({"id": id_, "type": "arrow"})
     b["boundElements"].append({"id": id_, "type": "arrow"})
     els.append(ar)
@@ -145,6 +145,32 @@ def arrow(id_: str, src: str, s_side: str, dst: str, d_side: str, label: str | N
         mx, my = (x1 + x2) / 2 + label_dx, (y1 + y2) / 2 + label_dy
         lw = max(len(ln) for ln in label.split("\n")) * label_size * 0.58
         els.append(text(id_ + "_l", mx - lw / 2, my, label, size=label_size, color=BODY, align="center", w=lw))
+
+
+def tri_head(id_: str, tip: tuple[float, float], frm: tuple[float, float], color: str,
+             size: float = 11.0, width_ratio: float = 0.62) -> dict:
+    """A solid filled arrowhead, drawn as its own closed triangle.
+
+    Excalidraw's built-in arrowheads ("arrow", "triangle", ...) are sized from
+    the arrow's `strokeWidth`, so a thick line is forced to carry a big head.
+    This draws the head separately instead: give the arrow `endArrowhead: None`
+    and call this at its last point, passing the previous point as `frm` so the
+    triangle aims along the final segment. `size` is the head's length in px,
+    independent of the line weight.
+    """
+    dx, dy = tip[0] - frm[0], tip[1] - frm[1]
+    length = (dx ** 2 + dy ** 2) ** 0.5 or 1.0
+    ux, uy = dx / length, dy / length
+    px, py = -uy, ux                     # unit perpendicular
+    hw = size * width_ratio              # half-width of the head's base
+    bx, by = tip[0] - ux * size, tip[1] - uy * size
+    pts = [tip, (bx + px * hw, by + py * hw), (bx - px * hw, by - py * hw)]
+    x0, y0 = pts[0]
+    el = base("line", id_, x0, y0, 0, 0, color, color, sw=1)
+    el.update({"points": [[x - x0, y - y0] for x, y in pts] + [[0, 0]],
+               "roundness": None, "boundElements": None, "fillStyle": "solid"})
+    els.append(el)
+    return el
 
 
 def boxed_label(id_: str, cx: float, y_bottom: float, s: str, size=13, color=BODY, pad_x=5, pad_y=2) -> dict:
