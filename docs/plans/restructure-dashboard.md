@@ -8,14 +8,14 @@ Status words: **agreed** = text settled with the project lead and on disk; **in 
 
 | Page | Status | Where to look |
 |---|---|---|
-| **Overview** (root) | agreed; Astra-reviewed; pillars figure not yet embedded | [knowledge/drafts/overview.md](/knowledge/drafts/overview.md) |
+| **Overview** (root) | agreed; Astra-reviewed; two-planes figure embedded; pillars stack to follow once B3 is accepted | [knowledge/drafts/overview.md](/knowledge/drafts/overview.md) |
 | **Foundation Context** index | agreed; both figures embedded | [knowledge/drafts/foundation-context.md](/knowledge/drafts/foundation-context.md) |
-| Finding models and CDEs (hub) | in discussion: opening three parts revised 2026-09-27, rest as proposed | conversation; material in [knowledge/drafts/finding-models-and-cdes.md](/knowledge/drafts/finding-models-and-cdes.md) |
+| Finding Models and Common Data Elements (hub) | **agreed and written**; Astra-reviewed, six provenance findings applied; prose byte-identical to the agreed text | [knowledge/drafts/finding-models-and-cdes-hub.md](/knowledge/drafts/finding-models-and-cdes-hub.md); material for the children in [knowledge/drafts/finding-models-and-cdes.md](/knowledge/drafts/finding-models-and-cdes.md) |
 | OIFM content | material only | [knowledge/drafts/finding-models-and-cdes.md](/knowledge/drafts/finding-models-and-cdes.md), "What the inclusive collection holds" |
 | Definition formats | material only | same file, "The two formats" |
 | Identifiers | material only | same file, identifiers paragraph |
-| Next-generation schema | material only | same file, "The common graph" |
-| Relationships | material only | same file, "The relationship family", "Assessments, components" |
+| Next-generation schema | **agreed and written**; Astra-reviewed, six provenance findings applied; prose byte-identical; CDE figure embedded | [knowledge/drafts/next-generation-schema.md](/knowledge/drafts/next-generation-schema.md) |
+| Relationships | **agreed and written**; Astra-reviewed; the project lead's four prose decisions applied; figure (nodule neighborhood) pending accept | [knowledge/drafts/relationships.md](/knowledge/drafts/relationships.md) |
 | Standard clinical metadata | material only | same file, "What the graph should carry" |
 | Authoring and review | material only | same file, "Authoring and review" table |
 | Anatomic locations | material only; Tuesday draft cross-reviewed and corrected | [knowledge/drafts/anatomic-locations.md](/knowledge/drafts/anatomic-locations.md) |
@@ -43,26 +43,27 @@ Status words: **agreed** = text settled with the project lead and on disk; **in 
 | Imaging Problem List viewers | material only | same file |
 | Report extraction platform | material only | same file |
 | Rendering, search, and exchange | material only | same file |
-| Glossary | decision pending: keep, cut, or drop | [knowledge/glossary/](/knowledge/glossary/) (49 terms) |
+| Glossary | decided 2026-09-29: dropped; rebuilt from the new pages as terms earn entries; directory removed at the replace step | [knowledge/glossary/](/knowledge/glossary/) (48 terms, obsolete) |
 
 ## Figures
 
 | Figure | For | Status | Where to look |
 |---|---|---|---|
-| Two planes: a finding, its exam, and the shared knowledge they attach to | Overview (lead figure) | done (v5 on Opus, with the thorax > lung > upper lobe chain); needs your accept, then embed in the Overview | [docs/plans/renders/two-planes-v5.png](/docs/plans/renders/two-planes-v5.png); [knowledge/drafts/two-planes.svg](/knowledge/drafts/two-planes.svg) |
-| Five-pillar stack | Overview | v3 on Opus; needs your accept; fence-like seam threads and the "relationships" plate placement are the known nits | [docs/plans/renders/pillars-v3.png](/docs/plans/renders/pillars-v3.png); [knowledge/drafts/pillars.svg](/knowledge/drafts/pillars.svg) |
-| Three axes | Foundation Context | done | [docs/plans/renders/three-axes-v1.png](/docs/plans/renders/three-axes-v1.png); embedded in `foundation-context.md` |
-| Foundation Context mini-network | Foundation Context | done (v6 on Opus) | [docs/plans/renders/foundation-network-v6.png](/docs/plans/renders/foundation-network-v6.png); embedded in `foundation-context.md` |
-| Patient Context / Foundation Context table (deck slide 7) | Overview | needs your permission to embed your own deck figures | [sources/bucket/siim2026/media/ppt/media/image6.png](/sources/bucket/siim2026/media/ppt/media/image6.png) |
-| One content, two collections | Finding models and CDEs hub | not started; design proposed in conversation | |
-| Definition field table (deck slide 9) | Definition formats | permission question as above | [sources/bucket/siim2026/media/ppt/media/image7.png](/sources/bucket/siim2026/media/ppt/media/image7.png) |
-| Kidney field table (deck slide 10) | Anatomic locations | permission question as above | [sources/bucket/siim2026/media/ppt/media/image8.png](/sources/bucket/siim2026/media/ppt/media/image8.png) |
+| Two planes: a finding, its exam, and the shared knowledge they attach to | Overview (lead figure) | ACCEPTED by the project lead 2026-09-29 (v10); embedded in the Overview under "The two contexts" | [docs/plans/renders/two-planes-v10.png](/docs/plans/renders/two-planes-v10.png); [knowledge/drafts/two-planes.svg](/knowledge/drafts/two-planes.svg) |
+| Five-pillar stack | Overview | v8 on B3: the SDK lane ends in Foundation Context as one tooth "attaches to · authors & maintains"; SDKs subtitle cut; applications joint widened; needs your accept, then replaces pillars.svg and goes into the Overview | [docs/plans/renders/pillars-v8-b3.png](/docs/plans/renders/pillars-v8-b3.png) | [docs/plans/renders/pillars-v3.png](/docs/plans/renders/pillars-v3.png); [knowledge/drafts/pillars.svg](/knowledge/drafts/pillars.svg) |
+| Three axes | Foundation Context | v6 on Opus: full-width section bands in all three columns (node kinds; body regions; modalities), columns filled to equal density, measurements length and CT density only; embedded; needs your accept | [docs/plans/renders/three-axes-v6.png](/docs/plans/renders/three-axes-v6.png) |
+| Foundation Context mini-network | Foundation Context | v8 on Opus: solid arrowheads, assessment scheme as an oval; embedded; needs your accept | [docs/plans/renders/foundation-network-v8.png](/docs/plans/renders/foundation-network-v8.png); embedded in `foundation-context.md` |
+| Patient Context / Foundation Context table (deck slide 7) | Overview | permitted 2026-09-29; redundant with the two-planes figure, not planned | [sources/bucket/siim2026/media/ppt/media/image6.png](/sources/bucket/siim2026/media/ppt/media/image6.png) |
+| One content, two collections | Finding models and CDEs hub | v1 on Opus; needs your accept, then embed in the hub | [docs/plans/renders/two-collections-v1.png](/docs/plans/renders/two-collections-v1.png) |
+| Definition field table (deck slide 9) | Definition formats | permitted; planned | [sources/bucket/siim2026/media/ppt/media/image7.png](/sources/bucket/siim2026/media/ppt/media/image7.png) |
+| Kidney field table (deck slide 10) | Anatomic locations | permitted; planned | [sources/bucket/siim2026/media/ppt/media/image8.png](/sources/bucket/siim2026/media/ppt/media/image8.png) |
 | Containment, part-of, laterality example | Anatomic locations | not started | |
 | CT Chest over the Playbook with anatomy edges | Exam types | not started | |
 | Data-structure hierarchy | Data Structures index | existing diagram needs revision (Persona as concept, no "pointer") | [knowledge/data-structures/hierarchy.svg](/knowledge/data-structures/hierarchy.svg) |
-| Report to Observation (deck slide 4) | Observation | permission question as above | [sources/bucket/siim2026/media/ppt/media/image4.png](/sources/bucket/siim2026/media/ppt/media/image4.png) |
-| The two graphs | The two graphs | not started; the CDE repo's `two-planes.svg` and `report-pyelonephritis.svg` are the best existing pictures; permission to reuse from the allied repo is your call | `~/ACR-RSNA-CDEs/docs/next-gen-schema/diagrams/` |
-| Foundation-context graph (deck slide 12) | Relationships | permission question as above | [sources/bucket/siim2026/media/ppt/media/image9.png](/sources/bucket/siim2026/media/ppt/media/image9.png) |
+| Report to Observation (deck slide 4) | Observation | permitted; planned | [sources/bucket/siim2026/media/ppt/media/image4.png](/sources/bucket/siim2026/media/ppt/media/image4.png) |
+| The two graphs | The two graphs | permitted; planned: the CDE repository's one-report-two-planes (pyelonephritis) figure | `~/ACR-RSNA-CDEs/docs/next-gen-schema/diagrams/` |
+| Foundation-context graph (deck slide 12) | Relationships | permitted; planned | [sources/bucket/siim2026/media/ppt/media/image9.png](/sources/bucket/siim2026/media/ppt/media/image9.png) |
+| Pulmonary nodule neighborhood (nodes and edges from the pinned CDE graph) | Relationships page; could replace the dated 2026-09-03 figure on the schema page | v3 on Opus: illustrative per the project lead's intended CDE updates; assessment schemes now ovals; needs your accept and a placement decision (relationships page; replace the dated figure on the schema page) | [docs/plans/renders/nodule-neighborhood-v3.png](/docs/plans/renders/nodule-neighborhood-v3.png) |
 | SDK resolution flow | SDKs index | not started | |
 
 ## Decisions waiting on the project lead
@@ -70,9 +71,9 @@ Status words: **agreed** = text settled with the project lead and on disk; **in 
 1. Accept the pillars stack v3, then the embed into the Overview.
 2. The hub page text as revised on 2026-09-27.
 3. Commit of everything since Tuesday to `bootstrap`.
-4. Glossary: keep, cut, or drop.
-5. Naming: the reporting vendor in the 2024 update; the two organizations behind the 47 and 31 finding models; commit of CDE decisions S53 to S67.
-6. Whether your own deck figures, and figures from the ACR-RSNA-CDEs repository, may be embedded.
+4. Decided 2026-09-29: glossary dropped; rebuilt from the new pages.
+5. Decided 2026-09-29: vendor generic; the two organizations generalized. Still open: commit of CDE decisions S53 to S67.
+6. Decided 2026-09-29: deck and CDE-repository figures may be used.
 
 ## Process
 

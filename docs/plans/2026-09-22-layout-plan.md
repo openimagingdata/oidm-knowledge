@@ -4,6 +4,38 @@ Status: Proposed, 2026-09-22. Written by Claude for the project lead and the Cod
 
 ## The guidance, verbatim
 
+Project lead, 2026-09-27 to 2026-09-29, on the Finding Models and Common Data Elements hub page:
+
+> I think what we want to say is that the finding/diagnosis definition is an unified anchor for the CONCEPT of a finding/diagnosis in a form that can be used to attach associated context: name, synonyms, definition, attributes, etc. OIFM are AN inclusive collection, intended for rapid prototyping... ACR/RSNA Common Data Elements (always include the organizations) are the well-reviewed... published through radelement.org. Forget about talking about the current schema's sets and elements--waste of bits.
+
+> "Finding Models and Common Data Elements" / "Definitions of findings and diagnoses anchor these concepts in a form that associated content can..."
+
+> "...maintained by the OIDM project..." / "The OIFM repository is intended for rapid, community-based prototyping and iteration based on an open-source model." / "...with changes proposed by anyone." / Take out "uneven" / "in the project lead's words" is RIGHT OUT. I think the thing to emphasize is that they will have the same schema and describe the same ideas. Major difference is that OIFMs is much more "beta"/rapid additions and updates and CDEs is much more "release"/reviewed and stable.
+
+> I think we should also emphasize that we will maintain cross-links: when something migrates to CDEs, it will continue to be maintained in the OIFM repo but have a reference to its CDE identity. "Both CDEs and OIFMs are document-oriented today, and moving..."
+
+The agreed hub text (2026-09-29) is the one the Opus agent writes verbatim into `knowledge/drafts/finding-models-and-cdes-hub.md`.
+
+Project lead, 2026-09-30, on figures: "Let's make the AssessmentSchemes ovals rather than diamonds--those have a flowchart implication that doesn't obtain here." Recorded as a convention in tools/diagrams/README.md.
+
+Project lead, 2026-09-30, four prose decisions on the relationships page: (1) change the associated-findings example to a pair the graph records as OCCURS_WITH; (2) the renal abscess clause becomes "...may have sequela beyond the course of the acute pyelonephritis episode."; (3) "whether or not one causes the other"; (4) use the schema's specificity words: pathognomonic, highly suggestive, suggestive ("they're cooler").
+
+Project lead, 2026-09-30, on the pulmonary nodule neighborhood figure (illustrative; reflects updates the project lead, as the CDE project's clinical expert, intends for the CDE graph): rename "attenuation" to "composition" and "pulmonary margin" to "margin"; drop "lesion count"; "ground glass nodule" for "non-solid pulmonary nodule"; add the Grouping "pulmonary parenchymal abnormality"; add the diagnoses "pulmonary neoplasm" and "pulmonary granuloma" (subtype of the grouping); add "Fleischner criteria" as an assessment scheme; add subspecialty; show SEEN_ON CT, XR, and MR; no values; no time course or etiology for now: "I'm starting to think that may need to be a property of the edge connecting it to a diagnosis. Actually, that's the same for etiology."
+
+Project lead, 2026-09-30, on the relationships page:
+
+> Emphasizing that they're "strictly apart" makes it seem like THAT'S the issue. / Let's just call this subsection "Findings <-> Diagnoses: Manifestation and Causation" / "Pyelonephritis APPEARS AS striated nephrogram..." "when the pyelonephritis resolves, the striation goes with it..." / Next subsection called "Deriving the Differential" / "The schema distinguishes manifestation and causation to enable inference:..." / We should ALSO include the idea of associated findings here, and the properties of the edges themselves that get at how commonly findings/diagnoses are associated in the specified way / Don't include the "HPO and Orphanet" reference / "a pulmonary nodule definition specifies how a pulmonary nodule WILL BE DESCRIBED. The assessment is a separate assertion, defined by the AssessmentScheme definition, which allows for evaluation of the nodule according to the defined criteria." / "...by an ASSESSED_BY edge"
+
+Project lead, 2026-09-30, on the next-generation schema page:
+
+> "Both Open Imaging FInding Models and RSNA/ACR Common Data Elements are moving..." / Show a link to the ACR/RSNA CDE schema repository, on the next-gen-2026 branch. / "...as a graph of interconnected concepts rather than a set of documents." / "Applications will be able to use either or both collections at once via a common SDK based on the new schema." / "FindingClass" defines the properties of the items described in imaging reports. A "Diagnosis" is a separate, closely-related node type, distinguished by a different set of possible relationships. Groupings are broad classes of findings/diagnoses such as "renal abnormality", usually intended to be used in the negative. / For most of these node class definitions, we want to use "defines" rather than "is a" (this is a very tricky but important semantic distinction) / "AssessmentScheme" definitions layout the systems such as Lung-RADS via which a constellation of other findings is evaluated. / "The anatomic scope property of each other node indicates the locations and/or structures in which they may be localized (e.g., "lung parenchyma" for a pulmonary nodule). / "Edges integrate the notes into a rich fabric of interrelated concepts, enabling reliable, reproducible inference." / "Edges bind FindingClass and Diagnosis definitions to their anatomic scope and to the DataElements and Measurements used to specify their attributes. The edges themselves may contain properties that provide additional detail about the relationships between nodes." / Concept nodes as a note below the list, introducing the paragraph that also talks about anatomic scope. / Use the actual table of relationship types as examples. / "Evolution of CDEs and Finding Models: Both CDEs and existing Open Imaging Finding Models will have to migrate from their current JSON document-based organization to a new graph-oriented format, likely using RDF/OWL as an underlying storage format. More ergonomic data structures will also be developed for use in SDKs and via an API."
+
+Project lead, 2026-09-30, on the SDKs (for the pillars figure and the SDKs index): "I think we should also say that the SDKs help AUTHOR and MAINTAIN the underlying foundation context."
+
+Project lead, 2026-09-29, on Measurements (for the three-axes figure and the next-generation schema page):
+
+> Measurements don't have EXPLICIT units, they indicate what KIND of thing they are: length (with appropriate length units, which could be mm, cm, whatever), CT density (HU), or count (unitless), ratio (unitless), velocity (m/s, cm/s), volume (cc, mL, mm^3..., L)
+
 Project lead, 2026-09-24, on the Overview page:
 
 > OIDM is NOT just for modeling imaging results, it is for modeling the ENTIRE imaging workflow context throughout its lifecycle. It's meant to enable a common platform across the medical imaging ecosystem that enables tools that will assist radiologists, technologists, ordering providers, and back-office staff. RIGHT NOW, we happen to be focused on data structures and semantics for representing imaging results, whether from current exams or prior, and from AIs, radiologists, technologists, or modalities themselves, and for integrating those results across time. We will ALSO model the broader patient context and enable linking between imaging results and patients' OTHER diagnoses, procedures, and issues.
@@ -139,7 +171,7 @@ knowledge/
                                     and PHI-local stance
     rendering-search-and-exchange.md  the 2023 rendering, 2024 ontology-search, and exchange
                                     demonstrations
-  glossary/                         kept; cut to cross-topic terms (decision for the project lead)
+  glossary/                         removed at the replace step; rebuilt from the new pages as terms earn entries
 ```
 
 Pages not listed above are not planned. More idea documents appear wherever a source carries a distinct idea; no cap.
@@ -164,6 +196,9 @@ From the placement table (`idea-placement.md`), every placed idea lands in one o
 From the current bundle: the old directories (`overview`, `semantic-foundation`, `data-structures`, `applications`, `roadmap`, `history`, `repositories`, `references`) are removed after a unique-content check against the new documents. `glossary` is kept pending the project lead's decision on its size. `guides` and `plans` stay as maintenance records off the reading path.
 
 ## Open points for the project lead
+
+Decided 2026-09-29: the reporting vendor in the 2024 update stays generic for now; the organizations behind the 47 and 31 finding models stay generalized; figures from the SIIM 2026 deck and the ACR-RSNA-CDEs repository may be used ("They're all mine"). Glossary, decided 2026-09-29: the existing 48-term glossary is dropped ("PACKED with obsolete stuff"); a new glossary is built out from the real pages as they are written, one entry only when a page needs a term defined across topics. Removal happens at the replace step, since the old pages still link into it.
+
 
 1. Glossary: keep all 49 terms, cut to cross-topic terms, or drop in favor of the idea documents' own definitions.
 2. The three naming choices already raised: the reporting vendor in the 2024 update; the two organizations behind the 47 and 31 finding models; the uncommitted CDE decisions S53 to S67.
