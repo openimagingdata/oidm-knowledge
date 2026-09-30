@@ -68,6 +68,10 @@ A structured finding, say "pulmonary nodule, present, right upper lobe, 8 mm, ne
 
 OIDM therefore separates two things. **Patient Context** is this patient's results and clinical context: one per patient, protected health information, changing as the patient's condition evolves. **Foundation Context** is a single shared layer of definitions, relationships, and citations: what a pulmonary nodule is, where it can occur, what it can cause, what it can be confused with. It is open, not patient-specific, authored and versioned in the open.[^siim-2026] The two are deeply interconnected: every contingent fact about this patient, this nodule on this exam, is attached to the baseline clinical knowledge about what such a thing is, so that an application reading the patient's record has the knowledge to interpret it.[^lead-2026-09-24]
 
+[![Two planes: a patient's exam and findings in Patient Context, attached to the exam type, the finding definitions, and the anatomic locations in Foundation Context](./two-planes.svg)](./two-planes.svg)
+
+(click the image for full size)
+
 # The core pieces
 
 **[Foundation Context](./foundation-context.md).** The shared semantic layer. It has three axes, each a curated layer over an existing standard: what was found (finding/diagnosis definitions, held as Open Imaging Finding Models and as ACR/RSNA Common Data Elements), where it is (anatomic locations anchored in RadLex), and how it was seen (exam types over the LOINC/RSNA Radiology Playbook). The axes relate to each other and cite external references. This pillar covers both the shape a definition takes and the work of building the content.[^siim-2026][^build-plan]
