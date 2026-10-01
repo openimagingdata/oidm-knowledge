@@ -7,6 +7,7 @@ The content is an [Open Knowledge Format](https://okf.md) 0.2 bundle in [`knowle
 ## Reading it
 
 - Browse on GitHub from [`knowledge/index.md`](knowledge/index.md).
+- Source notes: [15 linked diagram summaries](docs/references/linked-diagrams/index.md), with source locators and connections to the five pillars.
 - Rendered site: `task build` renders it with Quartz into `public/`; `task deploy` publishes it to Cloudflare (Workers static assets, `site/wrangler.jsonc`); pushes to `main` deploy through `.github/workflows/deploy.yml`.
 - Agents: read `knowledge/index.md` first, follow links only into what the task needs, and weigh `status`, `verified`, and `stale_after` in each document's frontmatter.
 

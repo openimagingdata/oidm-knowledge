@@ -75,6 +75,10 @@ Status words: **agreed** = text settled with the project lead and on disk; **in 
 5. Decided 2026-09-29: vendor generic; the two organizations generalized. Still open: commit of CDE decisions S53 to S67.
 6. Decided 2026-09-29: deck and CDE-repository figures may be used.
 
+## References layer, first content
+
+Astra's 15 board summaries in [docs/references/linked-diagrams/](/docs/references/linked-diagrams/) are the first references-layer content (staged there until the layers plan runs); live board links and meeting names are being removed per the project lead, 2026-10-01.
+
 ## Handoff
 
 Everything an agent needs, including the working rules, is in [docs/HANDOFF.md](/docs/HANDOFF.md).
