@@ -18,6 +18,14 @@ plugins live here. `build.sh` clones Quartz at a pinned commit into `site/.quart
 `site/.quartz-src/` (the Quartz checkout), `public/` (the build output), and any
 `node_modules/` under `site/` are gitignored.
 
+## Brand assets
+
+OIDM and Anatomic Locations logos are in `knowledge/assets/brand/`. The existing
+content staging and Quartz asset steps publish them at `/assets/brand/`.
+See the [brand guide notes](../docs/brand/README.md) for the supplied colors,
+logo variants, usage examples, and original style-guide PDF. The import does
+not change the site's theme, header, or favicon.
+
 ## Building locally
 
 From the repository root:

@@ -1,0 +1,107 @@
+{
+  "retrieved": "2026-09-30",
+  "files": [
+    {
+      "path": "knowledge/assets/brand/oidm/logo-color.svg",
+      "source": "t3://oidm-public/logos/Open Imaging Data Model/Open Imaging Data Model logo.svg",
+      "bytes": 29836,
+      "sha256": "6872de52cfdda7bafa4778f9f60a3cf2986cea1ed62a45985731cf7663b169c0"
+    },
+    {
+      "path": "knowledge/assets/brand/oidm/logo-color.png",
+      "source": "t3://oidm-public/logos/Open Imaging Data Model/Open-Imaging-Data-Model-logo.png",
+      "bytes": 49644,
+      "sha256": "3b95bc08f6ceb041e6e097d424fbcdf0b80f323bf5ee353b88c096e5443987b4"
+    },
+    {
+      "path": "knowledge/assets/brand/oidm/logo-black.svg",
+      "source": "t3://oidm-public/logos/Open Imaging Data Model/Open Imaging Data Model logo black.svg",
+      "bytes": 29360,
+      "sha256": "b27765f299d3f171952f27c068ee0fdb8b1b4bb578624a59b6e36df66d30c712"
+    },
+    {
+      "path": "knowledge/assets/brand/oidm/logo-black.png",
+      "source": "t3://oidm-public/logos/Open Imaging Data Model/Open-Imaging-Data-Model-logo-black.png",
+      "bytes": 42289,
+      "sha256": "089e8f9d2e0c90a3a4df9bb5e1051441e329dce7f59604c707b7260cc76d8ec4"
+    },
+    {
+      "path": "knowledge/assets/brand/oidm/logo-white.svg",
+      "source": "t3://oidm-public/logos/Open Imaging Data Model/Open Imaging Data Model logo white.svg",
+      "bytes": 29995,
+      "sha256": "0a99b4ed2091e99dfb5a376b865bf348365fdb7923f96c239c4a877e50d9df63"
+    },
+    {
+      "path": "knowledge/assets/brand/oidm/logo-white.png",
+      "source": "t3://oidm-public/logos/Open Imaging Data Model/Open-Imaging-Data-Model-logo-white.png",
+      "bytes": 48393,
+      "sha256": "98a4771e17b0ddb0423d066778561d1c406c88320b9bf577735f2ba7fafc8ef8"
+    },
+    {
+      "path": "knowledge/assets/brand/oidm/mark.svg",
+      "source": "t3://oidm-public/logos/Open Imaging Data Model/Open Radiology Data Model Project favicon.svg",
+      "bytes": 11504,
+      "sha256": "bbea5bf9eb403b7669783b560a32c8c3a43da791c95e24e61e61b21d9a78d183"
+    },
+    {
+      "path": "knowledge/assets/brand/oidm/mark.png",
+      "source": "t3://oidm-public/logos/Open Imaging Data Model/Open-Radiology-Data-Model-Project-favicon.png",
+      "bytes": 18533,
+      "sha256": "bc7f99373c4e8367d60ad634e0b6c83d9cb16b6a971f711e6d600d318acd7d4a"
+    },
+    {
+      "path": "knowledge/assets/brand/anatomic-locations/logo-color.svg",
+      "source": "t3://oidm-public/logos/Anatomic Locations/AnatomicLocations logo.svg",
+      "bytes": 22668,
+      "sha256": "c0a83e076d969d616c809354b658df5b463989ed3b3d5985b282a359cfcab759"
+    },
+    {
+      "path": "knowledge/assets/brand/anatomic-locations/logo-color.png",
+      "source": "t3://oidm-public/logos/Anatomic Locations/AnatomicLocations-logo.png",
+      "bytes": 36000,
+      "sha256": "5e49ad69407de57963b45f0eaf6f229988b1ebed556c450789f7b76e2c429862"
+    },
+    {
+      "path": "knowledge/assets/brand/anatomic-locations/logo-black.svg",
+      "source": "t3://oidm-public/logos/Anatomic Locations/AnatomicLocations logo black.svg",
+      "bytes": 22318,
+      "sha256": "ca728f7b1c1f8b53bbe08d8efc20aebb6ae0f5e23b4fd96776ec910e63b711cb"
+    },
+    {
+      "path": "knowledge/assets/brand/anatomic-locations/logo-black.png",
+      "source": "t3://oidm-public/logos/Anatomic Locations/AnatomicLocations-logo-black.png",
+      "bytes": 31188,
+      "sha256": "87908be4a2fbe08d3ff5649db194db9cd78778d1d28b91062b177bbe54ff6108"
+    },
+    {
+      "path": "knowledge/assets/brand/anatomic-locations/logo-white.svg",
+      "source": "t3://oidm-public/logos/Anatomic Locations/AnatomicLocations logo white.svg",
+      "bytes": 22647,
+      "sha256": "4eb007fee8228e65f62165c1659719242bec8177f53ad81c10fd84731bdf6d3d"
+    },
+    {
+      "path": "knowledge/assets/brand/anatomic-locations/logo-white.png",
+      "source": "t3://oidm-public/logos/Anatomic Locations/AnatomicLocations-logo-white.png",
+      "bytes": 35044,
+      "sha256": "e1284e1b4f63de7e18b9d1b093210018122de4f7fbd6f00daa89a42f5a55aa20"
+    },
+    {
+      "path": "knowledge/assets/brand/anatomic-locations/mark.svg",
+      "source": "t3://oidm-public/logos/Anatomic Locations/AnatomicLocations favicon.svg",
+      "bytes": 3129,
+      "sha256": "acd4c6467bf638c07825d902fbc807ebae3a237f095c5dedf4698f336b5833c6"
+    },
+    {
+      "path": "knowledge/assets/brand/anatomic-locations/mark.png",
+      "source": "t3://oidm-public/logos/Anatomic Locations/AnatomicLocations-favicon.png",
+      "bytes": 11523,
+      "sha256": "444b7ca951c491e79cc0e41a8fdd7795dcadaa0c973b85b51f2af98b4f224524"
+    },
+    {
+      "path": "docs/brand/style-guide-2023.pdf",
+      "source": "t3://oidm-public/logos/Open Radiology Data Model Project style Guide.pdf",
+      "bytes": 69726,
+      "sha256": "f0d08539d4a5f1a78bda59a7bc7bb6237571a594a20b2c91fb8cd670c6e9b37f"
+    }
+  ]
+}
