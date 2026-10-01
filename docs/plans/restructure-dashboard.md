@@ -75,6 +75,14 @@ Status words: **agreed** = text settled with the project lead and on disk; **in 
 5. Decided 2026-09-29: vendor generic; the two organizations generalized. Still open: commit of CDE decisions S53 to S67.
 6. Decided 2026-09-29: deck and CDE-repository figures may be used.
 
+## Handoff
+
+Everything an agent needs, including the working rules, is in [docs/HANDOFF.md](/docs/HANDOFF.md).
+
+## Layers (2026-10-01)
+
+Three layers, per [the sources-and-layers plan](/docs/plans/2026-10-01-sources-and-layers.md): raw sources (private bucket, gitignored mirror), references (distilled summaries with figures, in `knowledge/references/`), the knowledge bundle (team-facing OKF, `knowledge/`), and the presentation (`pages/`, what the site builds). The pages in this dashboard are the presentation layer; the 115-page bundle is not replaced by them.
+
 ## Process
 
 Content agreed in conversation, one page at a time; implementation in Opus sub-agents or the codex-impl tabs; Fable reviews. Astra cross-reviews for source fidelity. Diagrams: Excalidraw builders in [tools/diagrams/](/tools/diagrams/), rendered and looked at before use.
