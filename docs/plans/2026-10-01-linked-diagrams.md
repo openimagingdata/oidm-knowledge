@@ -6,12 +6,14 @@ Capture every unique URL in `links.txt` as a visual source and a concise, reusab
 
 1. Identify unique links and retrieve each original diagram, preferably as SVG and PNG. Save captures and provenance under `sources/linked-diagrams/`.
 2. Inspect each diagram, using readable detail views for large boards. Check earlier transcriptions against the retrieved source.
-3. Write one source-grounded Markdown summary per diagram under `docs/references/linked-diagrams/`, with an index, source URL, local artifact paths, and connections to the agreed pillars. Preserve historical wording and proposal status.
+3. Write one source-grounded Markdown summary per diagram under `docs/references/linked-diagrams/`, with an index, local artifact paths, and connections to the agreed pillars. Keep share URLs in the gitignored capture manifest and preserve proposal status without meeting histories.
 4. Verify link coverage and artifacts, review summaries for unsupported interpretations, update this plan and the development log, and mark completion.
 
 Repeated URLs share one capture and summary. Source boards are historical evidence; they do not override the owner's current terminology or decisions.
 
 ## Results
+
+Follow-up complete, 2026-10-02: checked all 15 summaries for live share links and meeting histories and generalized remaining wording in four summaries. Capture dates and local artifact paths remain for provenance. Both repository validators pass (zero errors or warnings); standalone reference conformance has zero errors and 50 external-directory link warnings, with local targets checked separately.
 
 - Captured all 15 unique boards from 17 URL occurrences as native SVG and PNG exports. Preserved source contents, searchable text, timestamps, and checksums under `sources/linked-diagrams/`.
 - Visually reviewed every board and wrote 15 draft Reference summaries, with an [index](../references/linked-diagrams/index.md), source locators, pillar connections, and links to related working pages.

@@ -15,7 +15,7 @@ sources:
 
 The outcome-feedback proposals ask for later pathology, imaging, or procedures relevant to a patient and body part, either as a notification or a digest of cases a radiologist read within a chosen timeframe. A proposed interface captures requests from the current study, shows new results and cases being awaited, and lets the user choose alert preferences.[^board]
 
-The earlier material uses anatomy tags on pathology specimens and exam-type coverage to find relevant imaging. Later prostate and MSK examples connect pathology extraction, patient identity, anatomy, exam metadata, and time intervals. The biopsy/result sketch keeps cases in a waiting state until an appropriate pathology result arrives, then extracts data and notifies the relevant radiologists.[^board]
+Anatomy tags on pathology specimens and exam-type coverage help find relevant imaging. Prostate and MSK examples connect pathology extraction, patient identity, anatomy, exam metadata, and time intervals. The biopsy/result sketch keeps cases in a waiting state until an appropriate pathology result arrives, then extracts data and notifies the relevant radiologists.[^board]
 
 For our work, this is a concrete application idea built from shared anatomy, exam definitions, patient events, and longitudinal association. It supplies a stronger anchor than a generic claim about outcome dashboards. The proposed notification tools, matching rules, and architecture diagrams do not by themselves establish that a sample application was built.
 

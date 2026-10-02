@@ -15,7 +15,7 @@ sources:
 
 The pulmonary-nodule example connects a CDE definition, its elements and permissible values, a particular Observation, and FHIR JSON. The Observation selects values for presence, composition, size, and location, carries identifiers and anatomy, and supplies a sentence template that renders a clinical description. The arrows make the definition-to-instance interconnection concrete.[^board]
 
-“Where Observation objects can come from” lists current dictation, PACS annotation, prior-report extraction, structured reporting, AI, DICOM SR, and EHR data. The code-system meeting note proposes wrapper implementations and import/export work involving FHIR, DICOM SR, and OMOP, together with vendor demonstrations.[^board]
+“Where Observation objects can come from” lists current dictation, PACS annotation, prior-report extraction, structured reporting, AI, DICOM SR, and EHR data. The board proposes wrapper implementations and import/export work involving FHIR, DICOM SR, and OMOP, together with vendor demonstrations.[^board]
 
 For our work, this is a compact historical example of Foundation Context informing a patient Observation and developer tools translating representations. It predates the shared graph schema and uses CDE Set/Element structures and fixed example codes. Reuse the conceptual interconnection and multiple-source idea; consult current schema and SDK documents for today's classes and interfaces. The board does not demonstrate an implemented two-graph system or certify the example as conformant with a current FHIR profile.
 
