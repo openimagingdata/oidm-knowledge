@@ -18,7 +18,7 @@ The guide gives no website layout, body typography, spacing, minimum logo size, 
 
 ## Assets to use
 
-All paths below are relative to [`knowledge/assets/brand/`](../../knowledge/assets/brand/). Each filename is available in both `.svg` and `.png`.
+All paths below are relative to [`assets/brand/`](../../assets/brand/). Each filename is available in both `.svg` and `.png`.
 
 | Project | Full logo variants | Square mark | SVG proportions |
 |---|---|---|---|
@@ -40,21 +40,15 @@ These are implementation suggestions, not additional rules from the guide:
 
 ## Use in site content and diagrams
 
-From a document in `knowledge/drafts/`:
-
-```markdown
-![Open Imaging Data Model](../assets/brand/oidm/logo-color.svg)
-```
-
-The existing staging and Quartz asset steps copy the files to `public/assets/brand/`, making the example available at `/assets/brand/oidm/logo-color.svg` on the built site. Site header and favicon integration remain separate from importing the files.
+Publishing these files on the website from `assets/brand/` is part of the site build work in [the site roadmap](../../site/ROADMAP.md); until that lands, site pages do not reference them.
 
 For a diagram builder using `tools/diagrams/excalib.py`:
 
 ```python
 image("oidm-logo", x, y, 200, 200 * 197.89 / 800,
-      "../../knowledge/assets/brand/oidm/logo-color.svg")
+      "../../assets/brand/oidm/logo-color.svg")
 image("anatomic-locations-mark", x, y, 48, 48,
-      "../../knowledge/assets/brand/anatomic-locations/mark.svg")
+      "../../assets/brand/anatomic-locations/mark.svg")
 ```
 
 Use distinct positions for each element. The helper resolves these paths relative to its own directory and embeds the SVG bytes into the Excalidraw file. Omit the `color` argument to preserve brand colors. Follow the [diagram source-of-truth rule](../../tools/diagrams/README.md#source-of-truth-rule) when adding a logo to an existing graphic.
