@@ -19,7 +19,7 @@ The pulmonary-nodule example connects a CDE definition, its elements and permiss
 
 For our work, this is a compact historical example of Foundation Context informing a patient Observation and developer tools translating representations. It predates the shared graph schema and uses CDE Set/Element structures and fixed example codes. Reuse the conceptual interconnection and multiple-source idea; consult current schema and SDK documents for today's classes and interfaces. The board does not demonstrate an implemented two-graph system or certify the example as conformant with a current FHIR profile.
 
-Pillar connections: Foundation Context; Data Structures; SDKs. Related working pages: [Next generation schema](../../../knowledge/drafts/next-generation-schema.md), [Data structures](../../../knowledge/drafts/data-structures.md), [Sdks](../../../knowledge/drafts/sdks.md).
+Pillar connections: Foundation Context; Data Structures; SDKs. Related working pages: [Next generation schema](../../../site/content/foundation-context/next-generation-schema.md), [Data structures](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/data-structures.md), [Sdks](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/sdks.md).
 
 Source captured 2026-10-01: [PNG](../../../sources/linked-diagrams/ArAkPl5S3kD/original.png) · [SVG](../../../sources/linked-diagrams/ArAkPl5S3kD/original.svg) · [Source contents](../../../sources/linked-diagrams/ArAkPl5S3kD/scene-contents.json) · [Text elements](../../../sources/linked-diagrams/ArAkPl5S3kD/text-elements.json) · [Capture metadata](../../../sources/linked-diagrams/ArAkPl5S3kD/metadata.json).
 

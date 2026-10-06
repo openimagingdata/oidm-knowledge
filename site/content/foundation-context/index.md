@@ -1,20 +1,6 @@
 ---
-type: Overview
-title: Foundation Context
+title: "Foundation Context"
 description: "The shared, curated clinical knowledge that every patient's imaging data is woven into: three axes over existing standards, the relationships among them, and the citations they rest on."
-tags: [foundation-context, finding-models, cdes, anatomic-locations, exam-types]
-status: draft
-generated: { by: claude-fable-5-1/2026-09-24-restructure, at: 2026-09-24T21:50:00Z }
-sources:
-  - id: lead-2026-09-24
-    resource: docs/plans/2026-09-22-layout-plan.md
-    title: The project lead's statements of 2026-09-22 to 2026-09-24 on the pillars, the two collections, the next-generation schema, and the wording of this page (recorded verbatim in the layout plan)
-  - id: siim-2026
-    resource: https://oidm-public.t3.tigrisfiles.io/oidm-knowledge-sources/SIIM%202026%20Reports-of-the-Future.pptx
-    title: "Structured Results and Context for Next-Generation Imaging Resulting Tools, SIIM 2026 annual meeting talk, June 2026, Mass General Brigham"
-  - id: build-plan
-    resource: knowledge/plans/2026-09-20-knowledgebase-build-plan.md
-    title: Knowledgebase build plan, the project lead's stated goals (2026-09-20) and the decisions of 2026-09-21 and 2026-09-22
 ---
 
 # Foundation Context

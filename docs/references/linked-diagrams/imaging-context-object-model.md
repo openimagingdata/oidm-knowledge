@@ -19,7 +19,7 @@ The board's discussion proposes standard content with wrapper libraries and asks
 
 For our work, this anchors the breadth of patient and application context and the need for developer operations around it. The current Data Structures and SDK pillars can draw on those questions. “ObservationType,” nested CDE classes, and the historic standards notes retain their original context; they do not supersede the owner's current finding/diagnosis definitions or the shared graph schema.
 
-Pillar connections: Data Structures; Foundation Context; SDKs. Related working pages: [Data structures](../../../knowledge/drafts/data-structures.md), [Sdks](../../../knowledge/drafts/sdks.md), [Overview](../../../knowledge/drafts/overview.md).
+Pillar connections: Data Structures; Foundation Context; SDKs. Related working pages: [Data structures](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/data-structures.md), [Sdks](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/sdks.md), [Overview](../../../site/content/index.md).
 
 Source captured 2026-10-01: [PNG](../../../sources/linked-diagrams/1sEx11UZ3gq/original.png) · [SVG](../../../sources/linked-diagrams/1sEx11UZ3gq/original.svg) · [Source contents](../../../sources/linked-diagrams/1sEx11UZ3gq/scene-contents.json) · [Text elements](../../../sources/linked-diagrams/1sEx11UZ3gq/text-elements.json) · [Capture metadata](../../../sources/linked-diagrams/1sEx11UZ3gq/metadata.json).
 

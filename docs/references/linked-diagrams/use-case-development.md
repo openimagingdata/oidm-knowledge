@@ -19,7 +19,7 @@ The spine-numbering example makes that interaction concrete: capture prior knowl
 
 For our work, this supports a list-oriented Use Cases pillar grounded in what a person does and which information the tool needs. The detailed assisted-reporting map is also present on the Big Picture board. Keep these ideas as source anchors; the proposed repository/catalog mechanics should not become the organizing purpose of the knowledgebase, and an empty placeholder should not be treated as a defined application.
 
-Pillar connections: Use Cases. Related working pages: [Use cases](../../../knowledge/drafts/use-cases.md), [Overview](../../../knowledge/drafts/overview.md).
+Pillar connections: Use Cases. Related working pages: [Use cases](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/use-cases.md), [Overview](../../../site/content/index.md).
 
 Source captured 2026-10-01: [PNG](../../../sources/linked-diagrams/1lt7q7M1bEz/original.png) · [SVG](../../../sources/linked-diagrams/1lt7q7M1bEz/usable.svg) · [Source contents](../../../sources/linked-diagrams/1lt7q7M1bEz/scene-contents.json) · [Text elements](../../../sources/linked-diagrams/1lt7q7M1bEz/text-elements.json) · [Capture metadata](../../../sources/linked-diagrams/1lt7q7M1bEz/metadata.json).
 

@@ -19,7 +19,7 @@ The board asks who assigns tracking identifiers, whether FHIR Condition could re
 
 For our work, this is a source for persistent patient entities, per-exam observations, and context-based retrieval. The current Data Structures page should lead the explanation. The proposed use of Condition remains an open mapping question. The board does not establish an adopted FHIR mapping or completed cross-system deployment.
 
-Pillar connections: Data Structures; Foundation Context; Use Cases. Related working pages: [Data structures](../../../knowledge/drafts/data-structures.md), [Exam types](../../../knowledge/drafts/exam-types.md), [Use cases](../../../knowledge/drafts/use-cases.md).
+Pillar connections: Data Structures; Foundation Context; Use Cases. Related working pages: [Data structures](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/data-structures.md), [Exam types](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/exam-types.md), [Use cases](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/use-cases.md).
 
 Source captured 2026-10-01: [PNG](../../../sources/linked-diagrams/1PrQV4pohsD/original.png) · [SVG](../../../sources/linked-diagrams/1PrQV4pohsD/usable.svg) · [Source contents](../../../sources/linked-diagrams/1PrQV4pohsD/scene-contents.json) · [Text elements](../../../sources/linked-diagrams/1PrQV4pohsD/text-elements.json) · [Capture metadata](../../../sources/linked-diagrams/1PrQV4pohsD/metadata.json).
 

@@ -1,6 +1,17 @@
 # Site
 
-Renders `knowledge/` (the OKF bundle) as a static [Quartz](https://quartz.jzhao.xyz) site.
+This directory is the website, a separate track from the knowledge graph in `knowledge/`:
+
+| Path | What it holds |
+|---|---|
+| `content/` | The website's content: Markdown pages and the SVG figures they embed. Not an OKF bundle. |
+| [CURRENT_TASK.md](CURRENT_TASK.md), [ROADMAP.md](ROADMAP.md), [HISTORY.md](HISTORY.md) | The work in hand, what comes next with page and figure status, and what is done. |
+| [guidance.md](guidance.md) | The project lead's guidance on the website, verbatim. |
+| `build.sh`, `quartz.config.yaml`, `wrangler.jsonc`, the two plugins | The build. |
+
+Figure sources and builders are in `tools/diagrams/`; shared brand assets in `assets/brand/` at the repository root.
+
+The build currently renders `knowledge/` as a static [Quartz](https://quartz.jzhao.xyz) site. The [roadmap](ROADMAP.md) changes the public input to `site/content/`. That migration and its production review gate are not implemented yet.
 
 Quartz itself is not vendored in this repository — only our config and two small
 plugins live here. `build.sh` clones Quartz at a pinned commit into `site/.quartz-src/`
@@ -20,8 +31,8 @@ plugins live here. `build.sh` clones Quartz at a pinned commit into `site/.quart
 
 ## Brand assets
 
-OIDM and Anatomic Locations logos are in `knowledge/assets/brand/`. The existing
-content staging and Quartz asset steps publish them at `/assets/brand/`.
+OIDM and Anatomic Locations logos are in `assets/brand/` at the repository root, shared
+with the diagram tooling. Publishing them on the site is part of the build work in [ROADMAP.md](ROADMAP.md).
 See the [brand guide notes](../docs/brand/README.md) for the supplied colors,
 logo variants, usage examples, and original style-guide PDF. The import does
 not change the site's theme, header, or favicon.
@@ -35,14 +46,12 @@ bash site/build.sh          # one-shot build -> public/
 bash site/build.sh serve    # local dev server with live reload
 ```
 
-Requires Node >=22 (Quartz's own requirement; the deploy workflow uses Node 24) and git.
+Requires Node >=22 (Quartz's own requirement; the deploy workflow uses Node 22) and git.
 Output lands in `public/` at the repo root.
 
 ## Deploying
 
-`.github/workflows/site.yml` builds and deploys to GitHub Pages on every push to `main`
-that touches `knowledge/**` or `site/**`. It runs the exact same `bash site/build.sh` a
-contributor runs locally, so CI and local builds can't drift apart.
+`.github/workflows/deploy.yml` builds on relevant pushes to `main` and deploys to Cloudflare staging. It currently builds independently of the validation workflow. Local deploy tasks depend on `task check`; the implementation plan requires validation inside the deployment job as part of the presentation migration.
 
 ## The pinned Quartz commit
 
@@ -50,9 +59,7 @@ contributor runs locally, so CI and local builds can't drift apart.
 between builds. To bump it:
 
 1. Update `QUARTZ_SHA` in `site/build.sh`.
-2. Update the matching `QUARTZ_SHA` value in `.github/workflows/site.yml` (used only as
-   an npm cache key there — it doesn't need to match exactly, but keeping it in sync
-   avoids a stale cache).
+2. Review the dependency/cache configuration in `.github/workflows/deploy.yml` for the new checkout. The current workflow keys its npm cache from the Quartz YAML config.
 3. Run `bash site/build.sh` locally and check the result before pushing, since a newer
    Quartz commit can change config options or plugin APIs.
 

@@ -19,7 +19,7 @@ Volunteer topics include definition/review, indexing, anatomy, exam-to-anatomy c
 
 For our work, this is an anchor for how people can build content, tools, and demonstrations around the foundation. It complements the SDK and Sample Applications pillars. The board names work areas and demo projects but does not establish completion, formal sponsorship arrangements, available funding, or current institutional commitments. Those claims need their own sources.
 
-Pillar connections: Foundation Context; SDKs; Sample Applications. Related working pages: [Sdks](../../../knowledge/drafts/sdks.md), [Sample applications](../../../knowledge/drafts/sample-applications.md), [Foundation context](../../../knowledge/drafts/foundation-context.md).
+Pillar connections: Foundation Context; SDKs; Sample Applications. Related working pages: [Sdks](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/sdks.md), [Sample applications](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/sample-applications.md), [Foundation context](../../../site/content/foundation-context/index.md).
 
 Source captured 2026-10-01: [PNG](../../../sources/linked-diagrams/6dKAnPexyN8/original.png) · [SVG](../../../sources/linked-diagrams/6dKAnPexyN8/original.svg) · [Source contents](../../../sources/linked-diagrams/6dKAnPexyN8/scene-contents.json) · [Text elements](../../../sources/linked-diagrams/6dKAnPexyN8/text-elements.json) · [Capture metadata](../../../sources/linked-diagrams/6dKAnPexyN8/metadata.json).
 

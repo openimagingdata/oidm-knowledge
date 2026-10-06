@@ -19,7 +19,7 @@ The RSNA/ACR AI in Practice demo board proposes exchanging pulmonary-nodule desc
 
 For our work, this anchors a concrete interoperation use case and the role-tagging proposal already cited in Relationships. Who accepts edits, assigns tracking identity, and communicates those changes remains open on the board. Treat this as a demo design; the Sample Applications pillar needs separate implementation evidence before describing any named vendor workflow as built.
 
-Pillar connections: Use Cases; Data Structures; SDKs; Sample Applications. Related working pages: [Relationships](../../../knowledge/drafts/relationships.md), [Data structures](../../../knowledge/drafts/data-structures.md), [Sdks](../../../knowledge/drafts/sdks.md), [Sample applications](../../../knowledge/drafts/sample-applications.md).
+Pillar connections: Use Cases; Data Structures; SDKs; Sample Applications. Related working pages: [Relationships](../../../site/content/foundation-context/relationships.md), [Data structures](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/data-structures.md), [Sdks](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/sdks.md), [Sample applications](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/sample-applications.md).
 
 Source captured 2026-10-01: [PNG](../../../sources/linked-diagrams/2ZpQ4nXotjV/original.png) · [SVG](../../../sources/linked-diagrams/2ZpQ4nXotjV/original.svg) · [Source contents](../../../sources/linked-diagrams/2ZpQ4nXotjV/scene-contents.json) · [Text elements](../../../sources/linked-diagrams/2ZpQ4nXotjV/text-elements.json) · [Capture metadata](../../../sources/linked-diagrams/2ZpQ4nXotjV/metadata.json).
 

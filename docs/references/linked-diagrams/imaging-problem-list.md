@@ -19,7 +19,7 @@ The “Maintaining the IPL” note asks whether this should be an EHR-maintained
 
 For our work, this is an anchor for longitudinal patient data and context-sensitive applications: prior-finding displays, draft reporting, MRI safety, quality checks, and downstream care workflows. Read it beside the current Data Structures page and the owner's integrated Persona framing. The board's storage, FHIR representation, and vendor responsibilities are questions and proposals, not evidence of completed integration.
 
-Pillar connections: Data Structures; Use Cases. Related working pages: [Data structures](../../../knowledge/drafts/data-structures.md), [Use cases](../../../knowledge/drafts/use-cases.md), [Overview](../../../knowledge/drafts/overview.md).
+Pillar connections: Data Structures; Use Cases. Related working pages: [Data structures](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/data-structures.md), [Use cases](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/use-cases.md), [Overview](../../../site/content/index.md).
 
 Source captured 2026-10-01: [PNG](../../../sources/linked-diagrams/2jUZLu229km/original.png) · [SVG](../../../sources/linked-diagrams/2jUZLu229km/original.svg) · [Source contents](../../../sources/linked-diagrams/2jUZLu229km/scene-contents.json) · [Text elements](../../../sources/linked-diagrams/2jUZLu229km/text-elements.json) · [Capture metadata](../../../sources/linked-diagrams/2jUZLu229km/metadata.json).
 

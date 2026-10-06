@@ -19,7 +19,7 @@ The follow-up proposal describes a recommendation with an exam or protocol, time
 
 For our work, this supplies concrete Use Cases and data requirements for linking recommendations to later events. The cascading-use-cases note moves from individual feedback to practice/population statistics and clinical pathways. These are proposed extensions around shared patient data, not completed capabilities or a settled recommendation schema. The historical patient-factor annotation does not imply separate disconnected graphs in the current Persona.
 
-Pillar connections: Use Cases; Data Structures. Related working pages: [Use cases](../../../knowledge/drafts/use-cases.md), [Data structures](../../../knowledge/drafts/data-structures.md), [Overview](../../../knowledge/drafts/overview.md).
+Pillar connections: Use Cases; Data Structures. Related working pages: [Use cases](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/use-cases.md), [Data structures](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/data-structures.md), [Overview](../../../site/content/index.md).
 
 Source captured 2026-10-01: [PNG](../../../sources/linked-diagrams/68X9qfSP5qA/original.png) · [SVG](../../../sources/linked-diagrams/68X9qfSP5qA/original.svg) · [Source contents](../../../sources/linked-diagrams/68X9qfSP5qA/scene-contents.json) · [Text elements](../../../sources/linked-diagrams/68X9qfSP5qA/text-elements.json) · [Capture metadata](../../../sources/linked-diagrams/68X9qfSP5qA/metadata.json).
 

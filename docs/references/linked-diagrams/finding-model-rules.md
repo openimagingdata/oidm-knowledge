@@ -19,7 +19,7 @@ Its location rule defines where a finding could occur as a subset of anatomic-lo
 
 For our work, this supports reusable definition content, anatomic scope, and decomposition of complex findings. Read it with the current schema and relationships pages. The board's location statement concerns feasible scope; it should not be summarized as an instruction to encode patient location as an attribute. Its older “avoid associated findings” wording also needs to be read alongside the later relationship work.
 
-Pillar connections: Foundation Context. Related working pages: [Next generation schema](../../../knowledge/drafts/next-generation-schema.md), [Relationships](../../../knowledge/drafts/relationships.md), [Anatomic locations](../../../knowledge/drafts/anatomic-locations.md).
+Pillar connections: Foundation Context. Related working pages: [Next generation schema](../../../site/content/foundation-context/next-generation-schema.md), [Relationships](../../../site/content/foundation-context/relationships.md), [Anatomic locations](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/anatomic-locations.md).
 
 Source captured 2026-10-01: [PNG](../../../sources/linked-diagrams/2a3Jq3oVVty/original.png) · [SVG](../../../sources/linked-diagrams/2a3Jq3oVVty/original.svg) · [Source contents](../../../sources/linked-diagrams/2a3Jq3oVVty/scene-contents.json) · [Text elements](../../../sources/linked-diagrams/2a3Jq3oVVty/text-elements.json) · [Capture metadata](../../../sources/linked-diagrams/2a3Jq3oVVty/metadata.json).
 

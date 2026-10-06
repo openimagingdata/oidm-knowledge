@@ -19,7 +19,7 @@ The board's checklist proposes hierarchy and code verification, synonyms, part-o
 
 For our work, this anchors why Foundation Context needs both an anatomy system and exam-to-anatomy connections: consumers can reason about what a study includes and find relevant data. Read it with the current anatomy and exam-type pages. Its proposal to promote SNOMED or use ACR Common IDs as primary identifiers is historical and should not override later identifier decisions.
 
-Pillar connections: Foundation Context; Use Cases. Related working pages: [Anatomic locations](../../../knowledge/drafts/anatomic-locations.md), [Exam types](../../../knowledge/drafts/exam-types.md), [Foundation context](../../../knowledge/drafts/foundation-context.md).
+Pillar connections: Foundation Context; Use Cases. Related working pages: [Anatomic locations](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/anatomic-locations.md), [Exam types](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/exam-types.md), [Foundation context](../../../site/content/foundation-context/index.md).
 
 Source captured 2026-10-01: [PNG](../../../sources/linked-diagrams/4jmRPObEdLq/original.png) · [SVG](../../../sources/linked-diagrams/4jmRPObEdLq/original.svg) · [Source contents](../../../sources/linked-diagrams/4jmRPObEdLq/scene-contents.json) · [Text elements](../../../sources/linked-diagrams/4jmRPObEdLq/text-elements.json) · [Capture metadata](../../../sources/linked-diagrams/4jmRPObEdLq/metadata.json).
 

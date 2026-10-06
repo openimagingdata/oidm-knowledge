@@ -19,7 +19,7 @@ Anatomy tags on pathology specimens and exam-type coverage help find relevant im
 
 For our work, this is a concrete application idea built from shared anatomy, exam definitions, patient events, and longitudinal association. It supplies a stronger anchor than a generic claim about outcome dashboards. The proposed notification tools, matching rules, and architecture diagrams do not by themselves establish that a sample application was built.
 
-Pillar connections: Use Cases; Foundation Context; Data Structures. Related working pages: [Use cases](../../../knowledge/drafts/use-cases.md), [Anatomic locations](../../../knowledge/drafts/anatomic-locations.md), [Exam types](../../../knowledge/drafts/exam-types.md), [Data structures](../../../knowledge/drafts/data-structures.md).
+Pillar connections: Use Cases; Foundation Context; Data Structures. Related working pages: [Use cases](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/use-cases.md), [Anatomic locations](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/anatomic-locations.md), [Exam types](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/exam-types.md), [Data structures](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/data-structures.md).
 
 Source captured 2026-10-01: [PNG](../../../sources/linked-diagrams/5QMQ1J2FYT3/original.png) · [SVG](../../../sources/linked-diagrams/5QMQ1J2FYT3/original.svg) · [Source contents](../../../sources/linked-diagrams/5QMQ1J2FYT3/scene-contents.json) · [Text elements](../../../sources/linked-diagrams/5QMQ1J2FYT3/text-elements.json) · [Capture metadata](../../../sources/linked-diagrams/5QMQ1J2FYT3/metadata.json).
 

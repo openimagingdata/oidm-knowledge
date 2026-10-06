@@ -19,7 +19,7 @@ The Reporting Assistance Framework places shared data context and reporting comm
 
 For our work, this is an early anchor for how the owner's five pillars support an ecosystem of applications. Its content-development notes also connect minimal definitions, open iteration, and ACR/RSNA review. Use the current Overview to organize these ideas. Vendor lists, estimated anatomy counts, older class names, and demo names are historical board content rather than current inventories or completion evidence.
 
-Pillar connections: All five pillars. Related working pages: [Overview](../../../knowledge/drafts/overview.md), [Sdks](../../../knowledge/drafts/sdks.md), [Use cases](../../../knowledge/drafts/use-cases.md), [Sample applications](../../../knowledge/drafts/sample-applications.md).
+Pillar connections: All five pillars. Related working pages: [Overview](../../../site/content/index.md), [Sdks](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/sdks.md), [Use cases](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/use-cases.md), [Sample applications](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/sample-applications.md).
 
 Source captured 2026-10-01: [PNG](../../../sources/linked-diagrams/8v07Nni5p8F/original.png) · [SVG](../../../sources/linked-diagrams/8v07Nni5p8F/original.svg) · [Source contents](../../../sources/linked-diagrams/8v07Nni5p8F/scene-contents.json) · [Text elements](../../../sources/linked-diagrams/8v07Nni5p8F/text-elements.json) · [Capture metadata](../../../sources/linked-diagrams/8v07Nni5p8F/metadata.json).
 

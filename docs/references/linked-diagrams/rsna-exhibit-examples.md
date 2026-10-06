@@ -19,7 +19,7 @@ A source panel feeds one Observation representation from dictation/reporting, DI
 
 For our work, these are useful teaching examples of shared semantics making data from different producers comparable. The AI discrepancy is a specific Use Cases illustration, not a reported performance result. The panels use an earlier component-based definition representation. They can inform a new explanation of the graph approach without being presented as the current schema or as proof of an operational monitoring application.
 
-Pillar connections: Foundation Context; Data Structures; Use Cases. Related working pages: [Data structures](../../../knowledge/drafts/data-structures.md), [Next generation schema](../../../knowledge/drafts/next-generation-schema.md), [Use cases](../../../knowledge/drafts/use-cases.md).
+Pillar connections: Foundation Context; Data Structures; Use Cases. Related working pages: [Data structures](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/data-structures.md), [Next generation schema](../../../site/content/foundation-context/next-generation-schema.md), [Use cases](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/use-cases.md).
 
 Source captured 2026-10-01: [PNG](../../../sources/linked-diagrams/19Qjzb9AmAT/original.png) · [SVG](../../../sources/linked-diagrams/19Qjzb9AmAT/original.svg) · [Source contents](../../../sources/linked-diagrams/19Qjzb9AmAT/scene-contents.json) · [Text elements](../../../sources/linked-diagrams/19Qjzb9AmAT/text-elements.json) · [Capture metadata](../../../sources/linked-diagrams/19Qjzb9AmAT/metadata.json).
 

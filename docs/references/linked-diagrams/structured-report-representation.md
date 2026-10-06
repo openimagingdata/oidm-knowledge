@@ -19,7 +19,7 @@ The board calls for appropriate FHIR representation patterns and a handbook for 
 
 For our work, this is a source for the Observation layer's structural requirements and developer guidance. The common target representation is the reusable idea. Exact FHIR patterns, impression structures, probabilities, grouping, and recommendation forms remain questions on this board. The newer two-graph and shared-schema work supplies the current organizing context.
 
-Pillar connections: Data Structures; Foundation Context; SDKs. Related working pages: [Data structures](../../../knowledge/drafts/data-structures.md), [Relationships](../../../knowledge/drafts/relationships.md), [Sdks](../../../knowledge/drafts/sdks.md).
+Pillar connections: Data Structures; Foundation Context; SDKs. Related working pages: [Data structures](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/data-structures.md), [Relationships](../../../site/content/foundation-context/relationships.md), [Sdks](https://github.com/openimagingdata/oidm-knowledge/blob/9725105/knowledge/drafts/sdks.md).
 
 Source captured 2026-10-01: [PNG](../../../sources/linked-diagrams/9Jgo8oKswiE/original.png) · [SVG](../../../sources/linked-diagrams/9Jgo8oKswiE/original.svg) · [Source contents](../../../sources/linked-diagrams/9Jgo8oKswiE/scene-contents.json) · [Text elements](../../../sources/linked-diagrams/9Jgo8oKswiE/text-elements.json) · [Capture metadata](../../../sources/linked-diagrams/9Jgo8oKswiE/metadata.json).
 
