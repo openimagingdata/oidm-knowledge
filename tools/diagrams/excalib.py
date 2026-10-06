@@ -4,6 +4,12 @@ from __future__ import annotations
 import base64
 import json
 import os
+import tomllib
+from dataclasses import dataclass, field
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+FIGURES_TOML = Path(__file__).resolve().with_name("figures.toml")
 
 # Palette (tools/diagrams follows the excalidraw-diagram skill palette)
 PRIMARY = ("#3b82f6", "#1e3a5f", "#ffffff")      # data structures: fill, stroke, text
@@ -199,8 +205,46 @@ def hline(id_: str, x: float, y: float, w: float, dashed=True) -> None:
 
 
 
-def save(rel_path: str) -> str:
-    out = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "..", rel_path))
+@dataclass(frozen=True)
+class Figure:
+    """A figure's configured paths (absolute), from figures.toml."""
+    name: str
+    builder: Path
+    excalidraw: Path
+    svg: Path | None
+    png: Path
+    args: list[str] = field(default_factory=list)
+
+
+def load_figures() -> dict[str, Figure]:
+    """Every figure in figures.toml, keyed by name. Paths there are repo-relative."""
+    with open(FIGURES_TOML, "rb") as fh:
+        cfg = tomllib.load(fh)
+    png_dir = REPO_ROOT / cfg["review_png_dir"]
+    figs = {}
+    for name, t in cfg.items():
+        if not isinstance(t, dict):
+            continue  # top-level settings
+        figs[name] = Figure(name=name, builder=REPO_ROOT / t["builder"],
+                            excalidraw=REPO_ROOT / t["excalidraw"],
+                            svg=REPO_ROOT / t["svg"] if "svg" in t else None,
+                            png=png_dir / f"{name}.png", args=list(t.get("args", [])))
+    return figs
+
+
+def figure(name: str) -> Figure:
+    """One figure's configured paths, by name (see figures.toml)."""
+    figs = load_figures()
+    if name not in figs:
+        raise KeyError(f"figure {name!r} is not in {FIGURES_TOML}")
+    return figs[name]
+
+
+def save(path: str | os.PathLike) -> str:
+    """Write the document. `path` is absolute or relative to the repo root;
+    builders pass figure(<name>).excalidraw rather than a literal path."""
+    out = os.path.normpath(os.path.join(REPO_ROOT, path))
+    os.makedirs(os.path.dirname(out), exist_ok=True)
     doc = {"type": "excalidraw", "version": 2, "source": "oidm-knowledge/tools/diagrams",
            "elements": els, "appState": {"viewBackgroundColor": "#ffffff", "gridSize": None}, "files": files}
     with open(out, "w") as fh:

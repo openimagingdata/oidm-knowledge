@@ -9,8 +9,8 @@ column 1/2, they never block the foundation->data join arrows, which stay in
 columns 1-2. Exam types -> Exam Finding List is also a caption, not an arrow,
 to remove the one join that had no clean column-aligned path. Title/subtitle
 and the "Also:" applications note are left for the page text.
-Output: knowledge/overview/architecture.excalidraw; render with render_excalidraw.py."""
-from excalib import PRIMARY, SECONDARY, TERTIARY, EXTERNAL, PLANNED, TITLE, SUBTITLE, BODY, LINE, els, base, text, box, find, arrow, hline, save
+Output: the "architecture" entry in figures.toml; render with render_excalidraw.py."""
+from excalib import PRIMARY, SECONDARY, TERTIARY, EXTERNAL, PLANNED, TITLE, SUBTITLE, BODY, LINE, els, base, text, box, find, arrow, hline, save, figure
 
 # ---------------------------------------------------------------- layout
 # Box labels are hand-wrapped (Excalidraw does not auto-wrap bound text) so
@@ -112,4 +112,4 @@ for i, (lab, colors, dashed) in enumerate((("solid outline: exists today", ("#ff
     els.append(r)
     els.append(text(f"lg{i}_t", 26, ly - 2, lab, size=13, color=BODY))
 
-save("knowledge/overview/architecture.excalidraw")
+save(figure("architecture").excalidraw)

@@ -66,11 +66,11 @@ Icons: Health Icons (CC0/MIT, outline, filled-path art -- rendered at 32px)
 for the x-ray and lungs glyphs; Lucide (ISC/MIT, stroke art -- 28px) for
 layers, book-open, clipboard-list, clipboard and tag. See icons/LICENSES.md.
 
-Output: knowledge/drafts/two-planes.excalidraw; render with render_excalidraw.py.
+Output: the "two-planes" entry in figures.toml; render with render_excalidraw.py.
 """
 from __future__ import annotations
 
-from excalib import (els, base, text, image, save, tri_head,
+from excalib import (els, base, text, image, save, figure, tri_head,
                      AMBER, TEAL, ROSE, CAPTION)
 
 # ---------------------------------------------------------------- constants
@@ -383,4 +383,4 @@ els.append(text("caption", 0, P2_Y + P2_H + 54,
                 "of what such a thing is",
                 size=14, color=CAPTION, align="center", w=PW + SKEW))
 
-save("knowledge/drafts/two-planes.excalidraw")
+save(figure("two-planes").excalidraw)

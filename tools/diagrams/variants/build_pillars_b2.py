@@ -32,7 +32,7 @@ excalib's 0.58-per-character estimate.
 Icons: unchanged from build_pillars.py -- Health Icons (CC0/MIT, outline) for
 anatomy/exam/person glyphs, Lucide (ISC) for the rest; see icons/LICENSES.md.
 
-Output: knowledge/drafts/pillars-b2.excalidraw (override with --out).
+Output: the "pillars-b2" entry in figures.toml (override with --out).
 """
 from __future__ import annotations
 
@@ -43,7 +43,7 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
-from excalib import els, base, text, image, save, AMBER, TEAL, VIOLET, ROSE, GREEN, CAPTION
+from excalib import els, base, text, image, save, figure, AMBER, TEAL, VIOLET, ROSE, GREEN, CAPTION
 
 # ---------------------------------------------------------------- layout constants
 CONTENT_W = 880
@@ -394,10 +394,11 @@ def build(out_path: str) -> str:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--out", default="knowledge/drafts/pillars-b2.excalidraw",
-                    help="output path relative to the repo root")
+    ap.add_argument("--out", default=None,
+                    help="output path relative to the repo root "
+                         "(default: the pillars-b2 entry in figures.toml)")
     args = ap.parse_args()
-    build(args.out)
+    build(args.out or figure("pillars-b2").excalidraw)
 
 
 if __name__ == "__main__":

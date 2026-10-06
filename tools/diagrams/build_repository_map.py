@@ -7,8 +7,8 @@ that CDE staging and applications both sit directly next to finding models,
 and applications sits directly next to anatomy. Two edges that would have to
 skip a row (CDEStaging -> RadElement, med-ontology-lookup -> findingmodel)
 are dropped as captions instead -- both are already stated in the page prose.
-Output: knowledge/repositories/repository-map.excalidraw"""
-from excalib import PRIMARY, SECONDARY, TERTIARY, EXTERNAL, PLANNED, TITLE, SUBTITLE, BODY, LINE, els, base, text, box, find, arrow, save
+Output: the "repository-map" entry in figures.toml"""
+from excalib import PRIMARY, SECONDARY, TERTIARY, EXTERNAL, PLANNED, TITLE, SUBTITLE, BODY, LINE, els, base, text, box, find, arrow, save, figure
 
 W, H = 190, 80
 GAP = 115                                   # wide enough that the longest horizontal-arrow label ("CDE-derived") fits centered above its arrow with room on each side
@@ -76,4 +76,4 @@ els.append(text("molu_note", C2, Y["terms"] + H + 14, "molu also enriches findin
 Y_END = Y["terms"] + H + 60
 els.append(text("legend", 0, Y_END, "Orange: external terminology.  Light blue: content repository.\nMid blue: library.  Dark blue: application.  Dashed: lineage or superseded.", size=13, color=BODY))
 
-save("knowledge/repositories/repository-map.excalidraw")
+save(figure("repository-map").excalidraw)

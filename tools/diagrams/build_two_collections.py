@@ -50,11 +50,11 @@ headless Chromium.
 Icons: Lucide (ISC) tag, the same glyph build_two_planes.py and
 build_three_axes.py use for a finding/diagnosis definition. See icons/LICENSES.md.
 
-Output: knowledge/drafts/two-collections.excalidraw; render with render_excalidraw.py.
+Output: the "two-collections" entry in figures.toml; render with render_excalidraw.py.
 """
 from __future__ import annotations
 
-from excalib import els, base, text, image, save, tri_head, AMBER, CAPTION
+from excalib import els, base, text, image, save, figure, tri_head, AMBER, CAPTION
 
 # ---------------------------------------------------------------- palette
 # The finding/diagnosis definition green, straight from build_two_planes.py's
@@ -237,4 +237,4 @@ for i, cx in enumerate((LW / 2, RX + RW / 2)):
     els.append(text(uid("m_l"), cx + 12, (PANEL_Y + PANEL_H + AMBER_Y) / 2 - 8,
                     "moving onto", size=13, color=AMBER["mid"], w=70.8))
 
-save("knowledge/drafts/two-collections.excalidraw")
+save(figure("two-collections").excalidraw)

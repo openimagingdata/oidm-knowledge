@@ -30,7 +30,7 @@ zone, which is why the outermost fingers are amber and at least CORNER_R
 wide -- they cover the curves, and two short vertical strokes redraw the
 stack's outer edge straight through the joint.
 
-Output: knowledge/drafts/pillars-b1.excalidraw (override with --out).
+Output: the "pillars-b1" entry in figures.toml (override with --out).
 """
 from __future__ import annotations
 
@@ -40,7 +40,7 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
-from excalib import els, base, text, image, save, AMBER, TEAL, VIOLET, ROSE, GREEN, CAPTION  # noqa: E402
+from excalib import els, base, text, image, save, figure, AMBER, TEAL, VIOLET, ROSE, GREEN, CAPTION  # noqa: E402
 
 # ---------------------------------------------------------------- layout constants
 CONTENT_W = 880
@@ -293,10 +293,11 @@ def build(out_path: str) -> str:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--out", default="knowledge/drafts/pillars-b1.excalidraw",
-                    help="output path relative to the repo root")
+    ap.add_argument("--out", default=None,
+                    help="output path relative to the repo root "
+                         "(default: the pillars-b1 entry in figures.toml)")
     args = ap.parse_args()
-    build(args.out)
+    build(args.out or figure("pillars-b1").excalidraw)
 
 
 if __name__ == "__main__":

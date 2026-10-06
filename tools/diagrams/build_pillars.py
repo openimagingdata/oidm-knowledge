@@ -46,7 +46,7 @@ outline set is filled-path art on a 48x48 viewBox with built-in padding, so
 it renders optically smaller than Lucide's 24x24 stroke art at the same box
 size; ICON_FILLED compensates.
 
-Output: knowledge/drafts/pillars-<seam>.excalidraw (override with --out);
+Output: the "pillars-<seam>" entry in figures.toml (override with --out);
 render with render_excalidraw.py.
 """
 from __future__ import annotations
@@ -54,7 +54,7 @@ from __future__ import annotations
 import argparse
 import math
 
-from excalib import els, base, text, image, save, AMBER, TEAL, VIOLET, ROSE, GREEN, CAPTION
+from excalib import els, base, text, image, save, figure, AMBER, TEAL, VIOLET, ROSE, GREEN, CAPTION
 
 # ---------------------------------------------------------------- layout constants
 CONTENT_W = 880
@@ -455,9 +455,9 @@ def main() -> None:
                          "b=dovetail, c=shared membrane")
     ap.add_argument("--out", default=None,
                     help="output path relative to the repo root "
-                         "(default knowledge/drafts/pillars-<seam>.excalidraw)")
+                         "(default: the pillars-<seam> entry in figures.toml)")
     args = ap.parse_args()
-    build(args.seam, args.out or f"knowledge/drafts/pillars-{args.seam}.excalidraw")
+    build(args.seam, args.out or figure(f"pillars-{args.seam}").excalidraw)
 
 
 if __name__ == "__main__":

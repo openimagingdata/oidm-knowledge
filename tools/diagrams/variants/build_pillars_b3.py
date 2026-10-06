@@ -52,7 +52,7 @@ Lucide (ISC, with one Feather-derived MIT icon) for everything else -- see
 icons/LICENSES.md. ICON_FILLED compensates for Health Icons' filled-path art
 rendering optically smaller than Lucide's stroke art at the same box size.
 
-Output: knowledge/drafts/pillars-b3.excalidraw (override with --out); render
+Output: the "pillars-b3" entry in figures.toml (override with --out); render
 with render_excalidraw.py.
 """
 from __future__ import annotations
@@ -63,7 +63,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from excalib import els, base, text, image, save, AMBER, TEAL, VIOLET, ROSE, GREEN, CAPTION  # noqa: E402
+from excalib import els, base, text, image, save, figure, AMBER, TEAL, VIOLET, ROSE, GREEN, CAPTION  # noqa: E402
 
 # ---------------------------------------------------------------- layout constants
 CONTENT_W = 880
@@ -452,10 +452,11 @@ def build(out_path: str) -> str:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--out", default="knowledge/drafts/pillars-b3.excalidraw",
-                    help="output path relative to the repo root")
+    ap.add_argument("--out", default=None,
+                    help="output path relative to the repo root "
+                         "(default: the pillars-b3 entry in figures.toml)")
     args = ap.parse_args()
-    build(args.out)
+    build(args.out or figure("pillars-b3").excalidraw)
 
 
 if __name__ == "__main__":

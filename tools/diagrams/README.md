@@ -1,6 +1,17 @@
 # Diagrams
 
-Diagrams in the bundle are Excalidraw files rendered to SVG and placed beside the document that embeds them (`knowledge/<dir>/<name>.excalidraw` and `<name>.svg`). Mermaid is not used.
+Diagrams are Excalidraw files rendered to SVG. Mermaid is not used.
+
+## Output paths: `figures.toml`
+
+Where each figure is written is configuration, not code. [`figures.toml`](figures.toml) has one table per figure, keyed by figure name:
+
+- `builder`: the builder script
+- `args`: extra builder arguments, if the figure needs them (the pillars seam)
+- `excalidraw`: where the builder writes the `.excalidraw`
+- `svg`: where the rendered SVG goes (omitted if the figure has no published SVG)
+
+Paths are relative to the repository root. The top-level `review_png_dir` holds every review PNG as `<name>.png`. Builders call `excalib.figure("<name>")` and save to its `excalidraw` path; no builder contains an output path. To move a figure, or to promote a candidate, change its entry and move the files. `build_pillars.py` and the `variants/` builders still accept `--out` as a one-off override.
 
 ## Source-of-truth rule
 
@@ -13,24 +24,28 @@ Hand-edited diagrams (builders retired): none yet.
 
 `build_pillars.py` takes a required `--seam a|b|c` choosing how the Data
 Structures and Foundation Context bands meet (named attachments, dovetail,
-shared membrane) and writes `knowledge/drafts/pillars-<seam>.excalidraw`. The
-v3 seam it replaced -- an overlap crossed by twelve alternating threads -- was
-rejected, so `knowledge/drafts/pillars.excalidraw` is stale until one of the
-three is chosen and made the default.
+shared membrane); each seam is its own `pillars-<seam>` entry in `figures.toml`. The
+v3 seam it replaced was rejected. The later v8 B3 candidate is pending owner
+acceptance; see the [figure review state](../../site/ROADMAP.md#figures).
+Do not promote any candidate over the accepted content asset without that review.
 
 ## Rendering
 
-From the excalidraw-diagram skill's references directory (it holds the Playwright environment):
+Build a figure from the repository root with `uv run tools/diagrams/<builder>` (plus its `args` from `figures.toml`, e.g. `--seam a`).
+
+Render from the excalidraw-diagram skill's references directory (it holds the Playwright environment):
 
 ```bash
 cd ~/.claude/skills/excalidraw-diagram/references
-uv run python /home/talkasab/oidm-knowledge/tools/diagrams/render_excalidraw.py \
-  /home/talkasab/oidm-knowledge/knowledge/<dir>/<name>.excalidraw \
-  -o /home/talkasab/oidm-knowledge/sources/<name>-vN.png \
-  --svg /home/talkasab/oidm-knowledge/sources/<name>-vN.svg
+R=/home/talkasab/oidm-knowledge/tools/diagrams/render_excalidraw.py
+uv run python $R --figure two-planes          # one figure (repeat --figure for more)
+uv run python $R --all                        # every figure in figures.toml
+uv run python $R --figure two-planes --build  # run the builder first
 ```
 
-Then view the PNG, fix, re-render, until nothing crosses a box or a label and every label is readable. Copy the accepted SVG beside the document, drop the fixed `width`/`height` attributes on the root `<svg>` and add `style="max-width:100%;height:auto"`, and embed it with an image line plus an italic source line (see `knowledge/overview/architecture.md`).
+By name, the SVG goes to the figure's `svg` path, already made responsive (fixed `width`/`height` dropped from the root `<svg>`, `style="max-width:100%;height:auto"` added), and the PNG to `review_png_dir`. Explicit paths still work for one-off iterations: `uv run python $R <file>.excalidraw -o <png> --svg <svg>`; keep those previews under the ignored `scratch/review/` (exposed through `.peruseshow`), not in `sources/` or the plans directory.
+
+Then view the PNG, fix, re-render, until nothing crosses a box or a label and every label is readable. Embed the SVG with an image line plus an italic source line (see `knowledge/overview/architecture.md`).
 
 `render_template.html` loads the Excalidraw library from esm.sh pinned to 0.18.0; the unpinned build had a broken dependency.
 
@@ -59,7 +74,7 @@ Viewing the whole PNG hides label-on-edge collisions. `render_template.html` can
 
 ## Icons
 
-Project logos and square marks are available in `knowledge/assets/brand/`.
+Project logos and square marks are available in `assets/brand/`.
 Use the original SVGs with `excalib.image()` and omit its `color` argument.
 The [brand notes](../../docs/brand/README.md) give paths, proportions, and
 embedding examples. Use these marks to identify the projects in a diagram.

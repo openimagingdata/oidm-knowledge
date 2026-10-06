@@ -1,0 +1,97 @@
+# Where each Excalidraw figure is written and published.
+#
+# One table per figure, keyed by figure name. Builders look up their own
+# `excalidraw` path here by name (excalib.figure()); render_excalidraw.py
+# --figure <name> / --all renders `excalidraw` to `svg` and to a review PNG.
+#
+#   builder     builder script (repo-relative)
+#   args        optional extra arguments the builder needs for this figure
+#   excalidraw  where the builder writes the .excalidraw (repo-relative)
+#   svg         where the rendered SVG goes (repo-relative); omit if the
+#               figure has no published SVG
+#
+# All paths are relative to the repository root, not the working directory.
+
+# Review PNGs always go here as <name>.png (ignored directory).
+review_png_dir = "scratch/review/renders"
+
+# ---------------------------------------------------------------- accepted
+
+[two-planes]
+builder = "tools/diagrams/build_two_planes.py"
+excalidraw = "tools/diagrams/excalidraw/two-planes.excalidraw"
+svg = "site/content/two-planes.svg"
+
+[three-axes]
+builder = "tools/diagrams/build_three_axes.py"
+excalidraw = "tools/diagrams/excalidraw/three-axes.excalidraw"
+svg = "site/content/foundation-context/three-axes.svg"
+
+[foundation-network]
+builder = "tools/diagrams/build_foundation_network.py"
+excalidraw = "tools/diagrams/excalidraw/foundation-network.excalidraw"
+svg = "site/content/foundation-context/foundation-network.svg"
+
+# ------------------------------------- candidates awaiting owner acceptance
+
+[pillars-b3]
+builder = "tools/diagrams/variants/build_pillars_b3.py"
+excalidraw = "tools/diagrams/excalidraw/pillars-b3.excalidraw"
+svg = "scratch/review/candidates/pillars-b3.svg"
+
+[two-collections]
+builder = "tools/diagrams/build_two_collections.py"
+excalidraw = "tools/diagrams/excalidraw/two-collections.excalidraw"
+svg = "scratch/review/candidates/two-collections.svg"
+
+[nodule-neighborhood]
+builder = "tools/diagrams/build_nodule_neighborhood.py"
+excalidraw = "tools/diagrams/excalidraw/nodule-neighborhood.excalidraw"
+svg = "scratch/review/candidates/nodule-neighborhood.svg"
+
+# ------------------------------------------------- rejected pillars variants
+
+[pillars-a]
+builder = "tools/diagrams/build_pillars.py"
+args = ["--seam", "a"]
+excalidraw = "scratch/review/candidates/pillars-a.excalidraw"
+svg = "scratch/review/candidates/pillars-a.svg"
+
+[pillars-b]
+builder = "tools/diagrams/build_pillars.py"
+args = ["--seam", "b"]
+excalidraw = "scratch/review/candidates/pillars-b.excalidraw"
+svg = "scratch/review/candidates/pillars-b.svg"
+
+[pillars-c]
+builder = "tools/diagrams/build_pillars.py"
+args = ["--seam", "c"]
+excalidraw = "scratch/review/candidates/pillars-c.excalidraw"
+svg = "scratch/review/candidates/pillars-c.svg"
+
+[pillars-b1]
+builder = "tools/diagrams/variants/build_pillars_b1.py"
+excalidraw = "scratch/review/candidates/pillars-b1.excalidraw"
+svg = "scratch/review/candidates/pillars-b1.svg"
+
+[pillars-b2]
+builder = "tools/diagrams/variants/build_pillars_b2.py"
+excalidraw = "scratch/review/candidates/pillars-b2.excalidraw"
+svg = "scratch/review/candidates/pillars-b2.svg"
+
+# ------------------------------- knowledge-graph figures (separate track)
+
+[architecture]
+builder = "tools/diagrams/build_architecture.py"
+excalidraw = "knowledge/overview/architecture.excalidraw"
+svg = "knowledge/overview/architecture.svg"
+
+[hierarchy]
+builder = "tools/diagrams/build_hierarchy.py"
+excalidraw = "knowledge/data-structures/hierarchy.excalidraw"
+svg = "knowledge/data-structures/hierarchy.svg"
+
+[repository-map]
+builder = "tools/diagrams/build_repository_map.py"
+excalidraw = "knowledge/repositories/repository-map.excalidraw"
+svg = "knowledge/repositories/repository-map.svg"

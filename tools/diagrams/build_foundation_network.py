@@ -67,13 +67,13 @@ contrast IV" wrap their name over two lines and keep the code on the last
 line. Shrinking text below 13px or abbreviating the Playbook names were the
 only other ways to make all five one-line, and both were rejected.
 
-Output: knowledge/drafts/foundation-network.excalidraw; render with
+Output: the "foundation-network" entry in figures.toml; render with
 render_excalidraw.py (see tools/diagrams/README.md).
 """
 from __future__ import annotations
 
 from excalib import (TITLE, SUBTITLE, BODY, LINE, els, base, text, box, find, edge_point,
-                     arrow, tri_head, save)
+                     arrow, tri_head, save, figure)
 
 # ---------------------------------------------------------------- palette
 FINDING = ("#d1fae5", "#059669", "#064e3b")     # light green: finding
@@ -430,4 +430,4 @@ for i, (kind, color, label) in enumerate(edge_rows):
     els.append(text(f"legB{i}_l", LX2 + 40, y - 1, label, size=13, color=BODY, w=340))
     y += 28
 
-save("knowledge/drafts/foundation-network.excalidraw")
+save(figure("foundation-network").excalidraw)

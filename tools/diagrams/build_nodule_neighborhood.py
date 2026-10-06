@@ -89,7 +89,7 @@ RELATIONSHIP NAMES
 ------------------
 Every edge label is the committed `edge` string from definition-graph.json,
 and all nine agree with the relationship table on
-knowledge/drafts/next-generation-schema.md. The older names that circulate
+site/content/foundation-context/next-generation-schema.md. The older names that circulate
 elsewhere in the same repository are NOT used: HAS_ELEMENT (for
 HAS_DATA_ELEMENT) and MAY_HAVE_COMPONENT (for HAS_COMPONENT), both of which
 survive in graph/core.jsonl and in the retired 2026-09-03 fc-neighborhood
@@ -140,13 +140,13 @@ Excalidraw has no italic font variant -- fontFamily is an integer code with
 no style axis -- so the caption under the legend is set small and grey rather
 than italic.
 
-Output: knowledge/drafts/nodule-neighborhood.excalidraw; render with
+Output: the "nodule-neighborhood" entry in figures.toml; render with
 render_excalidraw.py (see tools/diagrams/README.md).
 """
 from __future__ import annotations
 
 from excalib import (BODY, LINE, CAPTION, els, base, text, find, edge_point, arrow,
-                     tri_head, save)
+                     tri_head, save, figure)
 
 # ---------------------------------------------------------------- palette
 # (fill, stroke, text, mid) -- "mid" is the tone for the small kind line.
@@ -408,4 +408,4 @@ els.append(text("cap", (LEG_X0 + LEG_X1) / 2 - 300, LEG_Y + 64,
                 "illustrative: reflects pending updates to the CDE graph",
                 size=11, color=CAPTION, align="center", w=600))
 
-save("knowledge/drafts/nodule-neighborhood.excalidraw")
+save(figure("nodule-neighborhood").excalidraw)

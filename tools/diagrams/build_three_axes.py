@@ -55,10 +55,10 @@ Thyroid gland" rather than "US Thyroid", and that the Playbook has no
 the second XR Chest child here is "XR Chest PA and Lateral". A family
 root such as "XR Chest" is a preferred-name family, not itself an entry.
 
-Output: knowledge/drafts/three-axes.excalidraw; render with
+Output: the "three-axes" entry in figures.toml; render with
 render_excalidraw.py at `--width 1010 --scale 1`.
 """
-from excalib import els, base, text, image, save, AMBER
+from excalib import els, base, text, image, save, figure, AMBER
 
 ICON = 36
 ROOT_SIZE = 14
@@ -390,7 +390,7 @@ for i, (ipath, title, tagline, rows, notes, desc_lines) in enumerate(specs):
     axis_column(i * (COL_W + GAP_COL), Y0, COL_W, REGION_H, ipath, title, tagline,
                 rows, notes, desc_lines)
 
-save("knowledge/drafts/three-axes.excalidraw")
+save(figure("three-axes").excalidraw)
 print(f"figure {CONTENT_W}x{COL_H}  region {REGION_H}  widest row {_widest[1]!r} {_widest[0]}")
 for _i, t, _g, rows, notes, _d in specs:
     print(f"  {t}: {n_rows(rows)} rows, row_h {fitted_row_h(rows, notes, REGION_H):.1f}")

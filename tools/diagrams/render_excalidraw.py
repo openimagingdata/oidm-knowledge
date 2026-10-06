@@ -2,7 +2,14 @@
 
 Usage:
     cd .claude/skills/excalidraw-diagram/references
-    uv run python render_excalidraw.py <path-to-file.excalidraw> [--output path.png] [--scale 2] [--width 1920]
+    uv run python render_excalidraw.py <path-to-file.excalidraw> [--output path.png] [--svg path.svg] [--scale 2] [--width 1920]
+    uv run python render_excalidraw.py --figure <name> [--figure <name> ...] [--build]
+    uv run python render_excalidraw.py --all [--build]
+
+--figure/--all render figures configured in figures.toml: the SVG goes to the
+figure's `svg` path (made responsive: fixed width/height dropped, max-width
+style added) and the PNG to the configured review directory as <name>.png.
+--build first runs each figure's builder (with its configured args).
 
 First-time setup:
     cd .claude/skills/excalidraw-diagram/references
@@ -14,6 +21,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -173,15 +182,65 @@ def render(
     return output_path
 
 
+def make_responsive(svg_path: Path) -> None:
+    """Drop the fixed width/height on the root <svg> and let it scale to its container."""
+    svg = svg_path.read_text(encoding="utf-8")
+    head_end = svg.index(">")
+    head = re.sub(r' width="[^"]*" height="[^"]*"', ' style="max-width:100%;height:auto"', svg[:head_end], count=1)
+    svg_path.write_text(head + svg[head_end:], encoding="utf-8")
+
+
+def render_figure(name: str, scale: int, max_width: int, build: bool = False) -> None:
+    """Render a figure configured in figures.toml to its SVG and review PNG paths."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from excalib import REPO_ROOT, figure
+
+    fig = figure(name)
+    if build:
+        subprocess.run([sys.executable, str(fig.builder), *fig.args], cwd=REPO_ROOT, check=True)
+    if not fig.excalidraw.exists():
+        print(f"ERROR: {name}: {fig.excalidraw} not found (run its builder, or pass --build)", file=sys.stderr)
+        sys.exit(1)
+    fig.png.parent.mkdir(parents=True, exist_ok=True)
+    if fig.svg is not None:
+        fig.svg.parent.mkdir(parents=True, exist_ok=True)
+    render(fig.excalidraw, fig.png, scale, max_width, svg_out=fig.svg)
+    if fig.svg is not None:
+        make_responsive(fig.svg)
+        print(f"{name}: {fig.svg}")
+    print(f"{name}: {fig.png}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Render Excalidraw JSON to PNG")
-    parser.add_argument("input", type=Path, help="Path to .excalidraw JSON file")
+    parser.add_argument("input", type=Path, nargs="?", help="Path to .excalidraw JSON file")
     parser.add_argument("--output", "-o", type=Path, default=None, help="Output PNG path (default: same name with .png)")
     parser.add_argument("--scale", "-s", type=int, default=2, help="Device scale factor (default: 2)")
     parser.add_argument("--width", "-w", type=int, default=1920, help="Max viewport width (default: 1920)")
     parser.add_argument("--svg", type=Path, default=None, help="Also write the rendered SVG markup to this path")
+    parser.add_argument("--figure", "-f", action="append", default=[],
+                        help="Render a figure configured in figures.toml by name (repeatable)")
+    parser.add_argument("--all", action="store_true", help="Render every figure in figures.toml")
+    parser.add_argument("--build", action="store_true",
+                        help="With --figure/--all: run each figure's builder before rendering")
     args = parser.parse_args()
 
+    if args.figure or args.all:
+        if args.input or args.output or args.svg:
+            parser.error("--figure/--all take their paths from figures.toml; omit input, --output and --svg")
+        names = args.figure
+        if args.all:
+            sys.path.insert(0, str(Path(__file__).resolve().parent))
+            from excalib import load_figures
+            names = list(load_figures())
+        for name in names:
+            render_figure(name, args.scale, args.width, build=args.build)
+        return
+
+    if args.input is None:
+        parser.error("give an .excalidraw path, --figure NAME, or --all")
+    if args.build:
+        parser.error("--build needs --figure or --all")
     if not args.input.exists():
         print(f"ERROR: File not found: {args.input}", file=sys.stderr)
         sys.exit(1)

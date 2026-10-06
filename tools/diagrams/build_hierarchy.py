@@ -4,8 +4,8 @@ Problem List, Imaging Persona, with the fields each carries and its status.
 Recomposed as a vertical ladder (Observation on top, Imaging Persona at the
 bottom) with each box's field list set to its right, to fit a ~900px column.
 Title/subtitle are left for the page text.
-Output: knowledge/data-structures/hierarchy.excalidraw"""
-from excalib import PRIMARY, SECONDARY, TERTIARY, EXTERNAL, PLANNED, TITLE, SUBTITLE, BODY, LINE, els, base, text, box, find, arrow, hline, save
+Output: the "hierarchy" entry in figures.toml"""
+from excalib import PRIMARY, SECONDARY, TERTIARY, EXTERNAL, PLANNED, TITLE, SUBTITLE, BODY, LINE, els, base, text, box, find, arrow, hline, save, figure
 
 BOX_X = 0
 BOX_W, BOX_H = 250, 70
@@ -53,4 +53,4 @@ for i, (bid, label, colors, dashed, fields, status, status_color) in enumerate(r
 Y_NOTE = y - ARROW_GAP + 40
 els.append(text("note", 0, Y_NOTE, "Codes come from the semantic foundation: OIFM and OIFMA identifiers from finding\nmodels, RID from anatomic locations, LOINC for the exam.", size=13, color=BODY))
 
-save("knowledge/data-structures/hierarchy.excalidraw")
+save(figure("hierarchy").excalidraw)
