@@ -13,7 +13,12 @@ The content is an [Open Knowledge Format](https://okf.md) 0.2 bundle in [`knowle
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) and the [authoring guide](knowledge/guides/authoring-guide.md). Two checkers must pass; `task check` runs both (or run them directly):
+Original documents and diagram captures are kept in private storage. See
+[Recover and verify source material](docs/sources.md) for the manifest and
+`task sources:pull`, `task sources:check`, and `task sources:manifest` commands.
+`task check` also validates the manifest without accessing private files.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) and the [authoring guide](knowledge/guides/authoring-guide.md). `task check` runs both bundle checkers and source-manifest validation. The bundle checkers can also run directly:
 
 ```bash
 uv run .agents/skills/validate/scripts/okf_validate.py knowledge --strict

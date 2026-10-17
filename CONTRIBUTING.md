@@ -8,6 +8,11 @@ Read the [authoring guide](knowledge/guides/authoring-guide.md). It defines the 
 
 ## Ground rules
 
+For original source files, follow [Recover and verify source material](docs/sources.md).
+When changing the source manifest or download commands, validate the manifest,
+verify the selected local files, and run the tests described there. Original
+files and credentials remain outside Git.
+
 - **Facts and stated goals.** Document what exists and what the project has said it intends. Design proposals go through a separate review and are typed as such.
 - **One concept per file.** Put it in the right directory and list it in that directory's `index.md`.
 - **Sources.** Say what you read, pinned to a commit. Attribute specific claims with footnotes.

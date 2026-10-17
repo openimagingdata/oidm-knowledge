@@ -2,6 +2,10 @@
 
 Engineering narrative for the oidm-knowledge repository: decisions, blockers, and what was done when. Reader-facing changes go in `CHANGELOG.md`.
 
+## 2026-10-17
+
+- Prepared the original-file download and verification commands on `reconcile-knowledge`, separately from planning consolidation, the knowledge reset, and website work. Added the source manifest, instructions, tests, CI validation, and source tasks. Kept the original checkout intact. The manifest validates 25 source groups and 118 artifacts; all 118 local files match their recorded sizes and SHA-256 hashes. Eight tests pass, including corrupt downloads, conflicts, symlinks, and concurrent destination creation. Repository checks pass with zero errors or warnings; task argument routing, documentation links, and whitespace checks pass. No remote transfer or write, knowledge-content edit, website edit, staging in the original checkout, or commit occurred.
+
 ## 2026-09-20
 
 - Planning interview with the project lead settled the charter: canonical public documentation, OKF 0.2 bundle in `knowledge/`, migrate rather than mirror, three-layer organization, facts and goals only, organizations not individuals, Quartz-or-similar site from day one. Full decision table in `knowledge/plans/2026-09-20-knowledgebase-build-plan.md`.
