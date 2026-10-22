@@ -1,0 +1,16 @@
+# Order of the site navigation. Paths are relative to site/content/.
+# Every page must appear exactly once; site/tools/check_site.py enforces it.
+- page: index.md
+  label: Overview
+- page: foundation-context/index.md
+  pages:
+    - foundation-context/finding-models-and-cdes.md
+    - foundation-context/next-generation-schema.md
+    - foundation-context/relationships.md
+    - foundation-context/anatomic-locations.md
+    - foundation-context/exam-types.md
+    - foundation-context/standards.md
+- data-structures/index.md
+- sdks/index.md
+- use-cases/index.md
+- sample-applications/index.md

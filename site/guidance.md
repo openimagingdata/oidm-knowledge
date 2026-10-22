@@ -151,3 +151,31 @@ On the area's name: "Let's call it "site" instead of "presentation"."
 > It makes NO sense for the assets to be in "knowledge"--they are NOT knowledge. If we're going to use them for both the OKF pages AND the site, let's put them in `./assets`. If they're only on the site, put them in `site/assets`.
 
 On whether the site needs its own log: "Does the SITE need some kind of LOG.md or HISTORY.md for us to record our work? (Distinct from the larger repo/knowledge graph.)"
+
+> "Frontmatter a site page should carry"?! What sense is that?
+
+On the site's records: "Maybe we have have `site/CURRENT_TASK.md`, `site/ROADMAP.md` and `site/HISTORY.md`."
+
+On what `site/pages` held: "I'm unclear on what `site/pages` is. Is it our source Markdown files?" Then: "Rename to `site/content` and go ahead with the commit plan."
+
+> Could we commit our page separate WITHOUT disrupting any of the graph reorganization work our colleague is doing?
+
+## 2026-10-06: the build approach
+
+On ordering the explorer by a function in the YAML config or by our own `quartz.ts` over Quartz's: "NEITHER of your choices are appealing. Really? This is the best we can do? TS-in-yaml or PATCHING THE TOOL THAT'S THE STATE OF THE ART that we don't even fully understand?! Try harder."
+
+On the automatic folder listings: "I agree, hide the folder lsits."
+
+> Site title is "Open Imaging Data Model: Knowledge"
+
+On placeholder pages that only say the page is coming: "Why so generic? Can't we have a quick summary of what we're planning to put there?"
+
+> Should we have a site-specific Taskfile.yml?
+
+On the navigation component, `site/navigation.yaml`, the placeholder summaries, and the site Taskfile: "OK, but make it look GOOD." Then: "Start implementing."
+
+## 2026-10-08: page comments
+
+> We were talking about gdiscus (?) as a commenting option... Is that something we can do on our dev/staging areas?
+
+> Can we have it in all three? And can it be clear which env the comment came from?

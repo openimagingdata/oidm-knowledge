@@ -1,0 +1,3 @@
+# Local plugin ESM is hand-written source, despite the root dist/ rule.
+!plugins/*/dist/
+!plugins/*/dist/**

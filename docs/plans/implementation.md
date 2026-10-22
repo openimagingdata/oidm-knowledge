@@ -1,6 +1,6 @@
 # Source-to-pages implementation plan
 
-Updated 2026-10-19. This remains the single planning record. The owner has approved moving the old bundle to `archive/knowledge` and reconstructing the graph from fresh documents in `knowledge/`. The conceptual outline remains under collaborative development. Do not create parallel restructure plans or dashboards.
+Updated 2026-10-22. This remains the single planning record. The owner has approved moving the old bundle to `archive/knowledge` and reconstructing the graph from fresh documents in `knowledge/`. The conceptual outline remains under collaborative development. Do not create parallel restructure plans or dashboards.
 
 ## Current task: separate the accumulated changes into commits
 
@@ -12,12 +12,11 @@ question or drafting knowledge documents.
    now on `bootstrap`. The owner approved this first commit. It contains the
    manifest, commands, tests, CI checks, and instructions. All original
    working-file contents were preserved when incorporating it.
-2. Planning and reference consolidation: prepared for review, authorized October 19.
-   Preserve owner guidance, the approved outline, and the unanswered drafting
-   question; account for removed plans and relocated previews. Repair links
-   in the proposed commit while leaving the archive move and website changes
-   unstaged. Check the complete proposed commit independently of the working
-   tree, update this plan and the relevant logs, then request commit permission.
+2. Planning and reference consolidation: complete in `ea7dfeb`, committed
+   October 22 with the owner's explicit permission after Astra's independent
+   review and follow-up confirmation. Approved decisions and the unanswered
+   drafting question are preserved; the knowledge reset and website work
+   remain outside that commit.
 3. Knowledge reset: commit the archive move, fresh index and log, and related
    documentation last. The move already exists in the working tree, but has
    not been committed. Do not start concept drafting.
@@ -32,6 +31,51 @@ the owner's request. Continue in this original checkout. The tab created for
 the worktree was already closed when checked. No website files were changed.
 Keep this plan, the handoff, references, and logs aligned with each proposed
 commit and the final state. Each remaining commit needs separate permission.
+
+### Bring the website and bundle changes onto main, October 22
+
+The owner requested direct coordination with the existing Claude session
+through Herdr. Prepare the remaining work in this shared checkout, without
+creating new branches or worktrees for cleanup.
+
+1. Agree on the commit boundary with Claude. Claude prepares website-owned
+   files and reports checks; Codex handles shared root documentation and task
+   integration. Only one agent may change the shared index at a time.
+2. Prepare the website commit first, including the root routing needed for
+   `task site:...`, website deployment configuration, and removal of the old
+   knowledge-to-site preparation script. Validate its exact proposed snapshot
+   with the original bundle still present. Obtain permission for that commit.
+3. Prepare the knowledge reset last: verify archive preservation and retained
+   owner guidance, fix active citations, and check the fresh index/log and final
+   documentation. Website code remains outside this change. Obtain permission
+   for that commit. Do not begin knowledge drafting.
+4. Publish `bootstrap` and open a new pull request after commit/push approval.
+   Remote `main` is an ancestor of `bootstrap`; PR #1 was closed without merging.
+   Effective repository rules require a pull request and one approving review.
+   The local pre-push hook reserves updates to `main` for the owner. Do not
+   bypass it through an API merge or force-push. A regular owner-completed merge
+   preserves the named cleanup commits; rebase/squash would alter that history.
+5. Check the combined committed state, account for any remaining changes, and
+   update the handoff and logs. Establish current `main` before proposing
+   separate branches or worktrees for subsequent graph and website work.
+
+Coordination and preparation are authorized. Commit permissions remain separate;
+the owner has not yet approved either remaining concrete commit or a push/merge.
+
+Claude agreed to this boundary through Herdr on October 22. Claude owns `site/`,
+`.github/workflows/deploy.yml`, and deletion of `tools/prepare_site_content.py`.
+Codex owns shared root edits and serializes staging. The full remaining root
+Taskfile integration belongs to the website commit. README, changelog, handoff,
+and log changes are split by purpose; contributor and archive-state changes
+belong to the graph commit. No deferred comments feature or new site functionality
+is included in this cleanup.
+
+Claude verified dev/staging checks, a site build, and a staging build containing
+only website files and shared brand assets. The production check correctly
+rejects all 12 unstamped pages. Codex verified the archive and active bundle
+with both validators. Merging the final state runs bundle CI and the staging
+build workflow; staging deployment requires the configured Cloudflare secrets.
+It does not deploy production or grant page-review stamps.
 
 ## Organizing decisions and withdrawn approach
 
@@ -69,13 +113,13 @@ Supporting material has distinct homes:
 
 | Work | State | What remains |
 |---|---|---|
-| Plan consolidation and temporary-file cleanup | Prepared October 2; separate commit under review October 19 | Check preserved guidance, reference links, and preview copies before requesting commit permission. |
+| Plan consolidation and temporary-file cleanup | Complete in `ea7dfeb`, owner-approved October 22 | Preserve the outline, references, and review checkpoint during the remaining two commits. |
 | Original source collection | All 307 remote objects match local sizes/SHA-256; manifest and recovery tools complete | 25 source groups / 118 selected artifacts are recoverable; selection does not establish content priority or approval. |
 | Board capture | Complete: 15 boards, native exports and metadata retained | Content use awaits the agreed approach; capture dates are not idea dates. |
 | Brand import | Complete: 16 assets, style guide, checksum manifest | Theme application is deferred. Preserve assets through the presentation build change. |
 | Knowledge graph | Reset prepared in the working tree; archive move and fresh index/log remain outside the planning-consolidation commit | Commit the reset last. Drafting remains paused pending the remaining plan review. |
 | Presentation content | Moved to `site/` on 2026-10-05 | Separate track; see `site/ROADMAP.md`. |
-| Site | Website-session working-tree changes, excluded from this commit | Claude owns build and task-routing integration. Consult the instructions for the checkout being used; do not assume the `site` task namespace is available before that change is integrated. |
+| Site | Website session's separation and task integration prepared as the next commit | Review and approve the website commit first. The graph reset follows, then publish the combined branch through a PR. |
 
 This plan records content agreement separately from publication approval. A review by an agent, or an agreed paragraph, does not itself supply the project's human verification stamp.
 

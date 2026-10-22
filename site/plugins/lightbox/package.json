@@ -1,5 +1,5 @@
 {
-  "name": "okf-lightbox-plugin",
+  "name": "site-lightbox",
   "version": "0.1.0",
   "description": "Click-to-zoom image lightbox for Quartz - opens article diagrams in a pan/zoom overlay",
   "type": "module",
@@ -14,8 +14,8 @@
     }
   },
   "quartz": {
-    "name": "okf-lightbox-plugin",
-    "displayName": "OKF Lightbox",
+    "name": "site-lightbox",
+    "displayName": "Site Lightbox",
     "category": "component",
     "version": "0.1.0",
     "quartzVersion": ">=5.0.0",
@@ -23,8 +23,8 @@
     "defaultEnabled": true,
     "defaultOptions": {},
     "components": {
-      "OkfLightbox": {
-        "displayName": "OKF Lightbox",
+      "Lightbox": {
+        "displayName": "Site Lightbox",
         "defaultPosition": "afterBody",
         "defaultPriority": 50
       }

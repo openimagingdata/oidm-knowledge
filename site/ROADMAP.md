@@ -4,9 +4,13 @@ What is planned for the website, and where each page and figure stands. The curr
 
 `site/content/` is the website's content: Markdown pages and the SVG figures they embed. It is not an OKF bundle. A page carries `title` and `description`, and the `verified` stamp once the project lead has reviewed it; citations are footnotes in the text. The knowledge graph in `knowledge/` is a separate track; nothing here waits on it.
 
-## Next: build the public site from `site/content/`
+## Now: build the public site from `site/content/`
 
-Before any change to the build, write the approach and review it with the project lead: the explorer ordered by the five pillars (the explorer's `sortFn` is a function and cannot be set in the YAML config); the "DRAFT / Awaiting Review" stamp on every dev and staging page; the production build refusing any page without a `verified` entry, with `tools/verify.py` writing that stamp on site pages; how the target is passed to the build; publishing the brand assets from `assets/`. Then build locally, look at it, deploy to dev, and hand the project lead the URL.
+Built and on dev (https://oidm-knowledge-dev.talkasab.workers.dev), awaiting the project lead's look and the commit; see [CURRENT_TASK.md](CURRENT_TASK.md). Production stays closed until every page carries his `verified` stamp (`task site:verify`).
+
+## Then: page comments (proposed)
+
+Giscus on all three sites, one Discussions category per environment so every comment shows where it came from. Proposed 2026-10-08, awaiting the project lead's yes; details in [CURRENT_TASK.md](CURRENT_TASK.md).
 
 ## Then: the remaining pages
 
