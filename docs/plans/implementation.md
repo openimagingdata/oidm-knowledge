@@ -2,7 +2,31 @@
 
 Updated 2026-10-22. This remains the single planning record. The owner has approved moving the old bundle to `archive/knowledge` and reconstructing the graph from fresh documents in `knowledge/`. The conceptual outline remains under collaborative development. Do not create parallel restructure plans or dashboards.
 
-## Current task: separate the accumulated changes into commits
+## Current task: preserve icon license notices
+
+The four cleanup commits are complete, including the knowledge reset in
+`6e7546a`. `bootstrap` is published in [PR #2](https://github.com/openimagingdata/oidm-knowledge/pull/2),
+awaiting owner review and merge. Knowledge drafting remains paused.
+
+Copilot identified missing Lucide and Feather notices in the diagram icons.
+The fix is complete and checked. The owner authorized committing and publishing
+it to PR #2. Owner review and merge remain pending.
+
+1. Complete: save the complete upstream license with the vendored icons and embed its
+   notices as nonvisual SVG metadata so copies retain them.
+2. Complete: update existing diagram copies without changing artwork. Limit website
+   asset edits to embedded license metadata. Preserve notices in future
+   SVG exports and provide accompanying notices for PNG exports.
+3. Complete: check source and export preservation and update the diagram
+   instructions and handoff/log. Publish the owner-approved fix to PR #2.
+
+Verification: all nine icons retain complete notices through recoloring and
+embedding; a rendered diagram retains all seven Lucide notices and produces
+the PNG license file. All 15 edited icon/diagram files differ only in license
+metadata, and the before/after PNG renders are byte-identical. Repository and
+website checks pass. No concept drafting.
+
+## Completed cleanup: separate the accumulated changes into commits
 
 The owner paused the content-plan discussion to reconcile the accumulated
 working-tree changes. Finish this work before resuming the unanswered review
@@ -21,9 +45,9 @@ question or drafting knowledge documents.
    owner's explicit permission after coordination with Claude. It contains
    independent site content/build/review tools, root task integration, and
    site-only documentation. All remaining working changes were preserved.
-4. Knowledge reset: commit the archive move, fresh index and log, and related
-   documentation last. The move already exists in the working tree, but has
-   not been committed. Do not start concept drafting.
+4. Knowledge reset: complete in `6e7546a`, committed with the owner's explicit
+   permission. The archive, fresh index/log, and graph documentation are
+   published with the other cleanup commits in PR #2. Do not start concept drafting.
 
 The owner's Claude session owns the website changes, including deployment
 configuration and website task routing outside `site/`. Split shared root
@@ -62,9 +86,8 @@ creating new branches or worktrees for cleanup.
    update the handoff and logs. Establish current `main` before proposing
    separate branches or worktrees for subsequent graph and website work.
 
-Coordination and preparation are authorized. The owner approved the website
-commit, now `5da01ae`. Permission for the graph commit and publication remains
-separate; no push or merge has occurred.
+The owner separately approved both commits and publication. `bootstrap` is
+pushed and PR #2 is open. Bundle CI passed. Owner review and merge remain pending.
 
 Claude agreed to this boundary through Herdr on October 22. Claude owns `site/`,
 `.github/workflows/deploy.yml`, and deletion of `tools/prepare_site_content.py`.

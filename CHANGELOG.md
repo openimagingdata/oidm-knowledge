@@ -18,6 +18,8 @@ All notable reader-facing changes to this knowledgebase. Format follows [Keep a 
 
 ### Added
 
+- Full Lucide and Feather license notices in diagram icons and SVGs; PNG exports now include accompanying license files.
+
 - Source manifest with provenance and handling rules, plus commands to recover and checksum-verify selected source files from Tigris without overwriting local changes.
 
 - Source-grounded summaries of 15 project diagram boards, indexed by idea and pillar with links to the source material.

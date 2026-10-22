@@ -81,7 +81,16 @@ embedding examples. Use these marks to identify the projects in a diagram.
 
 `excalib.image(id_, x, y, w, h, svg_path, color=None)` embeds an SVG file as an Excalidraw `image` element: it reads the file, optionally replaces every `currentColor` in the SVG source with a hex string (so one licensed icon file can be recolored per diagram without editing the file on disk), base64-encodes it into the document's top-level `files` map, and adds an element referencing that `fileId`. `render_template.html` already passed `files` through to `exportToSvg` before this was added, so no renderer change was needed to make icons show up in the rendered PNG/SVG -- this was checked, not assumed.
 
-Icon source files live in `tools/diagrams/icons/`, kept as unmodified originals (recoloring happens at build time, not by editing the files). `icons/LICENSES.md` records where each one came from and its license. When a diagram needs an icon that isn't already there, prefer an existing open set already used in the bundle (Health Icons, Lucide) over adding a new one, to keep icon style consistent across diagrams; add the new file, credit it in `LICENSES.md`, and note in the relevant `build_<name>.py` docstring which set was used for which slot.
+Icon source files live in `tools/diagrams/icons/`. Their artwork is unchanged;
+recoloring happens at build time. Lucide SVGs carry the full upstream license
+notices in nonvisual metadata, which `image()` preserves in embedded copies.
+[`icons/LICENSES.md`](icons/LICENSES.md) records their origins and links the
+complete license text. Keep the metadata when copying or optimizing SVGs.
+Share rendered PNGs with their generated `<name>.LICENSE.txt` files.
+
+When adding an icon, prefer Health Icons or Lucide for consistent styling.
+Record its origin and full required notices in `icons/LICENSES.md`, preserve
+those notices in embedded copies, and identify its use in the builder docstring.
 
 ## Node shape and color conventions (2026-09-30)
 

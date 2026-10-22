@@ -4,24 +4,28 @@
 
 Pause the knowledge-plan discussion. Original-file download and verification
 tooling is committed as `21e37a0`; planning consolidation as `ea7dfeb`; website
-separation as `5da01ae`. All were explicitly approved by the owner.
+separation as `5da01ae`; knowledge reset as `6e7546a`. All were explicitly
+approved by the owner. `bootstrap` is pushed and
+[PR #2](https://github.com/openimagingdata/oidm-knowledge/pull/2) is open.
+Bundle CI passed; owner review and merge remain pending.
 
-The current task is the final graph/bundle reset commit. Its archive move,
-fresh index/log, and graph documentation are prepared for review. The website
-commit is complete; do not include website code in this change. Codex handles
-the graph and shared root files; Claude's website work remains separate.
-Explicit permission is required before committing the graph change.
+The current task is Copilot's missing-icon-notices finding. The complete Lucide
+and Feather notices are saved with the icons and embedded in their SVG metadata.
+Existing diagram copies retain the notices; PNG rendering produces an accompanying
+license file. Only embedded license metadata changed in the two affected website
+SVGs. Source preservation and export checks pass. The owner authorized
+committing and publishing the fix to PR #2. Owner review and merge remain pending.
 
 The temporary `reconcile-knowledge` branch and worktree have been removed at
 the owner's request. Continue in this original checkout. All working files
 were preserved when incorporating the first commit. The owner's Claude
 session owns website changes, including supporting deployment and task
-changes outside `site/`. Keep those out of the knowledge-reset commit.
+changes outside `site/`. Keep website work coordinated and separate from graph drafting.
 See [the implementation plan](plans/implementation.md) for the current split.
 Do not resume the older checkpoint below or begin drafting yet.
 
-After the graph change is committed and checked, publish `bootstrap` with approval
-and open a new PR to `main`. GitHub rules require a PR and one approving review;
+The next step after publishing the license fix is owner review of PR #2.
+GitHub rules require a PR and one approving review;
 the local hook reserves merging/updating `main` for the owner. Do not direct-push
 or use an API merge to bypass that boundary. Establish the combined current
 state on `main` before creating worktrees for subsequent work.
@@ -66,8 +70,7 @@ exact FHIR mappings remain open. The requested
 [clinical-reconciliation research](references/clinical-information-reconciliation.md)
 is complete; it does not settle Imaging Persona's design.
 
-The knowledge reset remains the last cleanup commit. Its archive move is
-prepared in the working tree, outside the current proposed commit. Do not
+The knowledge reset was the last cleanup commit. The archive move is complete. Do not
 edit the old prose into replacements. Delete the temporary archive only after
 useful recovery is complete and active dependencies have been removed.
 

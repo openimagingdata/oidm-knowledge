@@ -20,6 +20,7 @@ First-time setup:
 from __future__ import annotations
 
 import argparse
+import base64
 import json
 import re
 import subprocess
@@ -174,6 +175,17 @@ def render(
             sys.exit(1)
 
         svg_el.screenshot(path=str(output_path))
+        # PNG screenshots cannot retain the SVGs' embedded license metadata.
+        # Keep the full notices alongside PNGs that contain Lucide icons.
+        if any(
+            file.get("dataURL", "").startswith("data:image/svg+xml;base64,")
+            and b'id="lucide-license"' in base64.b64decode(file["dataURL"].split(",", 1)[1])
+            for file in data.get("files", {}).values()
+        ):
+            license_path = Path(__file__).parent / "icons" / "LUCIDE-LICENSE.txt"
+            output_path.with_suffix(".LICENSE.txt").write_text(
+                license_path.read_text(encoding="utf-8"), encoding="utf-8"
+            )
         if svg_out is not None:
             svg_markup = svg_el.evaluate("el => el.outerHTML")
             Path(svg_out).write_text(svg_markup, encoding="utf-8")
