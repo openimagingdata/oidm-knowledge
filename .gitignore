@@ -16,3 +16,12 @@ public/
 # tracked, despite the blanket `dist/` rule above.
 !site/okf-meta-plugin/dist/
 !site/okf-meta-plugin/dist/**
+viz.html
+.playwright-cli/
+
+# Raw source material reviewed for the bundle (may contain unpublished planning); never committed
+/sources
+.wrangler/
+
+# Local review renders, research scratch, and disposable outputs.
+/scratch/

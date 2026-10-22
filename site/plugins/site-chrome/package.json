@@ -1,0 +1,32 @@
+{
+  "name": "site-chrome",
+  "version": "0.1.0",
+  "description": "Public site review banner, OIDM logo, and ordered navigation",
+  "type": "module",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": { "import": "./dist/index.js" },
+    "./components": { "import": "./dist/components/index.js" }
+  },
+  "peerDependencies": {
+    "preact": "^10.0.0",
+    "@quartz-community/utils": "^1.0.0",
+    "yaml": "^2.0.0"
+  },
+  "quartz": {
+    "name": "site-chrome",
+    "displayName": "Site chrome",
+    "category": "component",
+    "version": "0.1.0",
+    "quartzVersion": ">=5.0.0",
+    "defaultEnabled": true,
+    "defaultOptions": {},
+    "components": {
+      "SiteChrome": { "displayName": "Site chrome layout adapter" },
+      "ReviewBanner": { "displayName": "Review banner", "defaultPosition": "beforeBody", "defaultPriority": 1 },
+      "SiteLogo": { "displayName": "OIDM logo", "defaultPosition": "left", "defaultPriority": 10 },
+      "SiteNav": { "displayName": "Site navigation", "defaultPosition": "left", "defaultPriority": 50 }
+    }
+  }
+}

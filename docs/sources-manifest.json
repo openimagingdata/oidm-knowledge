@@ -1,0 +1,1801 @@
+{
+  "schema_version": 1,
+  "bucket": "oidm-knowledge-sources",
+  "classification_status": "Prepared from existing evidence; no new human review or publication approval implied",
+  "verified_at": "2026-10-02T23:21:16.988815+00:00",
+  "verification_method": "All 307 bucket objects downloaded and compared by size and SHA-256; this manifest selects citable source groups and their artifacts.",
+  "sources": [
+    {
+      "id": "ai-evolution-essay",
+      "title": "Clinical context in radiology AI",
+      "organization": "Mass General Brigham",
+      "source_date": null,
+      "source_status": "unpublished working draft",
+      "sensitivity": "internal",
+      "handling": "Paraphrase only; do not quote. Draft statements may be incomplete.",
+      "classification_basis": "Existing source inventory and project-lead handling rules; publication status has not been freshly rechecked."
+    },
+    {
+      "id": "jacr-ipl-manuscript",
+      "title": "Follow-up chest CT reporting and re-documentation",
+      "organization": "Mass General Brigham",
+      "source_date": null,
+      "source_status": "prepared for submission to JACR",
+      "sensitivity": "restricted-until-published",
+      "handling": "Paraphrase only; redraw figures for public references. Do not infer acceptance.",
+      "classification_basis": "Existing source inventory and project-lead handling rules; publication status has not been freshly rechecked."
+    },
+    {
+      "id": "jacr-ipl-supplement",
+      "title": "Supplement to the follow-up chest CT manuscript",
+      "organization": "Mass General Brigham",
+      "source_date": null,
+      "source_status": "supplement to a manuscript prepared for submission",
+      "sensitivity": "restricted-until-published",
+      "handling": "Paraphrase only; no quotations before publication.",
+      "classification_basis": "Existing source inventory and project-lead handling rules; publication status has not been freshly rechecked."
+    },
+    {
+      "id": "jdim-ipl-r1",
+      "title": "Imaging Problem List manuscript, revision R1",
+      "organization": "Mass General Brigham",
+      "source_date": null,
+      "source_status": "under review at JDIM",
+      "sensitivity": "restricted-until-published",
+      "handling": "Paraphrase clean manuscript pages 3–32 only. Never read, quote, or summarize reviewer correspondence on pages 93–102. Whole-packet text extractions are storage artifacts, not approved reading inputs; use page-scoped extraction for synthesis.",
+      "classification_basis": "Existing source inventory and project-lead handling rules; publication status has not been freshly rechecked."
+    },
+    {
+      "id": "jdim-anatomic-locations-r1",
+      "title": "Anatomic Locations Index manuscript, revision R1",
+      "organization": "Brigham and Women's Hospital",
+      "source_date": null,
+      "source_status": "under review at JDIM",
+      "sensitivity": "restricted-until-published",
+      "handling": "Paraphrase manuscript pages 3–17 only. Never read, quote, or summarize reviewer correspondence on pages 18–35. Whole-packet text extraction is a storage artifact; use page-scoped extraction for synthesis.",
+      "classification_basis": "Existing source inventory and project-lead handling rules; publication status has not been freshly rechecked."
+    },
+    {
+      "id": "reporting-schema-deck",
+      "title": "Next-generation object-oriented reporting schema",
+      "organization": null,
+      "source_date": null,
+      "source_status": "internal worked example",
+      "sensitivity": "internal",
+      "handling": "Use design ideas as proposals; redraw figures and retain source-specific qualifications.",
+      "classification_basis": "Existing source inventory and project-lead handling rules; publication status has not been freshly rechecked."
+    },
+    {
+      "id": "siim-ipl-webinar-2026",
+      "title": "Imaging Problem List webinar",
+      "organization": "SIIM",
+      "source_date": "2026-07-15",
+      "source_status": "public webinar",
+      "sensitivity": "public",
+      "handling": "Attribute claims to the public webinar, preserving proposed versus demonstrated work.",
+      "classification_basis": "Existing source inventory and project-lead handling rules; publication status has not been freshly rechecked."
+    },
+    {
+      "id": "siim-reports-of-the-future-2026",
+      "title": "Structured results and context for next-generation imaging tools",
+      "organization": "SIIM",
+      "source_date": "2026-06",
+      "source_status": "public SIIM presentation",
+      "sensitivity": "public",
+      "handling": "The project lead permits reuse of figures. Keep slide/notes locators and qualifications.",
+      "classification_basis": "Existing source inventory and project-lead handling rules; publication status has not been freshly rechecked."
+    },
+    {
+      "id": "oidm-status-2026-01",
+      "title": "OIDM status update, January 2026",
+      "organization": "Open Imaging Data Model",
+      "source_date": "2026-01",
+      "source_status": "public presentation; local text capture only",
+      "sensitivity": "public",
+      "handling": "Cite as a captured presentation account; the original presentation file is not in this collection.",
+      "classification_basis": "Existing source inventory and project-lead handling rules; publication status has not been freshly rechecked."
+    },
+    {
+      "id": "ipl-owner-notes-2026-09-19",
+      "title": "Project-lead notes on imaging-result structures",
+      "organization": null,
+      "source_date": "2026-09-19",
+      "source_status": "project-lead notes",
+      "sensitivity": "internal",
+      "handling": "Paraphrase relevant structure decisions; do not reproduce personal correspondence details.",
+      "classification_basis": "Existing source inventory and project-lead handling rules; publication status has not been freshly rechecked."
+    },
+    {
+      "id": "board-anatomy-and-exam-coverage",
+      "title": "Anatomy and exam coverage",
+      "organization": null,
+      "source_date": null,
+      "source_status": "historical board; publication status unconfirmed",
+      "sensitivity": "internal",
+      "handling": "Use permitted schema ideas only; redraw figures for public references. Omit live share URLs, people, meeting histories, and vendor logistics.",
+      "classification_basis": "Conservative internal classification under existing board rules; not a claim that the original was formally confidential. Source date and publication status remain unconfirmed."
+    },
+    {
+      "id": "board-definition-observation-example",
+      "title": "CDE and Observation worked example",
+      "organization": null,
+      "source_date": null,
+      "source_status": "historical board; publication status unconfirmed",
+      "sensitivity": "internal",
+      "handling": "Use permitted schema ideas only; redraw figures for public references. Omit live share URLs, people, meeting histories, and vendor logistics.",
+      "classification_basis": "Conservative internal classification under existing board rules; not a claim that the original was formally confidential. Source date and publication status remain unconfirmed."
+    },
+    {
+      "id": "board-finding-model-authoring",
+      "title": "OIFM authoring and content development",
+      "organization": null,
+      "source_date": null,
+      "source_status": "historical board; publication status unconfirmed",
+      "sensitivity": "internal",
+      "handling": "Use permitted schema ideas only; redraw figures for public references. Omit live share URLs, people, meeting histories, and vendor logistics.",
+      "classification_basis": "Conservative internal classification under existing board rules; not a claim that the original was formally confidential. Source date and publication status remain unconfirmed."
+    },
+    {
+      "id": "board-finding-model-rules",
+      "title": "Finding model rules and scope",
+      "organization": null,
+      "source_date": null,
+      "source_status": "historical board; publication status unconfirmed",
+      "sensitivity": "internal",
+      "handling": "Use permitted schema ideas only; redraw figures for public references. Omit live share URLs, people, meeting histories, and vendor logistics.",
+      "classification_basis": "Conservative internal classification under existing board rules; not a claim that the original was formally confidential. Source date and publication status remain unconfirmed."
+    },
+    {
+      "id": "board-imaging-context-object-model",
+      "title": "Imaging context object model",
+      "organization": null,
+      "source_date": null,
+      "source_status": "historical board; publication status unconfirmed",
+      "sensitivity": "internal",
+      "handling": "Use permitted schema ideas only; redraw figures for public references. Omit live share URLs, people, meeting histories, and vendor logistics.",
+      "classification_basis": "Conservative internal classification under existing board rules; not a claim that the original was formally confidential. Source date and publication status remain unconfirmed."
+    },
+    {
+      "id": "board-imaging-problem-list",
+      "title": "Imaging Problem List",
+      "organization": null,
+      "source_date": null,
+      "source_status": "historical board; publication status unconfirmed",
+      "sensitivity": "internal",
+      "handling": "Use permitted schema ideas only; redraw figures for public references. Omit live share URLs, people, meeting histories, and vendor logistics.",
+      "classification_basis": "Conservative internal classification under existing board rules; not a claim that the original was formally confidential. Source date and publication status remain unconfirmed."
+    },
+    {
+      "id": "board-longitudinal-integration-discussions",
+      "title": "Longitudinal integration discussions",
+      "organization": null,
+      "source_date": null,
+      "source_status": "historical board; publication status unconfirmed",
+      "sensitivity": "internal",
+      "handling": "Use permitted schema ideas only; redraw figures for public references. Omit live share URLs, people, meeting histories, and vendor logistics.",
+      "classification_basis": "Conservative internal classification under existing board rules; not a claim that the original was formally confidential. Source date and publication status remain unconfirmed."
+    },
+    {
+      "id": "board-oidm-big-picture",
+      "title": "OIDM big picture and application framework",
+      "organization": null,
+      "source_date": null,
+      "source_status": "historical board; publication status unconfirmed",
+      "sensitivity": "internal",
+      "handling": "Use permitted schema ideas only; redraw figures for public references. Omit live share URLs, people, meeting histories, and vendor logistics.",
+      "classification_basis": "Conservative internal classification under existing board rules; not a claim that the original was formally confidential. Source date and publication status remain unconfirmed."
+    },
+    {
+      "id": "board-outcome-and-follow-up-structures",
+      "title": "Outcome and follow-up structures",
+      "organization": null,
+      "source_date": null,
+      "source_status": "historical board; publication status unconfirmed",
+      "sensitivity": "internal",
+      "handling": "Use permitted schema ideas only; redraw figures for public references. Omit live share URLs, people, meeting histories, and vendor logistics.",
+      "classification_basis": "Conservative internal classification under existing board rules; not a claim that the original was formally confidential. Source date and publication status remain unconfirmed."
+    },
+    {
+      "id": "board-participation-and-demonstrations",
+      "title": "Participation, reference work, and demonstrations",
+      "organization": null,
+      "source_date": null,
+      "source_status": "historical board; publication status unconfirmed",
+      "sensitivity": "internal",
+      "handling": "Use permitted schema ideas only; redraw figures for public references. Omit live share URLs, people, meeting histories, and vendor logistics.",
+      "classification_basis": "Conservative internal classification under existing board rules; not a claim that the original was formally confidential. Source date and publication status remain unconfirmed."
+    },
+    {
+      "id": "board-pulmonary-nodule-demo-workflow",
+      "title": "Pulmonary-nodule demo workflow and role tagging",
+      "organization": null,
+      "source_date": null,
+      "source_status": "historical board; publication status unconfirmed",
+      "sensitivity": "internal",
+      "handling": "Use permitted schema ideas only; redraw figures for public references. Omit live share URLs, people, meeting histories, and vendor logistics.",
+      "classification_basis": "Conservative internal classification under existing board rules; not a claim that the original was formally confidential. Source date and publication status remain unconfirmed."
+    },
+    {
+      "id": "board-radiologist-outcome-feedback",
+      "title": "Radiologist outcome feedback",
+      "organization": null,
+      "source_date": null,
+      "source_status": "historical board; publication status unconfirmed",
+      "sensitivity": "internal",
+      "handling": "Use permitted schema ideas only; redraw figures for public references. Omit live share URLs, people, meeting histories, and vendor logistics.",
+      "classification_basis": "Conservative internal classification under existing board rules; not a claim that the original was formally confidential. Source date and publication status remain unconfirmed."
+    },
+    {
+      "id": "board-rsna-exhibit-examples",
+      "title": "RSNA exhibit examples",
+      "organization": null,
+      "source_date": null,
+      "source_status": "historical board; publication status unconfirmed",
+      "sensitivity": "internal",
+      "handling": "Use permitted schema ideas only; redraw figures for public references. Omit live share URLs, people, meeting histories, and vendor logistics.",
+      "classification_basis": "Conservative internal classification under existing board rules; not a claim that the original was formally confidential. Source date and publication status remain unconfirmed."
+    },
+    {
+      "id": "board-structured-report-representation",
+      "title": "Structured report representation",
+      "organization": null,
+      "source_date": null,
+      "source_status": "historical board; publication status unconfirmed",
+      "sensitivity": "internal",
+      "handling": "Use permitted schema ideas only; redraw figures for public references. Omit live share URLs, people, meeting histories, and vendor logistics.",
+      "classification_basis": "Conservative internal classification under existing board rules; not a claim that the original was formally confidential. Source date and publication status remain unconfirmed."
+    },
+    {
+      "id": "board-use-case-development",
+      "title": "Use-case development and interaction ideas",
+      "organization": null,
+      "source_date": null,
+      "source_status": "historical board; publication status unconfirmed",
+      "sensitivity": "internal",
+      "handling": "Use permitted schema ideas only; redraw figures for public references. Omit live share URLs, people, meeting histories, and vendor logistics.",
+      "classification_basis": "Conservative internal classification under existing board rules; not a claim that the original was formally confidential. Source date and publication status remain unconfirmed."
+    }
+  ],
+  "files": [
+    {
+      "id": "ai-evolution-essay-d3c2de44fb",
+      "source_id": "ai-evolution-essay",
+      "path": "bucket/AI Evolution Radiology tracked 2026-08-14 CMH Final MG.docx",
+      "bucket_key": "bucket/AI Evolution Radiology tracked 2026-08-14 CMH Final MG.docx",
+      "size": 501243,
+      "sha256": "4d04461040d7cb00e50016235b066d8671e4600fd1431ed3b6d6de056da7fe43",
+      "added_at": "2026-10-02T23:11:24.000Z",
+      "role": "original",
+      "description": "Original source file",
+      "derived_from": []
+    },
+    {
+      "id": "siim-ipl-webinar-2026-a6e8de5408",
+      "source_id": "siim-ipl-webinar-2026",
+      "path": "bucket/IPL Webinar Deck.html",
+      "bucket_key": "bucket/IPL Webinar Deck.html",
+      "size": 8820597,
+      "sha256": "89ceec8d2ca3b73b3ec07805d6602642244855b0b1ce7389ee1b44bad68e6e40",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "original",
+      "description": "Original source file",
+      "derived_from": []
+    },
+    {
+      "id": "jacr-ipl-manuscript-04ba174b4d",
+      "source_id": "jacr-ipl-manuscript",
+      "path": "bucket/JACR_IPL_figures_png.zip",
+      "bucket_key": "bucket/JACR_IPL_figures_png.zip",
+      "size": 1036210,
+      "sha256": "a05afb235429eef5172489fa64a5178371a1744cb7ea016d8135aab54801f32c",
+      "added_at": "2026-10-02T23:11:24.000Z",
+      "role": "original",
+      "description": "Supplied manuscript figure archive",
+      "derived_from": []
+    },
+    {
+      "id": "jacr-ipl-manuscript-8ea78bed00",
+      "source_id": "jacr-ipl-manuscript",
+      "path": "bucket/JACR_IPL_manuscript.docx",
+      "bucket_key": "bucket/JACR_IPL_manuscript.docx",
+      "size": 1110245,
+      "sha256": "68cfb50f07623e986068bc2f89c62975a137e01310afc6e0fe8cf7ec5ef179db",
+      "added_at": "2026-10-02T23:11:24.000Z",
+      "role": "original",
+      "description": "Original source file",
+      "derived_from": []
+    },
+    {
+      "id": "jacr-ipl-supplement-9e50450cf4",
+      "source_id": "jacr-ipl-supplement",
+      "path": "bucket/JACR_IPL_supplement.docx",
+      "bucket_key": "bucket/JACR_IPL_supplement.docx",
+      "size": 20779,
+      "sha256": "4c722eae863efbc0f70e185cc6593e9bac4fb1ee1c50ceb5547192e0d9af85c8",
+      "added_at": "2026-10-02T23:11:24.000Z",
+      "role": "original",
+      "description": "Original source file",
+      "derived_from": []
+    },
+    {
+      "id": "jdim-anatomic-locations-r1-2209a47e82",
+      "source_id": "jdim-anatomic-locations-r1",
+      "path": "bucket/JDIM-D-26-02183_R1.pdf",
+      "bucket_key": "bucket/JDIM-D-26-02183_R1.pdf",
+      "size": 1444465,
+      "sha256": "c6691b297bc02d0c42b0d8a783f23da20a20f97cf38460919c5fb66f905076ab",
+      "added_at": "2026-10-02T23:11:24.000Z",
+      "role": "original",
+      "description": "Original source file",
+      "derived_from": []
+    },
+    {
+      "id": "jdim-ipl-r1-fe22d4c9b5",
+      "source_id": "jdim-ipl-r1",
+      "path": "bucket/JDIM-D-26-02980_R1.pdf",
+      "bucket_key": "bucket/JDIM-D-26-02980_R1.pdf",
+      "size": 12957978,
+      "sha256": "cf9a2b158947e98463e1a20bdfa761c15ddbb55373092af568373d032e1977a0",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "original",
+      "description": "Original source file",
+      "derived_from": []
+    },
+    {
+      "id": "reporting-schema-deck-cb4d6a7c76",
+      "source_id": "reporting-schema-deck",
+      "path": "bucket/Next Gen Object Oriented Reporting Schema.pptx",
+      "bucket_key": "bucket/Next Gen Object Oriented Reporting Schema.pptx",
+      "size": 2322678,
+      "sha256": "78bb34bb093845943f5bccbeaa7b4475c3d57866854090d991c1d2abb53f7a5e",
+      "added_at": "2026-10-02T23:11:24.000Z",
+      "role": "original",
+      "description": "Original source file",
+      "derived_from": []
+    },
+    {
+      "id": "jacr-ipl-manuscript-65e80827c6",
+      "source_id": "jacr-ipl-manuscript",
+      "path": "bucket/figures/JACR_IPL_Figure1.png",
+      "bucket_key": "bucket/figures/JACR_IPL_Figure1.png",
+      "size": 337935,
+      "sha256": "ec4f4ea1ec77ccde8f82291b06282d74e1de33ff2f0b194e0d90881d02ba1167",
+      "added_at": "2026-10-02T23:11:24.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "jacr-ipl-manuscript-04ba174b4d"
+      ]
+    },
+    {
+      "id": "jacr-ipl-manuscript-1395fd413c",
+      "source_id": "jacr-ipl-manuscript",
+      "path": "bucket/figures/JACR_IPL_Figure2.png",
+      "bucket_key": "bucket/figures/JACR_IPL_Figure2.png",
+      "size": 285072,
+      "sha256": "9873265aaaa48c6e37f4e1ed5cb4b3a8a934ca99238cde75a066fc481d1af7af",
+      "added_at": "2026-10-02T23:11:24.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "jacr-ipl-manuscript-04ba174b4d"
+      ]
+    },
+    {
+      "id": "jacr-ipl-manuscript-e9ff41b9b3",
+      "source_id": "jacr-ipl-manuscript",
+      "path": "bucket/figures/JACR_IPL_Figure3.png",
+      "bucket_key": "bucket/figures/JACR_IPL_Figure3.png",
+      "size": 310695,
+      "sha256": "e13cea9b16019855a41796391dc9ca8ee7c862db551a849c789afa2be165b0c9",
+      "added_at": "2026-10-02T23:11:24.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "jacr-ipl-manuscript-04ba174b4d"
+      ]
+    },
+    {
+      "id": "jacr-ipl-manuscript-cdbdb9abc6",
+      "source_id": "jacr-ipl-manuscript",
+      "path": "bucket/figures/JACR_IPL_Figure4.png",
+      "bucket_key": "bucket/figures/JACR_IPL_Figure4.png",
+      "size": 218167,
+      "sha256": "3cc59b3457a32d79c7d42f185fca368f13f5b35af82df47af8b35641a61c0ec0",
+      "added_at": "2026-10-02T23:11:24.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "jacr-ipl-manuscript-04ba174b4d"
+      ]
+    },
+    {
+      "id": "siim-ipl-webinar-2026-b6c2a1971c",
+      "source_id": "siim-ipl-webinar-2026",
+      "path": "bucket/figures/webinar/anatomy-dashboard.png",
+      "bucket_key": "bucket/figures/webinar/anatomy-dashboard.png",
+      "size": 232703,
+      "sha256": "f707b051c983bd83159ed5e7f43039dfbd0e52d8906bb12f71f66b0795f4f041",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "siim-ipl-webinar-2026-a6e8de5408"
+      ]
+    },
+    {
+      "id": "siim-ipl-webinar-2026-39ccc148be",
+      "source_id": "siim-ipl-webinar-2026",
+      "path": "bucket/figures/webinar/cde-blueprint.png",
+      "bucket_key": "bucket/figures/webinar/cde-blueprint.png",
+      "size": 297123,
+      "sha256": "c3546a80c20494f0031f7be5679cef30b7bf7fccd1bdc8a86cfbcf35b68f2bcb",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "siim-ipl-webinar-2026-a6e8de5408"
+      ]
+    },
+    {
+      "id": "siim-ipl-webinar-2026-395344951d",
+      "source_id": "siim-ipl-webinar-2026",
+      "path": "bucket/figures/webinar/doc-to-entity.png",
+      "bucket_key": "bucket/figures/webinar/doc-to-entity.png",
+      "size": 724377,
+      "sha256": "48d6edf400308739170d05ea4bcf456a3319c388d3b8436d7bc2a1fb38d3d877",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "siim-ipl-webinar-2026-a6e8de5408"
+      ]
+    },
+    {
+      "id": "siim-ipl-webinar-2026-6ddacd0197",
+      "source_id": "siim-ipl-webinar-2026",
+      "path": "bucket/figures/webinar/pipeline.png",
+      "bucket_key": "bucket/figures/webinar/pipeline.png",
+      "size": 234634,
+      "sha256": "8877591a922ddf2d2b53df8c567448cde1df83265e403a0cf4416e6487492fce",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "siim-ipl-webinar-2026-a6e8de5408"
+      ]
+    },
+    {
+      "id": "siim-ipl-webinar-2026-887a268ab8",
+      "source_id": "siim-ipl-webinar-2026",
+      "path": "bucket/figures/webinar/prototype-app.png",
+      "bucket_key": "bucket/figures/webinar/prototype-app.png",
+      "size": 1139197,
+      "sha256": "6cbcf679306311d4beb565f72c6911b7838511991e296effb24cca145de644c3",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "siim-ipl-webinar-2026-a6e8de5408"
+      ]
+    },
+    {
+      "id": "siim-ipl-webinar-2026-f67a3529a1",
+      "source_id": "siim-ipl-webinar-2026",
+      "path": "bucket/figures/webinar/timeline.png",
+      "bucket_key": "bucket/figures/webinar/timeline.png",
+      "size": 428537,
+      "sha256": "f108e34b97349d8ae57e359814729d2779fdcd43d71fcf8475aebfcb851397bc",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "siim-ipl-webinar-2026-a6e8de5408"
+      ]
+    },
+    {
+      "id": "siim-reports-of-the-future-2026-14bc22da22",
+      "source_id": "siim-reports-of-the-future-2026",
+      "path": "bucket/siim2026/media/ppt/media/image1.png",
+      "bucket_key": "bucket/siim2026/media/ppt/media/image1.png",
+      "size": 27399,
+      "sha256": "0d0b8d1a3b573e2485b62dc76bde4659950ed08552c228b2d0c59b1c3167f20a",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "siim-reports-of-the-future-2026-6f15f842ec"
+      ]
+    },
+    {
+      "id": "siim-reports-of-the-future-2026-5958b95e77",
+      "source_id": "siim-reports-of-the-future-2026",
+      "path": "bucket/siim2026/media/ppt/media/image2.png",
+      "bucket_key": "bucket/siim2026/media/ppt/media/image2.png",
+      "size": 111537,
+      "sha256": "b3dde92052b147e5be858c16a5256c9929ccecc3cd45c27cee1cb47b3c830a19",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "siim-reports-of-the-future-2026-6f15f842ec"
+      ]
+    },
+    {
+      "id": "siim-reports-of-the-future-2026-89058e1b2b",
+      "source_id": "siim-reports-of-the-future-2026",
+      "path": "bucket/siim2026/media/ppt/media/image3.png",
+      "bucket_key": "bucket/siim2026/media/ppt/media/image3.png",
+      "size": 111537,
+      "sha256": "b3dde92052b147e5be858c16a5256c9929ccecc3cd45c27cee1cb47b3c830a19",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "siim-reports-of-the-future-2026-6f15f842ec"
+      ]
+    },
+    {
+      "id": "siim-reports-of-the-future-2026-1cdc19e92c",
+      "source_id": "siim-reports-of-the-future-2026",
+      "path": "bucket/siim2026/media/ppt/media/image4.png",
+      "bucket_key": "bucket/siim2026/media/ppt/media/image4.png",
+      "size": 135973,
+      "sha256": "a28294d06e8b0fe098188e88864140c2cd12986b90db3f0b750b5f2ac7883040",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "siim-reports-of-the-future-2026-6f15f842ec"
+      ]
+    },
+    {
+      "id": "siim-reports-of-the-future-2026-7ebf5051be",
+      "source_id": "siim-reports-of-the-future-2026",
+      "path": "bucket/siim2026/media/ppt/media/image5.png",
+      "bucket_key": "bucket/siim2026/media/ppt/media/image5.png",
+      "size": 55750,
+      "sha256": "ff987b18770353c63818a41a485fc752eb4f32ed18b49de9d81efbc7b144ba32",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "siim-reports-of-the-future-2026-6f15f842ec"
+      ]
+    },
+    {
+      "id": "siim-reports-of-the-future-2026-3dfe35f626",
+      "source_id": "siim-reports-of-the-future-2026",
+      "path": "bucket/siim2026/media/ppt/media/image6.png",
+      "bucket_key": "bucket/siim2026/media/ppt/media/image6.png",
+      "size": 258907,
+      "sha256": "cfe817be45c7e8df70c20b51b9896999c7cc0fe8f19c66b73a53dc874ab6c4b5",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "siim-reports-of-the-future-2026-6f15f842ec"
+      ]
+    },
+    {
+      "id": "siim-reports-of-the-future-2026-ed342dcf35",
+      "source_id": "siim-reports-of-the-future-2026",
+      "path": "bucket/siim2026/media/ppt/media/image7.png",
+      "bucket_key": "bucket/siim2026/media/ppt/media/image7.png",
+      "size": 603674,
+      "sha256": "92b7b1d5eccd2f041ffced1aadb852071eeb50ea30e6be52bac8bc5a5d51e559",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "siim-reports-of-the-future-2026-6f15f842ec"
+      ]
+    },
+    {
+      "id": "siim-reports-of-the-future-2026-75eff937e9",
+      "source_id": "siim-reports-of-the-future-2026",
+      "path": "bucket/siim2026/media/ppt/media/image8.png",
+      "bucket_key": "bucket/siim2026/media/ppt/media/image8.png",
+      "size": 507614,
+      "sha256": "9fe1df5f13b2275d2670d5b94bcfc56e919e076ebfff157a595754e50c043e3f",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "siim-reports-of-the-future-2026-6f15f842ec"
+      ]
+    },
+    {
+      "id": "siim-reports-of-the-future-2026-849e86095a",
+      "source_id": "siim-reports-of-the-future-2026",
+      "path": "bucket/siim2026/media/ppt/media/image9.png",
+      "bucket_key": "bucket/siim2026/media/ppt/media/image9.png",
+      "size": 90805,
+      "sha256": "a214ac893de87a8fffb2b2fabd4f6f1fc8fe074112ae0a0324417440b018865c",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-figure",
+      "description": "Figure extracted from the source",
+      "derived_from": [
+        "siim-reports-of-the-future-2026-6f15f842ec"
+      ]
+    },
+    {
+      "id": "siim-reports-of-the-future-2026-447b89d48d",
+      "source_id": "siim-reports-of-the-future-2026",
+      "path": "bucket/siim2026/siim2026.md",
+      "bucket_key": "bucket/siim2026/siim2026.md",
+      "size": 9374,
+      "sha256": "cbf80e0c5c521667578b9d72d283de559553785d0fc1b9a95a786c1ff6a69234",
+      "added_at": "2026-10-02T23:11:24.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "siim-reports-of-the-future-2026-6f15f842ec"
+      ]
+    },
+    {
+      "id": "siim-reports-of-the-future-2026-6f15f842ec",
+      "source_id": "siim-reports-of-the-future-2026",
+      "path": "bucket/siim2026/siim2026.pptx",
+      "bucket_key": "bucket/siim2026/siim2026.pptx",
+      "size": 1999347,
+      "sha256": "120727cc513ed32c67713f83dbd49eb1829cf97e9ae938595f39273d4880e27a",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "original",
+      "description": "Original source file",
+      "derived_from": []
+    },
+    {
+      "id": "ai-evolution-essay-71bca75ce8",
+      "source_id": "ai-evolution-essay",
+      "path": "bucket/text/ai-evolution-radiology.md",
+      "bucket_key": "bucket/text/ai-evolution-radiology.md",
+      "size": 19932,
+      "sha256": "7df5c3ccfc2fc02e533d71de1614691e50813a38f5a8b5ab4f63a5d7eef01154",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "ai-evolution-essay-d3c2de44fb"
+      ]
+    },
+    {
+      "id": "siim-ipl-webinar-2026-e806ed2334",
+      "source_id": "siim-ipl-webinar-2026",
+      "path": "bucket/text/ipl-webinar-deck.md",
+      "bucket_key": "bucket/text/ipl-webinar-deck.md",
+      "size": 30129,
+      "sha256": "73051cd356c56a0cf96f4181e88c368c8ab030e4476395b2176e9314229e355c",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "siim-ipl-webinar-2026-a6e8de5408"
+      ]
+    },
+    {
+      "id": "jacr-ipl-manuscript-4c6222c7ce",
+      "source_id": "jacr-ipl-manuscript",
+      "path": "bucket/text/jacr-ipl-manuscript.md",
+      "bucket_key": "bucket/text/jacr-ipl-manuscript.md",
+      "size": 33907,
+      "sha256": "55e853dd7641ee97ae39dd37765824c49752c594bdea4ce78dd3c6e8db3b63f6",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "jacr-ipl-manuscript-8ea78bed00"
+      ]
+    },
+    {
+      "id": "jacr-ipl-supplement-9c08095985",
+      "source_id": "jacr-ipl-supplement",
+      "path": "bucket/text/jacr-ipl-supplement.md",
+      "bucket_key": "bucket/text/jacr-ipl-supplement.md",
+      "size": 23111,
+      "sha256": "213dd670c826c0df10a0585395f96e66008057e7a9fece1c27df003897fcc8f4",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "jacr-ipl-supplement-9e50450cf4"
+      ]
+    },
+    {
+      "id": "jdim-anatomic-locations-r1-50b74bc02e",
+      "source_id": "jdim-anatomic-locations-r1",
+      "path": "bucket/text/jdim-02183.md",
+      "bucket_key": "bucket/text/jdim-02183.md",
+      "size": 109824,
+      "sha256": "381db3bea78a2e18a50d0d6b447035e6469b45f6174461e290b74162eb236442",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "jdim-anatomic-locations-r1-2209a47e82"
+      ]
+    },
+    {
+      "id": "jdim-ipl-r1-00c853b688",
+      "source_id": "jdim-ipl-r1",
+      "path": "bucket/text/jdim-02980-mupdf.md",
+      "bucket_key": "bucket/text/jdim-02980-mupdf.md",
+      "size": 56948,
+      "sha256": "7f8b45677001e527cfcf499fa41c148f0345b43562e1f4c103632b332b1ac388",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "jdim-ipl-r1-fe22d4c9b5"
+      ]
+    },
+    {
+      "id": "jdim-ipl-r1-a73708a450",
+      "source_id": "jdim-ipl-r1",
+      "path": "bucket/text/jdim-02980.md",
+      "bucket_key": "bucket/text/jdim-02980.md",
+      "size": 56856,
+      "sha256": "328f4a057d0b1c9f56d447ed8ce3834030b8fc1e0acdeb3ed7e23df34bc255ed",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "jdim-ipl-r1-fe22d4c9b5"
+      ]
+    },
+    {
+      "id": "reporting-schema-deck-541b874c0c",
+      "source_id": "reporting-schema-deck",
+      "path": "bucket/text/next-gen-reporting-schema.md",
+      "bucket_key": "bucket/text/next-gen-reporting-schema.md",
+      "size": 1016,
+      "sha256": "cb920afa2ea60587246001751258801c25ea115d80c18d2d5d69730d75980f69",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "reporting-schema-deck-cb4d6a7c76"
+      ]
+    },
+    {
+      "id": "siim-reports-of-the-future-2026-ee167f2b5b",
+      "source_id": "siim-reports-of-the-future-2026",
+      "path": "bucket/text/siim2026-reports-of-the-future.md",
+      "bucket_key": "bucket/text/siim2026-reports-of-the-future.md",
+      "size": 9374,
+      "sha256": "cbf80e0c5c521667578b9d72d283de559553785d0fc1b9a95a786c1ff6a69234",
+      "added_at": "2026-10-02T23:11:25.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "siim-reports-of-the-future-2026-6f15f842ec"
+      ]
+    },
+    {
+      "id": "ipl-owner-notes-2026-09-19-c896d943b7",
+      "source_id": "ipl-owner-notes-2026-09-19",
+      "path": "email/2026-09-19-ipl-manuscript-notes.md",
+      "bucket_key": "email/2026-09-19-ipl-manuscript-notes.md",
+      "size": 3610,
+      "sha256": "abdee45bf88ade74c6df34e63880bd944e2d827be1cb294d2462294f7adc1afa",
+      "added_at": "2026-10-02T23:11:44.000Z",
+      "role": "original",
+      "description": "Original source file",
+      "derived_from": []
+    },
+    {
+      "id": "oidm-status-2026-01-5f1a4b5f8d",
+      "source_id": "oidm-status-2026-01",
+      "path": "gamma-2026-status-update.md",
+      "bucket_key": "gamma-2026-status-update.md",
+      "size": 4216,
+      "sha256": "b765b8e332c5c5371e45dfaf1c129203f9c4fc8be58c9ded480341dc252e1239",
+      "added_at": "2026-10-02T23:12:32.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-rsna-exhibit-examples-4f21c34a1f",
+      "source_id": "board-rsna-exhibit-examples",
+      "path": "linked-diagrams/19Qjzb9AmAT/metadata.json",
+      "bucket_key": "linked-diagrams/19Qjzb9AmAT/metadata.json",
+      "size": 1368,
+      "sha256": "259d0cebe49da903e54cae7e4aeeabb648e3272d9eb0b9b0c206ded2e140879b",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "capture-metadata",
+      "description": "Private source capture metadata",
+      "derived_from": [
+        "board-rsna-exhibit-examples-2bc3c89fb7"
+      ]
+    },
+    {
+      "id": "board-rsna-exhibit-examples-52abbeff93",
+      "source_id": "board-rsna-exhibit-examples",
+      "path": "linked-diagrams/19Qjzb9AmAT/original.png",
+      "bucket_key": "linked-diagrams/19Qjzb9AmAT/original.png",
+      "size": 2653524,
+      "sha256": "a182f86c10be0306e37bfd52621cb3fcdcb11856ff4c15d6df8922696c1703a2",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-rsna-exhibit-examples-2bc3c89fb7",
+      "source_id": "board-rsna-exhibit-examples",
+      "path": "linked-diagrams/19Qjzb9AmAT/original.svg",
+      "bucket_key": "linked-diagrams/19Qjzb9AmAT/original.svg",
+      "size": 2106543,
+      "sha256": "da51b965b564b3d85890d0da9789963f0760d2f25a3ce20f881c4a1e1f9c21a3",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-rsna-exhibit-examples-345a61e486",
+      "source_id": "board-rsna-exhibit-examples",
+      "path": "linked-diagrams/19Qjzb9AmAT/scene-contents.json",
+      "bucket_key": "linked-diagrams/19Qjzb9AmAT/scene-contents.json",
+      "size": 330045,
+      "sha256": "8399d17242f5e7dabf022c4205f1ef94f844850925d2f252bfdc59ec66285456",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-rsna-exhibit-examples-d34828b0b8",
+      "source_id": "board-rsna-exhibit-examples",
+      "path": "linked-diagrams/19Qjzb9AmAT/text-elements.json",
+      "bucket_key": "linked-diagrams/19Qjzb9AmAT/text-elements.json",
+      "size": 11309,
+      "sha256": "923fd141d9f51710e670c3b658fffc82e5994998466809f2c45b9a09dbd414bd",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "board-rsna-exhibit-examples-345a61e486"
+      ]
+    },
+    {
+      "id": "board-longitudinal-integration-discussions-fdfee0ff3f",
+      "source_id": "board-longitudinal-integration-discussions",
+      "path": "linked-diagrams/1PrQV4pohsD/metadata.json",
+      "bucket_key": "linked-diagrams/1PrQV4pohsD/metadata.json",
+      "size": 1751,
+      "sha256": "091be730c61892da7164e5aac4a35cc41a9ffb1e07f388c77218781214091b70",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "capture-metadata",
+      "description": "Private source capture metadata",
+      "derived_from": [
+        "board-longitudinal-integration-discussions-939e05c349"
+      ]
+    },
+    {
+      "id": "board-longitudinal-integration-discussions-dd7281ceb1",
+      "source_id": "board-longitudinal-integration-discussions",
+      "path": "linked-diagrams/1PrQV4pohsD/original.png",
+      "bucket_key": "linked-diagrams/1PrQV4pohsD/original.png",
+      "size": 2603357,
+      "sha256": "207c2a494292adc945b2a47d1e761135c2859331c031e51db731efdb9ac25d08",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-longitudinal-integration-discussions-939e05c349",
+      "source_id": "board-longitudinal-integration-discussions",
+      "path": "linked-diagrams/1PrQV4pohsD/original.svg",
+      "bucket_key": "linked-diagrams/1PrQV4pohsD/original.svg",
+      "size": 1779768,
+      "sha256": "cf994587f371076cbab438817e63158392f92d81759cf8097f71ce28bbdb59c3",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-longitudinal-integration-discussions-a05029fea6",
+      "source_id": "board-longitudinal-integration-discussions",
+      "path": "linked-diagrams/1PrQV4pohsD/scene-contents.json",
+      "bucket_key": "linked-diagrams/1PrQV4pohsD/scene-contents.json",
+      "size": 70752,
+      "sha256": "4048c2e18a0194f3781c1dd41a15867d197fab74fe6aae0ecdc9511e9b969f91",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-longitudinal-integration-discussions-697ea4ba20",
+      "source_id": "board-longitudinal-integration-discussions",
+      "path": "linked-diagrams/1PrQV4pohsD/text-elements.json",
+      "bucket_key": "linked-diagrams/1PrQV4pohsD/text-elements.json",
+      "size": 7519,
+      "sha256": "db32ed06d3a506e526b1acea97f9f702f53a95040aa27d83c5f6e18c213d06d0",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "board-longitudinal-integration-discussions-a05029fea6"
+      ]
+    },
+    {
+      "id": "board-longitudinal-integration-discussions-621c21078b",
+      "source_id": "board-longitudinal-integration-discussions",
+      "path": "linked-diagrams/1PrQV4pohsD/usable.svg",
+      "bucket_key": "linked-diagrams/1PrQV4pohsD/usable.svg",
+      "size": 1779768,
+      "sha256": "18dda0eae4c1276dcbdb9263cf49aa505fd7f21b11e244287fcba7b10e35ec7f",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "normalized-figure",
+      "description": "Normalized copy of the original SVG",
+      "derived_from": [
+        "board-longitudinal-integration-discussions-939e05c349"
+      ]
+    },
+    {
+      "id": "board-use-case-development-1a4ff7a93c",
+      "source_id": "board-use-case-development",
+      "path": "linked-diagrams/1lt7q7M1bEz/metadata.json",
+      "bucket_key": "linked-diagrams/1lt7q7M1bEz/metadata.json",
+      "size": 1742,
+      "sha256": "6fec43c6b699a69aa4827bd190cb2ba34134688688b0fcf273d29709fe8cbe62",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "capture-metadata",
+      "description": "Private source capture metadata",
+      "derived_from": [
+        "board-use-case-development-cff30a92e5"
+      ]
+    },
+    {
+      "id": "board-use-case-development-367ce22477",
+      "source_id": "board-use-case-development",
+      "path": "linked-diagrams/1lt7q7M1bEz/original.png",
+      "bucket_key": "linked-diagrams/1lt7q7M1bEz/original.png",
+      "size": 2333482,
+      "sha256": "9d5de160816f0e237593eb8075b0bd47b0b599cd82c1c961d9101e949813a593",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-use-case-development-cff30a92e5",
+      "source_id": "board-use-case-development",
+      "path": "linked-diagrams/1lt7q7M1bEz/original.svg",
+      "bucket_key": "linked-diagrams/1lt7q7M1bEz/original.svg",
+      "size": 1151407,
+      "sha256": "060586ead1d09b7738760bd383a2f46c5d28d73d5b7120932b4de42c634eafa4",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-use-case-development-a80fe21725",
+      "source_id": "board-use-case-development",
+      "path": "linked-diagrams/1lt7q7M1bEz/scene-contents.json",
+      "bucket_key": "linked-diagrams/1lt7q7M1bEz/scene-contents.json",
+      "size": 34894,
+      "sha256": "4778b9bf6ff943d760350f3be9dbbc4b97d348178d0fa3e6fcb8cb94087ad820",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-use-case-development-b961b72121",
+      "source_id": "board-use-case-development",
+      "path": "linked-diagrams/1lt7q7M1bEz/text-elements.json",
+      "bucket_key": "linked-diagrams/1lt7q7M1bEz/text-elements.json",
+      "size": 2831,
+      "sha256": "586104391b1820792302af32a17fad86f56835576e7e58b776dd2a781991e2d5",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "board-use-case-development-a80fe21725"
+      ]
+    },
+    {
+      "id": "board-use-case-development-e1362d1252",
+      "source_id": "board-use-case-development",
+      "path": "linked-diagrams/1lt7q7M1bEz/usable.svg",
+      "bucket_key": "linked-diagrams/1lt7q7M1bEz/usable.svg",
+      "size": 1151407,
+      "sha256": "52935a7cbdbb714b1f40464ae6811d04d80479cf4f7b62c396ad3347134b3546",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "normalized-figure",
+      "description": "Normalized copy of the original SVG",
+      "derived_from": [
+        "board-use-case-development-cff30a92e5"
+      ]
+    },
+    {
+      "id": "board-imaging-context-object-model-b0c0c839fc",
+      "source_id": "board-imaging-context-object-model",
+      "path": "linked-diagrams/1sEx11UZ3gq/metadata.json",
+      "bucket_key": "linked-diagrams/1sEx11UZ3gq/metadata.json",
+      "size": 1355,
+      "sha256": "495301bbdc3051490843ba5a147da3330d0d33ecc13d364904cf358d97c43020",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "capture-metadata",
+      "description": "Private source capture metadata",
+      "derived_from": [
+        "board-imaging-context-object-model-e247d4cf68"
+      ]
+    },
+    {
+      "id": "board-imaging-context-object-model-65b577480b",
+      "source_id": "board-imaging-context-object-model",
+      "path": "linked-diagrams/1sEx11UZ3gq/original.png",
+      "bucket_key": "linked-diagrams/1sEx11UZ3gq/original.png",
+      "size": 1601246,
+      "sha256": "c970c6761717c575525c83e72bdd02881167eaf7e5eed8c813099651e192a085",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-imaging-context-object-model-e247d4cf68",
+      "source_id": "board-imaging-context-object-model",
+      "path": "linked-diagrams/1sEx11UZ3gq/original.svg",
+      "bucket_key": "linked-diagrams/1sEx11UZ3gq/original.svg",
+      "size": 537564,
+      "sha256": "19fd7142c1cc3d40e63feed32ac06e0078cddf4e5ecdc04a3ed6f141437ecbcb",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-imaging-context-object-model-3344fb1a60",
+      "source_id": "board-imaging-context-object-model",
+      "path": "linked-diagrams/1sEx11UZ3gq/scene-contents.json",
+      "bucket_key": "linked-diagrams/1sEx11UZ3gq/scene-contents.json",
+      "size": 176291,
+      "sha256": "23e180c37878efc7b90baab4d8d4b30d3c2091f5f7b355f42d3dd213745b93c8",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-imaging-context-object-model-d574e32872",
+      "source_id": "board-imaging-context-object-model",
+      "path": "linked-diagrams/1sEx11UZ3gq/text-elements.json",
+      "bucket_key": "linked-diagrams/1sEx11UZ3gq/text-elements.json",
+      "size": 7100,
+      "sha256": "8feb8fc489544be4b2eb8f602c6d83eafdbecae2da60fa8072638cb36be65646",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "board-imaging-context-object-model-3344fb1a60"
+      ]
+    },
+    {
+      "id": "board-pulmonary-nodule-demo-workflow-0e7d17ad19",
+      "source_id": "board-pulmonary-nodule-demo-workflow",
+      "path": "linked-diagrams/2ZpQ4nXotjV/metadata.json",
+      "bucket_key": "linked-diagrams/2ZpQ4nXotjV/metadata.json",
+      "size": 1362,
+      "sha256": "daa29b9859693e1a4582058cf5194c166ffc841889e957ca2ecc313cae27c0a0",
+      "added_at": "2026-10-02T23:12:50.000Z",
+      "role": "capture-metadata",
+      "description": "Private source capture metadata",
+      "derived_from": [
+        "board-pulmonary-nodule-demo-workflow-6a5c437d6a"
+      ]
+    },
+    {
+      "id": "board-pulmonary-nodule-demo-workflow-249e3e791e",
+      "source_id": "board-pulmonary-nodule-demo-workflow",
+      "path": "linked-diagrams/2ZpQ4nXotjV/original.png",
+      "bucket_key": "linked-diagrams/2ZpQ4nXotjV/original.png",
+      "size": 1678905,
+      "sha256": "239bc734ea894155fbc30a638b4cfa0b07e37dc02da22b84f8c2d2841eb1d1e2",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-pulmonary-nodule-demo-workflow-6a5c437d6a",
+      "source_id": "board-pulmonary-nodule-demo-workflow",
+      "path": "linked-diagrams/2ZpQ4nXotjV/original.svg",
+      "bucket_key": "linked-diagrams/2ZpQ4nXotjV/original.svg",
+      "size": 1084938,
+      "sha256": "f705960389885b33cbde33a019b91a850fbe9476065da3fe3498185287704aae",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-pulmonary-nodule-demo-workflow-3c954fc2d6",
+      "source_id": "board-pulmonary-nodule-demo-workflow",
+      "path": "linked-diagrams/2ZpQ4nXotjV/scene-contents.json",
+      "bucket_key": "linked-diagrams/2ZpQ4nXotjV/scene-contents.json",
+      "size": 82425,
+      "sha256": "b7bcec29b5458a888eb836ff5f301ea005fa0db26b564a44d868de814c1b608f",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-pulmonary-nodule-demo-workflow-544fe4745d",
+      "source_id": "board-pulmonary-nodule-demo-workflow",
+      "path": "linked-diagrams/2ZpQ4nXotjV/text-elements.json",
+      "bucket_key": "linked-diagrams/2ZpQ4nXotjV/text-elements.json",
+      "size": 9241,
+      "sha256": "b70e630819d4e7a551b6960f55e4bff7ff6b6b1109babb4f2c189e3a6b3a1bf4",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "board-pulmonary-nodule-demo-workflow-3c954fc2d6"
+      ]
+    },
+    {
+      "id": "board-finding-model-rules-9cd866b4a2",
+      "source_id": "board-finding-model-rules",
+      "path": "linked-diagrams/2a3Jq3oVVty/metadata.json",
+      "bucket_key": "linked-diagrams/2a3Jq3oVVty/metadata.json",
+      "size": 1360,
+      "sha256": "9f05f79c27b005afc03da2687e8e358bb93a239328202486f14bb9028b294eab",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture-metadata",
+      "description": "Private source capture metadata",
+      "derived_from": [
+        "board-finding-model-rules-db9f23b7fd"
+      ]
+    },
+    {
+      "id": "board-finding-model-rules-efb1a622df",
+      "source_id": "board-finding-model-rules",
+      "path": "linked-diagrams/2a3Jq3oVVty/original.png",
+      "bucket_key": "linked-diagrams/2a3Jq3oVVty/original.png",
+      "size": 219295,
+      "sha256": "5161ed4fd1de13fffe817477db018aa801b7980499d4a4a19bb09f7fcadda9bb",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-finding-model-rules-db9f23b7fd",
+      "source_id": "board-finding-model-rules",
+      "path": "linked-diagrams/2a3Jq3oVVty/original.svg",
+      "bucket_key": "linked-diagrams/2a3Jq3oVVty/original.svg",
+      "size": 23961,
+      "sha256": "f6f3c8deeb7a5575a9e799b795ba7057b739e0833593eb496d57f04d2673d53e",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-finding-model-rules-a674d84f4f",
+      "source_id": "board-finding-model-rules",
+      "path": "linked-diagrams/2a3Jq3oVVty/scene-contents.json",
+      "bucket_key": "linked-diagrams/2a3Jq3oVVty/scene-contents.json",
+      "size": 22176,
+      "sha256": "bb32622ef6324626285c2d2bb994e863c7cfa255d9e0a050eef1a97ad6b217a1",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-finding-model-rules-9c62f5454d",
+      "source_id": "board-finding-model-rules",
+      "path": "linked-diagrams/2a3Jq3oVVty/text-elements.json",
+      "bucket_key": "linked-diagrams/2a3Jq3oVVty/text-elements.json",
+      "size": 1992,
+      "sha256": "017b3fa5f044cd329a3b43be7dd5fcf70e5fa6641551a09c0a20bdcb2814ecdd",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "board-finding-model-rules-a674d84f4f"
+      ]
+    },
+    {
+      "id": "board-imaging-problem-list-670308aa7a",
+      "source_id": "board-imaging-problem-list",
+      "path": "linked-diagrams/2jUZLu229km/metadata.json",
+      "bucket_key": "linked-diagrams/2jUZLu229km/metadata.json",
+      "size": 1360,
+      "sha256": "7e2f3eb1efac114a2b769d9b0b2be1ebeaed8bcbcd5ebf27a707697e62e362df",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture-metadata",
+      "description": "Private source capture metadata",
+      "derived_from": [
+        "board-imaging-problem-list-5e6bfa59b2"
+      ]
+    },
+    {
+      "id": "board-imaging-problem-list-d8a77dd6b7",
+      "source_id": "board-imaging-problem-list",
+      "path": "linked-diagrams/2jUZLu229km/original.png",
+      "bucket_key": "linked-diagrams/2jUZLu229km/original.png",
+      "size": 5856420,
+      "sha256": "4311b82fc43b8a2049ea1c411fde70ffc7bb5701876167f52bffe28d14061b00",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-imaging-problem-list-5e6bfa59b2",
+      "source_id": "board-imaging-problem-list",
+      "path": "linked-diagrams/2jUZLu229km/original.svg",
+      "bucket_key": "linked-diagrams/2jUZLu229km/original.svg",
+      "size": 1884185,
+      "sha256": "2f7bf7c9cfacbb499af3072995287df88c7d9ccc56543fa652a4cc0cd52ea0af",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-imaging-problem-list-58bbec214a",
+      "source_id": "board-imaging-problem-list",
+      "path": "linked-diagrams/2jUZLu229km/scene-contents.json",
+      "bucket_key": "linked-diagrams/2jUZLu229km/scene-contents.json",
+      "size": 146172,
+      "sha256": "cac194a274e2e1c127bd9dcc5155a48ecb071e0059b3e7ad837ae926e53a8926",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-imaging-problem-list-9961fee7b2",
+      "source_id": "board-imaging-problem-list",
+      "path": "linked-diagrams/2jUZLu229km/text-elements.json",
+      "bucket_key": "linked-diagrams/2jUZLu229km/text-elements.json",
+      "size": 16718,
+      "sha256": "af4227c8f19bc48580be08ab8364acee2a32cf6216f6beb146bfa55653ed6e65",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "board-imaging-problem-list-58bbec214a"
+      ]
+    },
+    {
+      "id": "board-anatomy-and-exam-coverage-905b4e13ee",
+      "source_id": "board-anatomy-and-exam-coverage",
+      "path": "linked-diagrams/4jmRPObEdLq/metadata.json",
+      "bucket_key": "linked-diagrams/4jmRPObEdLq/metadata.json",
+      "size": 1360,
+      "sha256": "b704abf06e3aa27387f0c8092edf47076043d9dbcc01f032247402250855a5b5",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture-metadata",
+      "description": "Private source capture metadata",
+      "derived_from": [
+        "board-anatomy-and-exam-coverage-9e6efa9adc"
+      ]
+    },
+    {
+      "id": "board-anatomy-and-exam-coverage-487f8d3f76",
+      "source_id": "board-anatomy-and-exam-coverage",
+      "path": "linked-diagrams/4jmRPObEdLq/original.png",
+      "bucket_key": "linked-diagrams/4jmRPObEdLq/original.png",
+      "size": 508478,
+      "sha256": "fcea13e86f1962c2aa0a116c7168777345cfebd8c304065dd3cd0b6a73e4fae2",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-anatomy-and-exam-coverage-9e6efa9adc",
+      "source_id": "board-anatomy-and-exam-coverage",
+      "path": "linked-diagrams/4jmRPObEdLq/original.svg",
+      "bucket_key": "linked-diagrams/4jmRPObEdLq/original.svg",
+      "size": 280030,
+      "sha256": "9fb5fcf0654c0369707cc994f86d0007a55b30ee3ff8d479d5250908029bdc64",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-anatomy-and-exam-coverage-d73121e4cf",
+      "source_id": "board-anatomy-and-exam-coverage",
+      "path": "linked-diagrams/4jmRPObEdLq/scene-contents.json",
+      "bucket_key": "linked-diagrams/4jmRPObEdLq/scene-contents.json",
+      "size": 17767,
+      "sha256": "f9d69224c5139c32dd99bc98a1e06055337b1c7c9831a7f53384e5bdc66e306f",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-anatomy-and-exam-coverage-93b68b6639",
+      "source_id": "board-anatomy-and-exam-coverage",
+      "path": "linked-diagrams/4jmRPObEdLq/text-elements.json",
+      "bucket_key": "linked-diagrams/4jmRPObEdLq/text-elements.json",
+      "size": 3293,
+      "sha256": "f070a3370b120fae41221002eec486237ec9f55e320651606f54aa4770059f91",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "board-anatomy-and-exam-coverage-d73121e4cf"
+      ]
+    },
+    {
+      "id": "board-radiologist-outcome-feedback-472e183c9b",
+      "source_id": "board-radiologist-outcome-feedback",
+      "path": "linked-diagrams/5QMQ1J2FYT3/metadata.json",
+      "bucket_key": "linked-diagrams/5QMQ1J2FYT3/metadata.json",
+      "size": 1367,
+      "sha256": "61f73e301ad18b803645cbc146cb6bd1fda49a9fb95395586394bf19dac7dd73",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture-metadata",
+      "description": "Private source capture metadata",
+      "derived_from": [
+        "board-radiologist-outcome-feedback-291cdfd36f"
+      ]
+    },
+    {
+      "id": "board-radiologist-outcome-feedback-8cef55ebb2",
+      "source_id": "board-radiologist-outcome-feedback",
+      "path": "linked-diagrams/5QMQ1J2FYT3/original.png",
+      "bucket_key": "linked-diagrams/5QMQ1J2FYT3/original.png",
+      "size": 2246977,
+      "sha256": "bcdd236b069f4dd8c502fd0ff52c28924d655973c2aa381e5d9b068970352b2b",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-radiologist-outcome-feedback-291cdfd36f",
+      "source_id": "board-radiologist-outcome-feedback",
+      "path": "linked-diagrams/5QMQ1J2FYT3/original.svg",
+      "bucket_key": "linked-diagrams/5QMQ1J2FYT3/original.svg",
+      "size": 982083,
+      "sha256": "dcde5ca0041afce76ae377d68e253440fca45ecc21c9efc1e33b5ac6eb7c86d7",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-radiologist-outcome-feedback-d91394c91c",
+      "source_id": "board-radiologist-outcome-feedback",
+      "path": "linked-diagrams/5QMQ1J2FYT3/scene-contents.json",
+      "bucket_key": "linked-diagrams/5QMQ1J2FYT3/scene-contents.json",
+      "size": 194239,
+      "sha256": "fe46892e58171dea30aae6aee989620b7983086e774f4f6f24a63be4fcfa2a9d",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-radiologist-outcome-feedback-ef99544b3c",
+      "source_id": "board-radiologist-outcome-feedback",
+      "path": "linked-diagrams/5QMQ1J2FYT3/text-elements.json",
+      "bucket_key": "linked-diagrams/5QMQ1J2FYT3/text-elements.json",
+      "size": 12071,
+      "sha256": "a7fd92f520828c1930777c0b8d2a23314e04e14b45a7b42443120de03862b461",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "board-radiologist-outcome-feedback-d91394c91c"
+      ]
+    },
+    {
+      "id": "board-outcome-and-follow-up-structures-3f0bc38dfa",
+      "source_id": "board-outcome-and-follow-up-structures",
+      "path": "linked-diagrams/68X9qfSP5qA/metadata.json",
+      "bucket_key": "linked-diagrams/68X9qfSP5qA/metadata.json",
+      "size": 1360,
+      "sha256": "5f42952e99bbf754b853d2db8b0bf8391214a79bffa650090ee47136ff9adb86",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture-metadata",
+      "description": "Private source capture metadata",
+      "derived_from": [
+        "board-outcome-and-follow-up-structures-fe275138f9"
+      ]
+    },
+    {
+      "id": "board-outcome-and-follow-up-structures-e3e023863e",
+      "source_id": "board-outcome-and-follow-up-structures",
+      "path": "linked-diagrams/68X9qfSP5qA/original.png",
+      "bucket_key": "linked-diagrams/68X9qfSP5qA/original.png",
+      "size": 1514915,
+      "sha256": "71e88ff77c950dc0d3e91dab9be81507f51e75773f3adc9be2041a6f7ccd2f99",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-outcome-and-follow-up-structures-fe275138f9",
+      "source_id": "board-outcome-and-follow-up-structures",
+      "path": "linked-diagrams/68X9qfSP5qA/original.svg",
+      "bucket_key": "linked-diagrams/68X9qfSP5qA/original.svg",
+      "size": 1852743,
+      "sha256": "73bf546150732c4b4d72dce86a10184e3d9e502271754397a4c6687382c4a9b6",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-outcome-and-follow-up-structures-a947f78f05",
+      "source_id": "board-outcome-and-follow-up-structures",
+      "path": "linked-diagrams/68X9qfSP5qA/scene-contents.json",
+      "bucket_key": "linked-diagrams/68X9qfSP5qA/scene-contents.json",
+      "size": 43297,
+      "sha256": "0dfef7f853a537a3ee33b6f258ac7d9a6d4fb8d06dc7d2bef07cd3a03f3cbd64",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-outcome-and-follow-up-structures-3cb3782685",
+      "source_id": "board-outcome-and-follow-up-structures",
+      "path": "linked-diagrams/68X9qfSP5qA/text-elements.json",
+      "bucket_key": "linked-diagrams/68X9qfSP5qA/text-elements.json",
+      "size": 5628,
+      "sha256": "ef4484238b0d29f89cf0614d641889df967614e5539beebbfb6b3b041e6a9374",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "board-outcome-and-follow-up-structures-a947f78f05"
+      ]
+    },
+    {
+      "id": "board-participation-and-demonstrations-bc57cd3075",
+      "source_id": "board-participation-and-demonstrations",
+      "path": "linked-diagrams/6dKAnPexyN8/metadata.json",
+      "bucket_key": "linked-diagrams/6dKAnPexyN8/metadata.json",
+      "size": 1344,
+      "sha256": "420d975a225d1b1130821dff7c8880951827834c6343b504a02c08a94f9aa12b",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture-metadata",
+      "description": "Private source capture metadata",
+      "derived_from": [
+        "board-participation-and-demonstrations-24a0abddc2"
+      ]
+    },
+    {
+      "id": "board-participation-and-demonstrations-51f40867d6",
+      "source_id": "board-participation-and-demonstrations",
+      "path": "linked-diagrams/6dKAnPexyN8/original.png",
+      "bucket_key": "linked-diagrams/6dKAnPexyN8/original.png",
+      "size": 1226211,
+      "sha256": "0a5c99fdf19d94541f9cc05eccc8867e3d30b0d0e87b9b0db65711b5e250d2c1",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-participation-and-demonstrations-24a0abddc2",
+      "source_id": "board-participation-and-demonstrations",
+      "path": "linked-diagrams/6dKAnPexyN8/original.svg",
+      "bucket_key": "linked-diagrams/6dKAnPexyN8/original.svg",
+      "size": 161865,
+      "sha256": "3a6cef543bf857ef6683d168b88553e3a75604f654e02972b771966a945bad3c",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-participation-and-demonstrations-568e4fe0e6",
+      "source_id": "board-participation-and-demonstrations",
+      "path": "linked-diagrams/6dKAnPexyN8/scene-contents.json",
+      "bucket_key": "linked-diagrams/6dKAnPexyN8/scene-contents.json",
+      "size": 23100,
+      "sha256": "8761b15f46d89a2a30476ad29c2d64e57cc51999df27fd55299ef827798f286a",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-participation-and-demonstrations-a3a82bdda4",
+      "source_id": "board-participation-and-demonstrations",
+      "path": "linked-diagrams/6dKAnPexyN8/text-elements.json",
+      "bucket_key": "linked-diagrams/6dKAnPexyN8/text-elements.json",
+      "size": 2146,
+      "sha256": "ff6f35d9e1f6791e029f95a721fd7cfe574f92d55c822bf550b514e51fd1290f",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "board-participation-and-demonstrations-568e4fe0e6"
+      ]
+    },
+    {
+      "id": "board-oidm-big-picture-daab65d0c7",
+      "source_id": "board-oidm-big-picture",
+      "path": "linked-diagrams/8v07Nni5p8F/metadata.json",
+      "bucket_key": "linked-diagrams/8v07Nni5p8F/metadata.json",
+      "size": 1356,
+      "sha256": "313bcfad36f55c86cc4db6e95044d8e7fba7e7878222100969e258a9f1e25dbd",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture-metadata",
+      "description": "Private source capture metadata",
+      "derived_from": [
+        "board-oidm-big-picture-1c8e689e18"
+      ]
+    },
+    {
+      "id": "board-oidm-big-picture-6856d791d9",
+      "source_id": "board-oidm-big-picture",
+      "path": "linked-diagrams/8v07Nni5p8F/original.png",
+      "bucket_key": "linked-diagrams/8v07Nni5p8F/original.png",
+      "size": 3243290,
+      "sha256": "a181d81e41d82c74f6555fa6ec541ca87480441e1427d9522b72fc6d540aa0b2",
+      "added_at": "2026-10-02T23:12:52.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-oidm-big-picture-1c8e689e18",
+      "source_id": "board-oidm-big-picture",
+      "path": "linked-diagrams/8v07Nni5p8F/original.svg",
+      "bucket_key": "linked-diagrams/8v07Nni5p8F/original.svg",
+      "size": 2177216,
+      "sha256": "d86567bd751faea4b98474a2938916490996cb062857fb9983bc7fb8df6875b7",
+      "added_at": "2026-10-02T23:12:52.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-oidm-big-picture-436db71c83",
+      "source_id": "board-oidm-big-picture",
+      "path": "linked-diagrams/8v07Nni5p8F/scene-contents.json",
+      "bucket_key": "linked-diagrams/8v07Nni5p8F/scene-contents.json",
+      "size": 164882,
+      "sha256": "0c96851ee2b2cc3df738a52a13d470835ee14c897e6ff5d0111c0b0ab05c6709",
+      "added_at": "2026-10-02T23:12:52.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-oidm-big-picture-f293fd0e4c",
+      "source_id": "board-oidm-big-picture",
+      "path": "linked-diagrams/8v07Nni5p8F/text-elements.json",
+      "bucket_key": "linked-diagrams/8v07Nni5p8F/text-elements.json",
+      "size": 13515,
+      "sha256": "957e694d0ec1153a67b2eedd369fa774f3a3c5402a31c288a925fb4a801778b5",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "board-oidm-big-picture-436db71c83"
+      ]
+    },
+    {
+      "id": "board-structured-report-representation-7b4fa7ccb9",
+      "source_id": "board-structured-report-representation",
+      "path": "linked-diagrams/9Jgo8oKswiE/metadata.json",
+      "bucket_key": "linked-diagrams/9Jgo8oKswiE/metadata.json",
+      "size": 1368,
+      "sha256": "7687613e5c2a7823f6d5c87ea86b7a04168f82dc2ef75e6308656e1cdc39aac5",
+      "added_at": "2026-10-02T23:12:51.000Z",
+      "role": "capture-metadata",
+      "description": "Private source capture metadata",
+      "derived_from": [
+        "board-structured-report-representation-fcc03db438"
+      ]
+    },
+    {
+      "id": "board-structured-report-representation-561328c9fd",
+      "source_id": "board-structured-report-representation",
+      "path": "linked-diagrams/9Jgo8oKswiE/original.png",
+      "bucket_key": "linked-diagrams/9Jgo8oKswiE/original.png",
+      "size": 1003021,
+      "sha256": "3d4f39592da740d288db38f88962a6f8fd7ddef52fcf0abf4a7753a3114a9cc6",
+      "added_at": "2026-10-02T23:12:52.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-structured-report-representation-fcc03db438",
+      "source_id": "board-structured-report-representation",
+      "path": "linked-diagrams/9Jgo8oKswiE/original.svg",
+      "bucket_key": "linked-diagrams/9Jgo8oKswiE/original.svg",
+      "size": 322099,
+      "sha256": "c2208b8b1e5c05d95d17d9db8ef4edf14976dd22130e728846215a6ab0c91895",
+      "added_at": "2026-10-02T23:12:52.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-structured-report-representation-6f840453b5",
+      "source_id": "board-structured-report-representation",
+      "path": "linked-diagrams/9Jgo8oKswiE/scene-contents.json",
+      "bucket_key": "linked-diagrams/9Jgo8oKswiE/scene-contents.json",
+      "size": 54781,
+      "sha256": "9b44919dacec9300e90f3394055d4a4b77067433fc4e67fc4626575b9df62c23",
+      "added_at": "2026-10-02T23:12:52.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-structured-report-representation-3d0887b947",
+      "source_id": "board-structured-report-representation",
+      "path": "linked-diagrams/9Jgo8oKswiE/text-elements.json",
+      "bucket_key": "linked-diagrams/9Jgo8oKswiE/text-elements.json",
+      "size": 6979,
+      "sha256": "bcd54a6d0dad2fbade9c5ec49ecfefdb8c840bba2e433c2238b2882754566828",
+      "added_at": "2026-10-02T23:12:52.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "board-structured-report-representation-6f840453b5"
+      ]
+    },
+    {
+      "id": "board-finding-model-authoring-4f0ce189fa",
+      "source_id": "board-finding-model-authoring",
+      "path": "linked-diagrams/A55Dpt6hley/metadata.json",
+      "bucket_key": "linked-diagrams/A55Dpt6hley/metadata.json",
+      "size": 1728,
+      "sha256": "f3b5d855a6cf160b978ad63e769375c8fa37fcebdf05ec0f5cd93866271b2cca",
+      "added_at": "2026-10-02T23:12:52.000Z",
+      "role": "capture-metadata",
+      "description": "Private source capture metadata",
+      "derived_from": [
+        "board-finding-model-authoring-dac6bed1e0"
+      ]
+    },
+    {
+      "id": "board-finding-model-authoring-7462528e6b",
+      "source_id": "board-finding-model-authoring",
+      "path": "linked-diagrams/A55Dpt6hley/original.png",
+      "bucket_key": "linked-diagrams/A55Dpt6hley/original.png",
+      "size": 6354962,
+      "sha256": "259ec2f1425cf2dd87eebb11e41cbc02ee2eeee53b221b721a9d90dcea3201d9",
+      "added_at": "2026-10-02T23:12:52.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-finding-model-authoring-dac6bed1e0",
+      "source_id": "board-finding-model-authoring",
+      "path": "linked-diagrams/A55Dpt6hley/original.svg",
+      "bucket_key": "linked-diagrams/A55Dpt6hley/original.svg",
+      "size": 4792962,
+      "sha256": "08be397b374197deecbc48ddfb7491476d56505380a1e5db3580bc014f9c94b7",
+      "added_at": "2026-10-02T23:12:52.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-finding-model-authoring-c09db4553e",
+      "source_id": "board-finding-model-authoring",
+      "path": "linked-diagrams/A55Dpt6hley/scene-contents.json",
+      "bucket_key": "linked-diagrams/A55Dpt6hley/scene-contents.json",
+      "size": 145151,
+      "sha256": "bc81fce3e8f5a1ba7a047e39af4553eff8c3838d84aedd1c4e61961d9325ce15",
+      "added_at": "2026-10-02T23:12:52.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-finding-model-authoring-a8708db7a0",
+      "source_id": "board-finding-model-authoring",
+      "path": "linked-diagrams/A55Dpt6hley/text-elements.json",
+      "bucket_key": "linked-diagrams/A55Dpt6hley/text-elements.json",
+      "size": 18225,
+      "sha256": "f6f966d903e6d19e39c5b03d17c444bb216a99835e859e3b0da5e84c7e9a42b1",
+      "added_at": "2026-10-02T23:12:52.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "board-finding-model-authoring-c09db4553e"
+      ]
+    },
+    {
+      "id": "board-finding-model-authoring-0987ef5f24",
+      "source_id": "board-finding-model-authoring",
+      "path": "linked-diagrams/A55Dpt6hley/usable.svg",
+      "bucket_key": "linked-diagrams/A55Dpt6hley/usable.svg",
+      "size": 4792962,
+      "sha256": "6a71d790b3717dc000365a1ab5a6a1e61b0c5c0b47109a8a5447bf1c9b6d9601",
+      "added_at": "2026-10-02T23:12:52.000Z",
+      "role": "normalized-figure",
+      "description": "Normalized copy of the original SVG",
+      "derived_from": [
+        "board-finding-model-authoring-dac6bed1e0"
+      ]
+    },
+    {
+      "id": "board-definition-observation-example-3aa72adf5b",
+      "source_id": "board-definition-observation-example",
+      "path": "linked-diagrams/ArAkPl5S3kD/metadata.json",
+      "bucket_key": "linked-diagrams/ArAkPl5S3kD/metadata.json",
+      "size": 1364,
+      "sha256": "ec45624771559dc8290788817d4483eaf916656019bd11ba6ca3dcc6732222ad",
+      "added_at": "2026-10-02T23:12:52.000Z",
+      "role": "capture-metadata",
+      "description": "Private source capture metadata",
+      "derived_from": [
+        "board-definition-observation-example-8037dcefba"
+      ]
+    },
+    {
+      "id": "board-definition-observation-example-ce8844ad67",
+      "source_id": "board-definition-observation-example",
+      "path": "linked-diagrams/ArAkPl5S3kD/original.png",
+      "bucket_key": "linked-diagrams/ArAkPl5S3kD/original.png",
+      "size": 1061487,
+      "sha256": "3a4de5ff3e59d29597b757adb55ff07e07ee96f5dea0a020ba3318d9e4dc13ef",
+      "added_at": "2026-10-02T23:12:52.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-definition-observation-example-8037dcefba",
+      "source_id": "board-definition-observation-example",
+      "path": "linked-diagrams/ArAkPl5S3kD/original.svg",
+      "bucket_key": "linked-diagrams/ArAkPl5S3kD/original.svg",
+      "size": 163911,
+      "sha256": "fdf862877289d2528dadd54623f07bd42a09f12aee6812c27d07a3c695bb67f8",
+      "added_at": "2026-10-02T23:12:52.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-definition-observation-example-6437a466cb",
+      "source_id": "board-definition-observation-example",
+      "path": "linked-diagrams/ArAkPl5S3kD/scene-contents.json",
+      "bucket_key": "linked-diagrams/ArAkPl5S3kD/scene-contents.json",
+      "size": 149329,
+      "sha256": "1a0e585b68a236e8fc8a5573d5dc9244c1845ad2cc6a352870b1e6080f0d0890",
+      "added_at": "2026-10-02T23:12:52.000Z",
+      "role": "capture",
+      "description": "Preserved source capture",
+      "derived_from": []
+    },
+    {
+      "id": "board-definition-observation-example-149e9e08a7",
+      "source_id": "board-definition-observation-example",
+      "path": "linked-diagrams/ArAkPl5S3kD/text-elements.json",
+      "bucket_key": "linked-diagrams/ArAkPl5S3kD/text-elements.json",
+      "size": 9111,
+      "sha256": "84eeabf0fb90a0386f06070fbe890d4453105329ffce7035acc9ea3cff4cc760",
+      "added_at": "2026-10-02T23:12:52.000Z",
+      "role": "extracted-text",
+      "description": "Text extracted from the source",
+      "derived_from": [
+        "board-definition-observation-example-6437a466cb"
+      ]
+    }
+  ]
+}

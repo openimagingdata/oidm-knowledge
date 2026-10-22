@@ -1,10 +1,16 @@
 # Contributing
 
-Thank you for helping document the Open Imaging Data Model. This repository holds the canonical high-level documentation; code documentation stays in the working repositories.
+This repository holds source-grounded Open Imaging Data Model knowledge and its presentation pages. Code documentation stays in the working repositories.
 
 ## Before you write
 
-Read the [authoring guide](knowledge/guides/authoring-guide.md). It defines the document types, the frontmatter every file needs, the trust workflow, how links work, and how to migrate a document from a working repository. Agents follow the same guide.
+Start with the [implementation plan](docs/plans/implementation.md) for current destinations, source rules, and review state. Maintain that plan as work progresses rather than adding overlapping task plans.
+
+New knowledge drafting remains paused until the owner completes the remaining execution-plan review. The approved organization and first node do not approve the unanswered review workflow.
+
+Read [Writing the new knowledge graph](docs/knowledge-authoring.md). It describes fresh reconstruction, metadata, links, sources, and review. The old generated bundle is temporarily held in `archive/knowledge`; write new documents from the outline and checked sources, then consult the archive for omissions. Do not edit old prose into replacements. Delete the archive after recovery is complete, as recorded in the implementation plan.
+
+Source collection and recovery instructions are in [Recover and verify source material](docs/sources.md). Run `task sources:manifest` when changing source metadata; recovery code tests run in CI without private data.
 
 ## Ground rules
 
@@ -18,7 +24,7 @@ Read the [authoring guide](knowledge/guides/authoring-guide.md). It defines the 
 
 1. Branch from `main`.
 2. Write or edit under `knowledge/`. New agent-written documents start with `status: draft`.
-3. Update the directory `index.md`, add a line to `knowledge/log.md`, and, for migrations, a row in the migration ledger.
+3. Update the directory `index.md` and add a line to `knowledge/log.md`. Record substantive recovery decisions in the implementation plan as needed.
 4. Run both checkers and fix every error:
 
    ```bash

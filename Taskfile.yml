@@ -1,0 +1,61 @@
+# Task runner for the OIDM knowledgebase. Install: https://taskfile.dev
+#
+#   task            list tasks
+#   task check      validate the knowledge bundle and source manifest
+#   task verify     record an actual human review of knowledge documents
+#   task site:check validate website pages and navigation
+#   task site:build build the website from site/content/
+#   task site:deploy build and deploy the dev website
+#   task viz        render the bundle as a single-file interactive graph (viz.html)
+version: "3"
+
+includes:
+  site: ./site/Taskfile.yml
+
+tasks:
+  default:
+    silent: true
+    cmds:
+      - task --list
+
+  check:
+    desc: Validate the bundle and tracked source manifest
+    cmds:
+      - uv run .agents/skills/validate/scripts/okf_validate.py knowledge --strict
+      - uv run tools/check_bundle.py
+      - python3 tools/sources.py manifest
+
+  sources:manifest:
+    desc: Validate the source manifest without accessing private files
+    cmds:
+      - python3 tools/sources.py manifest {{.CLI_ARGS}}
+
+  sources:check:
+    desc: Verify local source artifacts against the manifest
+    cmds:
+      - python3 tools/sources.py check {{.CLI_ARGS}}
+
+  sources:pull:
+    desc: Download missing source artifacts from Tigris and verify their checksums
+    cmds:
+      - python3 tools/sources.py pull {{.CLI_ARGS}}
+
+  verify:
+    desc: "Record reviewed knowledge documents: task verify -- knowledge/path.md [...]"
+    cmds:
+      - uv run tools/verify.py {{.CLI_ARGS}}
+
+  review-status:
+    desc: Show verified / total knowledge documents per directory
+    cmds:
+      - uv run tools/verify.py --status
+
+  review-list:
+    desc: "List unverified knowledge documents; defaults to knowledge/"
+    cmds:
+      - uv run tools/verify.py --list {{.CLI_ARGS | default "knowledge"}}
+
+  viz:
+    desc: Render the bundle as one self-contained HTML graph at viz.html
+    cmds:
+      - uv run .agents/skills/visualize/scripts/okf_visualize.py knowledge -o viz.html --title "OIDM knowledge"

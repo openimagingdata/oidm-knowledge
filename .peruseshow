@@ -1,0 +1,2 @@
+# Local review artifacts stay ignored by Git but are browsable in Peruse.
+scratch/review/
