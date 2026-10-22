@@ -19,7 +19,7 @@ sources:
     resource: https://github.com/openimagingdata/findingmodels/blob/4475ac1bcb591f1a0951b2082b59208def173a5d/ids.json
     title: ids.json, the identifier registry, findingmodels main branch
   - id: build-plan
-    resource: /plans/2026-09-20-knowledgebase-build-plan.md
+    resource: /references/project-direction.md
     title: Knowledgebase build plan, recording the project lead's statement of 2026-09-21
 ---
 
@@ -91,7 +91,7 @@ The README states: "Blank rows are the ones needing triage." Each of the 2,761 u
 
 # Why this matters
 
-The project lead stated on 2026-09-21 that the sub-taxonomies are the immediate direction for all finding model content, and that they are expected to replace many of the Gamuts-derived models that currently make up 1,933 of the corpus's 2,382 definitions. That statement is recorded in [the knowledgebase build plan](/plans/2026-09-20-knowledgebase-build-plan.md).[^build-plan]
+The project lead stated on 2026-09-21 that the sub-taxonomies are the immediate direction for all finding model content, and that they are expected to replace many of the Gamuts-derived models that currently make up 1,933 of the corpus's 2,382 definitions. That statement is recorded in [the knowledgebase build plan](/references/project-direction.md).[^build-plan]
 
 This is a change in how content gets chosen. The Gamuts import brought in whatever the source ontology contained. The sub-taxonomies instead enumerate what a radiologist reading a particular exam type actually reports, organized by the exam type. They would scope the corpus to anatomy assessable by modality, as authoring guidance requires. See [the content direction roadmap](/roadmap/finding-model-content-direction.md).
 

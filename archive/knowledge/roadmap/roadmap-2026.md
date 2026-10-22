@@ -11,7 +11,7 @@ sources:
     resource: https://gamma.app/docs/Open-Imaging-Data-Model-2026-Status-Update:-Realizing-Object-Oriented-Imaging-Results-yfxzx4q9zssafal
     title: "Open Imaging Data Model 2026 Status Update: Realizing Object-Oriented Imaging Results, January 2026"
   - id: plan
-    resource: /plans/2026-09-20-knowledgebase-build-plan.md
+    resource: /references/project-direction.md
     title: Knowledgebase build plan, recording the branch inventories of 2026-09-21 and the project lead's statements
   - id: repo-map
     resource: /repositories/repository-map.md

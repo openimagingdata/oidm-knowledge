@@ -3,13 +3,14 @@
 ## Current checkpoint, October 22, 2026
 
 Pause the knowledge-plan discussion. Original-file download and verification
-tooling is committed as `21e37a0`; planning consolidation is committed as
-`ea7dfeb`. Both were explicitly approved by the owner.
+tooling is committed as `21e37a0`; planning consolidation as `ea7dfeb`; website
+separation as `5da01ae`. All were explicitly approved by the owner.
 
-The current task is to prepare the two remaining commits with Claude through
-Herdr: website separation first, then the knowledge reset last. Codex handles
-shared root files and coordinates the index; Claude handles website-owned
-files. Neither agent may commit without explicit permission for that commit.
+The current task is the final graph/bundle reset commit. Its archive move,
+fresh index/log, and graph documentation are prepared for review. The website
+commit is complete; do not include website code in this change. Codex handles
+the graph and shared root files; Claude's website work remains separate.
+Explicit permission is required before committing the graph change.
 
 The temporary `reconcile-knowledge` branch and worktree have been removed at
 the owner's request. Continue in this original checkout. All working files
@@ -19,7 +20,7 @@ changes outside `site/`. Keep those out of the knowledge-reset commit.
 See [the implementation plan](plans/implementation.md) for the current split.
 Do not resume the older checkpoint below or begin drafting yet.
 
-After both changes are committed and checked, publish `bootstrap` with approval
+After the graph change is committed and checked, publish `bootstrap` with approval
 and open a new PR to `main`. GitHub rules require a PR and one approving review;
 the local hook reserves merging/updating `main` for the owner. Do not direct-push
 or use an API merge to bypass that boundary. Establish the combined current

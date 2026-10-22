@@ -14,7 +14,7 @@ sources:
     resource: https://github.com/RSNA/RadLex/issues/3
     title: RSNA/RadLex issue 3, "Add Anatomic Locations", opened 2026-08-10
   - id: build-plan
-    resource: /plans/2026-09-20-knowledgebase-build-plan.md
+    resource: /references/project-direction.md
     title: Knowledgebase build plan, source map and work edge sections
   - id: taxonomy-branch
     resource: https://github.com/openimagingdata/findingmodels/blob/a30c3c95fa3943e7340ce87575f4b1b926987eb8/lists/README.md

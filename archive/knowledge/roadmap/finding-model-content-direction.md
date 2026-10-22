@@ -8,7 +8,7 @@ generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 stale_after: 2027-09-21
 sources:
   - id: plan
-    resource: /plans/2026-09-20-knowledgebase-build-plan.md
+    resource: /references/project-direction.md
     title: Knowledgebase build plan, recording the project lead's statement of 2026-09-21
   - id: lists-readme
     resource: https://github.com/openimagingdata/findingmodels/blob/a30c3c95fa3943e7340ce87575f4b1b926987eb8/lists/README.md
@@ -53,7 +53,7 @@ sources:
 
 # The stated direction
 
-The project lead stated on 2026-09-21, recorded in [the knowledgebase build plan](/plans/2026-09-20-knowledgebase-build-plan.md), that the MGB exam-oriented sub-taxonomies are the immediate direction for all [finding model](/glossary/finding-model.md) content, and that they are expected to replace many of the [Gamuts](/glossary/gamuts.md)-derived models that currently make up 1,933 of the corpus's 2,382 definitions.[^plan]
+The project lead stated on 2026-09-21, recorded in [the knowledgebase build plan](/references/project-direction.md), that the MGB exam-oriented sub-taxonomies are the immediate direction for all [finding model](/glossary/finding-model.md) content, and that they are expected to replace many of the [Gamuts](/glossary/gamuts.md)-derived models that currently make up 1,933 of the corpus's 2,382 definitions.[^plan]
 
 That is a change in how content is chosen. The Gamuts import brought in whatever the source ontology contained, which is a differential-diagnosis ontology, so a large share of the resulting definitions name diagnoses rather than findings. The sub-taxonomies instead enumerate what a radiologist reading a particular [exam type](/glossary/exam-type.md) actually reports, organized by that exam type. The artifacts themselves, their columns, counts, and hierarchy semantics, are described in [the sub-taxonomies reference](/semantic-foundation/finding-models/finding-taxonomies.md).
 

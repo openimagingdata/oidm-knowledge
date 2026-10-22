@@ -8,7 +8,7 @@ generated: { by: codex/gpt-6, at: 2026-09-21T20:53:02Z }
 stale_after: 2027-09-21
 sources:
   - id: plan
-    resource: /plans/2026-09-20-knowledgebase-build-plan.md
+    resource: /references/project-direction.md
     title: Knowledgebase build plan, recording the project lead's exam type goals stated in the 2026-09-20 planning interview
   - id: al-site
     resource: https://github.com/talkasab/anatomiclocations.org/blob/1f39fa45f621cef947a3f3ef1f869334cfa5c841/docs/index.markdown
@@ -41,7 +41,7 @@ See [exam types](/semantic-foundation/exam-types/overview.md) and [existing buil
 
 # The goal as the project lead states it
 
-In the 2026-09-20 planning interview recorded in [the knowledgebase build plan](/plans/2026-09-20-knowledgebase-build-plan.md), the project lead described the intended work in three parts.[^plan]
+In the 2026-09-20 planning interview recorded in [the knowledgebase build plan](/references/project-direction.md), the project lead described the intended work in three parts.[^plan]
 
 1. **Wrapper tooling around an existing knowledge graph**, namely the graph represented by the [LOINC/RSNA Radiology Playbook](/glossary/loinc-rsna-radiology-playbook.md) together with [RadLex](/glossary/radlex.md), rather than a new vocabulary.
 2. **A set of preferred high-level entries**, at the granularity clinicians and systems actually use, the examples given being CT Chest, MRI Brain, and X-ray Knee, each marked as the preferred entry among the many Playbook codes describing variants of the same study.

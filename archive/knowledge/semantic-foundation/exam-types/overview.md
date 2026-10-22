@@ -46,7 +46,7 @@ This document states the goals as goals and the facts as facts. It proposes noth
 
 # The goal as the project lead states it
 
-In the 2026-09-20 planning interview that produced [the knowledgebase build plan](/plans/2026-09-20-knowledgebase-build-plan.md), the project lead described the intended exam type work in three parts.[^plan]
+In the 2026-09-20 planning interview that produced [the knowledgebase build plan](/references/project-direction.md), the project lead described the intended exam type work in three parts.[^plan]
 
 1. **Wrapper tooling around an existing knowledge graph.** The graph is the one represented by the [LOINC/RSNA Radiology Playbook](/glossary/loinc-rsna-radiology-playbook.md) together with [RadLex](/glossary/radlex.md), rather than a new vocabulary built from scratch.
 2. **A set of preferred high-level entries.** Names at the granularity clinicians and systems actually use, such as CT Chest, MRI Brain, and X-ray Knee, marked as the preferred entry among the many Playbook codes that describe variants of the same study.

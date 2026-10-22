@@ -40,7 +40,7 @@ sources:
     resource: https://github.com/RSNA/ACR-RSNA-CDEs/blob/44836c19f4e025cf1684a015ed5cc63c29eaf7f3/notes/oifm-schema-v2-draft.md
     title: FindingModel Source Schema v2 Draft, a copy of the upstream gist
   - id: plan
-    resource: /plans/2026-09-20-knowledgebase-build-plan.md
+    resource: /references/project-direction.md
     title: Knowledgebase build plan, which places these ideas in the roadmap for finding models and the Imaging Problem List
 ---
 

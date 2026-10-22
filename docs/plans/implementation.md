@@ -17,14 +17,17 @@ question or drafting knowledge documents.
    review and follow-up confirmation. Approved decisions and the unanswered
    drafting question are preserved; the knowledge reset and website work
    remain outside that commit.
-3. Knowledge reset: commit the archive move, fresh index and log, and related
+3. Website separation: complete in `5da01ae`, committed October 22 with the
+   owner's explicit permission after coordination with Claude. It contains
+   independent site content/build/review tools, root task integration, and
+   site-only documentation. All remaining working changes were preserved.
+4. Knowledge reset: commit the archive move, fresh index and log, and related
    documentation last. The move already exists in the working tree, but has
    not been committed. Do not start concept drafting.
 
 The owner's Claude session owns the website changes, including deployment
 configuration and website task routing outside `site/`. Split shared root
-files by purpose; do not stage the website's changes with either remaining
-commit.
+files by purpose; do not include website code in the remaining graph commit.
 
 The temporary `reconcile-knowledge` worktree and branch have been removed at
 the owner's request. Continue in this original checkout. The tab created for
@@ -59,8 +62,9 @@ creating new branches or worktrees for cleanup.
    update the handoff and logs. Establish current `main` before proposing
    separate branches or worktrees for subsequent graph and website work.
 
-Coordination and preparation are authorized. Commit permissions remain separate;
-the owner has not yet approved either remaining concrete commit or a push/merge.
+Coordination and preparation are authorized. The owner approved the website
+commit, now `5da01ae`. Permission for the graph commit and publication remains
+separate; no push or merge has occurred.
 
 Claude agreed to this boundary through Herdr on October 22. Claude owns `site/`,
 `.github/workflows/deploy.yml`, and deletion of `tools/prepare_site_content.py`.
@@ -119,7 +123,7 @@ Supporting material has distinct homes:
 | Brand import | Complete: 16 assets, style guide, checksum manifest | Theme application is deferred. Preserve assets through the presentation build change. |
 | Knowledge graph | Reset prepared in the working tree; archive move and fresh index/log remain outside the planning-consolidation commit | Commit the reset last. Drafting remains paused pending the remaining plan review. |
 | Presentation content | Moved to `site/` on 2026-10-05 | Separate track; see `site/ROADMAP.md`. |
-| Site | Website session's separation and task integration prepared as the next commit | Review and approve the website commit first. The graph reset follows, then publish the combined branch through a PR. |
+| Site | Independent website and root task integration committed as `5da01ae` | Preserve it while completing the graph reset, then publish the combined branch through a PR. |
 
 This plan records content agreement separately from publication approval. A review by an agent, or an agreed paragraph, does not itself supply the project's human verification stamp.
 

@@ -1,24 +1,18 @@
 # Contributing
 
-Thank you for helping document the Open Imaging Data Model. This repository holds the canonical high-level documentation; code documentation stays in the working repositories.
+This repository holds source-grounded Open Imaging Data Model knowledge and its presentation pages. Code documentation stays in the working repositories.
 
 ## Before you write
 
-Read the [implementation plan](docs/plans/implementation.md) for current decisions,
-source rules, and the paused content-review checkpoint. It replaces superseded
-plans and dashboards. Preserve recorded approvals and open questions.
+Start with the [implementation plan](docs/plans/implementation.md) for current destinations, source rules, and review state. Maintain that plan as work progresses rather than adding overlapping task plans.
 
-The [reconstruction instructions](docs/knowledge-authoring.md) describe writing
-fresh knowledge documents after the separate knowledge reset. They do not
-authorize drafting now. The old bundle and its build plan remain historical
-material until that reset.
+New knowledge drafting remains paused until the owner completes the remaining execution-plan review. The approved organization and first node do not approve the unanswered review workflow.
+
+Read [Writing the new knowledge graph](docs/knowledge-authoring.md). It describes fresh reconstruction, metadata, links, sources, and review. The old generated bundle is temporarily held in `archive/knowledge`; write new documents from the outline and checked sources, then consult the archive for omissions. Do not edit old prose into replacements. Delete the archive after recovery is complete, as recorded in the implementation plan.
+
+Source collection and recovery instructions are in [Recover and verify source material](docs/sources.md). Run `task sources:manifest` when changing source metadata; recovery code tests run in CI without private data.
 
 ## Ground rules
-
-For original source files, follow [Recover and verify source material](docs/sources.md).
-When changing the source manifest or download commands, validate the manifest,
-verify the selected local files, and run the tests described there. Original
-files and credentials remain outside Git.
 
 - **Facts and stated goals.** Document what exists and what the project has said it intends. Design proposals go through a separate review and are typed as such.
 - **One concept per file.** Put it in the right directory and list it in that directory's `index.md`.
@@ -30,7 +24,7 @@ files and credentials remain outside Git.
 
 1. Branch from `main`.
 2. Write or edit under `knowledge/`. New agent-written documents start with `status: draft`.
-3. Update the directory `index.md` and `knowledge/log.md`. Record substantive recovery decisions in the implementation plan.
+3. Update the directory `index.md` and add a line to `knowledge/log.md`. Record substantive recovery decisions in the implementation plan as needed.
 4. Run both checkers and fix every error:
 
    ```bash

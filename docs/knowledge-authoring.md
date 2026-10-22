@@ -1,9 +1,9 @@
 # Writing the new knowledge graph
 
-These instructions apply to reconstruction after the separately approved
-knowledge reset is committed. They do not authorize drafting now. The existing
-bundle and its historical build plan are retained in the planning-consolidation
-commit; their relocation is the following change.
+These instructions govern fresh reconstruction after the knowledge reset.
+They do not authorize drafting now. The owner must complete the remaining
+execution-plan review before concept writing begins. The old generated bundle
+is temporary recovery material in `archive/knowledge`, not a prose template.
 
 The repository-only OKF graph lives in `knowledge/`. Follow the owner's nested conceptual outline and reconstruction method in [the implementation plan](plans/implementation.md).
 

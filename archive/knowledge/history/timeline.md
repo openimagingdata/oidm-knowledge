@@ -119,7 +119,7 @@ Anatomic-location work began before OIDM. The TypeScript wrapper was created on 
 | 2026-08-21 | The `next-gen-2026` branch opens in the RSNA `ACR-RSNA-CDEs` repository with next-generation schema research notes in Open Knowledge Format. |
 | 2026-09-02 to 2026-09-15 | Decisions S30 through S51 are recorded on that branch, covering anatomy families, scope corrections, and the split between prototype and integration work. |
 | 2026-09-20 | Latest activity in `med-ontology-lookup`; typed provider failures merge and offline continuous integration remains uncommitted. |
-| 2026-09-20 to 2026-09-21 | This knowledgebase is planned and begun. See [the build plan](/plans/2026-09-20-knowledgebase-build-plan.md). |
+| 2026-09-20 to 2026-09-21 | This knowledgebase is planned and begun. See [the build plan](/references/project-direction.md). |
 
 [^gh-org]: Repository creation and push dates from the GitHub API, read 2026-09-21
 [^rss]: openimagingdata.org RSS feed, 15 posts, read 2026-09-21

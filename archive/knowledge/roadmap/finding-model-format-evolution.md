@@ -23,7 +23,7 @@ sources:
     resource: https://github.com/RSNA/ACR-RSNA-CDEs/blob/44836c19f4e025cf1684a015ed5cc63c29eaf7f3/docs/next-gen-schema/07-relationship-family.md
     title: The finding and diagnosis relationship family, ACR-RSNA-CDEs next-gen-2026 branch
   - id: plan
-    resource: /plans/2026-09-20-knowledgebase-build-plan.md
+    resource: /references/project-direction.md
     title: Knowledgebase build plan, recording the project lead's statements of 2026-09-20 and 2026-09-21
   - id: issue-29
     resource: https://github.com/openimagingdata/findingmodel/issues/29
@@ -93,7 +93,7 @@ Five decisions are left open in the draft itself, including whether runtime APIs
 
 # Relationships and the graph, from the CDE work
 
-The project lead's stated goal for the format, recorded in [the knowledgebase build plan](/plans/2026-09-20-knowledgebase-build-plan.md), is increased metadata plus the relationship and graph work coming out of the common data element effort.[^plan]
+The project lead's stated goal for the format, recorded in [the knowledgebase build plan](/references/project-direction.md), is increased metadata plus the relationship and graph work coming out of the common data element effort.[^plan]
 
 [The next-generation vocabulary](/semantic-foundation/common-data-elements/next-generation-vocabulary.md) contributes three relevant ideas.
 

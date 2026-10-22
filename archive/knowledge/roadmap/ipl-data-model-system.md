@@ -11,7 +11,7 @@ sources:
     resource: https://github.com/openimagingdata/imaging-problem-list/issues/1
     title: imaging-problem-list issue 1, "Create System of Data Models", opened 2026-01-28
   - id: plan
-    resource: /plans/2026-09-20-knowledgebase-build-plan.md
+    resource: /references/project-direction.md
     title: Knowledgebase build plan, recording the project lead's statements of 2026-09-20 and 2026-09-21
   - id: deck
     resource: https://gamma.app/docs/Open-Imaging-Data-Model-2026-Status-Update:-Realizing-Object-Oriented-Imaging-Results-yfxzx4q9zssafal
@@ -44,7 +44,7 @@ sources:
 
 # The goals as the project lead states them
 
-In the 2026-09-20 planning interview that produced [the knowledgebase build plan](/plans/2026-09-20-knowledgebase-build-plan.md), the project lead described the Imaging Problem List work in four parts: define data structures for [Observations](/glossary/observation.md) and their relationships; manage and collate those observations across a patient's history; design the applications that use them; and publish the result as standard formats.[^plan]
+In the 2026-09-20 planning interview that produced [the knowledgebase build plan](/references/project-direction.md), the project lead described the Imaging Problem List work in four parts: define data structures for [Observations](/glossary/observation.md) and their relationships; manage and collate those observations across a patient's history; design the applications that use them; and publish the result as standard formats.[^plan]
 
 The January 2026 deck makes this hierarchy its second strategic pillar: Observation, [Exam Finding List](/glossary/exam-finding-list.md), [Imaging Problem List](/glossary/imaging-problem-list.md), and [Imaging Persona](/glossary/imaging-persona.md). It calls the Imaging Problem List "a standard format for structured imaging results, automatically extractable from narrative report text."[^deck] The structures as they exist today are documented under [data structures](/data-structures/); what follows is what has been stated about where they go.
 

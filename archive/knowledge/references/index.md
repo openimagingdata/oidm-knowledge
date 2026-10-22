@@ -10,3 +10,4 @@ Source extracts, format references, and worked examples. Each page states its or
 * [Finding models: overview](./oifm-overview-extract.md) - Near-verbatim extract of the OIFM overview note explaining why finding models exist, what counts as an imaging finding, and how a finding model is structured.
 * [Finding model structured metadata fields](./oifm-metadata-fields-extract.md) - Near-verbatim extract of the reference for the structured metadata fields on FindingModelBase and FindingModelFull, with the points where it differs from the branch code it describes.
 * [CDE set schema versus the RadElement API](./cde-schema-differences.md) - A 2023 CDE schema and API comparison, with notes on later JSON Schema changes.
+* [Project direction and source-review record](./project-direction.md) - Dated project-lead guidance and the source-review snapshot retained from the original planning records.

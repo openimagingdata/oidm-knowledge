@@ -97,7 +97,7 @@ sources:
     resource: https://github.com/openimagingdata/findingmodels/issues/15
     title: findingmodels issue 15, "Bring in CDE Staging MD content"
   - id: plan
-    resource: /plans/2026-09-20-knowledgebase-build-plan.md
+    resource: /references/project-direction.md
     title: Knowledgebase build plan, the record of the 2026-09-20 and 2026-09-21 planning sessions
 ---
 
@@ -258,7 +258,7 @@ Errors in source documents rather than open design questions. Each could become 
 | `openimagingdata/oidm-knowledge` | `knowledge/glossary/open-imaging-reporting-sdk.md` | Cites a site URL that returns HTTP 404; the working URL, used in three other documents here, ends `oidm-based-next-gen-reporting-assistance/` |
 | `openimagingdata/oidm-knowledge` | `knowledge/references/imaging-problem-list-example.md` | Says the example holds 123 findings "across eight exams"; the file has ten distinct report identifiers over ten exam dates |
 | `openimagingdata/oidm-knowledge` | `knowledge/repositories/repository-map.md` | Gives last-commit dates for the three anatomic location repositories and for RadLex that do not match their default-branch tips, and names RadLex's branch of record as `main` although the search and curation pipeline exists only on an experiment branch |
-| `openimagingdata/oidm-knowledge` | `knowledge/plans/2026-09-20-knowledgebase-build-plan.md` | The target tree sketches the Playbook glossary file as `loinc-playbook.md`; the file written is `loinc-rsna-radiology-playbook.md` and every link uses that name |
+| `openimagingdata/oidm-knowledge` | Historical build-plan target tree | Resolved by planning consolidation on 2026-10-02; the obsolete target tree is retired. The existing glossary file remains `loinc-rsna-radiology-playbook.md`. |
 
 [^deck]: "Open Imaging Data Model 2026 Status Update", January 2026
 [^prose-schema]: Finding Model Schema, prose mirror, findingmodels main branch

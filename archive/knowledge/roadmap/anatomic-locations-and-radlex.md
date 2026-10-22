@@ -26,7 +26,7 @@ sources:
     resource: https://github.com/talkasab/anatomiclocations.org/blob/1f39fa45f621cef947a3f3ef1f869334cfa5c841/docs/index.markdown
     title: anatomiclocations.org site homepage and roadmap
   - id: plan
-    resource: /plans/2026-09-20-knowledgebase-build-plan.md
+    resource: /references/project-direction.md
     title: Knowledgebase build plan, recording the project lead's statements and the 2026-09-21 branch inventories
   - id: graph-research
     resource: https://github.com/openimagingdata/findingmodel/blob/75afd39a400419dcfaf7c8d4a34f065b4d804e0d/tasks/anatomic-locations-graph-research.md

@@ -25,7 +25,7 @@ sources:
     resource: https://github.com/openimagingdata/findingmodel/blob/75afd39a400419dcfaf7c8d4a34f065b4d804e0d/notebooks/data/anatomic_locations_noembed.json
     title: anatomic_locations_noembed.json, the current curated anatomic location set
   - id: build-plan
-    resource: https://github.com/openimagingdata/oidm-knowledge/blob/main/knowledge/plans/2026-09-20-knowledgebase-build-plan.md
+    resource: /references/project-direction.md
     title: Knowledgebase build plan, source map and work edge
 ---
 

@@ -31,7 +31,7 @@ sources:
     resource: https://github.com/openimagingdata/findingmodel/blob/75afd39a400419dcfaf7c8d4a34f065b4d804e0d/tasks/anatomic-locations-graph-research.md
     title: Graph representation in DuckDB research note, findingmodel main
   - id: build-plan
-    resource: https://github.com/openimagingdata/oidm-knowledge/blob/main/knowledge/plans/2026-09-20-knowledgebase-build-plan.md
+    resource: /references/project-direction.md
     title: Knowledgebase build plan, source map and work edge
   - id: cde-axis
     resource: https://github.com/RSNA/ACR-RSNA-CDEs/blob/44836c19f4e025cf1684a015ed5cc63c29eaf7f3/docs/next-gen-schema/11-anatomy-axis.md
