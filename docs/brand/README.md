@@ -52,3 +52,7 @@ image("anatomic-locations-mark", x, y, 48, 48,
 ```
 
 Use distinct positions for each element. The helper resolves these paths relative to its own directory and embeds the SVG bytes into the Excalidraw file. Omit the `color` argument to preserve brand colors. Follow the [diagram source-of-truth rule](../../tools/diagrams/README.md#source-of-truth-rule) when adding a logo to an existing graphic.
+
+## Import validation
+
+Completed 2026-09-30. The local Quartz build emitted all 16 imported assets unchanged. All 17 source-file checksums matched the manifest, and all eight SVGs embedded unchanged through `excalib.image()`. Both bundle validators passed. The import did not change the theme or diagrams or deploy the site.

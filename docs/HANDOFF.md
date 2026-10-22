@@ -1,60 +1,98 @@
-# Handoff: everything an agent needs to work on this repository
+# Working on this repository
 
-Written 2026-10-01 by the Claude session that has worked with the project lead since 2026-09-20. Read this first, then the plans it points to. The project lead is the only person named in this repository; everyone else is an organization.
+## Current checkpoint, October 19, 2026
 
-## What this is
+Pause the knowledge-plan discussion. The owner requested three separate
+commits for accumulated non-website work, with the knowledge reset last.
+The first, original-file download and checksum-verification tooling, is
+committed as `21e37a0` on `bootstrap`. Planning/reference consolidation is the
+current authorized task and is prepared for review. Its proposed commit keeps
+all `knowledge/` and `archive/` changes out. The knowledge reset is last. Both remaining commits
+need separate explicit permission.
 
-A public knowledgebase for the Open Imaging Data Model (OIDM), in four layers (`docs/plans/2026-10-01-sources-and-layers.md`):
+The temporary `reconcile-knowledge` branch and worktree have been removed at
+the owner's request. Continue in this original checkout. All working files
+were preserved when incorporating the first commit. The owner's Claude
+session owns website changes, including supporting deployment and task
+changes outside `site/`. Do not stage those with the remaining two commits.
+See [the implementation plan](plans/implementation.md) for the current split.
+Do not resume the older checkpoint below or begin drafting yet.
 
-1. **Raw sources**: a private Tigris bucket `oidm-knowledge-sources`, mirrored to gitignored `raw-sources/` (today still `sources/`), with a tracked manifest. Not in the repo.
-2. **References**: `knowledge/references/`, one OKF Reference per source with a detailed summary, key quotes where allowed, and figures. Figures from unpublished or internal sources are redrawn with the diagram tooling, never reproduced.
-3. **The knowledge bundle**: `knowledge/`, the comprehensive team-facing OKF 0.2 bundle (115 concepts as of 2026-09-21), public only because the repository is. Reorganizing it under the five pillars is Astra's track.
-4. **The presentation**: `pages/` (not yet created; the agreed pages are still in `knowledge/drafts/`), the outward pages distilled from the bundle, the only thing the public site builds. Layout in `docs/plans/2026-09-22-layout-plan.md`; status in `docs/plans/restructure-dashboard.md`.
+## Knowledge-review checkpoint
 
-## The structure of the ideas
+After the remaining cleanup commits, resume execution-plan review from the
+unanswered question below. Do not restart the organizing discussion or draft
+a knowledge document yet.
 
-Five named pillars, always used by name and never numbered: **Foundation Context** (the shared, curated clinical knowledge: finding/diagnosis definitions, anatomic locations, exam types, and the relationships among them), **Data Structures** (the patient side: Observation, Exam Finding List, Imaging Problem List, Imaging Persona, and how the patient graph and the foundation graph are woven together), **SDKs**, **Use Cases** (the team's documented possible applications), **Sample Applications** (what was actually built). An Overview page sits above them.
+The owner has approved:
 
-Rulings that govern content, all from the project lead and recorded verbatim in `docs/plans/restructure-joint-notes.md` ("Decisions of 2026-09-22") and `docs/plans/2026-09-22-layout-plan.md` ("The guidance, verbatim"):
+- The Foundation schema overview under Finding Definitions as the first node,
+  at `knowledge/foundation-context/finding-definitions/schema-overview.md`.
+- Five named sections, meaningful nested groups, navigation indexes, and one
+  document per substantive concept. Outline bullets do not automatically become
+  files; do not create empty concept stubs.
+- Current owner guidance for direction, checked revision-specific sources for
+  implementation claims, explicit proposals and open questions, and concise
+  citations backed by detailed references.
+- Writing fresh from checked sources before consulting the old bundle for
+  verified omissions. The deck-first pilot is withdrawn.
 
-- A CDE and a finding model are the same kind of content in two collections: Open Imaging Finding Models (inclusive, beta channel, maintained by the OIDM project) and ACR/RSNA Common Data Elements (well-reviewed, release channel, radelement.org). Both are moving onto the next-generation graph schema being developed in the CDE project; reorganizing OIFM around it is an immediate priority.
-- OIDM models the whole imaging workflow context across its lifecycle; the current focus is data structures and semantics for imaging results. The Imaging Persona integrates imaging results into one larger graph of the patient's history, underpinned by Foundation Context.
-- Nothing is formally specified. Never call any source "the specification" or "canonical". Show each source's version side by side, dated and attributed; never reconcile disagreements.
-- Terminology: "finding/diagnosis definitions" for the WHAT axis ("Observation Type" is under consideration, not adopted); "Foundation Context" and "Patient Context"; the two graphs are "woven together" or "interconnected", never "pointers"; "connective tissue" only in the SIIM 2026 deck's sense (relationships and citations between foundation concepts). Measurements name a kind of quantity, not a unit. Use "defines" for node types, not "is a". Use the schema's own relationship names (MAY_MANIFEST_AS, ASSESSED_BY, ...) and its specificity words (pathognomonic, highly suggestive, suggestive).
-- Organizations only. The reporting vendor stays generic; the organizations behind the 47 and 31 finding models stay generalized. Manuscripts under review: paraphrase, cite as under review, never quote, never touch reviewer correspondence. Internal boards: schema ideas only, no live links, no people, meetings, or vendor logistics. The project lead's own deck and the ACR-RSNA-CDEs repository figures may be reused.
-- Repository documents, plans, prompts, skills, ADRs, and code are team artifacts and first-class sources; carry each source's own status, date, and provenance labels (the CDE decision record's OWNER / CLAUDE DEFAULT). Only an agent's own inference is kept out.
-- Read only committed files at a pinned commit in the CDE repository; its working tree holds uncommitted decisions (S53 to S67) and newer graph files that cannot be cited until committed.
-- The old 48-term glossary is dropped; a new one grows from the presentation pages as terms earn entries.
+The unanswered question is, "Is the end of that cycle the right point for your
+review?" The proposed cycle covers scope and evidence, a fresh draft, the
+archive check, links and documentation updates, and validation before owner
+review. Its review point is not approved. Restore that context before asking
+the owner to answer. Then review unfinished-design status, owner review and
+validation, coverage and archive deletion, and the expansion sequence, one
+focused question at a time.
 
-## How work is done
+The complete nested outline and unresolved document boundaries remain in
+[the implementation plan](plans/implementation.md). The owner's words are in
+[organization guidance](references/knowledge-organization-owner-guidance.md).
+Use Cases describe envisioned uses; Sample Applications require actual
+implementations, including demos and prototypes. Their unfinished inventory
+does not block the agreed first node once the execution-plan review is complete.
 
-- **Pages**: the project lead and the Claude session agree the page text line by line in conversation (one page at a time, actual content, not descriptions). The project lead's words go verbatim into the layout plan's "guidance" section so pages can cite them. An **Opus** sub-agent then writes the page from the agreed text (frontmatter, citations verified against pinned sources, validation) and must not reword it. **Astra** (the Codex session in this workspace's second tab) reviews for source fidelity, writing findings to `sources/review/drafts-<page>.md`; the writer applies footnote findings and writes dispositions to `drafts-<page>-response.md`; prose questions go back to the project lead.
-- **Figures**: design agreed in conversation, built by an Opus sub-agent as an Excalidraw builder in `tools/diagrams/` (helpers in `excalib.py`; icons and licenses in `tools/diagrams/icons/`), rendered and LOOKED AT before reporting; the Claude session looks again; the project lead accepts. Renders for review go in `docs/plans/renders/` (tracked) because `sources/` is gitignored and peruse will not open it. Conventions in `tools/diagrams/README.md`: shared palette by node kind, assessment schemes as purple ovals (never diamonds), solid small arrowheads, schema relationship names on boxed labels, 13px minimum text, no Mermaid, no "pointer".
-- **Models**: implementation runs in Opus sub-agents (always pass the model explicitly) or in the codex-impl tabs; never Sonnet for judgment work; never the Fable session itself without explicit clearance. Review every tool or approach choice with the project lead before adopting it.
-- **Astra**: find its pane with `herdr pane list` (the codex pane whose cwd is this repo), read it before sending, send with `herdr pane run <pane> "<one-line pointer>"`, and record handoffs in `docs/plans/restructure-joint-notes.md` under "Handoffs". Never ask the project lead to relay. Never commit Astra's uncommitted work unasked; group commits by what belongs together, not by author.
-- **Review surface**: the project lead reads files in peruse (`http://agent-dev:7440/p/oidm-knowledge/`); root-absolute links (`/knowledge/...`) resolve there. Keep `docs/plans/restructure-dashboard.md` current whenever a status changes.
-- **Git**: branch `bootstrap`, pushed; PR #1 from `bootstrap` into `main` (which the project lead merges). A global pre-push hook refuses any push to `main`; this checkout has `remote.pushDefault=parent`, so push with the remote named: `git push origin bootstrap`. Never commit without the project lead's explicit yes; propose a concise message first. Never delete or overwrite a file you did not create (`links.txt` is the project lead's).
-- **Validation**: `task check` runs the OKF 0.2 validator (`.agents/skills/validate/scripts/okf_validate.py knowledge --strict`) and the house checker (`tools/check_bundle.py`: index coverage, link resolution, trust-signal shape, denylist in gitignored `tools/denylist.txt`). Both must be clean before a commit. Index entries use `* [Title](./file.md) - description` with the description identical to the frontmatter; quote YAML descriptions containing colons.
+The [Claude review record](references/knowledge-outline-claude-review.md)
+withdraws its unsupported IDR/FHIR Condition claim. EFL/IDR relationships and
+exact FHIR mappings remain open. The requested
+[clinical-reconciliation research](references/clinical-information-reconciliation.md)
+is complete; it does not settle Imaging Persona's design.
 
-## The site
+The knowledge reset remains the last cleanup commit. Its archive move is
+prepared in the working tree, outside the current proposed commit. Do not
+edit the old prose into replacements. Delete the temporary archive only after
+useful recovery is complete and active dependencies have been removed.
 
-Quartz 5.0.0 (pinned commit in `site/build.sh`) with YAML config in `site/`, local plugins `site/okf-meta-plugin` (frontmatter badges) and `site/okf-lightbox-plugin` (click-to-zoom), staged by `tools/prepare_site_content.py`; hosted as Cloudflare Workers static assets (`site/wrangler.jsonc`), targets dev (`task deploy`, https://oidm-knowledge-dev.talkasab.workers.dev), staging (`task deploy:staging`, also on push to `main` via `.github/workflows/deploy.yml`, needs `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets, not yet set), prod (`task deploy:prod`; production domain knowledge.openimagingdata.org, not yet configured). Credentials are in the environment "to be cleaned up later". The permission classifier has refused `task deploy` from the Claude session once; the project lead can run it.
+## Orientation
 
-Decided 2026-10-01, not yet built: the public site builds from `pages/` only, the Overview as landing page, the explorer ordered by the five pillars; a separate internal Worker builds the bundle from `knowledge/`; dev and staging stamp "DRAFT / Awaiting Review" on every page; production refuses any page without a `verified` entry (`task verify -- <paths>` stamps it). The current deployed site is the 2026-09-21 bundle and does not match the plan.
+The intended pipeline is private Tigris originals, detailed references, a repository-only OKF knowledge graph, and public presentation pages. The knowledge graph stays in `knowledge/`; public presentation content lives in `site/content/`. Website build and command changes belong to the website session. No internal knowledge website is planned.
 
-## Where the sources are
+Read [project direction](references/project-direction.md) for dated owner statements and terminology, preserved outside the disposable archive. Use [idea coverage](references/idea-coverage.md) for the inventoried concepts, known source-review corrections, and historical evidence. Both are references, not execution instructions.
 
-- Repositories cloned read-only under `~/`: findingmodel, findingmodels, med-ontology-lookup, ACR-RSNA-CDEs (branch next-gen-2026), RadLex, imaging-problem-list (dev is current), FindingModelForge, CDEStaging, IPL-MVP-ExtractionAndLabeling, anatomiclocations.org, BodyPartIndex.py/.ts, UseCases, FHIRSamples, and the lineage repositories. Pins used so far are recorded in each page's sources.
-- `~/exam-types/sources/LoincRsnaRadiologyPlaybook.xlsx`: Playbook entries (LongCommonName column) for exam-type names; a second sheet `core-playbook-dev` may be the project lead's working set.
-- `sources/` (gitignored, to become `raw-sources/`): `bucket/` (manuscripts, decks, the AI-evolution essay, extracted text under `bucket/text/`, the reading in `bucket/REPORT.md`), `siim2026/` (the SIIM 2026 deck, its text and images), `excalidraw-diagrams.md` (15 boards with sensitivity flags), `email/2026-09-19-ipl-manuscript-notes.md`, `ipl-example2-study.md`, `review/` (every review and response file), `upstream-issues-draft.md` (22 drafted issues for the source repositories, awaiting the project lead).
-- The SIIM 2026 deck (June 2026, public) is the central framing source; the January 2026 status update and the July 2026 webinar are the others; the openimagingdata.org posts are team sources.
+Completed imports are documented with their artifacts: [brand assets](brand/README.md), [15 board summaries](references/linked-diagrams/index.md), and [OKF tooling research](references/okf-tooling-comparison.md). The board summaries are inputs to evaluate under the eventual agreed approach. Their capture dates are retrieval dates, not idea dates.
 
-## State on 2026-10-01
+## Working rules
 
-Agreed, written, reviewed (in `knowledge/drafts/`): `overview.md`, `foundation-context.md`, `finding-models-and-cdes-hub.md`, `next-generation-schema.md`, `relationships.md`. Figures: two-planes (accepted), three-axes v6, mini-network v8, two-collections v1, pillars v8 (castellated B3), nodule neighborhood v3, all awaiting the project lead's accept except two-planes; the pillars stack is not yet embedded in the Overview and the nodule figure is not yet placed (relationships page, and in place of the dated figure on the schema page). The standard-clinical-metadata page text is proposed in conversation and not yet agreed; it should carry the project lead's 2026-09-30 thought that time course and etiology may be properties of the edge to a diagnosis. The remaining pages of the layout plan have reviewed source material in the superseded Tuesday drafts (same directory) but are not written. Astra's brand-asset work (`docs/brand/`, `knowledge/assets/`, `docs/plans/2026-09-30-brand-assets.md`) is in progress and uncommitted.
+- Preserve the record of prior owner text and figure agreements; discuss their use in the new organization rather than silently discarding or automatically migrating them. Record source-fidelity findings separately from editorial preferences and publication approval.
+- Check current working-tree changes before edits and preserve concurrent work. Do not infer file ownership or agent assignments from historical session names.
+- Use committed CDE files at a pinned revision. Do not cite uncommitted decisions or commit another repository's work to make a citation available.
+- Follow the implementation plan's source/sensitivity rules. Never read or summarize reviewer correspondence. Keep originals and private review records out of Git.
+- Put generated previews in ignored `scratch/review/`, exposed by `.peruseshow`. Original source artifacts live in `~/data/oidm-knowledge-sources`; the ignored `sources` symlink preserves repository-local paths. Accepted diagram sources and SVGs remain tracked with their pages; follow the [diagram instructions](../tools/diagrams/README.md).
+- Do not treat an agent review as human sign-off. Use root `task verify -- <knowledge paths>` only for an actual project-lead review of knowledge documents. Website review and production-release requirements belong to the separate website workstream. See its README for that workflow.
+- Do not commit without explicit permission for that commit. Update the development log for engineering work and the changelog for reader-facing changes. Keep completed detail out of the current work queue.
 
-Open with the project lead: the figure accepts above; the metadata text; CI secrets; the upstream issue drafts; the CDE decisions S53 to S67 to commit in the CDE repository.
+## Sources and private review records
 
-## Memory for Claude sessions
+Source repositories are cloned under `~/`; their relevant files and historical pins are described by the idea coverage and project-direction references. Recheck a source's committed state before making current implementation claims.
 
-Claude sessions in this project directory also load `~/.claude/projects/-home-talkasab-oidm-knowledge/memory/MEMORY.md`, which indexes the same rules as feedback notes. This file is the version other agents can read.
+Original manuscripts, decks, extracted text, the board captures, the source report, and private review dispositions live in `~/data/oidm-knowledge-sources`, accessible through the ignored `sources` symlink. The collection is also in the `oidm-knowledge-sources` Tigris bucket. All 307 remote objects passed size/SHA-256 comparison. The private inventories retain complete integrity/classification records. The tracked [source manifest](sources-manifest.json) selects 118 artifacts in 25 source groups; use the [source instructions](sources.md) for pull/check commands. The default recovery excludes private review records and older research captures. On another checkout, configure an ignored `sources` symlink to the authorized local collection after obtaining the files. The review files use `sources/review/drafts-<page>.md` and corresponding response files. The unfiled upstream issue draft also remains there. Generated top-level figure iterations have moved to `scratch/review/iterations/`; former dashboard renders are in `scratch/review/renders/`.
+
+The exam-type source workbook is `~/exam-types/sources/LoincRsnaRadiologyPlaybook.xlsx`. Use `LongCommonName` for exam names; do not infer that the `core-playbook-dev` sheet is a reviewed standard.
+
+## Validation and site
+
+Run `task check` for strict OKF conformance, the house checker, and source-manifest validation. Run `task sources:check` separately against the private local collection. [Writing the new knowledge graph](knowledge-authoring.md) describes reconstruction and metadata conventions. New references must keep working links and source IDs. Index descriptions match the target frontmatter.
+
+Website build, command routing, review tools, and deployment belong to the
+separate website session. Consult [site instructions](../site/README.md) for
+that work; no website code or task-routing change is included here.

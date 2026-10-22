@@ -4,7 +4,14 @@ Thank you for helping document the Open Imaging Data Model. This repository hold
 
 ## Before you write
 
-Read the [authoring guide](knowledge/guides/authoring-guide.md). It defines the document types, the frontmatter every file needs, the trust workflow, how links work, and how to migrate a document from a working repository. Agents follow the same guide.
+Read the [implementation plan](docs/plans/implementation.md) for current decisions,
+source rules, and the paused content-review checkpoint. It replaces superseded
+plans and dashboards. Preserve recorded approvals and open questions.
+
+The [reconstruction instructions](docs/knowledge-authoring.md) describe writing
+fresh knowledge documents after the separate knowledge reset. They do not
+authorize drafting now. The old bundle and its build plan remain historical
+material until that reset.
 
 ## Ground rules
 
@@ -23,7 +30,7 @@ files and credentials remain outside Git.
 
 1. Branch from `main`.
 2. Write or edit under `knowledge/`. New agent-written documents start with `status: draft`.
-3. Update the directory `index.md`, add a line to `knowledge/log.md`, and, for migrations, a row in the migration ledger.
+3. Update the directory `index.md` and `knowledge/log.md`. Record substantive recovery decisions in the implementation plan.
 4. Run both checkers and fix every error:
 
    ```bash

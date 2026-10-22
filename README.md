@@ -1,8 +1,21 @@
 # OIDM knowledge
 
-Canonical, public, high-level documentation for the Open Imaging Data Model (OIDM): the finding models, common data elements, anatomic locations, and exam types that form its semantic foundation; the Observation, Exam Finding List, Imaging Problem List, and Imaging Persona data structures built on them; and the applications that use them.
+Source-grounded, high-level documentation for the Open Imaging Data Model (OIDM): the finding models, common data elements, anatomic locations, and exam types that form its semantic foundation; the Observation, Exam Finding List, Imaging Problem List, and Imaging Persona data structures built on them; and the applications that use them.
 
 The content is an [Open Knowledge Format](https://okf.md) 0.2 bundle in [`knowledge/`](knowledge/index.md). Start at the [root index](knowledge/index.md), then the overview and the glossary. Working repositories in the [openimagingdata](https://github.com/openimagingdata) organization keep code documentation and reference this repository for everything else.
+
+## Current work
+
+Follow the [single implementation plan](docs/plans/implementation.md) for current
+decisions and the proposed reconstruction. The existing generated bundle is
+retained in this commit; its planned move to a temporary archive is a separate
+change. New concept drafting remains paused pending the recorded plan review.
+
+Owner guidance and historical source evidence are preserved in
+[project direction](docs/references/project-direction.md) and
+[the idea inventory](docs/references/idea-coverage.md). Temporary review previews
+live in ignored `scratch/review/`, exposed locally through `.peruseshow`.
+Website work belongs to its separate session and [roadmap](site/ROADMAP.md).
 
 ## Reading it
 
@@ -18,7 +31,7 @@ Original documents and diagram captures are kept in private storage. See
 `task sources:pull`, `task sources:check`, and `task sources:manifest` commands.
 `task check` also validates the manifest without accessing private files.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) and the [authoring guide](knowledge/guides/authoring-guide.md). `task check` runs both bundle checkers and source-manifest validation. The bundle checkers can also run directly:
+See [CONTRIBUTING.md](CONTRIBUTING.md) and the [reconstruction instructions](docs/knowledge-authoring.md). `task check` runs both bundle checkers and source-manifest validation. The bundle checkers can also run directly:
 
 ```bash
 uv run .agents/skills/validate/scripts/okf_validate.py knowledge --strict

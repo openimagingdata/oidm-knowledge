@@ -6,6 +6,8 @@ All notable reader-facing changes to this knowledgebase. Format follows [Keep a 
 
 ### Changed
 
+- Consolidated planning into one implementation plan, preserved owner guidance and source inventories in references, and moved temporary review previews out of tracked documentation.
+
 - Tightened 112 knowledge pages and their navigation descriptions, reducing repetition while preserving examples and source extracts; a five-part review then restored qualifiers, disclaimers, and quoted source material the tightening had dropped, and reverted twelve pages.
 - Diagrams are Excalidraw-rendered SVGs composed for the text column, with click-to-zoom on the site; Mermaid is no longer used.
 

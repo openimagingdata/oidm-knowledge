@@ -1,10 +1,10 @@
 # Linked diagram references
 
-These 15 short summaries capture the ideas in every unique URL in [links.txt](../../../links.txt). Native SVG and PNG exports, original scene contents, searchable text, and capture metadata are stored under `sources/linked-diagrams/<scene-id>/`. Sources remain outside Git under this repository's existing rules; the summaries are tracked here, and the live source URLs are kept only in the gitignored capture manifest.
+These 15 short summaries describe the captured boards listed in the [source manifest](../../sources-manifest.json). Native SVG and PNG exports, original scene contents, searchable text, and capture metadata are stored under `sources/linked-diagrams/<scene-id>/`. Sources remain outside Git under this repository's existing rules; the summaries are tracked here, and the live source URLs are kept only in the gitignored capture manifest.
 
-These captures are staged here pending approval of the [sources and layers plan](../../plans/2026-10-01-sources-and-layers.md). That plan places distilled references in `knowledge/references/`, keeps raw sources in a private bucket with a gitignored mirror, and separates the team knowledge bundle from presentation pages. This capture task does not move existing content or change the site's build input.
+These captures remain source references under the [implementation plan](../../plans/implementation.md). Conversion into `knowledge/references/` awaits fresh knowledge reconstruction. Original files remain in private storage; presentation pages are a separate workstream. Retaining a capture does not approve its claims or permission to reproduce its figures.
 
-Read these as source references alongside the [current owner guidance](../../plans/2026-09-22-layout-plan.md). Historical class names, checklists, possible architectures, and demo designs retain their original status. A board is evidence of an idea or discussion; completion requires implementation evidence. The pillar connections below are navigation aids for the agreed structure.
+Read these as source references alongside the [recorded owner guidance](../project-direction.md). Historical class names, checklists, possible architectures, and demo designs retain their original status. A board is evidence of an idea or discussion; completion requires implementation evidence. The pillar connections below are navigation aids for the agreed structure.
 
 | Reference | Ideas to return to | Pillars |
 |---|---|---|
@@ -29,3 +29,7 @@ There are 17 URL occurrences and 15 unique boards. Imaging Problem List and OIFM
 All boards were retrieved and visually reviewed on 2026-10-01. Each original PNG is a native full-board export at 1×. Three native SVG exports contain XML-invalid entities or control characters. Their untouched `original.svg` files are retained; linked `usable.svg` copies only normalize those characters. Each capture's metadata records that distinction and file checksums. The source-contents response alone lacks separately stored image binaries; the visual exports embed them.
 
 The earlier combined transcription in `sources/excalidraw-diagrams.md` remains available as historical research. These individual summaries were checked against the live exports and text, including corrections to the compact finding-model rules about anatomic scope and component extraction.
+
+## Capture validation
+
+Capture and summary work completed 2026-10-01. URL coverage, PNG decoding, selected SVG XML, 63 artifact checksums, and local summary links passed. Standalone reference validation reported zero errors and 50 warnings for links outside this directory; those targets were checked separately. On 2026-10-02, all 15 summaries were rechecked after removing live share links and meeting histories, and remaining discussion-history wording in four summaries was generalized. Capture dates record retrieval, not when an idea originated. Detailed-reference conversion and any restricted-figure redraws remain subject to the implementation plan. Use the [source instructions](../../sources.md) to download and verify the selected original artifacts.
